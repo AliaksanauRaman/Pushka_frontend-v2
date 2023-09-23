@@ -7,6 +7,18 @@ export class Place implements Comparable<Place> {
     return value instanceof Place;
   }
 
+  public static build(
+    countryId: number,
+    countryLabel: string,
+    cityId: number,
+    cityLabel: string
+  ): Place {
+    return new Place(
+      new Country(countryId, countryLabel),
+      new City(cityId, cityLabel)
+    );
+  }
+
   public get id(): number {
     return this.city.id;
   }
