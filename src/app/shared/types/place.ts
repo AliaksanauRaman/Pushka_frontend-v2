@@ -1,8 +1,8 @@
 import { City } from './city';
 import { Country } from './country';
-import { Comparable } from '@shared/interfaces/comparable';
+import { IComparable } from '@shared/interfaces/comparable';
 
-export class Place implements Comparable<Place> {
+export class Place implements IComparable<Place> {
   public static is(value: unknown): value is Place {
     return value instanceof Place;
   }

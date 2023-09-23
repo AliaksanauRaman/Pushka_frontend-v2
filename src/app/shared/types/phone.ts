@@ -1,6 +1,6 @@
-import { Comparable } from '@shared/interfaces/comparable';
+import { IComparable } from '@shared/interfaces/comparable';
 
-export class Phone implements Comparable<Phone> {
+export class Phone implements IComparable<Phone> {
   public static is(value: unknown): value is Phone {
     return value instanceof Phone;
   }

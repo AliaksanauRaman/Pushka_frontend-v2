@@ -1,6 +1,6 @@
-import { Comparable } from '@shared/interfaces/comparable';
+import { IComparable } from '@shared/interfaces/comparable';
 
-export class City implements Comparable<City> {
+export class City implements IComparable<City> {
   constructor(public readonly id: number, public readonly label: string) {}
 
   public equalsTo(value: City): boolean {

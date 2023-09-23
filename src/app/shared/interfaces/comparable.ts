@@ -1,3 +1,3 @@
-export interface Comparable<T = unknown> {
+export interface IComparable<T = unknown> {
   equalsTo(value: T): boolean;
 }
