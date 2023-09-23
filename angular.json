@@ -8,6 +8,8 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
+          "changeDetection": "OnPush",
+          "displayBlock": true,
           "standalone": true
         },
         "@schematics/angular:directive": {
