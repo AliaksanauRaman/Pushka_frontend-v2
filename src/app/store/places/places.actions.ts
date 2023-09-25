@@ -1,7 +1,7 @@
-export class GetAllPlaces {
-  public static type = '[Places] Get All';
+export class GetPlaces {
+  public static type = '[Places] Get';
 }
 
-export class DestroyGetAllPlaces {
-  public static type = '[Places] Destroy Get All';
+export class DestroyGetPlaces {
+  public static type = '[Places] Destroy Get';
 }

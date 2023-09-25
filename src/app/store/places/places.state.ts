@@ -6,62 +6,54 @@ import {
   Actions,
   ofAction,
   Selector,
+  NgxsOnInit,
 } from '@ngxs/store';
-import { Observable, catchError, takeUntil, tap } from 'rxjs';
+import { Observable, catchError, takeUntil, tap, throwError } from 'rxjs';
 
 import { PlacesHttpService } from '@shared/http/places/places-http.service';
 
-import { GetAllPlaces, DestroyGetAllPlaces } from './places.actions';
+import { GetPlaces, DestroyGetPlaces } from './places.actions';
 import { Place } from '@shared/types/place';
-import {
-  HttpRequestState,
-  NotMadeHttpRequest,
-  LoadingHttpRequest,
-  SuccessHttpRequest,
-  FailedHttpRequest,
-} from '@shared/types/http-request-state';
 
 type StateModel = Readonly<{
-  getAll: HttpRequestState<ReadonlyArray<Place>>;
+  places: ReadonlyArray<Place>;
+  getError: unknown;
 }>;
 
 @State<StateModel>({
   name: 'places',
   defaults: {
-    getAll: new NotMadeHttpRequest(),
+    places: [],
+    getError: null,
   },
 })
 @Injectable({
   providedIn: 'root',
 })
-export class PlacesState {
+export class PlacesState implements NgxsOnInit {
   private readonly _placesHttpService = inject(PlacesHttpService);
   private readonly _actions$ = inject(Actions);
 
   @Selector()
-  public static getAll(
-    state: StateModel
-  ): HttpRequestState<ReadonlyArray<Place>> {
-    return state.getAll;
+  public static places(state: StateModel): ReadonlyArray<Place> {
+    return state.places;
   }
 
-  @Action(GetAllPlaces, { cancelUncompleted: true })
-  public getAllPlaces(
+  public ngxsOnInit(context: StateContext<StateModel>): void {
+    context.dispatch(new GetPlaces());
+  }
+
+  @Action(GetPlaces, { cancelUncompleted: true })
+  public getPlaces(
     context: StateContext<StateModel>
   ): Observable<ReadonlyArray<Place>> {
-    context.setState({
-      getAll: new LoadingHttpRequest(),
-    });
-
     return this._placesHttpService.getAll().pipe(
-      tap((places) =>
-        context.setState({ getAll: new SuccessHttpRequest(places) })
-      ),
+      tap((places) => context.setState({ places, getError: null })),
       catchError((error: unknown) => {
-        context.setState({ getAll: new FailedHttpRequest(error) });
-        throw error;
+        context.setState({ places: [], getError: error });
+        return throwError(() => error);
       }),
-      takeUntil(this._actions$.pipe(ofAction(DestroyGetAllPlaces)))
+      takeUntil(this._actions$.pipe(ofAction(DestroyGetPlaces)))
     );
   }
 }
