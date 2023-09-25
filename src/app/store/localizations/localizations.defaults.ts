@@ -1,4 +1,4 @@
-import { LocalizationsStateModel } from './model';
+import { LocalizationsStateModel } from './localizations-state.model';
 import { getLanguageFromPreviousSession } from './get-language-from-previous-session';
 import { getLanguageFromBrowserSettings } from './get-language-from-browser-settings';
 import { Localization } from '@shared/types/localization';
