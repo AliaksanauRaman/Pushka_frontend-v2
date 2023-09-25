@@ -1,0 +1,15 @@
+<label class="label" [for]="_idDirective.id()">{{
+  _labelDirective.label()
+}}</label>
+
+<input
+  #fieldRef
+  class="field"
+  [id]="_idDirective.id()"
+  [placeholder]="_placeholderDirective.placeholder()"
+  [maxLength]="_maxLength()"
+  [value]="_value()"
+  type="email"
+  inputmode="email"
+  (input)="handleFieldInput(fieldRef.value)"
+/>
