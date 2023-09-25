@@ -8,7 +8,7 @@ import { CRYPTO } from '@global/crypto';
 export class GeneratorService {
   private readonly _crypto = inject(CRYPTO);
 
-  public generateUniqueId(): string {
+  public generateUUID(): string {
     return this._crypto.randomUUID();
   }
 }
