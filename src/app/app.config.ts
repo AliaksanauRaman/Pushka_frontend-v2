@@ -1,8 +1,10 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+
+import { authorizationInterceptor } from '@core/interceptors/authorization.interceptor';
 
 import { STORE } from './store';
 import { routes } from './app.routes';
@@ -10,7 +12,7 @@ import { environment } from '../environments/environment';
 
 export const APP_CONFIG: ApplicationConfig = {
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authorizationInterceptor])),
     importProvidersFrom(
       NgxsModule.forRoot(STORE, { developmentMode: !environment.isProduction }),
       NgxsLoggerPluginModule.forRoot({
