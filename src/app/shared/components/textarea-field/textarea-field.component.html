@@ -1,0 +1,13 @@
+<label class="label" [for]="_idDirective.id()">{{
+  _labelDirective.label()
+}}</label>
+
+<textarea
+  #fieldRef
+  [id]="_idDirective.id()"
+  class="field"
+  [placeholder]="_placeholderDirective.placeholder()"
+  [maxLength]="_maxLength()"
+  [value]="_value()"
+  (input)="handleFieldInput(fieldRef.value)"
+></textarea>
