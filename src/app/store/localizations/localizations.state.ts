@@ -45,7 +45,7 @@ export class LocalizationsState implements NgxsOnInit {
   @Selector()
   public static selected(state: StateModel): Localization {
     if (state.selected === null) {
-      throw new Error('There always must be a selected localization!');
+      throw new Error('There is always must be a selected localization!');
     }
 
     return state.selected;
