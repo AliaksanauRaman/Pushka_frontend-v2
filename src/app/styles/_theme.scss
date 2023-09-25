@@ -1,0 +1,22 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$pushka-primary: mat.define-palette(mat.$indigo-palette);
+$pushka-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$pushka-warn: mat.define-palette(mat.$red-palette);
+
+$pushka-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $pushka-primary,
+      accent: $pushka-accent,
+      warn: $pushka-warn,
+    ),
+  )
+);
+
+@include mat.core-theme($pushka-theme);
+// List of individual angular material components styles for which must be included
