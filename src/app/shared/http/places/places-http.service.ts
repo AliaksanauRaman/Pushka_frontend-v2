@@ -4,7 +4,7 @@ import { Observable, map } from 'rxjs';
 import { IPlacesHttpService } from './places-http-service.interface';
 import { BaseHttpService } from '@shared/base/base-http.service';
 import { Place } from '@shared/types/place';
-import { allPlacesResponseData } from '@shared/external-types-parsers/all-places-response-data';
+import { allPlacesResponseData } from '@shared/unknown-types-parsers/all-places-response-data';
 
 @Injectable({
   providedIn: 'root',

@@ -4,7 +4,7 @@ import { Observable, map } from 'rxjs';
 import { BaseHttpService } from '@shared/base/base-http.service';
 import { LoginDto } from '@shared/dtos/login.dto';
 import { LoginResponseData } from '@shared/types/login-response-data';
-import { loginResponseData } from '@shared/external-types-parsers/login-response-data';
+import { loginResponseData } from '@shared/unknown-types-parsers/login-response-data';
 
 @Injectable({
   providedIn: 'root',
