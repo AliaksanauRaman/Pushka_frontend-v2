@@ -6,12 +6,15 @@ import { AuthenticationHttpService } from '@shared/http/authentication/authentic
 import { JwtService } from '@shared/services/jwt/jwt.service';
 import { LOCAL_STORAGE } from '@global/local-storage';
 
-import { UserStateModel } from './user-state.model';
 import { InitUser, LoginUser, LogoutUser } from './user.actions';
+import { User } from '@shared/types/user';
 import { LoginResponseData } from '@shared/types/login-response-data';
 import { LocalStorageKey } from '@shared/enums/local-storage-key.enum';
 
-type StateModel = UserStateModel;
+type StateModel = Readonly<{
+  user: User | null;
+  loginError: unknown;
+}>;
 
 @State<StateModel>({
   name: 'user',
