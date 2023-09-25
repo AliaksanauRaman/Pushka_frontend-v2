@@ -1,3 +1,4 @@
+// TODO: Unused
 export type HttpRequestState<TData = unknown, TError = unknown> =
   | NotMadeHttpRequest
   | LoadingHttpRequest
