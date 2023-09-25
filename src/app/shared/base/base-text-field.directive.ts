@@ -7,13 +7,7 @@ import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
 
 import { BaseReactiveField } from './base-reactive-field';
 
-@Directive({
-  hostDirectives: [
-    { directive: IdDirective, inputs: ['puId'] },
-    { directive: LabelDirective, inputs: ['puLabel'] },
-    { directive: PlaceholderDirective, inputs: ['puPlaceholder'] },
-  ],
-})
+@Directive()
 export abstract class BaseTextFieldDirective extends BaseReactiveField<string> {
   @Input()
   public set puMaxLength(value: number) {
