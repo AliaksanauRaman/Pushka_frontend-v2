@@ -4,7 +4,7 @@ import { Directive, Input, signal } from '@angular/core';
   standalone: true,
 })
 export class LabelDirective {
-  @Input()
+  @Input({ required: true })
   public set puLabel(value: string) {
     this.label.set(value);
   }
