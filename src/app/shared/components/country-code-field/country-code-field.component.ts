@@ -15,9 +15,11 @@ import {
 } from '@angular/cdk/listbox';
 import { z } from 'zod';
 
+import { AriaLabelDirective } from '@shared/directives/aria-label.directive';
+import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
+
 import { COUNTRY_CODES } from './country-code-field.config';
 import { BaseDropdownFieldDirective } from '@shared/base/base-dropdown-field.directive';
-import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
 
 @Component({
   selector: 'pu-country-code-field',
@@ -34,6 +36,7 @@ import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
   standalone: true,
   imports: [NgFor, OverlayModule, CdkListboxModule],
   hostDirectives: [
+    { directive: AriaLabelDirective, inputs: ['puAriaLabel'] },
     { directive: PlaceholderDirective, inputs: ['puPlaceholder'] },
   ],
 })
@@ -42,6 +45,7 @@ export class CountryCodeFieldComponent
   implements OnInit
 {
   protected readonly _countryCodes = inject(COUNTRY_CODES);
+  protected readonly _ariaLabelDirective = inject(AriaLabelDirective);
   protected readonly _value = signal('');
 
   public override writeValue(value: unknown): void {
