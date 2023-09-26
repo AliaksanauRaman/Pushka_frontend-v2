@@ -1,0 +1,11 @@
+<input
+  [id]="_idDirective.id()"
+  class="checkbox"
+  [checked]="_isChecked()"
+  type="checkbox"
+  (click)="toggleIsChecked()"
+/>
+
+<label class="label" [for]="_idDirective.id()">{{
+  _labelDirective.label()
+}}</label>
