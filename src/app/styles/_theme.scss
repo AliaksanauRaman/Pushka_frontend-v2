@@ -20,3 +20,4 @@ $pushka-theme: mat.define-light-theme(
 
 @include mat.core-theme($pushka-theme);
 // List of individual angular material components styles for which must be included
+@include mat.datepicker-theme($pushka-theme);

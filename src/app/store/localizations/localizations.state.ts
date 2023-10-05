@@ -10,6 +10,7 @@ import {
 } from './localizations.actions';
 import { Localization } from '@shared/types/localization';
 import { Language, checkIsLanguage } from '@shared/enums/language.enum';
+import { Locale } from '@shared/enums/locale.enum';
 import { LocalStorageKey } from '@shared/enums/local-storage-key.enum';
 
 type StateModel = Readonly<{
@@ -18,9 +19,9 @@ type StateModel = Readonly<{
 }>;
 
 const LOCALIZATIONS = [
-  new Localization('BY', Language.BELARUSIAN),
-  new Localization('EN', Language.ENGLISH),
-  new Localization('RU', Language.RUSSIAN),
+  new Localization('BY', Language.BELARUSIAN, Locale.BY),
+  new Localization('EN', Language.ENGLISH, Locale.EN),
+  new Localization('RU', Language.RUSSIAN, Locale.RU),
 ];
 
 @State<StateModel>({
