@@ -26,9 +26,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "moment"
-            ],
             "outputPath": "dist/pushka-v2",
             "index": "src/index.html",
             "main": "src/main.ts",
