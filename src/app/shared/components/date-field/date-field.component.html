@@ -1,0 +1,18 @@
+<label [for]="_idDirective.id()">{{ _labelDirective.label() }}</label>
+
+<input
+  #fieldRef
+  [id]="_idDirective.id()"
+  class="field"
+  [matDatepicker]="datepicker"
+  [min]="_minDate()"
+  [formControl]="_inputField"
+  type="text"
+  readonly
+  (dateChange)="handleDateChange($event)"
+/>
+<mat-datepicker #datepicker></mat-datepicker>
+<button type="button" (click)="datepicker.open()">Open</button>
+<button type="button" [disabled]="_inputField.value === null" (click)="reset()">
+  Reset
+</button>
