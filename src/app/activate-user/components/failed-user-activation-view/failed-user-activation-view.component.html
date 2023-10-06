@@ -1,0 +1,6 @@
+<ng-container *ngIf="_error() as error">
+  <h1>Failed!</h1>
+
+  <p>{{ error.label }}</p>
+  <p>{{ error.reason }}</p>
+</ng-container>
