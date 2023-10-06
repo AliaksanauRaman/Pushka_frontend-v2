@@ -1,0 +1,12 @@
+<ng-container
+  *ngIf="_activateUserPageService.userActivation$ | async as userActivation"
+>
+  <pu-successful-user-activation-view
+    *ngIf="userActivation.checkIsSuccessful()"
+  ></pu-successful-user-activation-view>
+
+  <pu-failed-user-activation-view
+    *ngIf="userActivation.checkIsFailed()"
+    [error]="userActivation.error"
+  ></pu-failed-user-activation-view>
+</ng-container>
