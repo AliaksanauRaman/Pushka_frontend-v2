@@ -1,21 +1,18 @@
 <button
-  cdkOverlayOrigin
-  #origin="cdkOverlayOrigin"
+  [cdkMenuTriggerFor]="countryCodeList"
   [ariaLabel]="_ariaLabelDirective.ariaLabel()"
-  type="button"
-  (click)="togglePanel()"
 >
   <span>{{ _value() || _placeholderDirective.placeholder() }}</span>
 </button>
 
-<ng-template
-  cdkConnectedOverlay
-  [cdkConnectedOverlayOrigin]="origin"
-  [cdkConnectedOverlayOpen]="_isPanelOpened()"
->
-  <ul cdkListbox (cdkListboxValueChange)="handleListboxValueChange($event)">
-    <li *ngFor="let code of _countryCodes" [cdkOption]="code">
-      <span>{{ code }}</span>
-    </li>
-  </ul>
+<ng-template #countryCodeList>
+  <div cdkMenu>
+    <button
+      *ngFor="let countryCode of _countryCodes; trackBy: trackByCountryCode"
+      cdkMenuItem
+      (cdkMenuItemTriggered)="handleCountryCodeSelect(countryCode)"
+    >
+      <span>{{ countryCode }}</span>
+    </button>
+  </div>
 </ng-template>

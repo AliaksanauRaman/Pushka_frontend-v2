@@ -8,18 +8,14 @@ import {
 } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OverlayModule } from '@angular/cdk/overlay';
-import {
-  CdkListboxModule,
-  ListboxValueChangeEvent,
-} from '@angular/cdk/listbox';
+import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
 import { z } from 'zod';
 
 import { AriaLabelDirective } from '@shared/directives/aria-label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
 
 import { COUNTRY_CODES } from './country-code-field.config';
-import { BaseDropdownFieldDirective } from '@shared/base/base-dropdown-field.directive';
+import { BaseReactiveField } from '@shared/base/base-reactive-field';
 
 @Component({
   selector: 'pu-country-code-field',
@@ -34,18 +30,19 @@ import { BaseDropdownFieldDirective } from '@shared/base/base-dropdown-field.dir
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgFor, OverlayModule, CdkListboxModule],
+  imports: [NgFor, CdkMenu, CdkMenuItem, CdkMenuTrigger],
   hostDirectives: [
     { directive: AriaLabelDirective, inputs: ['puAriaLabel'] },
     { directive: PlaceholderDirective, inputs: ['puPlaceholder'] },
   ],
 })
 export class CountryCodeFieldComponent
-  extends BaseDropdownFieldDirective<string>
+  extends BaseReactiveField<string>
   implements OnInit
 {
   protected readonly _countryCodes = inject(COUNTRY_CODES);
   protected readonly _ariaLabelDirective = inject(AriaLabelDirective);
+  protected readonly _placeholderDirective = inject(PlaceholderDirective);
   protected readonly _value = signal('');
 
   public override writeValue(value: unknown): void {
@@ -56,17 +53,17 @@ export class CountryCodeFieldComponent
     this._placeholderDirective.puPlaceholder = '+XXX';
   }
 
-  protected handleListboxValueChange(
-    event: ListboxValueChangeEvent<unknown>
-  ): void {
-    const selectedValue = z.string().parse(event.value[0]);
+  protected trackByCountryCode(_: number, countryCode: string): string {
+    return countryCode;
+  }
 
-    if (this.checkIsNewValue(selectedValue)) {
-      this._value.set(selectedValue);
-      this.onChange(selectedValue);
+  protected handleCountryCodeSelect(countryCode: string): void {
+    if (!this.checkIsNewValue(countryCode)) {
+      return;
     }
 
-    this.closePanel();
+    this._value.set(countryCode);
+    this.onChange(countryCode);
   }
 
   private checkIsNewValue(value: string): boolean {
