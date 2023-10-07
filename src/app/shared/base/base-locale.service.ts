@@ -22,12 +22,12 @@ export abstract class BaseLocaleService {
 
   public getShortMonthNames(isCaps = false): Array<string> {
     return this.getLongMonthNames(isCaps).map(
-      (name) => `${this.getOneShortMonthName(name)}.`
+      (name) => `${this.getOneShortMonthName(name)}`
     );
   }
 
   public getOneShortMonthName(longName: string): string {
-    return longName.length === 4 ? longName : `${longName.slice(0, 4)}`;
+    return longName.slice(0, 3);
   }
 
   public getNarrowMonthNames(isCaps = false): Array<string> {
