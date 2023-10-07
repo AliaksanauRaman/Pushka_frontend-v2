@@ -1,5 +1,5 @@
 import { PlacesState } from './places';
-import { LocalizationsState } from './localizations';
+import { SelectedLocalizationState } from './selected-localization';
 import { UserState } from './user';
 
-export const STORE = [PlacesState, LocalizationsState, UserState];
+export const STORE = [PlacesState, SelectedLocalizationState, UserState];

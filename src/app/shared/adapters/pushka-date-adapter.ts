@@ -4,14 +4,14 @@ import { Store } from '@ngxs/store';
 
 import { LocaleServiceFactory } from '@shared/factories/locale-service.factory';
 
-import { LocalizationsState } from '@store/localizations';
+import { SelectedLocalizationState } from '@store/selected-localization';
 
 @Injectable()
 export class PushkaDateAdapter extends NativeDateAdapter {
   private readonly _store = inject(Store);
   private readonly _localeServiceFactory = inject(LocaleServiceFactory);
   private readonly _currentLocaleService = this._localeServiceFactory.build(
-    this._store.selectSnapshot(LocalizationsState.stream).locale
+    this._store.selectSnapshot(SelectedLocalizationState.stream).locale
   );
 
   public override getFirstDayOfWeek(): number {

@@ -1,13 +1,13 @@
 import { Localization } from '@shared/types/localization';
 
 export class InitSelectedLocalization {
-  public static type = '[Localizations] Init Selected';
+  public static type = '[Selected Localization] Init';
 
   constructor(public readonly localization: Localization) {}
 }
 
 export class SelectLocalization {
-  public static type = '[Localizations] Select';
+  public static type = '[Selected Localization] Select';
 
   constructor(public readonly localization: Localization) {}
 }

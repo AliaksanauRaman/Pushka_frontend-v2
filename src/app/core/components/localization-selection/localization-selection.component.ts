@@ -5,7 +5,10 @@ import { Store } from '@ngxs/store';
 
 import { LOCALIZATIONS } from '@shared/dependencies/localizations';
 
-import { LocalizationsState, SelectLocalization } from '@store/localizations';
+import {
+  SelectedLocalizationState,
+  SelectLocalization,
+} from '@store/selected-localization';
 import { Localization } from '@shared/types/localization';
 
 @Component({
@@ -21,7 +24,7 @@ export class LocalizationSelectionComponent {
   protected readonly _localizations = inject(LOCALIZATIONS);
 
   protected readonly _selectedLocalization$ = this._store.select(
-    LocalizationsState.stream
+    SelectedLocalizationState.stream
   );
 
   protected trackByLocalizationLabel(

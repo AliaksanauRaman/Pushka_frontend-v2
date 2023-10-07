@@ -5,7 +5,7 @@ import { Observable, map, throwError } from 'rxjs';
 
 import { BaseHttpService } from '@shared/base/base-http.service';
 import { RegisterDto } from '@shared/dtos/register.dto';
-import { LocalizationsState } from '@store/localizations';
+import { SelectedLocalizationState } from '@store/selected-localization';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class UsersHttpService extends BaseHttpService {
 
   public register(registerDto: RegisterDto): Observable<unknown> {
     const selectedLocalization = this._store.selectSnapshot(
-      LocalizationsState.selected
+      SelectedLocalizationState.stream
     );
 
     return this._httpClient

@@ -8,7 +8,7 @@ import { LOCALIZATIONS } from '@shared/dependencies/localizations';
 import {
   InitSelectedLocalization,
   SelectLocalization,
-} from './localizations.actions';
+} from './selected-localization.actions';
 import { Localization } from '@shared/types/localization';
 import { Language, checkIsLanguage } from '@shared/enums/language.enum';
 import { LocalStorageKey } from '@shared/enums/local-storage-key.enum';
@@ -16,13 +16,13 @@ import { LocalStorageKey } from '@shared/enums/local-storage-key.enum';
 type StateModel = Localization | null;
 
 @State<StateModel>({
-  name: 'localizations',
+  name: 'selectedLocalization',
   defaults: null,
 })
 @Injectable({
   providedIn: 'root',
 })
-export class LocalizationsState implements NgxsOnInit {
+export class SelectedLocalizationState implements NgxsOnInit {
   private readonly _localStorage = inject(LOCAL_STORAGE);
   private readonly _navigator = inject(NAVIGATOR);
   private readonly _localizations = inject(LOCALIZATIONS);
