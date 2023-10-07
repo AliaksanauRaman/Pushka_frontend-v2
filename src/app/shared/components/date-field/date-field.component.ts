@@ -5,6 +5,7 @@ import {
   forwardRef,
   inject,
   signal,
+  OnInit,
 } from '@angular/core';
 import {
   FormControl,
@@ -15,6 +16,9 @@ import {
   MatDatepickerInputEvent,
   MatDatepickerModule,
 } from '@angular/material/datepicker';
+import { DateAdapter } from '@angular/material/core';
+import { Store } from '@ngxs/store';
+import { takeUntil, tap } from 'rxjs';
 
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
@@ -24,6 +28,7 @@ import {
   MAT_DATE_FORMATS_PROVIDER,
 } from './date-field.config';
 import { BaseReactiveField } from '@shared/base/base-reactive-field';
+import { SelectedLocalizationState } from '@store/selected-localization';
 
 @Component({
   selector: 'pu-date-field',
@@ -46,12 +51,17 @@ import { BaseReactiveField } from '@shared/base/base-reactive-field';
     { directive: LabelDirective, inputs: ['puLabel'] },
   ],
 })
-export class DateFieldComponent extends BaseReactiveField<Date | null> {
+export class DateFieldComponent
+  extends BaseReactiveField<Date | null>
+  implements OnInit
+{
   @Input()
   public set puMinDate(value: Date | null) {
     this._minDate.set(value);
   }
 
+  private readonly _store = inject(Store);
+  private readonly _dateAdapter = inject(DateAdapter);
   protected readonly _idDirective = inject(IdDirective);
   protected readonly _labelDirective = inject(LabelDirective);
   protected readonly _minDate = signal<Date | null>(null);
@@ -68,6 +78,16 @@ export class DateFieldComponent extends BaseReactiveField<Date | null> {
     }
 
     this.writeDate(value);
+  }
+
+  public ngOnInit(): void {
+    this._store
+      .select(SelectedLocalizationState.stream)
+      .pipe(
+        tap(({ locale }) => this._dateAdapter.setLocale(locale)),
+        takeUntil(this._destroy$)
+      )
+      .subscribe();
   }
 
   protected handleDateChange(event: MatDatepickerInputEvent<unknown>): void {

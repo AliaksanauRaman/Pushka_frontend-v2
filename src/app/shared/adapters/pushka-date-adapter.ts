@@ -1,21 +1,24 @@
 import { Injectable, inject } from '@angular/core';
 import { NativeDateAdapter } from '@angular/material/core';
-import { Store } from '@ngxs/store';
 
 import { LocaleServiceFactory } from '@shared/factories/locale-service.factory';
 
-import { SelectedLocalizationState } from '@store/selected-localization';
+import { Locale } from '@shared/enums/locale.enum';
+import { BaseLocaleService } from '@shared/base/base-locale.service';
 
 @Injectable()
 export class PushkaDateAdapter extends NativeDateAdapter {
-  private readonly _store = inject(Store);
   private readonly _localeServiceFactory = inject(LocaleServiceFactory);
-  private readonly _currentLocaleService = this._localeServiceFactory.build(
-    this._store.selectSnapshot(SelectedLocalizationState.stream).locale
-  );
+  private _currentLocaleService!: BaseLocaleService;
 
   public override getFirstDayOfWeek(): number {
     return 1;
+  }
+
+  public override setLocale(locale: Locale): void {
+    super.setLocale(locale);
+
+    this._currentLocaleService = this._localeServiceFactory.build(locale);
   }
 
   public override getMonthNames(
