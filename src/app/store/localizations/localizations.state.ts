@@ -3,6 +3,7 @@ import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 
 import { LOCAL_STORAGE } from '@global/local-storage';
 import { NAVIGATOR } from '@global/navigator';
+import { LOCALIZATIONS } from '@shared/dependencies/localizations';
 
 import {
   InitSelectedLocalization,
@@ -10,26 +11,13 @@ import {
 } from './localizations.actions';
 import { Localization } from '@shared/types/localization';
 import { Language, checkIsLanguage } from '@shared/enums/language.enum';
-import { Locale } from '@shared/enums/locale.enum';
 import { LocalStorageKey } from '@shared/enums/local-storage-key.enum';
 
-type StateModel = Readonly<{
-  localizations: ReadonlyArray<Localization>;
-  selected: Localization | null;
-}>;
-
-const LOCALIZATIONS = [
-  new Localization('BY', Language.BELARUSIAN, Locale.BY),
-  new Localization('EN', Language.ENGLISH, Locale.EN),
-  new Localization('RU', Language.RUSSIAN, Locale.RU),
-];
+type StateModel = Localization | null;
 
 @State<StateModel>({
   name: 'localizations',
-  defaults: {
-    localizations: LOCALIZATIONS,
-    selected: null,
-  },
+  defaults: null,
 })
 @Injectable({
   providedIn: 'root',
@@ -37,19 +25,15 @@ const LOCALIZATIONS = [
 export class LocalizationsState implements NgxsOnInit {
   private readonly _localStorage = inject(LOCAL_STORAGE);
   private readonly _navigator = inject(NAVIGATOR);
+  private readonly _localizations = inject(LOCALIZATIONS);
 
   @Selector()
-  public static localizations(state: StateModel): ReadonlyArray<Localization> {
-    return state.localizations;
-  }
-
-  @Selector()
-  public static selected(state: StateModel): Localization {
-    if (state.selected === null) {
+  public static stream(state: StateModel): Localization {
+    if (state === null) {
       throw new Error('There is always must be a selected localization!');
     }
 
-    return state.selected;
+    return state;
   }
 
   public ngxsOnInit(context: StateContext<StateModel>): void {
@@ -58,11 +42,9 @@ export class LocalizationsState implements NgxsOnInit {
       this.getLanguageFromBrowserSettings() ||
       Language.BELARUSIAN;
 
-    const initialLocalization = context
-      .getState()
-      .localizations.find(
-        (localization) => localization.language === initialLanguage
-      );
+    const initialLocalization = this._localizations.find(
+      ({ language }) => language === initialLanguage
+    );
 
     if (initialLocalization === undefined) {
       throw new Error('The initial localization must be defined!');
@@ -76,7 +58,7 @@ export class LocalizationsState implements NgxsOnInit {
     context: StateContext<StateModel>,
     action: InitSelectedLocalization
   ): void {
-    context.patchState({ selected: action.localization });
+    context.setState(action.localization);
   }
 
   @Action(SelectLocalization)
@@ -84,7 +66,7 @@ export class LocalizationsState implements NgxsOnInit {
     context: StateContext<StateModel>,
     action: SelectLocalization
   ): void {
-    context.patchState({ selected: action.localization });
+    context.setState(action.localization);
     this._localStorage.setItem(
       LocalStorageKey.LANGUAGE,
       action.localization.language

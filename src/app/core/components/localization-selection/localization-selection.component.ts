@@ -3,6 +3,8 @@ import { NgFor } from '@angular/common';
 import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
 import { Store } from '@ngxs/store';
 
+import { LOCALIZATIONS } from '@shared/dependencies/localizations';
+
 import { LocalizationsState, SelectLocalization } from '@store/localizations';
 import { Localization } from '@shared/types/localization';
 
@@ -16,12 +18,10 @@ import { Localization } from '@shared/types/localization';
 })
 export class LocalizationSelectionComponent {
   private readonly _store = inject(Store);
+  protected readonly _localizations = inject(LOCALIZATIONS);
 
-  protected readonly _localizations = this._store.selectSnapshot(
-    LocalizationsState.localizations
-  );
   protected readonly _selectedLocalization$ = this._store.select(
-    LocalizationsState.selected
+    LocalizationsState.stream
   );
 
   protected trackByLocalizationLabel(

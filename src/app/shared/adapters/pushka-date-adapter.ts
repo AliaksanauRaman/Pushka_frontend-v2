@@ -11,7 +11,7 @@ export class PushkaDateAdapter extends NativeDateAdapter {
   private readonly _store = inject(Store);
   private readonly _localeServiceFactory = inject(LocaleServiceFactory);
   private readonly _currentLocaleService = this._localeServiceFactory.build(
-    this._store.selectSnapshot(LocalizationsState.selected).locale
+    this._store.selectSnapshot(LocalizationsState.stream).locale
   );
 
   public override getFirstDayOfWeek(): number {
