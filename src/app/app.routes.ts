@@ -9,6 +9,13 @@ export const routes: Routes = [
       ).then((c) => c.SendParcelPageComponent),
   },
   {
+    path: 'find-application',
+    loadComponent: () =>
+      import(
+        './find-application/pages/find-application-page/find-application-page.component'
+      ).then((c) => c.FindApplicationPageComponent),
+  },
+  {
     path: 'deliver-parcel',
     loadComponent: () =>
       import(
