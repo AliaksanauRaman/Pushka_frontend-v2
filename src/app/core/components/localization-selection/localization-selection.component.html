@@ -1,14 +1,10 @@
-<button
-  class="example-standalone-trigger"
-  [cdkMenuTriggerFor]="languageListMenu"
->
+<button [cdkMenuTriggerFor]="languageListMenu">
   <span>Lang</span>
 </button>
 
 <ng-template #languageListMenu>
-  <div class="example-menu" cdkMenu>
+  <div cdkMenu>
     <button
-      class="example-menu-item"
       *ngFor="
         let localization of _localizations;
         trackBy: trackByLocalizationLabel
