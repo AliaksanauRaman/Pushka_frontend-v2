@@ -9,7 +9,7 @@ import { CoreTranslateModule } from '@core/translate/core-translate.module';
 import { authorizationInterceptor } from '@core/interceptors/authorization.interceptor';
 
 import { STORE } from './store';
-import { routes } from './app.routes';
+import { appRoutes } from './app.routes';
 import { environment } from '../environments/environment';
 
 export const APP_CONFIG: ApplicationConfig = {
@@ -24,6 +24,6 @@ export const APP_CONFIG: ApplicationConfig = {
       }),
       CoreTranslateModule
     ),
-    provideRouter(routes),
+    provideRouter(appRoutes),
   ],
 };
