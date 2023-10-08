@@ -1,0 +1,14 @@
+<h2>Create delivery offer</h2>
+
+<form
+  [formGroup]="_createDeliveryOfferForm"
+  (ngSubmit)="handleCreateDeliveryOfferFormSubmit()"
+>
+  <pu-text-field
+    puLabel="Full Name"
+    puPlaceholder="Enter full name..."
+    formControlName="fullName"
+  ></pu-text-field>
+
+  <button type="submit">Submit</button>
+</form>
