@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { CoreTranslateModule } from '@core/translate/core-translate.module';
 
 import { authorizationInterceptor } from '@core/interceptors/authorization.interceptor';
 
@@ -20,7 +21,8 @@ export const APP_CONFIG: ApplicationConfig = {
       NgxsLoggerPluginModule.forRoot({
         collapsed: false,
         disabled: environment.isProduction,
-      })
+      }),
+      CoreTranslateModule
     ),
     provideRouter(routes),
   ],
