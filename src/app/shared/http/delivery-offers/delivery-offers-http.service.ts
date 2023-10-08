@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { BaseHttpService } from '@shared/base/base-http.service';
 import { IDeliveryOffersHttpService } from './delivery-offers-http.interface';
+import { BaseHttpService } from '@shared/base/base-http.service';
+import { CreateDeliveryOfferDto } from '@shared/dtos/create-delivery-offer.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -19,10 +20,12 @@ export class DeliveryOffersHttpService
     );
   }
 
-  public createOne(createDeliveryOfferDto: unknown): Observable<unknown> {
+  public createOne(
+    createDeliveryOfferDto: CreateDeliveryOfferDto
+  ): Observable<unknown> {
     return this._httpClient.post<unknown>(
       this._deliveryOffersEndpoint,
-      createDeliveryOfferDto,
+      createDeliveryOfferDto.toMap(),
       { context: this.authorizedContext }
     );
   }
