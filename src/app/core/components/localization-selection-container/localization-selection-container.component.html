@@ -1,0 +1,7 @@
+<ng-container *ngIf="_selectedLocalization$ | async as selectedLocalization">
+  <pu-localization-selection
+    [localizations]="_localizations"
+    [selectedLocalization]="selectedLocalization"
+    (select)="handleSelect($event)"
+  ></pu-localization-selection>
+</ng-container>
