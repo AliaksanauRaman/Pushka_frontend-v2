@@ -2,17 +2,16 @@ import { Injectable, inject } from '@angular/core';
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import { TranslateService } from '@ngx-translate/core';
 
-import { LOCAL_STORAGE } from '@global/local-storage';
-import { NAVIGATOR } from '@global/navigator';
 import { LOCALIZATIONS } from '@shared/dependencies/localizations';
+import { LanguageLocalStorageService } from '@shared/services/language-local-storage/language-local-storage.service';
+import { LanguageBrowserService } from '@shared/services/language-browser/language-browser.service';
 
 import {
   InitSelectedLocalization,
   SelectLocalization,
 } from './selected-localization.actions';
 import { Localization } from '@shared/types/localization';
-import { Language, checkIsLanguage } from '@shared/enums/language.enum';
-import { LocalStorageKey } from '@shared/enums/local-storage-key.enum';
+import { Language } from '@shared/enums/language.enum';
 
 type StateModel = Localization | null;
 
@@ -24,10 +23,12 @@ type StateModel = Localization | null;
   providedIn: 'root',
 })
 export class SelectedLocalizationState implements NgxsOnInit {
-  private readonly _localStorage = inject(LOCAL_STORAGE);
-  private readonly _navigator = inject(NAVIGATOR);
   private readonly _localizations = inject(LOCALIZATIONS);
   private readonly _translateService = inject(TranslateService);
+  private readonly _languageLocalStorageService = inject(
+    LanguageLocalStorageService
+  );
+  private readonly _languageBrowserService = inject(LanguageBrowserService);
 
   @Selector()
   public static stream(state: StateModel): Localization {
@@ -69,36 +70,16 @@ export class SelectedLocalizationState implements NgxsOnInit {
     context: StateContext<StateModel>,
     { localization }: SelectLocalization
   ): void {
-    this._localStorage.setItem(LocalStorageKey.LANGUAGE, localization.language);
+    this._languageLocalStorageService.set(localization.language);
     this._translateService.use(localization.language);
     context.setState(localization);
   }
 
   private getLanguageFromPreviousSession(): Language | null {
-    const language = this._localStorage.getItem(LocalStorageKey.LANGUAGE);
-
-    if (language === null || !checkIsLanguage(language)) {
-      return null;
-    }
-
-    return language;
+    return this._languageLocalStorageService.get();
   }
 
   private getLanguageFromBrowserSettings(): Language | null {
-    const { language } = this._navigator;
-
-    if (['be', 'be-BY'].includes(language)) {
-      return Language.BELARUSIAN;
-    }
-
-    if (['en', 'en-GB', 'en-US'].includes(language)) {
-      return Language.ENGLISH;
-    }
-
-    if (['ru', 'ru-RU'].includes(language)) {
-      return Language.RUSSIAN;
-    }
-
-    return null;
+    return this._languageBrowserService.get();
   }
 }
