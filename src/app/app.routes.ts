@@ -22,10 +22,10 @@ export const appRoutes: Routes = [
       },
       {
         path: 'find-application',
-        loadComponent: () =>
-          import(
-            './find-application/pages/find-application-page/find-application-page.component'
-          ).then((c) => c.FindApplicationPageComponent),
+        loadChildren: () =>
+          import('./find-application/find-application.routes').then(
+            (r) => r.findApplicationRoutes
+          ),
       },
       {
         path: 'deliver-parcel',
