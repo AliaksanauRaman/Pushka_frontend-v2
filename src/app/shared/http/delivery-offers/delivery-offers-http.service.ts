@@ -2,34 +2,34 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { BaseHttpService } from '@shared/base/base-http.service';
-import { IHelpOffersHttpService } from './help-offers-http.interface';
+import { IDeliveryOffersHttpService } from './delivery-offers-http.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HelpOffersHttpService
+export class DeliveryOffersHttpService
   extends BaseHttpService
-  implements IHelpOffersHttpService
+  implements IDeliveryOffersHttpService
 {
-  private readonly _helpOffersEndpoint = `${this._apiUrl}/api/help-offers`;
+  private readonly _deliveryOffersEndpoint = `${this._apiUrl}/api/help-offers`;
 
   public getPublished(): Observable<unknown> {
     return this._httpClient.get<unknown>(
-      `${this._helpOffersEndpoint}/published`
+      `${this._deliveryOffersEndpoint}/published`
     );
   }
 
-  public createOne(createHelpOfferDto: unknown): Observable<unknown> {
+  public createOne(createDeliveryOfferDto: unknown): Observable<unknown> {
     return this._httpClient.post<unknown>(
-      this._helpOffersEndpoint,
-      createHelpOfferDto,
+      this._deliveryOffersEndpoint,
+      createDeliveryOfferDto,
       { context: this.authorizedContext }
     );
   }
 
-  public deleteOne(helpOfferId: number): Observable<unknown> {
+  public deleteOne(deliveryOfferId: number): Observable<unknown> {
     return this._httpClient.patch<null>(
-      `${this._helpOffersEndpoint}/${helpOfferId}`,
+      `${this._deliveryOffersEndpoint}/${deliveryOfferId}`,
       { status: 'DELETED' }, // TODO: Type
       { context: this.authorizedContext, observe: 'response' }
     );
