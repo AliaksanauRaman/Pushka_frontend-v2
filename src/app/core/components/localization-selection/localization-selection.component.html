@@ -5,12 +5,15 @@
 <ng-template #languageListMenu>
   <div cdkMenu>
     <button
+      [class.selected]="
+        localization.language === _selectedLocalization()?.language
+      "
       *ngFor="
-        let localization of _localizations;
+        let localization of _localizations();
         trackBy: trackByLocalizationLabel
       "
       cdkMenuItem
-      (cdkMenuItemTriggered)="handleLocalizationSelect(localization)"
+      (cdkMenuItemTriggered)="select.emit(localization)"
     >
       <span>{{ localization.label }}</span>
     </button>
