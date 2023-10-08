@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { BaseHttpService } from '@shared/base/base-http.service';
 import { IHelpRequestsHttpService } from './help-requests-http.interface';
+import { BaseHttpService } from '@shared/base/base-http.service';
+import { CreateHelpRequestDto } from '@shared/dtos/create-help-request.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -19,10 +20,12 @@ export class HelpRequestsHttpService
     );
   }
 
-  public createOne(createHelpRequestDto: unknown): Observable<unknown> {
+  public createOne(
+    createHelpRequestDto: CreateHelpRequestDto
+  ): Observable<unknown> {
     return this._httpClient.post<unknown>(
       this._helpRequestsEndpoint,
-      createHelpRequestDto,
+      createHelpRequestDto.toMap(),
       { context: this.authorizedContext }
     );
   }
