@@ -1,0 +1,43 @@
+<ng-container *ngIf="(_state$ | async)?.next as latestState">
+  <label [for]="_idDirective.id()">{{ _labelDirective.label() }}</label>
+
+  <input
+    #fieldRef
+    #origin="cdkOverlayOrigin"
+    cdkOverlayOrigin
+    [id]="_idDirective.id()"
+    [placeholder]="_placeholderDirective.placeholder()"
+    [value]="latestState.fieldValue"
+    type="text"
+    (focus)="openPanel()"
+    (input)="_service.handleFieldInput(fieldRef.value)"
+  />
+
+  <button
+    *ngIf="latestState.isClearAvailable"
+    type="button"
+    (click)="_service.handleClear()"
+  >
+    Clear
+  </button>
+
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="origin"
+    [cdkConnectedOverlayOpen]="_isPanelOpened()"
+  >
+    <button type="button" (click)="closePanel()">Close</button>
+
+    <ul cdkListbox (cdkListboxValueChange)="handleListboxValueChange($event)">
+      <li
+        *ngFor="
+          let place of latestState.filteredPlaces;
+          trackBy: trackByPlaceId
+        "
+        [cdkOption]="place"
+      >
+        <span>{{ place.countryLabel }}, {{ place.cityLabel }}</span>
+      </li>
+    </ul>
+  </ng-template>
+</ng-container>
