@@ -4,7 +4,40 @@
 
 @include mat.core();
 
-$pushka-primary: mat.define-palette(mat.$indigo-palette);
+$pushka-primary-palette: (
+  50: #e1f0f5,
+  100: #b3d9e5,
+  200: #80c0d4,
+  300: #4da7c2,
+  400: #2794b5,
+  500: #0181a8,
+  600: #0179a0,
+  700: #016e97,
+  800: #01648d,
+  900: #00517d,
+  A100: #aadcff,
+  A200: #77c7ff,
+  A400: #44b2ff,
+  A700: #2aa8ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$pushka-primary: mat.define-palette($pushka-primary-palette);
 $pushka-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 $pushka-warn: mat.define-palette(mat.$red-palette);
 
