@@ -37,8 +37,41 @@ $pushka-primary-palette: (
   ),
 );
 
+$pushka-accent-palette: (
+  50: #ffece7,
+  100: #fed0c4,
+  200: #fdb09d,
+  300: #fc9076,
+  400: #fc7958,
+  500: #fb613b,
+  600: #fa5935,
+  700: #fa4f2d,
+  800: #f94526,
+  900: #f83319,
+  A100: #ffffff,
+  A200: #fff7f6,
+  A400: #ffc9c3,
+  A700: #ffb2aa,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
 $pushka-primary: mat.define-palette($pushka-primary-palette);
-$pushka-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$pushka-accent: mat.define-palette($pushka-accent-palette);
 $pushka-warn: mat.define-palette(mat.$red-palette);
 
 $pushka-theme: mat.define-light-theme(
