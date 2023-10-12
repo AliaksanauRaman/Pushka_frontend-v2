@@ -28,10 +28,23 @@
   background-color: transparent;
 
   &.active {
+    position: relative;
     height: 60px;
     font-size: 1.3rem;
     color: var(--white-contrast-color);
     background-color: var(--white-color);
     border-radius: 12px 12px 0 0;
+
+    /* A fix of one additional pixel visible between blocks */
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -1px;
+      left: 0;
+      z-index: 0;
+      height: 2px;
+      background-color: var(--white-color);
+    }
   }
 }
