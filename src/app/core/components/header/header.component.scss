@@ -1,3 +1,13 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  flex-shrink: 0;
+  margin-bottom: 20px;
+}
+
+.representation {
+  flex-shrink: 0;
 }

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { LocalizationSelectionContainerComponent } from '../localization-selection-container/localization-selection-container.component';
+import { ToolbarComponent } from '@core/components/toolbar/toolbar.component';
+import { RepresentationComponent } from '@core/components/representation/representation.component';
 
 @Component({
   selector: 'pu-header',
@@ -8,6 +9,6 @@ import { LocalizationSelectionContainerComponent } from '../localization-selecti
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [LocalizationSelectionContainerComponent],
+  imports: [ToolbarComponent, RepresentationComponent],
 })
 export class HeaderComponent {}
