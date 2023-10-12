@@ -1,6 +1,8 @@
 :root {
+  --white-color: #ffffff;
+  --white-contrast-color: #000000;
   --primary-color: #0181a8;
-  --primary-contrast-color: #ffffff;
+  --primary-contrast-color: var(--white-color);
   --accent-color: #fb613b;
-  --accent-contrast-color: #ffffff;
+  --accent-contrast-color: var(--white-color);
 }
