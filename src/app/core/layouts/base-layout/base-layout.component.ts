@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { HeaderComponent } from '@core/components/header/header.component';
+import { NavigationComponent } from '@core/components/navigation/navigation.component';
+import { MainComponent } from '@core/components/main/main.component';
 import { FooterComponent } from '@core/components/footer/footer.component';
 
 @Component({
@@ -10,6 +11,11 @@ import { FooterComponent } from '@core/components/footer/footer.component';
   styleUrls: ['./base-layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [RouterLink, RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [
+    HeaderComponent,
+    NavigationComponent,
+    MainComponent,
+    FooterComponent,
+  ],
 })
 export class BaseLayoutComponent {}
