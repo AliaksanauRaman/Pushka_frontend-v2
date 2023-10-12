@@ -1,0 +1,37 @@
+:host {
+  display: block;
+  margin-top: 12px;
+}
+
+.links {
+  display: flex;
+  align-items: flex-end;
+  height: 48px;
+  background-color: var(--accent-color);
+  border-radius: 12px 12px 0 0;
+}
+
+.links__item {
+  flex-grow: 1;
+}
+
+.links__item-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  padding: 0 16px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-contrast-color);
+  text-align: center;
+  background-color: transparent;
+
+  &.active {
+    height: 60px;
+    font-size: 1.3rem;
+    color: var(--white-contrast-color);
+    background-color: var(--white-color);
+    border-radius: 12px 12px 0 0;
+  }
+}

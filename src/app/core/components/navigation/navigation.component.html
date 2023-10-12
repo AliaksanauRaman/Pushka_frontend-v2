@@ -1,0 +1,10 @@
+<ul class="links">
+  <li class="links__item" *ngFor="let link of _navigationLinks">
+    <a
+      class="links__item-content"
+      [routerLink]="link.path"
+      routerLinkActive="active"
+      >{{ link.label }}</a
+    >
+  </li>
+</ul>
