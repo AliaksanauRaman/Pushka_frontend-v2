@@ -7,7 +7,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 14px; /* 14px = 1rem; 16px = 1.15rem; 18px = 1.3rem */
 }
 
 body {
@@ -25,21 +25,35 @@ h6 {
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 1.715rem;
   font-weight: 700;
 }
 
 button {
-  cursor: pointer;
   padding: 0;
   background-color: transparent;
   border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 a {
+  cursor: default;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+label:hover {
   cursor: pointer;
 }
 
-label {
-  cursor: pointer;
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
