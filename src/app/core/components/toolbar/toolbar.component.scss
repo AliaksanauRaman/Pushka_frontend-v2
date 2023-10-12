@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 16px;
+  background-color: var(--primary-color);
+}
+
+.title {
+  flex-shrink: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary-contrast-color);
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.actions {
+  flex-shrink: 0;
+}
