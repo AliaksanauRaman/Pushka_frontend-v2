@@ -1,6 +1,17 @@
 <header class="header">
-    <pu-toolbar></pu-toolbar>
+  <pu-toolbar
+    [isSideMenuOpened]="false"
+    (menuClick)="openSideMenu()"
+  ></pu-toolbar>
 </header>
+
+<aside
+  @slideInOut
+  class="side-menu"
+  *ngIf="_isSideMenuOpened()"
+  puSideMenu
+  (closeClick)="closeSideMenu()"
+></aside>
 
 <section puRepresentation class="representation"></section>
 <nav puNavigation class="navigation"></nav>
