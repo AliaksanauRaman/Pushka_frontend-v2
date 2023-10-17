@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+
+import { FindApplicationTabsComponent } from '../../components/find-application-tabs/find-application-tabs.component';
 
 @Component({
   selector: 'pu-base-find-application-layout',
@@ -7,6 +9,6 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrls: ['./base-find-application-layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [RouterLink, RouterOutlet],
+  imports: [FindApplicationTabsComponent, RouterOutlet],
 })
 export class BaseFindApplicationLayoutComponent {}
