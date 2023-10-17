@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.details__full-name {
+  flex-shrink: 0;
+  margin-bottom: 4px;
+}
+
+.details__reveal-contacts {
+  flex-shrink: 0;
+  padding-bottom: 3px;
+  border-bottom: 2px dashed var(--accent-color);
+}
