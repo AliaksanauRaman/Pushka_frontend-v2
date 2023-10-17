@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
-  selector: 'pu-representation',
+  selector: 'section[puRepresentation]',
   templateUrl: './representation.component.html',
   styleUrls: ['./representation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -7,12 +7,16 @@
   flex-shrink: 0;
 }
 
+.representation {
+  flex-shrink: 0;
+}
+
 .navigation {
   flex-shrink: 0;
 }
 
 .main {
-  flex-grow: 1;
+  flex-shrink: 0;
 }
 
 .footer {

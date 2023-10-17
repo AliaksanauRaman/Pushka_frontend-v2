@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { HeaderComponent } from '@core/components/header/header.component';
+import { ToolbarComponent } from '@core/components/toolbar/toolbar.component';
+import { RepresentationComponent } from '@core/components/representation/representation.component';
 import { NavigationComponent } from '@core/components/navigation/navigation.component';
 import { MainComponent } from '@core/components/main/main.component';
 import { FooterComponent } from '@core/components/footer/footer.component';
@@ -12,7 +13,8 @@ import { FooterComponent } from '@core/components/footer/footer.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    HeaderComponent,
+    ToolbarComponent,
+    RepresentationComponent,
     NavigationComponent,
     MainComponent,
     FooterComponent,
