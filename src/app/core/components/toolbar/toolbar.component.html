@@ -4,9 +4,11 @@
 
 <div class="actions">
   <button
-    class="menu-button"
+    class="actions__item"
     puIconButton
-    puIconSrc="/assets/icons/white-menu-icon.svg"
-    puIconAlt="Open menu"
+    [puIconSrc]="_menuButtonIconSrc()"
+    [puIconAlt]="_menuButtonIconAlt()"
+    [puAriaLabel]="_menuButtonAriaLabel()"
+    (click)="menuClick.emit()"
   ></button>
 </div>

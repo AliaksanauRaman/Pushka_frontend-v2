@@ -18,5 +18,10 @@
 }
 
 .actions {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.actions__item {
   flex-shrink: 0;
 }
