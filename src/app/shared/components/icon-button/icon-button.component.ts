@@ -3,9 +3,12 @@ import {
   Component,
   HostBinding,
   Input,
+  inject,
   numberAttribute,
 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+
+import { AriaLabelDirective } from '@shared/directives/aria-label.directive';
 
 @Component({
   selector: 'button[puIconButton]',
@@ -14,11 +17,24 @@ import { NgOptimizedImage } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [NgOptimizedImage],
+  hostDirectives: [
+    {
+      directive: AriaLabelDirective,
+      inputs: ['puAriaLabel'],
+    },
+  ],
 })
 export class IconButtonComponent {
+  private readonly _ariaLabelDirective = inject(AriaLabelDirective);
+
   @HostBinding('attr.type')
   public get type(): string {
     return 'button';
+  }
+
+  @HostBinding('attr.aria-label')
+  public get ariaLabel(): string {
+    return this._ariaLabelDirective.ariaLabel();
   }
 
   @Input({ required: true })
