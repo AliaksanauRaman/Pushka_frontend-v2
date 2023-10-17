@@ -11,7 +11,7 @@ export const appRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/find-application',
+        redirectTo: '/find-application/requests',
       },
       {
         path: 'send-parcel',
