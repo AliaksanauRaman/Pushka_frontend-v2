@@ -3,7 +3,9 @@ import {
   Component,
   HostBinding,
   Input,
+  numberAttribute,
 } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'button[puIconButton]',
@@ -11,6 +13,7 @@ import {
   styleUrls: ['./icon-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  imports: [NgOptimizedImage],
 })
 export class IconButtonComponent {
   @HostBinding('attr.type')
@@ -19,15 +22,27 @@ export class IconButtonComponent {
   }
 
   @Input({ required: true })
-  public set puAlt(value: string) {
-    this._alt = value;
+  public set puIconSrc(value: string) {
+    this._iconSrc = value;
   }
 
   @Input({ required: true })
-  public set puSrc(value: string) {
-    this._src = value;
+  public set puIconAlt(value: string) {
+    this._iconAlt = value;
   }
 
-  protected _alt = '';
-  protected _src = '';
+  @Input({ transform: numberAttribute })
+  public set puIconWidth(value: number) {
+    this._iconWidth = value;
+  }
+
+  @Input({ transform: numberAttribute })
+  public set puIconHeight(value: number) {
+    this._iconHeight = value;
+  }
+
+  protected _iconSrc = '';
+  protected _iconAlt = '';
+  protected _iconWidth = 24;
+  protected _iconHeight = 24;
 }
