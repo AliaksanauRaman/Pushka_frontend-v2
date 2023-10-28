@@ -1,7 +1,7 @@
 import { InjectionToken, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-export const WINDOW = new InjectionToken<Window>('WINDOW', {
+export const WINDOW = new InjectionToken('WINDOW', {
   providedIn: 'root',
   factory: () => {
     const _document = inject(DOCUMENT);
