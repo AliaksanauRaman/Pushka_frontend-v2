@@ -1,8 +1,8 @@
 :host {
   display: flex;
   align-items: center;
-  height: 56px;
-  padding: 0 16px;
+  height: 80px;
+  padding: 20px 16px;
   background-color: var(--primary-color);
 }
 
@@ -19,9 +19,14 @@
 
 .actions {
   display: flex;
+  align-items: center;
   flex-shrink: 0;
 }
 
 .actions__item {
   flex-shrink: 0;
+
+  &:not(:last-child) {
+    margin-right: 16px;
+  }
 }
