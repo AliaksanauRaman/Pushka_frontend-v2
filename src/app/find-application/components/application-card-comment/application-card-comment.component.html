@@ -1,4 +1,15 @@
-<p>
-  <span class="text">{{ text }}</span>
-  <a class="more">Ещё</a>
-</p>
+<p #text class="text">{{ _text() }}</p>
+
+<ng-container *ngIf="_isExpandable()">
+  <input
+    #checkbox
+    [id]="_expandTextButtonId"
+    class="expand-text-button"
+    type="checkbox"
+    (change)="_isExpanded.set(checkbox.checked)"
+  />
+
+  <label class="expand-text-label" [for]="_expandTextButtonId">
+    {{ _isExpanded() ? "Свернуть" : "Еще" }}
+  </label>
+</ng-container>

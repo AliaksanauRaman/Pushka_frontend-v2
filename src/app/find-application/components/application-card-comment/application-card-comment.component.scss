@@ -1,20 +1,27 @@
 :host {
   display: block;
-  padding: 7px 0;
 }
 
 .text {
-  display: inline;
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--black-color);
-  line-height: 1.5rem;
+  --max-lines: 3;
+
+  display: -webkit-inline-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--max-lines);
+  line-height: 1.6;
+  overflow: hidden;
+
+  &:has(+ .expand-text-button:checked) {
+    -webkit-line-clamp: initial;
+  }
 }
 
-.more {
-  display: inline;
-  margin-left: 5px;
-  font-size: 1rem;
-  font-weight: 700;
+.expand-text-label {
+  font-weight: 600;
   color: var(--accent-color);
+  line-height: 1.6;
+}
+
+.expand-text-button {
+  display: none;
 }
