@@ -1,10 +1,15 @@
-<button [cdkMenuTriggerFor]="languageListMenu">
-  <span>Lang</span>
+<button
+  class="open-menu-button"
+  [cdkMenuTriggerFor]="languageListMenu"
+  [cdkMenuPosition]="[_position]"
+>
+  <span>{{ _selectedLocalization()?.label }}</span>
 </button>
 
 <ng-template #languageListMenu>
-  <div cdkMenu>
+  <div class="menu" cdkMenu>
     <button
+      class="menu__item"
       [class.selected]="
         localization.language === _selectedLocalization()?.language
       "

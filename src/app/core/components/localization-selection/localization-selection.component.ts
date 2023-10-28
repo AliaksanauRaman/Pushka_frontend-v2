@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
+import { ConnectedPosition } from '@angular/cdk/overlay';
 
 import { Localization } from '@shared/types/localization';
 
@@ -33,6 +34,12 @@ export class LocalizationSelectionComponent {
   @Output()
   public readonly select = new EventEmitter<Localization>();
 
+  protected readonly _position: ConnectedPosition = {
+    originX: 'center',
+    originY: 'bottom',
+    overlayX: 'center',
+    overlayY: 'top',
+  };
   protected readonly _localizations = signal<ReadonlyArray<Localization>>([]);
   protected readonly _selectedLocalization = signal<Localization | null>(null);
 

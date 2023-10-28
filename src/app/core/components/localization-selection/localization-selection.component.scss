@@ -2,6 +2,36 @@
   display: block;
 }
 
-button.selected {
-  background-color: aqua;
+.open-menu-button {
+  padding-bottom: 1px;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--white-color);
+  border-bottom: 1.5px solid var(--white-color);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  padding: 5px 9px;
+  background-color: var(--white-color);
+  border-radius: 16px;
+  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1)
+}
+
+.menu__item {
+  flex-shrink: 0;
+  padding: 7px;
+  border-radius: 50%;
+  font-weight: 500;
+  color: var(--white-contrast-color);
+
+  &:focus {
+    outline: none;
+  }
+
+  &.selected {
+    color: var(--accent-color);
+  }
 }
