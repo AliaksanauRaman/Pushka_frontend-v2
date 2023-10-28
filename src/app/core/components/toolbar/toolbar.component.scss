@@ -30,3 +30,51 @@
     margin-right: 16px;
   }
 }
+
+.open-account-menu-button {
+  width: 40px;
+  height: 40px;
+}
+
+.account-menu {
+  margin-top: 8px;
+  background-color: var(--white-color);
+  border-radius: 16px;
+  box-shadow: var(--menu-box-shadow);
+  overflow: hidden;
+}
+
+.account-info {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.avatar-container {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 16px;
+}
+
+.logout-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.logout-label {
+  color: var(--black-color);
+}
