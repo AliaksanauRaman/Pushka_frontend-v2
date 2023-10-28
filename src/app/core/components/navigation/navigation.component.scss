@@ -1,50 +1,42 @@
 :host {
   display: block;
-  margin-top: 12px;
 }
 
 .links {
   display: flex;
   align-items: flex-end;
-  height: 48px;
-  background-color: var(--accent-color);
-  border-radius: 12px 12px 0 0;
+  height: 60px;
 }
 
 .links__item {
   flex-grow: 1;
+  height: 48px;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+
+  &:has(>.links__item-content.active) {
+    z-index: 1;
+    height: 60px;
+  }
 }
 
 .links__item-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 48px;
+  width: 100%;
+  height: 100%;
   padding: 0 16px;
   font-weight: 700;
   color: var(--accent-contrast-color);
   text-align: center;
-  background-color: transparent;
+  background-color: var(--accent-color);
 
   &.active {
-    position: relative;
-    height: 60px;
+    padding: 0 26px;
     font-size: 1.3rem;
     color: var(--white-contrast-color);
     background-color: var(--white-color);
-    border-radius: 12px 12px 0 0;
-    box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.3);
-
-    /* A fix of one additional pixel visible between blocks */
-    &::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: -1px;
-      left: 0;
-      z-index: 0;
-      height: 2px;
-      background-color: var(--white-color);
-    }
   }
 }
