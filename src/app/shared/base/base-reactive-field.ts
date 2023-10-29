@@ -8,6 +8,7 @@ export abstract class BaseReactiveField<T>
   implements ControlValueAccessor
 {
   protected readonly _isDisabled = signal(false);
+  protected readonly _isTouched = signal(false);
 
   public abstract writeValue(value: unknown): void;
 
@@ -21,6 +22,15 @@ export abstract class BaseReactiveField<T>
 
   public setDisabledState(isDisabled: boolean): void {
     this._isDisabled.set(isDisabled);
+  }
+
+  protected touchField(): void {
+    if (this._isTouched()) {
+      return;
+    }
+
+    this.onTouched();
+    this._isTouched.set(true);
   }
 
   protected onChange(value: T): void {}
