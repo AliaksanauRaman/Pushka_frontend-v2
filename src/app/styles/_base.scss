@@ -40,6 +40,10 @@ button {
   &:hover {
     cursor: pointer;
   }
+
+  &:disabled {
+    pointer-events: none;
+  }
 }
 
 a {
