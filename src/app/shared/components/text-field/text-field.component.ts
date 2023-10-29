@@ -9,7 +9,10 @@ import { BaseTextFieldDirective } from '@shared/base/base-text-field.directive';
 @Component({
   selector: 'pu-text-field',
   templateUrl: './text-field.component.html',
-  styleUrls: ['./text-field.component.scss'],
+  styleUrls: [
+    './text-field.component.scss',
+    '../../../styles/components/_field.component.scss',
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
