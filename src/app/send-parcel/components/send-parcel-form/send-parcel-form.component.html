@@ -1,0 +1,59 @@
+<form [formGroup]="_sendParcelForm" (ngSubmit)="handleSendParcelFormSubmit()">
+  <ng-container *ngIf="_places$ | async as places">
+    <pu-place-field
+      class="form-field"
+      puLabel="Откуда"
+      puPlaceholder="Выберите город"
+      [places]="places"
+      formControlName="departurePlace"
+    ></pu-place-field>
+
+    <pu-place-field
+      class="form-field"
+      puLabel="Куда"
+      puPlaceholder="Выберите город"
+      [places]="places"
+      formControlName="destinationPlace"
+    ></pu-place-field>
+  </ng-container>
+
+  <!-- date range -->
+
+  <pu-textarea-field
+    class="form-field"
+    puLabel="Comment"
+    puPlaceholder="Укажите что вы хотите передать (например, велосипед), размеры, вес,  приблизительную стоимость и другую доп. информацию, а также как с вами связаться."
+  ></pu-textarea-field>
+
+  <pu-text-field
+    class="form-field"
+    puLabel="Имя"
+    puPlaceholder="Введите имя"
+  ></pu-text-field>
+
+  <pu-email-field
+    class="form-field"
+    puLabel="E-mail"
+    puPlaceholder="Введите e-mail"
+  ></pu-email-field>
+
+  <pu-phone-field
+    class="form-field"
+    puLabel="Номер телефона (необязательно)"
+    puPlaceholder="Введите номер телефона"
+  ></pu-phone-field>
+
+  <pu-checkbox-field
+    class="form-field"
+    puLabel="Я подтверждаю, что моя посылка не содержит запрещенных веществ и товаров, а также не нарушает законов стран-участниц"
+  ></pu-checkbox-field>
+
+  <pu-checkbox-field
+    class="form-field"
+    puLabel="Я даю право на хранение и обработку данных"
+  ></pu-checkbox-field>
+
+  <button class="submit-form-button" puAccentButton type="submit">
+    <span>Создать заявку</span>
+  </button>
+</form>
