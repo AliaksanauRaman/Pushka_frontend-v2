@@ -1,3 +1,16 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+}
+
+.pu-field {
+  height: var(--base-field-height);
+  padding: 0 var(--base-field-padding) 0 42px;
+}
+
+.mail-icon {
+  pointer-events: none;
+  position: absolute;
+  bottom: 18px;
+  left: 11px;
 }

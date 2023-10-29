@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { IdDirective } from '@shared/directives/id.directive';
@@ -9,7 +10,10 @@ import { BaseTextFieldDirective } from '@shared/base/base-text-field.directive';
 @Component({
   selector: 'pu-email-field',
   templateUrl: './email-field.component.html',
-  styleUrls: ['./email-field.component.scss'],
+  styleUrls: [
+    './email-field.component.scss',
+    '../../../styles/components/_field.component.scss',
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -19,6 +23,7 @@ import { BaseTextFieldDirective } from '@shared/base/base-text-field.directive';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  imports: [NgOptimizedImage],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
