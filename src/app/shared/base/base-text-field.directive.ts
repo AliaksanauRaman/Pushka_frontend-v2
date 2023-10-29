@@ -33,6 +33,10 @@ export abstract class BaseTextFieldDirective extends BaseReactiveField<string> {
     this.onChange(value);
   }
 
+  protected handleFieldBlur(): void {
+    this.touchField();
+  }
+
   protected checkIsNewValue(value: string): boolean {
     return this._value() !== value;
   }
