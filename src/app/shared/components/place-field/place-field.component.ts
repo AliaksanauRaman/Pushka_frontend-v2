@@ -57,12 +57,12 @@ export class PlaceFieldComponent extends BaseDropdownFieldDirective<Place | null
   protected readonly _idDirective = inject(IdDirective);
   protected readonly _labelDirective = inject(LabelDirective);
   protected readonly _state$ = this._service.state$.pipe(
-    tap(({ isSelectedPlaceChange, next }) => {
+    tap(({ isSelectedPlaceChange, current }) => {
       if (isSelectedPlaceChange) {
-        this.onChange(next.selectedPlace);
+        this.onChange(current.selectedPlace);
       }
     }),
-    map(({ next }) => next)
+    map(({ current }) => current)
   );
   protected readonly _panelPositions: Array<ConnectedPosition> = [
     {

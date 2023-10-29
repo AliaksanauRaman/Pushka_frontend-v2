@@ -19,11 +19,11 @@ export class PlaceFieldService {
   private _places: ReadonlyArray<Place> = [];
   private readonly _placeFieldState$ = new BehaviorSubject<{
     prev: PlaceFieldState;
-    next: PlaceFieldState;
+    current: PlaceFieldState;
     isSelectedPlaceChange: boolean;
   }>({
     prev: INITIAL_STATE,
-    next: INITIAL_STATE,
+    current: INITIAL_STATE,
     isSelectedPlaceChange: false,
   });
 
@@ -31,11 +31,23 @@ export class PlaceFieldService {
 
   public handlePlacesSet(places: ReadonlyArray<Place>): void {
     this._places = places;
+
+    const selectedPlace = this.getCurrentSelectedPlace();
+    const newSelectedPlace =
+      selectedPlace !== null
+        ? places.find(({ id }) => id === selectedPlace.id) || null
+        : null;
+
+    if (newSelectedPlace !== null) {
+      this.handlePlaceSelect(newSelectedPlace);
+      return;
+    }
+
     this.updateState(
       new PlaceFieldState({
         name: PlaceFieldStateName.PLACES_SET,
         fieldValue: '',
-        selectedPlace: null,
+        selectedPlace: newSelectedPlace,
         filteredPlaces: places,
         isClearAvailable: false,
         isEmitChange: false,
@@ -60,6 +72,7 @@ export class PlaceFieldService {
       return;
     }
 
+    // TODO: Enhance filtering
     this.updateState(
       new PlaceFieldState({
         name: PlaceFieldStateName.FIELD_INPUT,
@@ -81,7 +94,7 @@ export class PlaceFieldService {
     this.updateState(
       new PlaceFieldState({
         name: PlaceFieldStateName.WRITE_PLACE,
-        fieldValue: '',
+        fieldValue: this.buildPlaceFieldValue(place),
         selectedPlace: place,
         filteredPlaces: [place],
         isClearAvailable: true,
@@ -120,7 +133,7 @@ export class PlaceFieldService {
     this.updateState(
       new PlaceFieldState({
         name: PlaceFieldStateName.PLACE_SELECT,
-        fieldValue: `${place.countryLabel} ${place.cityLabel}`,
+        fieldValue: this.buildPlaceFieldValue(place),
         selectedPlace: place,
         filteredPlaces: [place],
         isClearAvailable: true,
@@ -129,44 +142,52 @@ export class PlaceFieldService {
     );
   }
 
+  private getCurrentSelectedPlace(): Place | null {
+    return this._placeFieldState$.getValue().current.selectedPlace;
+  }
+
   private updateState(newState: PlaceFieldState): void {
-    const prev = this._placeFieldState$.getValue().next;
-    const next = newState;
+    const prev = this._placeFieldState$.getValue().current;
+    const current = newState;
 
     this._placeFieldState$.next({
       prev,
-      next,
-      isSelectedPlaceChange: this.checkIsSelectedPlaceChange(prev, next),
+      current,
+      isSelectedPlaceChange: this.checkIsSelectedPlaceChange(prev, current),
     });
   }
 
   private checkIsSelectedPlaceChange(
     prev: PlaceFieldState,
-    next: PlaceFieldState
+    current: PlaceFieldState
   ): boolean {
-    if (!next.isEmitChange) {
+    if (!current.isEmitChange) {
       return false;
     }
 
     const prevSelectedPlace = prev.selectedPlace;
-    const nextSelectedPlace = next.selectedPlace;
+    const currentSelectedPlace = current.selectedPlace;
 
-    if (prevSelectedPlace === null && nextSelectedPlace !== null) {
+    if (prevSelectedPlace === null && currentSelectedPlace !== null) {
       return true;
     }
 
-    if (prevSelectedPlace !== null && nextSelectedPlace === null) {
+    if (prevSelectedPlace !== null && currentSelectedPlace === null) {
       return true;
     }
 
     if (
       prevSelectedPlace !== null &&
-      nextSelectedPlace !== null &&
-      !nextSelectedPlace.equalsTo(prevSelectedPlace)
+      currentSelectedPlace !== null &&
+      !currentSelectedPlace.equalsTo(prevSelectedPlace)
     ) {
       return true;
     }
 
     return false;
+  }
+
+  private buildPlaceFieldValue(place: Place): string {
+    return `${place.countryLabel}, ${place.cityLabel}`;
   }
 }
