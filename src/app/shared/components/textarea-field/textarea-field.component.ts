@@ -1,5 +1,5 @@
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
@@ -9,7 +9,10 @@ import { BaseTextFieldDirective } from '@shared/base/base-text-field.directive';
 @Component({
   selector: 'pu-textarea-field',
   templateUrl: './textarea-field.component.html',
-  styleUrls: ['./textarea-field.component.scss'],
+  styleUrls: [
+    './textarea-field.component.scss',
+    '../../../styles/components/_field.component.scss',
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

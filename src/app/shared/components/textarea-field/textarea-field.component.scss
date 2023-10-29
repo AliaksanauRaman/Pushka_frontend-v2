@@ -1,3 +1,9 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+}
+
+.pu-field {
+  padding: 10px var(--base-field-padding);
+  resize: none;
 }
