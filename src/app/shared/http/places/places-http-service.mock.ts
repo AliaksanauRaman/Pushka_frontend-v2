@@ -12,6 +12,12 @@ export class PlacesHttpServiceMock implements IPlacesHttpService {
 }
 
 const MOCK_RESPONSE = [
-  Place.build(1, 'country.belarus', 1, 'city.minsk'),
-  Place.build(1, 'country.belarus', 2, 'city.vitebsk'),
+  Place.build(1, 'country.belarus', 1, 'city.belarus.minsk'),
+  Place.build(1, 'country.belarus', 2, 'city.belarus.vitebsk'),
+  Place.build(1, 'country.belarus', 3, 'city.belarus.gomel'),
+  Place.build(1, 'country.belarus', 4, 'city.belarus.brest'),
+  Place.build(2, 'country.poland', 5, 'city.poland.warsaw'),
+  Place.build(2, 'country.poland', 6, 'city.poland.krakow'),
+  Place.build(2, 'country.poland', 7, 'city.poland.lodz'),
+  Place.build(2, 'country.poland', 8, 'city.poland.wroclaw'),
 ];
