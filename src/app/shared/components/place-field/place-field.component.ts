@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { AsyncPipe, NgIf, NgFor, NgOptimizedImage } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { OverlayModule } from '@angular/cdk/overlay';
+import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { map, tap } from 'rxjs';
 
 import { IdDirective } from '@shared/directives/id.directive';
@@ -64,6 +64,20 @@ export class PlaceFieldComponent extends BaseDropdownFieldDirective<Place | null
     }),
     map(({ next }) => next)
   );
+  protected readonly _panelPositions: Array<ConnectedPosition> = [
+    {
+      originX: 'start',
+      originY: 'bottom',
+      overlayX: 'start',
+      overlayY: 'top',
+    },
+    {
+      originX: 'start',
+      originY: 'top',
+      overlayX: 'start',
+      overlayY: 'bottom',
+    },
+  ];
 
   public override writeValue(value: unknown): void {
     if (value !== null && !Place.is(value)) {
