@@ -1,1 +1,43 @@
-{}
+{
+  "country": {
+    "belarus": "Беларусь",
+    "poland": "Польша",
+    "georgia": "Грузия",
+    "ukraine": "Украина",
+    "lithuania": "Литва"
+  },
+  "city": {
+    "belarus": {
+      "minsk": "Минск",
+      "vitebsk": "Витебск",
+      "gomel": "Гомель",
+      "mogilev": "Могилёв",
+      "grodno": "Гродно",
+      "brest": "Брест"
+    },
+    "poland": {
+      "warsaw": "Варшава",
+      "krakow": "Краков",
+      "wroclaw": "Вроцлав",
+      "gdansk": "Гданьск",
+      "lodz": "Лодзь",
+      "poznan": "Познань",
+      "bialystok": "Белосток"
+    },
+    "georgia": {
+      "tbilisi": "Тбилиси",
+      "batumi": "Батуми"
+    },
+    "ukraine": {
+      "kyiv": "Киев",
+      "kharkiv": "Харьков",
+      "lviv": "Львов",
+      "odessa": "Одесса"
+    },
+    "lithuania": {
+      "vilnius": "Вильнюс",
+      "kaunas": "Каунас"
+    },
+    "other": "Другой город"
+  }
+}
