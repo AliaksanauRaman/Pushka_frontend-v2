@@ -24,7 +24,10 @@ import { PhoneFormValue } from '@shared/types/phone-form-value';
 @Component({
   selector: 'pu-phone-field',
   templateUrl: './phone-field.component.html',
-  styleUrls: ['./phone-field.component.scss'],
+  styleUrls: [
+    './phone-field.component.scss',
+    '../../../styles/components/_field.component.scss',
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
