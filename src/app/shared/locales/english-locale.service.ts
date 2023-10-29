@@ -44,8 +44,4 @@ export class EnglishLocaleService extends BaseLocaleService {
   public override getDayOfWeekNames(isCaps: boolean): Array<string> {
     return isCaps ? CAPS_DAY_OF_WEEK_NAMES : DAY_OF_WEEK_NAMES;
   }
-
-  public override formatMMM_YYYYDate(date: Date): string {
-    return `${this.formatMMMDate(date)} ${date.getFullYear()}`;
-  }
 }

@@ -78,12 +78,12 @@ export abstract class BaseLocaleService {
   }
 
   protected formatMMMDate(date: Date): string {
-    const monthName = this.getLongMonthNames(true)[date.getMonth()];
-    return this.getOneShortMonthName(monthName);
+    return this.getLongMonthNames(true)[date.getMonth()];
   }
 
   protected formatMMM_YYYYDate(date: Date): string {
-    return `${this.formatMMMDate(date)}. ${date.getFullYear()}`;
+    const monthName = this.getLongMonthNames(true)[date.getMonth()];
+    return `${this.getOneShortMonthName(monthName)} ${date.getFullYear()}`;
   }
 
   protected formatMMMM_YYYYDate(date: Date): string {
