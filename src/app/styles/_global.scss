@@ -12,9 +12,11 @@
   --accent-contrast-color: var(--white-color);
   --divider-color: #e0e0e0;
   --gray-color: #757575;
+  --light-gray-color: #cecece;
   --background-gray-color: #f0f4f5;
-  --disabled-button-color: #cecece;
+  --disabled-button-color: var(--light-gray-color);
   --disabled-button-text-color: #acacac;
+  --field-border-color: var(--light-gray-color);
 
   --menu-box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.1);
 }
