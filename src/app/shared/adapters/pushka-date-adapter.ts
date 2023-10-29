@@ -1,15 +1,27 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, OnDestroy, inject } from '@angular/core';
 import { NativeDateAdapter } from '@angular/material/core';
+import { Store } from '@ngxs/store';
+import { tap } from 'rxjs';
 
 import { LocaleServiceFactory } from '@shared/factories/locale-service.factory';
 
-import { Locale } from '@shared/enums/locale.enum';
+import { SelectedLocalizationState } from '@store/selected-localization';
 import { BaseLocaleService } from '@shared/base/base-locale.service';
+import { Locale } from '@shared/enums/locale.enum';
 
 @Injectable()
-export class PushkaDateAdapter extends NativeDateAdapter {
+export class PushkaDateAdapter extends NativeDateAdapter implements OnDestroy {
+  private readonly _store = inject(Store);
   private readonly _localeServiceFactory = inject(LocaleServiceFactory);
   private _currentLocaleService!: BaseLocaleService;
+  private readonly _selectedLocalizationChangesSub = this._store
+    .select(SelectedLocalizationState.stream)
+    .pipe(tap(({ locale }) => this.setLocale(locale)))
+    .subscribe();
+
+  public ngOnDestroy(): void {
+    this._selectedLocalizationChangesSub.unsubscribe();
+  }
 
   public override getFirstDayOfWeek(): number {
     return 1;
