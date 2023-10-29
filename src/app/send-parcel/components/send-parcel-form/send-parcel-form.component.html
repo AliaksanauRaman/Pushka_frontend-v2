@@ -17,40 +17,52 @@
     ></pu-place-field>
   </ng-container>
 
-  <!-- date range -->
+  <pu-date-range-field
+    class="form-field"
+    puLabel="Период действия заявки"
+    puStartDatePlaceholder="От"
+    puEndDatePlaceholder="До"
+    formControlName="validityPeriod"
+  ></pu-date-range-field>
 
   <pu-textarea-field
     class="form-field"
     puLabel="Comment"
     puPlaceholder="Укажите что вы хотите передать (например, велосипед), размеры, вес,  приблизительную стоимость и другую доп. информацию, а также как с вами связаться."
+    formControlName="comment"
   ></pu-textarea-field>
 
   <pu-text-field
     class="form-field"
     puLabel="Имя"
     puPlaceholder="Введите имя"
+    formControlName="name"
   ></pu-text-field>
 
   <pu-email-field
     class="form-field"
     puLabel="E-mail"
     puPlaceholder="Введите e-mail"
+    formControlName="email"
   ></pu-email-field>
 
   <pu-phone-field
     class="form-field"
     puLabel="Номер телефона (необязательно)"
     puPlaceholder="Введите номер телефона"
+    formControlName="phone"
   ></pu-phone-field>
 
   <pu-checkbox-field
     class="form-field"
     puLabel="Я подтверждаю, что моя посылка не содержит запрещенных веществ и товаров, а также не нарушает законов стран-участниц"
+    formControlName="allowedItemsConfirmation"
   ></pu-checkbox-field>
 
   <pu-checkbox-field
     class="form-field"
     puLabel="Я даю право на хранение и обработку данных"
+    formControlName="noServiceResponsibilityConfirmation"
   ></pu-checkbox-field>
 
   <button class="submit-form-button" puAccentButton type="submit">

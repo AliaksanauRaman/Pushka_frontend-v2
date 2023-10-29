@@ -1,8 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import {
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 import { PlaceFieldComponent } from '@shared/components/place-field/place-field.component';
+import { DateRangeFieldComponent } from '@shared/components/date-range-field/date-range-field.component';
 import { TextareaFieldComponent } from '@shared/components/textarea-field/textarea-field.component';
 import { TextFieldComponent } from '@shared/components/text-field/text-field.component';
 import { EmailFieldComponent } from '@shared/components/email-field/email-field.component';
@@ -23,6 +28,7 @@ import { PlacesService } from '@shared/services/places/places.service';
     AsyncPipe,
     ReactiveFormsModule,
     PlaceFieldComponent,
+    DateRangeFieldComponent,
     TextareaFieldComponent,
     TextFieldComponent,
     EmailFieldComponent,
@@ -36,14 +42,15 @@ export class SendParcelFormComponent {
   protected readonly _places$ = inject(PlacesService).translatedPlaces$;
 
   protected readonly _sendParcelForm = this._formBuilder.group({
-    departurePlace: [null],
-    destinationPlace: [null],
-    validityPeriodStart: [null],
-    validityPeriodEnd: [null],
-    comment: [''],
-    name: [''],
-    email: [''],
-    phone: [null],
+    departurePlace: [null, [Validators.required]],
+    destinationPlace: [null, Validators.required],
+    validityPeriod: [null],
+    comment: ['', Validators.required],
+    name: ['', Validators.required],
+    email: ['', Validators.required],
+    phone: [null, Validators.required],
+    allowedItemsConfirmation: [false, Validators.requiredTrue],
+    noServiceResponsibilityConfirmation: [false, Validators.requiredTrue],
   });
 
   protected handleSendParcelFormSubmit(): void {
