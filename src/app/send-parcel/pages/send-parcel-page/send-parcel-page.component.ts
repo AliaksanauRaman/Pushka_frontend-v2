@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { CreateHelpRequestFormComponent } from '../../components/create-help-request-form/create-help-request-form.component';
+import { SendParcelFormComponent } from '../../components/send-parcel-form/send-parcel-form.component';
 
 @Component({
   selector: 'pu-send-parcel-page',
@@ -8,6 +8,6 @@ import { CreateHelpRequestFormComponent } from '../../components/create-help-req
   styleUrls: ['./send-parcel-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CreateHelpRequestFormComponent],
+  imports: [SendParcelFormComponent],
 })
 export class SendParcelPageComponent {}
