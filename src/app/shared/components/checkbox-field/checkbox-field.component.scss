@@ -1,3 +1,48 @@
 :host {
-  display: block;
+  display: flex;
+}
+
+.checkbox-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.checkbox {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--light-gray-color);
+  border-radius: 3px;
+  appearance: none;
+  transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
+
+  &:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+
+    & + .tick-icon {
+      opacity: 1;
+    }
+  }
+}
+
+.tick-icon {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.label {
+  flex-grow: 1;
+  line-height: 1.4;
 }
