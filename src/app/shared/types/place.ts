@@ -20,7 +20,15 @@ export class Place implements IComparable<Place> {
   }
 
   public get id(): number {
+    return this.cityId;
+  }
+
+  public get cityId(): number {
     return this.city.id;
+  }
+
+  public get countryId(): number {
+    return this.country.id;
   }
 
   public get countryLabel(): string {
