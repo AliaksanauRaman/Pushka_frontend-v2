@@ -5,14 +5,10 @@ import {
   forwardRef,
   inject,
 } from '@angular/core';
-import { AsyncPipe, NgIf, NgFor } from '@angular/common';
+import { AsyncPipe, NgIf, NgFor, NgOptimizedImage } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OverlayModule } from '@angular/cdk/overlay';
-import {
-  CdkListboxModule,
-  ListboxValueChangeEvent,
-} from '@angular/cdk/listbox';
-import { tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
@@ -26,7 +22,10 @@ import { Place } from '@shared/types/place';
 @Component({
   selector: 'pu-place-field',
   templateUrl: './place-field.component.html',
-  styleUrls: ['./place-field.component.scss'],
+  styleUrls: [
+    './place-field.component.scss',
+    '../../../styles/components/_field.component.scss',
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -37,7 +36,7 @@ import { Place } from '@shared/types/place';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgIf, NgFor, AsyncPipe, OverlayModule, CdkListboxModule],
+  imports: [NgIf, NgFor, AsyncPipe, NgOptimizedImage, OverlayModule],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
@@ -62,7 +61,8 @@ export class PlaceFieldComponent extends BaseDropdownFieldDirective<Place | null
       if (isSelectedPlaceChange) {
         this.onChange(next.selectedPlace);
       }
-    })
+    }),
+    map(({ next }) => next)
   );
 
   public override writeValue(value: unknown): void {
@@ -76,19 +76,6 @@ export class PlaceFieldComponent extends BaseDropdownFieldDirective<Place | null
     }
 
     this._service.handleWritePlace(value);
-  }
-
-  protected handleListboxValueChange(
-    event: ListboxValueChangeEvent<unknown>
-  ): void {
-    const selectedPlace = event.value[0];
-
-    if (!Place.is(selectedPlace)) {
-      throw new Error('A Place is expected!');
-    }
-
-    this._service.handlePlaceSelect(selectedPlace);
-    this.closePanel();
   }
 
   protected trackByPlaceId(_: number, place: Place): number {

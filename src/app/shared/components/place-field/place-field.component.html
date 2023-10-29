@@ -1,43 +1,66 @@
-<ng-container *ngIf="(_state$ | async)?.next as latestState">
-  <label [for]="_idDirective.id()">{{ _labelDirective.label() }}</label>
+<ng-container *ngIf="_state$ | async as state">
+  <label class="pu-label" [for]="_idDirective.id()">{{
+    _labelDirective.label()
+  }}</label>
 
-  <input
-    #fieldRef
-    #origin="cdkOverlayOrigin"
-    cdkOverlayOrigin
-    [id]="_idDirective.id()"
-    [placeholder]="_placeholderDirective.placeholder()"
-    [value]="latestState.fieldValue"
-    type="text"
-    (focus)="openPanel()"
-    (input)="_service.handleFieldInput(fieldRef.value)"
-  />
+  <div class="pu-field-container">
+    <input
+      #fieldRef
+      #origin="cdkOverlayOrigin"
+      cdkOverlayOrigin
+      [id]="_idDirective.id()"
+      class="pu-field"
+      [placeholder]="_placeholderDirective.placeholder()"
+      [value]="state.fieldValue"
+      type="text"
+      (focus)="openPanel()"
+      (blur)="closePanel()"
+      (input)="_service.handleFieldInput(fieldRef.value)"
+    />
 
-  <button
-    *ngIf="latestState.isClearAvailable"
-    type="button"
-    (click)="_service.handleClear()"
-  >
-    Clear
-  </button>
+    <button
+      class="clear-button"
+      *ngIf="state.isClearAvailable"
+      type="button"
+      aria-label="Clear place field text"
+      (click)="_service.handleClear()"
+    >
+      <img
+        class="clear-icon"
+        ngSrc="/assets/icons/gray-cross.svg"
+        alt="Cross"
+        width="24"
+        height="24"
+      />
+    </button>
+
+    <img
+      class="caret-icon"
+      [class.rotated]="_isPanelOpened()"
+      *ngIf="!state.isClearAvailable"
+      ngSrc="/assets/icons/gray-caret-up.svg"
+      alt="Caret"
+      width="24"
+      height="24"
+    />
+  </div>
 
   <ng-template
     cdkConnectedOverlay
     [cdkConnectedOverlayOrigin]="origin"
     [cdkConnectedOverlayOpen]="_isPanelOpened()"
+    [cdkConnectedOverlayWidth]="fieldRef.offsetWidth"
   >
-    <button type="button" (click)="closePanel()">Close</button>
-
-    <ul cdkListbox (cdkListboxValueChange)="handleListboxValueChange($event)">
-      <li
-        *ngFor="
-          let place of latestState.filteredPlaces;
-          trackBy: trackByPlaceId
-        "
-        [cdkOption]="place"
+    <div class="panel">
+      <button
+        class="panel__item"
+        *ngFor="let place of state.filteredPlaces; trackBy: trackByPlaceId"
+        type="button"
+        (mousedown)="_service.handlePlaceSelect(place)"
       >
+        <!-- TODO: Pipe? -->
         <span>{{ place.countryLabel }}, {{ place.cityLabel }}</span>
-      </li>
-    </ul>
+      </button>
+    </div>
   </ng-template>
 </ng-container>
