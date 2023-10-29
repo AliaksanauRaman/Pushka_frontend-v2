@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable, tap } from 'rxjs';
 
 import { LOCALIZATIONS } from '@shared/dependencies/localizations';
 import { LanguageLocalStorageService } from '@shared/services/language-local-storage/language-local-storage.service';
@@ -60,19 +61,22 @@ export class SelectedLocalizationState implements NgxsOnInit {
   public initSelectedLocalization(
     context: StateContext<StateModel>,
     { localization }: InitSelectedLocalization
-  ): void {
-    this._translateService.use(localization.language);
-    context.setState(localization);
+  ): Observable<unknown> {
+    return this._translateService
+      .use(localization.language)
+      .pipe(tap(() => context.setState(localization)));
   }
 
-  @Action(SelectLocalization)
+  @Action(SelectLocalization, { cancelUncompleted: true })
   public selectLocalization(
     context: StateContext<StateModel>,
     { localization }: SelectLocalization
-  ): void {
+  ): Observable<unknown> {
     this._languageLocalStorageService.set(localization.language);
-    this._translateService.use(localization.language);
-    context.setState(localization);
+
+    return this._translateService
+      .use(localization.language)
+      .pipe(tap(() => context.setState(localization)));
   }
 
   private getLanguageFromPreviousSession(): Language | null {
