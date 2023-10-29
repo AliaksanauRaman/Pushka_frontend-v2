@@ -24,11 +24,10 @@
   position: absolute;
   right: var(--base-field-padding);
   bottom: 16px;
-  transform: rotate(180deg);
   transition: transform 0.25s ease-in-out;
 
   &.rotated {
-    transform: rotate(360deg);
+    transform: rotate(180deg);
   }
 }
 
