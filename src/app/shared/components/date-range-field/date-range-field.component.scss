@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.pu-field {
+  height: var(--base-field-height);
+  padding: 0 48px 0 var(--base-field-padding);
+}
+
+.date-view-input {
+  pointer-events: none;
+  position: absolute;
+  width: 90px;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+
+  &.date-view-input--start {
+    left: var(--base-field-padding);
+  }
+
+  &.date-view-input--end {
+    left: 50%;
+  }
+
+  &::placeholder {
+    color: var(--gray-color);
+  }
+}
+
+.arrow-icon {
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.toggle-calendar-button {
+  position: absolute;
+  right: var(--base-field-padding);
+  bottom: 16px;
+  width: 24px;
+  height: 24px;
+}

@@ -1,0 +1,70 @@
+<label class="pu-label" [for]="_idDirective.id()">
+  <span>{{ _labelDirective.label() }}</span>
+</label>
+
+<div class="pu-field-container">
+  <input
+    #fieldRef
+    [id]="_idDirective.id()"
+    class="pu-field"
+    type="text"
+    readonly
+    (focus)="dateRangePicker.open()"
+    (click)="fieldRef.blur(); fieldRef.focus()"
+  />
+
+  <input
+    class="date-view-input date-view-input--start"
+    [value]="startDateRef.value"
+    [placeholder]="_startDatePlaceholder()"
+    type="text"
+    tabindex="-1"
+  />
+
+  <img
+    class="arrow-icon"
+    ngSrc="/assets/icons/gray-arrow-right.svg"
+    alt="Calendar toggle"
+    width="17"
+    height="16"
+  />
+
+  <input
+    class="date-view-input date-view-input--end"
+    [value]="endDateRef.value"
+    [placeholder]="_endDatePlaceholder()"
+    type="text"
+    tabindex="-1"
+  />
+
+  <button
+    class="toggle-calendar-button"
+    puIconButton
+    puIconSrc="/assets/icons/calendar.svg"
+    puIconAlt="Calendar"
+    puAriaLabel="Toggle calendar"
+    (click)="fieldRef.focus()"
+  ></button>
+</div>
+
+<mat-date-range-input
+  [style.display]="'none'"
+  [formGroup]="_dateRangeForm"
+  [rangePicker]="dateRangePicker"
+  [min]="_minDate()"
+  [max]="_maxDate()"
+>
+  <input
+    #startDateRef
+    matStartDate
+    placeholder="Start date"
+    formControlName="start"
+  />
+
+  <input #endDateRef matEndDate placeholder="End date" formControlName="end" />
+
+  <mat-date-range-picker
+    #dateRangePicker
+    [touchUi]="true"
+  ></mat-date-range-picker>
+</mat-date-range-input>
