@@ -10,6 +10,7 @@
     type="text"
     readonly
     (focus)="dateRangePicker.open()"
+    (blur)="touchField()"
     (click)="fieldRef.blur(); fieldRef.focus()"
   />
 

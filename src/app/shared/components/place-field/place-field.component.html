@@ -14,7 +14,7 @@
       [value]="state.fieldValue"
       type="text"
       (focus)="openPanel()"
-      (blur)="closePanel()"
+      (blur)="touchField(); closePanel()"
       (input)="_service.handleFieldInput(fieldRef.value)"
     />
 
