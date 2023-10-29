@@ -1,0 +1,41 @@
+.pu-label {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: 20px;
+  margin-bottom: 6px;
+  padding: 0 12px;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.pu-field-container {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+
+  .pu-field {
+    width: 100%;
+  }
+}
+
+.pu-field {
+  display: flex;
+  flex-shrink: 0;
+  font-size: 1.15rem;
+  border: 1px solid var(--field-border-color);
+  border-radius: 16px;
+  caret-color: var(--primary-color);
+
+  &::placeholder {
+    color: var(--gray-color);
+  }
+
+  &:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0px 0px 0px 4px rgba(1, 129, 168, 0.15);
+    // The following property is needed to show box-shadow on ios devices
+    -webkit-appearance: none;
+  }
+}
