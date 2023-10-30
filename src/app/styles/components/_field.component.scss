@@ -1,3 +1,14 @@
+:host.ng-invalid.ng-touched {
+  .pu-field {
+    border-color: var(--error-color);
+
+    &:focus {
+      box-shadow: 0px 0px 0px 4px rgba(218, 41, 28, 0.15);
+      caret-color: var(--error-color);
+    }
+  }
+}
+
 .pu-label {
   display: flex;
   align-items: center;
