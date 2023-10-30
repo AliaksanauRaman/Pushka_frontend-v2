@@ -1,4 +1,13 @@
 {
+  "fieldError": {
+    "departurePlaceRequired": "Абярыце варыянт з спісу",
+    "destinationRequired": "Абярыце варыянт з спісу",
+    "validityPeriodStartDateIsRequired": "Дата пачатку тэрміну дзеяння абавязковая",
+    "validityPeriodEndDateIsRequired": "Дата сканчэння тэрміну дзеяння абавязковая",
+    "descriptionIsRequired": "Апісанне абавязковае",
+    "fullNameIsRequired": "Імя абавязковае",
+    "emailIsRequired": "Электронная пошта абавязковая"
+  },
   "country": {
     "belarus": "Беларусь",
     "poland": "Польшча",

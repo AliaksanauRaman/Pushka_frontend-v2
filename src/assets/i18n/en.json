@@ -1,4 +1,13 @@
 {
+  "fieldError": {
+    "departurePlaceRequired": "Select an option from the list",
+    "destinationRequired": "Select an option from the list",
+    "validityPeriodStartDateIsRequired": "The start date of the validity period is required",
+    "validityPeriodEndDateIsRequired": "The end date of the validity period is required",
+    "descriptionIsRequired": "Description is required",
+    "fullNameIsRequired": "Name is required",
+    "emailIsRequired": "Email is required"
+  },
   "country": {
     "belarus": "Belarus",
     "poland": "Poland",
