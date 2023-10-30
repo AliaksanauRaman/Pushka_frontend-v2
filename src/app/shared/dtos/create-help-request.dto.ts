@@ -1,8 +1,3 @@
-import { IDto } from '@shared/interfaces/dto';
+import { ApplicationDto } from './application.dto';
 
-// TODO
-export class CreateHelpRequestDto implements IDto {
-  public toMap() {
-    return {};
-  }
-}
+export class CreateHelpRequestDto extends ApplicationDto {}
