@@ -5,10 +5,10 @@ import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
 
-import { BaseReactiveField } from './base-reactive-field';
+import { BaseReactiveFieldWithErrorsDirective } from './base-reactive-field-with-errors.directive';
 
 @Directive()
-export abstract class BaseTextFieldDirective extends BaseReactiveField<string> {
+export abstract class BaseTextFieldDirective extends BaseReactiveFieldWithErrorsDirective<string> {
   @Input()
   public set puMaxLength(value: number) {
     this._maxLength.set(value);
