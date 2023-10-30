@@ -50,3 +50,10 @@
     -webkit-appearance: none;
   }
 }
+
+.pu-field-errors {
+  flex-shrink: 0;
+  height: 18px;
+  margin-top: 8px;
+  padding: 0 var(--base-field-padding);
+}
