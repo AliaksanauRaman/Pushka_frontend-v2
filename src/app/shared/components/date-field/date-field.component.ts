@@ -21,7 +21,7 @@ import { MAT_DATE_FORMATS_PROVIDER } from '@shared/providers/mat-date-formats';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 
-import { BaseReactiveField } from '@shared/base/base-reactive-field';
+import { BaseReactiveFieldDirective } from '@shared/base/base-reactive-field.directive';
 import { mapDateToUTCDate } from '@shared/utils/map-date-to-utc-date';
 
 @Component({
@@ -46,7 +46,7 @@ import { mapDateToUTCDate } from '@shared/utils/map-date-to-utc-date';
   ],
 })
 // TODO: Not used
-export class DateFieldComponent extends BaseReactiveField<Date | null> {
+export class DateFieldComponent extends BaseReactiveFieldDirective<Date | null> {
   @Input()
   public set puMinDate(value: Date | null) {
     this._minDate.set(value);

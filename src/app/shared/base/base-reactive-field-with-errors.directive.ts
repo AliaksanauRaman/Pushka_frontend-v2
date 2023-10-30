@@ -1,12 +1,12 @@
 import { Directive, Input, computed, signal } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 
-import { BaseReactiveField } from './base-reactive-field';
+import { BaseReactiveFieldDirective } from './base-reactive-field.directive';
 
 @Directive()
 export abstract class BaseReactiveFieldWithErrorsDirective<
   T
-> extends BaseReactiveField<T> {
+> extends BaseReactiveFieldDirective<T> {
   @Input()
   public set errors(value: ValidationErrors | null) {
     this._errors.set(value);

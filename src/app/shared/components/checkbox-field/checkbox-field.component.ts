@@ -11,7 +11,7 @@ import { z } from 'zod';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 
-import { BaseReactiveField } from '@shared/base/base-reactive-field';
+import { BaseReactiveFieldDirective } from '@shared/base/base-reactive-field.directive';
 
 @Component({
   selector: 'pu-checkbox-field',
@@ -31,7 +31,7 @@ import { BaseReactiveField } from '@shared/base/base-reactive-field';
     { directive: LabelDirective, inputs: ['puLabel'] },
   ],
 })
-export class CheckboxFieldComponent extends BaseReactiveField<boolean> {
+export class CheckboxFieldComponent extends BaseReactiveFieldDirective<boolean> {
   protected readonly _idDirective = inject(IdDirective);
   protected readonly _labelDirective = inject(LabelDirective);
   protected readonly _isChecked = signal(false);

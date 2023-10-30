@@ -15,7 +15,7 @@ import { AriaLabelDirective } from '@shared/directives/aria-label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
 
 import { COUNTRY_CODES } from './country-code-field.config';
-import { BaseReactiveField } from '@shared/base/base-reactive-field';
+import { BaseReactiveFieldDirective } from '@shared/base/base-reactive-field.directive';
 
 @Component({
   selector: 'pu-country-code-field',
@@ -37,7 +37,7 @@ import { BaseReactiveField } from '@shared/base/base-reactive-field';
   ],
 })
 export class CountryCodeFieldComponent
-  extends BaseReactiveField<string>
+  extends BaseReactiveFieldDirective<string>
   implements OnInit
 {
   protected readonly _countryCodes = inject(COUNTRY_CODES);
