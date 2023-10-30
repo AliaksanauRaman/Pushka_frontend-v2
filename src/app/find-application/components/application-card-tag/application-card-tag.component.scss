@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  align-items: center;
+  height: 23px;
+  padding: 0 8px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+
+  &.my-delivery-offer {
+    background-color: var(--light-accent-color);
+  }
+
+  &.my-help-request {
+    background-color: var(--light-primary-color);
+  }
+}
