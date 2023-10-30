@@ -24,7 +24,7 @@ export class ApplicationDto implements IDto {
       description: this.description,
       fullName: this.fullName,
       email: this.email,
-      phone: this.phone,
+      phone: this.phone?.toMap() || null,
       status: this.status,
     };
   }
