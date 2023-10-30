@@ -7,4 +7,17 @@
   color: var(--primary-color);
   background-color: var(--white-color);
   border-radius: 30px;
+
+  &:focus {
+    color: var(--primary-focused-color);
+  }
+
+  &:active {
+    color: var(--primary-active-color);
+  }
+
+  &:disabled {
+    color: var(--disabled-button-text-color);
+    background-color: var(--disabled-button-color);
+  }
 }
