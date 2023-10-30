@@ -15,8 +15,10 @@
   --gray-color: #757575;
   --light-gray-color: #cecece;
   --background-gray-color: #f0f4f5;
+  --disabled-text-color: #acacac;
+  --disabled-field-color: #ccc;
   --disabled-button-color: var(--light-gray-color);
-  --disabled-button-text-color: #acacac;
+  --disabled-button-text-color: var(--disabled-text-color);
   --field-border-color: var(--light-gray-color);
 
   --base-field-height: 56px;
