@@ -8,6 +8,15 @@
     "fullNameIsRequired": "Імя абавязковае",
     "emailIsRequired": "Электронная пошта абавязковая"
   },
+  "fieldLabel": {
+    "departurePlace": "Адкуль",
+    "destination": "Куды",
+    "validityPeriod": "Перыяд дзеяння заяўкі",
+    "description": "Што Вы хаціце адправіць?",
+    "fullName": "Імя",
+    "email": "Электронная пошта",
+    "notRequiredPhone": "Нумар тэлефону (неабавязкова)"
+  },
   "fieldPlaceholder": {
     "departurePlace": "Абярыце горад",
     "destination": "Абярыце горад",
