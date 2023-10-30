@@ -13,11 +13,12 @@ import {
 import { map, filter, tap, takeUntil } from 'rxjs';
 
 import { CountryCodeFieldComponent } from '../country-code-field/country-code-field.component';
+import { FieldErrorsComponent } from '@shared/components/field-errors/field-errors.component';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
 
-import { BaseReactiveField } from '@shared/base/base-reactive-field';
+import { BaseReactiveFieldWithErrorsDirective } from '@shared/base/base-reactive-field-with-errors.directive';
 import { Phone } from '@shared/types/phone';
 import { PhoneFormValue } from '@shared/types/phone-form-value';
 
@@ -37,14 +38,18 @@ import { PhoneFormValue } from '@shared/types/phone-form-value';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ReactiveFormsModule, CountryCodeFieldComponent],
+  imports: [
+    ReactiveFormsModule,
+    CountryCodeFieldComponent,
+    FieldErrorsComponent,
+  ],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
     { directive: PlaceholderDirective, inputs: ['puPlaceholder'] },
   ],
 })
-export class PhoneFieldComponent extends BaseReactiveField<Phone | null> {
+export class PhoneFieldComponent extends BaseReactiveFieldWithErrorsDirective<Phone | null> {
   private readonly _formBuilder = inject(NonNullableFormBuilder);
 
   protected readonly _idDirective = inject(IdDirective);
