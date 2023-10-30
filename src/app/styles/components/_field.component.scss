@@ -1,10 +1,30 @@
-:host.ng-invalid.ng-touched {
-  .pu-field {
-    border-color: var(--error-color);
+:host {
+  &.ng-invalid.ng-touched {
+    .pu-field {
+      border-color: var(--error-color);
 
-    &:focus {
-      box-shadow: 0px 0px 0px 4px rgba(218, 41, 28, 0.15);
-      caret-color: var(--error-color);
+      &:focus {
+        box-shadow: 0px 0px 0px 4px rgba(218, 41, 28, 0.15);
+        caret-color: var(--error-color);
+      }
+    }
+  }
+
+  &.pu-disabled {
+    pointer-events: none;
+
+    .pu-label {
+      color: var(--disabled-text-color);
+    }
+
+    .pu-field {
+      color: var(--disabled-text-color);
+      background-color: var(--disabled-field-color);
+      border-color: var(--disabled-field-color);
+
+      &::placeholder {
+        color: var(--disabled-text-color);
+      }
     }
   }
 }
