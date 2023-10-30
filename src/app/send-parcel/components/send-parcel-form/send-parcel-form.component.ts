@@ -5,6 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { PlaceFieldComponent } from '@shared/components/place-field/place-field.component';
 import { DateRangeFieldComponent } from '@shared/components/date-range-field/date-range-field.component';
@@ -17,6 +18,9 @@ import { AccentButtonComponent } from '@shared/components/accent-button/accent-b
 
 import { PlacesService } from '@shared/services/places/places.service';
 
+import { CustomValidators } from '@shared/validators';
+import { Phone } from '@shared/types/phone';
+
 @Component({
   selector: 'pu-send-parcel-form',
   templateUrl: './send-parcel-form.component.html',
@@ -27,6 +31,7 @@ import { PlacesService } from '@shared/services/places/places.service';
     NgIf,
     AsyncPipe,
     ReactiveFormsModule,
+    TranslateModule,
     PlaceFieldComponent,
     DateRangeFieldComponent,
     TextareaFieldComponent,
@@ -43,12 +48,12 @@ export class SendParcelFormComponent {
 
   protected readonly _sendParcelForm = this._formBuilder.group({
     departurePlace: [null, [Validators.required]],
-    destinationPlace: [null, Validators.required],
-    validityPeriod: [null],
-    comment: ['', Validators.required],
-    name: ['', Validators.required],
+    destination: [null, Validators.required],
+    validityPeriod: [null, CustomValidators.requiredDateRange],
+    description: ['', Validators.required],
+    fullName: ['', Validators.required],
     email: ['', Validators.required],
-    phone: [null, Validators.required],
+    phone: [null as Phone | null],
     allowedItemsConfirmation: [false, Validators.requiredTrue],
     noServiceResponsibilityConfirmation: [false, Validators.requiredTrue],
   });

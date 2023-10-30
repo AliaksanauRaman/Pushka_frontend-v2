@@ -5,6 +5,10 @@
       puLabel="Откуда"
       puPlaceholder="Выберите город"
       [places]="places"
+      [errors]="_sendParcelForm.controls.departurePlace.errors"
+      [errorsMappings]="{
+        required: 'fieldError.departurePlaceRequired' | translate
+      }"
       formControlName="departurePlace"
     ></pu-place-field>
 
@@ -13,7 +17,11 @@
       puLabel="Куда"
       puPlaceholder="Выберите город"
       [places]="places"
-      formControlName="destinationPlace"
+      [errors]="_sendParcelForm.controls.description.errors"
+      [errorsMappings]="{
+        required: 'fieldError.destinationRequired' | translate
+      }"
+      formControlName="destination"
     ></pu-place-field>
   </ng-container>
 
@@ -22,27 +30,41 @@
     puLabel="Период действия заявки"
     puStartDatePlaceholder="От"
     puEndDatePlaceholder="До"
+    [errors]="_sendParcelForm.controls.validityPeriod.errors"
+    [errorsMappings]="{
+      startDateRequired:
+        'fieldError.validityPeriodStartDateIsRequired' | translate,
+      endDateRequired: 'fieldError.validityPeriodEndDateIsRequired' | translate
+    }"
     formControlName="validityPeriod"
   ></pu-date-range-field>
 
   <pu-textarea-field
     class="form-field"
-    puLabel="Comment"
+    puLabel="Что Вы хотите отправить?"
     puPlaceholder="Укажите что вы хотите передать (например, велосипед), размеры, вес,  приблизительную стоимость и другую доп. информацию, а также как с вами связаться."
-    formControlName="comment"
+    [errors]="_sendParcelForm.controls.description.errors"
+    [errorsMappings]="{
+      required: 'fieldError.descriptionIsRequired' | translate
+    }"
+    formControlName="description"
   ></pu-textarea-field>
 
   <pu-text-field
     class="form-field"
     puLabel="Имя"
     puPlaceholder="Введите имя"
-    formControlName="name"
+    [errors]="_sendParcelForm.controls.fullName.errors"
+    [errorsMappings]="{ required: 'fieldError.fullNameIsRequired' | translate }"
+    formControlName="fullName"
   ></pu-text-field>
 
   <pu-email-field
     class="form-field"
     puLabel="E-mail"
     puPlaceholder="Введите e-mail"
+    [errors]="_sendParcelForm.controls.email.errors"
+    [errorsMappings]="{ required: 'fieldError.emailIsRequired' | translate }"
     formControlName="email"
   ></pu-email-field>
 
@@ -65,7 +87,12 @@
     formControlName="noServiceResponsibilityConfirmation"
   ></pu-checkbox-field>
 
-  <button class="submit-form-button" puAccentButton type="submit">
+  <button
+    class="submit-form-button"
+    puAccentButton
+    [disabled]="_sendParcelForm.invalid"
+    type="submit"
+  >
     <span>Создать заявку</span>
   </button>
 </form>
