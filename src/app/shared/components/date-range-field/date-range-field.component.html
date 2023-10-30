@@ -10,7 +10,6 @@
     type="text"
     readonly
     (focus)="dateRangePicker.open()"
-    (blur)="touchField()"
     (click)="fieldRef.blur(); fieldRef.focus()"
   />
 
@@ -38,14 +37,13 @@
     tabindex="-1"
   />
 
-  <button
-    class="toggle-calendar-button"
-    puIconButton
-    puIconSrc="/assets/icons/calendar.svg"
-    puIconAlt="Calendar"
-    puAriaLabel="Toggle calendar"
-    (click)="fieldRef.focus()"
-  ></button>
+  <img
+    class="calendar-icon"
+    ngSrc="/assets/icons/calendar.svg"
+    alt="Calendar"
+    width="24"
+    height="24"
+  />
 </div>
 
 <mat-date-range-input
@@ -67,5 +65,6 @@
   <mat-date-range-picker
     #dateRangePicker
     [touchUi]="true"
+    (closed)="touchField()"
   ></mat-date-range-picker>
 </mat-date-range-input>
