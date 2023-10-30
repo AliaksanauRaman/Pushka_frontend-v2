@@ -1,5 +1,11 @@
 :host {
   display: flex;
+
+  &.ng-invalid.ng-touched {
+    .checkbox {
+      border-color: var(--error-color);
+    }
+  }
 }
 
 .checkbox-container {
