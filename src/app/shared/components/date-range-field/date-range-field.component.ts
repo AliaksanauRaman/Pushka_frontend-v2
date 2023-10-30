@@ -19,11 +19,11 @@ import { map, takeUntil, tap } from 'rxjs';
 
 import { DATE_ADAPTER_PROVIDER } from '@shared/providers/date-adapter';
 import { MAT_DATE_FORMATS_PROVIDER } from '@shared/providers/mat-date-formats';
-import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
+import { FieldErrorsComponent } from '@shared/components/field-errors/field-errors.component';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 
-import { BaseReactiveField } from '@shared/base/base-reactive-field';
+import { BaseReactiveFieldWithErrorsDirective } from '@shared/base/base-reactive-field-with-errors.directive';
 import { DateRange } from '@shared/types/date-range';
 
 @Component({
@@ -48,7 +48,7 @@ import { DateRange } from '@shared/types/date-range';
     NgOptimizedImage,
     ReactiveFormsModule,
     MatDatepickerModule,
-    IconButtonComponent,
+    FieldErrorsComponent,
   ],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
@@ -56,7 +56,7 @@ import { DateRange } from '@shared/types/date-range';
   ],
 })
 export class DateRangeFieldComponent
-  extends BaseReactiveField<DateRange>
+  extends BaseReactiveFieldWithErrorsDirective<DateRange>
   implements OnInit
 {
   private readonly _formBuilder = inject(NonNullableFormBuilder);
