@@ -8,6 +8,16 @@
     "fullNameIsRequired": "Імя абавязковае",
     "emailIsRequired": "Электронная пошта абавязковая"
   },
+  "fieldPlaceholder": {
+    "departurePlace": "Абярыце горад",
+    "destination": "Абярыце горад",
+    "validityPeriodStartDate": "Ад",
+    "validityPeriodEndDate": "Да",
+    "description": "Апісанне",
+    "fullName": "Увядзіце імя",
+    "email": "Увядзіце электронную пошту",
+    "phone": "Увядзіце нумар тэлефону"
+  },
   "country": {
     "belarus": "Беларусь",
     "poland": "Польшча",

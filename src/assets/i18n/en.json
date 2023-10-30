@@ -8,6 +8,16 @@
     "fullNameIsRequired": "Name is required",
     "emailIsRequired": "Email is required"
   },
+  "fieldPlaceholder": {
+    "departurePlace": "Select city",
+    "destination": "Select city",
+    "validityPeriodStartDate": "From",
+    "validityPeriodEndDate": "To",
+    "description": "Description",
+    "fullName": "Enter name",
+    "email": "Enter e-mail",
+    "phone": "Enter phone number"
+  },
   "country": {
     "belarus": "Belarus",
     "poland": "Poland",
