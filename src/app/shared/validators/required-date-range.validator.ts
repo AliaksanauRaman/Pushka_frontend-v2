@@ -7,11 +7,7 @@ export const requiredDateRange = (
 ): ValidationErrors | null => {
   const { value } = control;
 
-  if (value === null) {
-    return { dateRangeRequired: true };
-  }
-
-  if (value.start === null) {
+  if (value === null || value.start === null) {
     return { startDateRequired: true };
   }
 
