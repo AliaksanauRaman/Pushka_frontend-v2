@@ -6,7 +6,10 @@
     "validityPeriodEndDateIsRequired": "Дата окончания срока действия обязательна",
     "descriptionIsRequired": "Описание обязательно",
     "fullNameIsRequired": "Имя обязательно",
-    "emailIsRequired": "Электронная почта обязательна"
+    "emailIsRequired": "Электронная почта обязательна",
+    "passwordIsRequired": "Пароль обязателен",
+    "confirmPasswordIsRequired": "Подтверждение пароля обязательно",
+    "incorrectEmailFormat": "Неверный формат электронной почты"
   },
   "fieldLabel": {
     "departurePlace": "Откуда",
@@ -15,7 +18,9 @@
     "description": "Что Вы хотите отправить?",
     "fullName": "Имя",
     "email": "Электронная почта",
-    "notRequiredPhone": "Номер телефона (необязательно)"
+    "notRequiredPhone": "Номер телефона (необязательно)",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердить пароль"
   },
   "fieldPlaceholder": {
     "departurePlace": "Выберите город",
@@ -25,7 +30,8 @@
     "description": "Описание",
     "fullName": "Введите имя",
     "email": "Введите электронную почту",
-    "phone": "Введите номер телефона"
+    "phone": "Введите номер телефона",
+    "password": "Введите пароль"
   },
   "country": {
     "belarus": "Беларусь",

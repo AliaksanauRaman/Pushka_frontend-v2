@@ -6,7 +6,10 @@
     "validityPeriodEndDateIsRequired": "The end date of the validity period is required",
     "descriptionIsRequired": "Description is required",
     "fullNameIsRequired": "Name is required",
-    "emailIsRequired": "Email is required"
+    "emailIsRequired": "Email is required",
+    "passwordIsRequired": "Password is required",
+    "confirmPasswordIsRequired": "Password confirmation is required",
+    "incorrectEmailFormat": "Incorrect e-mail format"
   },
   "fieldLabel": {
     "departurePlace": "Departure",
@@ -15,7 +18,9 @@
     "description": "What do you want to send?",
     "fullName": "Name",
     "email": "E-mail",
-    "notRequiredPhone": "Phone number (not required)"
+    "notRequiredPhone": "Phone number (not required)",
+    "password": "Password",
+    "confirmPassword": "Confirm password"
   },
   "fieldPlaceholder": {
     "departurePlace": "Select city",
@@ -25,7 +30,8 @@
     "description": "Description",
     "fullName": "Enter name",
     "email": "Enter e-mail",
-    "phone": "Enter phone number"
+    "phone": "Enter phone number",
+    "password": "Enter password"
   },
   "country": {
     "belarus": "Belarus",
