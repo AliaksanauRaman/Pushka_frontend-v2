@@ -1,0 +1,13 @@
+:host {
+  display: inline;
+  color: var(--accent-color);
+  text-decoration: underline;
+
+  &:focus {
+    color: var(--accent-focused-color);
+  }
+
+  &:active {
+    color: var(--accent-active-color);
+  }
+}
