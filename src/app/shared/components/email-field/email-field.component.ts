@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  ViewChild,
+  forwardRef,
+} from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -8,12 +14,14 @@ import { LabelDirective } from '@shared/directives/label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
 import { BaseTextFieldDirective } from '@shared/base/base-text-field.directive';
 
+import { IFocusableField } from '@shared/interfaces/focusable-field';
+
 @Component({
   selector: 'pu-email-field',
   templateUrl: './email-field.component.html',
   styleUrls: [
-    './email-field.component.scss',
     '../../../styles/components/_field.component.scss',
+    './email-field.component.scss',
   ],
   providers: [
     {
@@ -31,4 +39,14 @@ import { BaseTextFieldDirective } from '@shared/base/base-text-field.directive';
     { directive: PlaceholderDirective, inputs: ['puPlaceholder'] },
   ],
 })
-export class EmailFieldComponent extends BaseTextFieldDirective {}
+export class EmailFieldComponent
+  extends BaseTextFieldDirective
+  implements IFocusableField
+{
+  @ViewChild('fieldRef')
+  private readonly _fieldRef!: ElementRef<HTMLInputElement>;
+
+  public focus(): void {
+    this._fieldRef.nativeElement.focus();
+  }
+}

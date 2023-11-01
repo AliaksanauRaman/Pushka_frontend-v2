@@ -5,12 +5,12 @@
 
 .pu-field {
   height: var(--base-field-height);
-  padding: 0 var(--base-field-padding) 0 44px;
+  padding: 0 var(--base-field-padding) 0 48px;
 }
 
 .mail-icon {
   pointer-events: none;
   position: absolute;
-  bottom: 16px;
-  left: 10px;
+  top: 16px;
+  left: var(--base-field-padding);
 }
