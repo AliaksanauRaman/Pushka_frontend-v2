@@ -6,6 +6,8 @@ import {
   signal,
 } from '@angular/core';
 
+import { TextLinkComponent } from '@shared/components/text-link/text-link.component';
+
 import { Phone } from '@shared/types/phone';
 
 @Component({
@@ -14,6 +16,7 @@ import { Phone } from '@shared/types/phone';
   styleUrls: ['./phone.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  imports: [TextLinkComponent],
 })
 export class PhoneComponent {
   @Input({ required: true })
@@ -23,11 +26,11 @@ export class PhoneComponent {
 
   private readonly _phone = signal<Phone | null>(null);
 
-  public readonly phoneHref = computed(() => {
+  protected readonly _phoneHref = computed(() => {
     const phone = this._phone();
     return phone === null ? '' : `tel:${phone.countryCode}${phone.number}`;
   });
-  public readonly phoneView = computed(() => {
+  protected readonly _phoneView = computed(() => {
     const phone = this._phone();
     return phone === null ? '' : `${phone.countryCode} ${phone.number}`;
   });
