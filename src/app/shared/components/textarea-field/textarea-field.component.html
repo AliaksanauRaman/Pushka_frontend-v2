@@ -9,6 +9,7 @@
   [placeholder]="_placeholderDirective.placeholder()"
   [maxLength]="_maxLength()"
   [value]="_value()"
+  [disabled]="_isDisabled()"
   rows="5"
   (input)="handleFieldInput(fieldRef.value)"
   (blur)="handleFieldBlur()"
