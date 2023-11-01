@@ -6,12 +6,15 @@ import {
   computed,
 } from '@angular/core';
 
+import { TextLinkComponent } from '@shared/components/text-link/text-link.component';
+
 @Component({
   selector: 'pu-email',
   templateUrl: './email.component.html',
   styleUrls: ['./email.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  imports: [TextLinkComponent],
 })
 export class EmailComponent {
   @Input({ required: true })
@@ -21,11 +24,11 @@ export class EmailComponent {
 
   private readonly _email = signal('');
 
-  public readonly emailHref = computed(() => {
+  protected readonly _emailHref = computed(() => {
     const email = this._email();
     return email === '' ? '' : `mailto:${email}`;
   });
-  public readonly emailView = computed(() => {
+  protected readonly _emailView = computed(() => {
     const email = this._email();
     return email === '' ? '' : email;
   });
