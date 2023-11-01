@@ -1,0 +1,16 @@
+<p class="text">{{ _data.message | translate }}</p>
+
+<div class="spacer"></div>
+
+<button
+  class="close-snack-bar-button"
+  type="button"
+  (click)="_snackBarRef.dismiss()"
+>
+  <img
+    ngSrc="/assets/icons/close-snack-bar.svg"
+    alt="Close"
+    width="24"
+    height="24"
+  />
+</button>
