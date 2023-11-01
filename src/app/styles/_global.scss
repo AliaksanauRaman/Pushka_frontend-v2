@@ -6,20 +6,25 @@
   --primary-focused-color: #01a9dc;
   --primary-active-color: #00638a;
   --primary-contrast-color: var(--white-color);
+  --light-primary-color: #bfdfe9;
   --accent-color: #fb613b;
   --accent-focused-color: #fe7d5d;
   --accent-active-color: #dd431d;
   --accent-contrast-color: var(--white-color);
+  --light-accent-color: #fed7ce;
   --error-color: #da291c;
   --divider-color: #e0e0e0;
   --gray-color: #757575;
   --light-gray-color: #cecece;
   --background-gray-color: #f0f4f5;
+  --field-color: #f0f4f5;
+  --field-text-color: var(--black-color);
   --disabled-text-color: #acacac;
   --disabled-field-color: #ccc;
   --disabled-button-color: var(--light-gray-color);
   --disabled-button-text-color: var(--disabled-text-color);
   --field-border-color: var(--light-gray-color);
+  --success-snack-bar-color: #38b000;
 
   --base-field-height: 56px;
   --base-field-padding: 12px;
