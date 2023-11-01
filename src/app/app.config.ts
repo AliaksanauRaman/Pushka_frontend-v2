@@ -6,6 +6,8 @@ import {
   withPreloading,
 } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { DialogModule } from '@angular/cdk/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { CoreTranslateModule } from '@core/translate/core-translate.module';
@@ -21,6 +23,8 @@ export const APP_CONFIG: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(withInterceptors([authorizationInterceptor])),
     importProvidersFrom(
+      DialogModule,
+      MatSnackBarModule,
       NgxsModule.forRoot(STORE, { developmentMode: !environment.isProduction }),
       NgxsLoggerPluginModule.forRoot({
         collapsed: false,
