@@ -23,3 +23,7 @@
     background-color: var(--disabled-button-color);
   }
 }
+
+.spinner {
+  flex-shrink: 0;
+}
