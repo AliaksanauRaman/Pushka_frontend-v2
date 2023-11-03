@@ -1,16 +1,13 @@
 :host {
   display: flex;
   align-items: center;
-  padding: 4px 4px 4px 16px;
 }
 
 .text {
-  flex-shrink: 0;
-  color: var(--white-color);
-}
-
-.spacer {
   flex-grow: 1;
+  padding: 14px 0 14px 16px;
+  color: var(--white-color);
+  line-height: 20px;
 }
 
 .close-snack-bar-button {
@@ -20,5 +17,5 @@
   flex-shrink: 0;
   width: 40px;
   height: 40px;
-  margin-left: 4px;
+  margin: 4px;
 }
