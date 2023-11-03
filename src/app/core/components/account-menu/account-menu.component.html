@@ -1,0 +1,21 @@
+<div class="account-info">
+  <pu-account-avatar class="avatar"></pu-account-avatar>
+
+  <div class="email">{{ _user.email }}</div>
+</div>
+
+<button
+  class="logout-button"
+  cdkMenuItem
+  (cdkMenuItemTriggered)="logout.emit()"
+>
+  <img
+    class="logout-icon"
+    ngSrc="/assets/icons/logout.svg"
+    alt="Account avatar"
+    width="24"
+    height="24"
+  />
+
+  <span class="logout-label">{{ "actionLabel.logout" | translate }}</span>
+</button>
