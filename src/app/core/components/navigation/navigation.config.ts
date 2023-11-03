@@ -7,8 +7,8 @@ export const NAVIGATION_LINKS = new InjectionToken<
 >('NAVIGATION_LINKS', {
   providedIn: 'root',
   factory: () => [
-    new NavigationLink('Отправить посылку', '/send-parcel'),
-    new NavigationLink('Найти заявку', '/find-application'),
-    new NavigationLink('Доставить посылку', '/deliver-parcel'),
+    new NavigationLink('navigationLabel.sendParcel', '/send-parcel'),
+    new NavigationLink('navigationLabel.findApplication', '/find-application'),
+    new NavigationLink('navigationLabel.deliverParcel', '/deliver-parcel'),
   ],
 });
