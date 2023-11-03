@@ -3,6 +3,11 @@
     "login": "Увайсці",
     "logout": "Выйсці"
   },
+  "backendError": {
+    "invalidCredentials": "Няправільны адрас электроннай пошты або пароль.",
+    "accountIsNotActivated": "Акаўнт не актываваны. Калі ласка, праверце сваю электронную пошту.",
+    "unknownLoginRequestError": "Невадомая памылка ўвахода ў сістэму. Калі ласка, паўтарыце спробу пазней."
+  },
   "fieldError": {
     "departurePlaceRequired": "Абярыце варыянт з спісу",
     "destinationRequired": "Абярыце варыянт з спісу",

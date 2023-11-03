@@ -3,6 +3,11 @@
     "login": "Log in",
     "logout": "Log out"
   },
+  "backendError": {
+    "invalidCredentials": "Invalid email or password.",
+    "accountIsNotActivated": "Account is not activated. Please, check your email.",
+    "unknownLoginRequestError": "An unknown error has occurred during the log in process. Please, try again later."
+  },
   "fieldError": {
     "departurePlaceRequired": "Select an option from the list",
     "destinationRequired": "Select an option from the list",
