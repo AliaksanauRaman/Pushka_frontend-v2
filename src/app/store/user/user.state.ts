@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { State, Action, NgxsOnInit, StateContext } from '@ngxs/store';
+import { State, Selector, Action, NgxsOnInit, StateContext } from '@ngxs/store';
 
 import { LOCAL_STORAGE } from '@global/local-storage';
 import { JwtService } from '@shared/services/jwt/jwt.service';
@@ -35,6 +35,11 @@ export class UserState implements NgxsOnInit {
     }
 
     context.setState(user);
+  }
+
+  @Selector()
+  public static stream(state: StateModel): StateModel {
+    return state;
   }
 
   @Action(LoginUser)
