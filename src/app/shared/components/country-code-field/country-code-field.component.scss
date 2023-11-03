@@ -1,3 +1,55 @@
 :host {
   display: block;
 }
+
+.pu-field-outer {
+  position: relative;
+}
+
+.pu-field {
+  width: 90px;
+  height: var(--base-field-height);
+  padding: 0 var(--base-field-padding);
+}
+
+.caret-icon {
+  pointer-events: none;
+  position: absolute;
+  top: 16px;
+  right: var(--base-field-padding);
+  transition: transform 0.25s ease-in-out;
+
+  &.caret-icon--rotated {
+    transform: rotate(180deg);
+  }
+}
+
+.country-code-list-panel {
+  --max-items: 3;
+  --item-height: 44px;
+  --vertical-padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+  height: calc(
+    var(--vertical-padding) * 2 + var(--max-items) * var(--item-height)
+  );
+  margin: 8px 0;
+  padding: var(--vertical-padding) 0;
+  background-color: var(--white-color);
+  border-radius: 16px;
+  box-shadow: var(--menu-box-shadow);
+  overflow-y: auto;
+}
+
+.country-code-list-item {
+  flex-shrink: 0;
+  height: 44px;
+  padding: 0 16px;
+  color: var(--white-contrast-color);
+  text-align: left;
+
+  &.country-code-list-item--selected {
+    color: var(--accent-color);
+  }
+}

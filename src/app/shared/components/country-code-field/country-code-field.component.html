@@ -1,18 +1,44 @@
-<button
-  [cdkMenuTriggerFor]="countryCodeList"
-  [ariaLabel]="_ariaLabelDirective.ariaLabel()"
->
-  <span>{{ _value() || _placeholderDirective.placeholder() }}</span>
-</button>
+<div class="pu-field-outer">
+  <input
+    #fieldRef
+    #menuTrigger="cdkMenuTriggerFor"
+    class="pu-field"
+    [cdkMenuTriggerFor]="countryCodeList"
+    [ariaLabel]="_ariaLabelDirective.ariaLabel()"
+    [placeholder]="_placeholderDirective.placeholder()"
+    [value]="_viewValue()"
+    type="text"
+    readonly
+    (focus)="menuTrigger.open()"
+    (click)="fieldRef.focus()"
+  />
+
+  <img
+    class="caret-icon"
+    [class.caret-icon--rotated]="menuTrigger.isOpen()"
+    ngSrc="/assets/icons/gray-caret-down.svg"
+    alt="Caret"
+    width="24"
+    height="24"
+  />
+</div>
 
 <ng-template #countryCodeList>
-  <div cdkMenu>
+  <div class="country-code-list-panel" cdkMenu>
     <button
+      class="country-code-list-item"
+      [class.country-code-list-item--selected]="
+        _value()?.value === countryCode.value
+      "
       *ngFor="let countryCode of _countryCodes; trackBy: trackByCountryCode"
       cdkMenuItem
       (cdkMenuItemTriggered)="handleCountryCodeSelect(countryCode)"
     >
-      <span>{{ countryCode }}</span>
+      <span
+        >{{ countryCode.value }} ({{
+          countryCode.countryLabel | translate
+        }})</span
+      >
     </button>
   </div>
 </ng-template>
