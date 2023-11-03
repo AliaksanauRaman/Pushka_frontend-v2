@@ -1,45 +1,52 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  signal,
-  Output,
-  EventEmitter,
-} from '@angular/core';
-import { NgIf, NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
-import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { CdkMenuTrigger } from '@angular/cdk/menu';
+import { Select, Store } from '@ngxs/store';
+import { TranslateModule } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
 
 import { LocalizationSelectionContainerComponent } from '@core/components/localization-selection-container/localization-selection-container.component';
 import { SecondaryButtonComponent } from '@shared/components/secondary-button/secondary-button.component';
+import { AccountAvatarComponent } from '@core/components/account-avatar/account-avatar.component';
+import { AccountMenuComponent } from '@core/components/account-menu/account-menu.component';
+
+import { UserEntryDialogHelperService } from '@core/services/user-entry-dialog-helper/user-entry-dialog-helper.service';
+
+import { LogoutUser, UserState } from '@store/user';
+import { User } from '@shared/types/user';
 
 @Component({
   selector: 'pu-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
+  providers: [UserEntryDialogHelperService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
     NgIf,
-    NgOptimizedImage,
-    NgTemplateOutlet,
+    AsyncPipe,
+    CdkMenuTrigger,
+    TranslateModule,
     LocalizationSelectionContainerComponent,
     SecondaryButtonComponent,
-    CdkMenu,
-    CdkMenuItem,
-    CdkMenuTrigger,
+    AccountAvatarComponent,
+    AccountMenuComponent,
   ],
 })
 export class ToolbarComponent {
-  @Input()
-  public set isUserSignedIn(value: boolean) {
-    this._isUserSignedIn.set(value);
+  private readonly _store = inject(Store);
+  private readonly _userEntryDialogHelper = inject(
+    UserEntryDialogHelperService
+  );
+
+  @Select(UserState.stream)
+  protected readonly _user$!: Observable<User | null>;
+
+  protected openEntryDialog(): void {
+    this._userEntryDialogHelper.openDialog();
   }
 
-  @Output()
-  public readonly logout = new EventEmitter<void>();
-
-  protected readonly _isUserSignedIn = signal(false);
-
-  // TODO: Temp
-  public email = 'test.user@gmail.com';
+  protected logoutUser(): void {
+    this._store.dispatch(new LogoutUser());
+  }
 }
