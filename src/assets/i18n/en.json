@@ -1,7 +1,18 @@
 {
   "actionLabel": {
     "login": "Log in",
-    "logout": "Log out"
+    "logout": "Log out",
+    "register": "Register"
+  },
+  "navigationLabel": {
+    "sendParcel": "Send parcel",
+    "findApplication": "Find application",
+    "deliverParcel": "Deliver parcel",
+    "requests": "Requests",
+    "deliveryOffers": "Delivery offers",
+    "myApplications": "My applications",
+    "login": "Log in",
+    "register": "Sign up"
   },
   "backendError": {
     "invalidCredentials": "Invalid email or password.",
@@ -17,7 +28,7 @@
     "fullNameIsRequired": "Name is required",
     "emailIsRequired": "Email is required",
     "passwordIsRequired": "Password is required",
-    "confirmPasswordIsRequired": "Password confirmation is required",
+    "passwordConfirmationIsRequired": "Password confirmation is required",
     "incorrectEmailFormat": "Incorrect e-mail format"
   },
   "fieldLabel": {
@@ -29,7 +40,7 @@
     "email": "E-mail",
     "notRequiredPhone": "Phone number (not required)",
     "password": "Password",
-    "confirmPassword": "Confirm password"
+    "passwordConfirmation": "Password confirmation"
   },
   "fieldPlaceholder": {
     "departurePlace": "Select city",
@@ -40,7 +51,8 @@
     "fullName": "Enter name",
     "email": "Enter e-mail",
     "phone": "Enter phone number",
-    "password": "Enter password"
+    "password": "Enter password",
+    "passwordConfirmation": "Repeat password"
   },
   "country": {
     "belarus": "Belarus",

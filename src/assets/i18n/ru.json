@@ -1,7 +1,18 @@
 {
   "actionLabel": {
     "login": "Войти",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "register": "Зарегистрироваться"
+  },
+  "navigationLabel": {
+    "sendParcel": "Отправить посылку",
+    "findApplication": "Найти заявку",
+    "deliverParcel": "Доставить посылку",
+    "requests": "Запросы",
+    "deliveryOffers": "Предложения доставки",
+    "myApplications": "Мои заявки",
+    "login": "Вход",
+    "register": "Регистрация"
   },
   "backendError": {
     "invalidCredentials": "Неправильный адрес электронной почты или пароль.",
@@ -17,7 +28,7 @@
     "fullNameIsRequired": "Имя обязательно",
     "emailIsRequired": "Электронная почта обязательна",
     "passwordIsRequired": "Пароль обязателен",
-    "confirmPasswordIsRequired": "Подтверждение пароля обязательно",
+    "passwordConfirmationIsRequired": "Подтверждение пароля обязательно",
     "incorrectEmailFormat": "Неверный формат электронной почты"
   },
   "fieldLabel": {
@@ -29,7 +40,7 @@
     "email": "Электронная почта",
     "notRequiredPhone": "Номер телефона (необязательно)",
     "password": "Пароль",
-    "confirmPassword": "Подтвердить пароль"
+    "passwordConfirmation": "Подтверждение пароля"
   },
   "fieldPlaceholder": {
     "departurePlace": "Выберите город",
@@ -40,7 +51,8 @@
     "fullName": "Введите имя",
     "email": "Введите электронную почту",
     "phone": "Введите номер телефона",
-    "password": "Введите пароль"
+    "password": "Введите пароль",
+    "passwordConfirmation": "Повторите пароль"
   },
   "country": {
     "belarus": "Беларусь",
