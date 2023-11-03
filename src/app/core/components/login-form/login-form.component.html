@@ -1,0 +1,40 @@
+<form
+  class="pu-form"
+  [formGroup]="_loginForm"
+  (ngSubmit)="handleLoginFormSubmit()"
+>
+  <pu-email-field
+    class="pu-form__field"
+    [puLabel]="'fieldLabel.email' | translate"
+    [puPlaceholder]="'fieldPlaceholder.email' | translate"
+    [errors]="_loginForm.controls.email.errors"
+    [errorsMappings]="{
+      required: 'fieldError.emailIsRequired' | translate,
+      emailFormat: 'fieldError.incorrectEmailFormat' | translate,
+    }"
+    formControlName="email"
+  ></pu-email-field>
+
+  <pu-password-field
+    class="pu-form__field"
+    [puLabel]="'fieldLabel.password' | translate"
+    [puPlaceholder]="'fieldPlaceholder.password' | translate"
+    [errors]="_loginForm.controls.password.errors"
+    [errorsMappings]="{
+      required: 'fieldError.passwordIsRequired' | translate
+    }"
+    formControlName="password"
+  ></pu-password-field>
+
+  <ng-container *ngIf="state$ | async as state">
+    <button
+      class="pu-form__submit-button"
+      puAccentButton
+      [isLoading]="state.isLoading"
+      [disabled]="_loginForm.invalid"
+      type="submit"
+    >
+      <span>{{ "actionLabel.login" | translate }}</span>
+    </button>
+  </ng-container>
+</form>
