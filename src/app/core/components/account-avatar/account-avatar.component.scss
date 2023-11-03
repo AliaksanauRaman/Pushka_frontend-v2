@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #ededed; // If there are any other entries of this color move it to root
+  border-radius: 50%;
+}
+
+.avatar-icon {
+  flex-shrink: 0;
+}
