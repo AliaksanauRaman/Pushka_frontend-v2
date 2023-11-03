@@ -3,12 +3,17 @@
   flex-direction: column;
 }
 
+.phone-form {
+  display: flex;
+}
+
 .country-code-field {
-  // TODO
-  position: absolute;
+  flex-shrink: 0;
+  margin-right: 8px;
 }
 
 .pu-field {
+  flex-grow: 1;
   height: var(--base-field-height);
   padding: 0 var(--base-field-padding);
 }
