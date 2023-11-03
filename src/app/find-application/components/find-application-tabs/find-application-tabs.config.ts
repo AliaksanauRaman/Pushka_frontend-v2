@@ -7,9 +7,18 @@ export const FIND_APPLICATION_TABS_LINKS = new InjectionToken(
   {
     providedIn: 'root',
     factory: () => [
-      new NavigationLink('Запросы', '/find-application/requests'),
-      new NavigationLink('Предложение помощи', '/find-application/help-offers'),
-      new NavigationLink('Мои заказы', '/find-application/my-applications'),
+      new NavigationLink(
+        'navigationLabel.requests',
+        '/find-application/requests'
+      ),
+      new NavigationLink(
+        'navigationLabel.deliveryOffers',
+        '/find-application/help-offers'
+      ),
+      new NavigationLink(
+        'navigationLabel.myApplications',
+        '/find-application/my-applications'
+      ),
     ],
   }
 );
