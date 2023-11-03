@@ -12,12 +12,17 @@
   flex-grow: 1;
   height: 48px;
   border-radius: 12px 12px 0 0;
-  box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.4);
   overflow: hidden;
 
-  &:has(>.links__item-content.active) {
+  &:nth-child(2n) {
     z-index: 1;
+    box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.4);
+  }
+
+  &:has(> .links__item-content.active) {
+    z-index: 2;
     height: 60px;
+    box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.4);
   }
 }
 
