@@ -1,4 +1,8 @@
 {
+  "actionLabel": {
+    "login": "Увайсці",
+    "logout": "Выйсці"
+  },
   "fieldError": {
     "departurePlaceRequired": "Абярыце варыянт з спісу",
     "destinationRequired": "Абярыце варыянт з спісу",
