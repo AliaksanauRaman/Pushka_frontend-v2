@@ -1,0 +1,16 @@
+.pu-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.pu-form__field {
+  flex-shrink: 0;
+
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+}
+
+.pu-form__submit-button {
+  flex-shrink: 0;
+}
