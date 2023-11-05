@@ -11,10 +11,7 @@ export const FIND_APPLICATION_TABS_LINKS = new InjectionToken(
         'navigationLabel.requests',
         '/find-application/requests'
       ),
-      new NavigationLink(
-        'navigationLabel.offers',
-        '/find-application/help-offers'
-      ),
+      new NavigationLink('navigationLabel.offers', '/find-application/offers'),
       new NavigationLink(
         'navigationLabel.myApplications',
         '/find-application/my-applications'

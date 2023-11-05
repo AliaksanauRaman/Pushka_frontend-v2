@@ -21,10 +21,10 @@ export const findApplicationRoutes: Routes = [
           ),
       },
       {
-        path: 'help-offers',
+        path: 'offers',
         loadComponent: () =>
-          import('./pages/help-offers-page/help-offers-page.component').then(
-            (c) => c.HelpOffersPageComponent
+          import('./pages/offers-page/offers-page.component').then(
+            (c) => c.OffersPageComponent
           ),
       },
       {
