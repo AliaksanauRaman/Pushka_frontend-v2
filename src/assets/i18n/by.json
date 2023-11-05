@@ -9,7 +9,7 @@
     "findApplication": "Знайсці заяўку",
     "deliverParcel": "Даставіць пасылку",
     "requests": "Запыты",
-    "deliveryOffers": "Прапановы даставы",
+    "offers": "Прапановы",
     "myApplications": "Мае заяўкі",
     "login": "Уваход",
     "register": "Рэгістрацыя"
@@ -29,7 +29,9 @@
     "emailIsRequired": "Электронная пошта абавязковая",
     "passwordIsRequired": "Пароль абавязковы",
     "passwordConfirmationIsRequired": "Пацверджанне пароля абавязковае",
-    "incorrectEmailFormat": "Няправільны фармат электроннай пошты"
+    "incorrectEmailFormat": "Няправільны фармат электроннай пошты",
+    "_countryCodeIsMissing": "Прапушчаны код краіны",
+    "_incorrectPhoneNumberFormat": "Няправільны фармат нумара тэлефона, дапускаюцца толькі лічбы без прабелаў у колькасці ад 7 да 12"
   },
   "fieldLabel": {
     "departurePlace": "Адкуль",

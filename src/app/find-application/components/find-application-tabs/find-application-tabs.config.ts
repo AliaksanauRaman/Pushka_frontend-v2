@@ -12,7 +12,7 @@ export const FIND_APPLICATION_TABS_LINKS = new InjectionToken(
         '/find-application/requests'
       ),
       new NavigationLink(
-        'navigationLabel.deliveryOffers',
+        'navigationLabel.offers',
         '/find-application/help-offers'
       ),
       new NavigationLink(

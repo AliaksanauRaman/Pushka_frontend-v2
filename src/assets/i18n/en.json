@@ -9,7 +9,7 @@
     "findApplication": "Find application",
     "deliverParcel": "Deliver parcel",
     "requests": "Requests",
-    "deliveryOffers": "Delivery offers",
+    "offers": "Offers",
     "myApplications": "My applications",
     "login": "Log in",
     "register": "Sign up"
@@ -29,7 +29,9 @@
     "emailIsRequired": "Email is required",
     "passwordIsRequired": "Password is required",
     "passwordConfirmationIsRequired": "Password confirmation is required",
-    "incorrectEmailFormat": "Incorrect e-mail format"
+    "incorrectEmailFormat": "Incorrect e-mail format",
+    "_countryCodeIsMissing": "Country code is missing",
+    "_incorrectPhoneNumberFormat": "Incorrect phone number format, only 7 to 12 digits allowed without spaces"
   },
   "fieldLabel": {
     "departurePlace": "Departure",
