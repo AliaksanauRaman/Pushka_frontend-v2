@@ -16,3 +16,19 @@ export class Application {
     public readonly status: ApplicationStatus
   ) {}
 }
+
+export class ApplicationsList {
+  constructor(public readonly value: ReadonlyArray<Application>) {}
+
+  public findById(id: number): Application {
+    const foundApplication = this.value.find(
+      (application) => application.id === id
+    );
+
+    if (foundApplication === undefined) {
+      throw new Error(`No application is found by id: '${id}'!`);
+    }
+
+    return foundApplication;
+  }
+}
