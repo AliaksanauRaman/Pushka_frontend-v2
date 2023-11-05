@@ -9,7 +9,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { CdkMenu, CdkMenuItem } from '@angular/cdk/menu';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { AccountAvatarComponent } from '@core/components/account-avatar/account-avatar.component';
+import { AccountAvatarComponent } from '@shared/components/account-avatar/account-avatar.component';
 
 import { User } from '@shared/types/user';
 

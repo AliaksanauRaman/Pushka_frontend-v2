@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 
 import { LocalizationSelectionContainerComponent } from '@core/components/localization-selection-container/localization-selection-container.component';
 import { SecondaryButtonComponent } from '@shared/components/secondary-button/secondary-button.component';
-import { AccountAvatarComponent } from '@core/components/account-avatar/account-avatar.component';
+import { AccountAvatarComponent } from '@shared/components/account-avatar/account-avatar.component';
 import { AccountMenuComponent } from '@core/components/account-menu/account-menu.component';
 
 import { UserEntryDialogHelperService } from '@core/services/user-entry-dialog-helper/user-entry-dialog-helper.service';
