@@ -2,7 +2,7 @@ import { IDto } from '@shared/interfaces/dto';
 import { Phone } from '@shared/types/phone';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 
-export class ApplicationDto implements IDto {
+export class CreateApplicationDto implements IDto {
   constructor(
     public readonly departurePlaceId: number,
     public readonly destinationId: number,

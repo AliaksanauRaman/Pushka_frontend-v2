@@ -1,3 +1,3 @@
-import { ApplicationDto } from './application.dto';
+import { CreateApplicationDto } from './create-application.dto';
 
-export class CreateHelpRequestDto extends ApplicationDto {}
+export class CreateHelpRequestDto extends CreateApplicationDto {}
