@@ -19,7 +19,6 @@ import { map, takeUntil, tap } from 'rxjs';
 
 import { DATE_ADAPTER_PROVIDER } from '@shared/providers/date-adapter';
 import { MAT_DATE_FORMATS_PROVIDER } from '@shared/providers/mat-date-formats';
-import { FieldErrorsComponent } from '@shared/components/field-errors/field-errors.component';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 
@@ -44,12 +43,7 @@ import { DateRange } from '@shared/types/date-range';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [
-    NgOptimizedImage,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    FieldErrorsComponent,
-  ],
+  imports: [NgOptimizedImage, ReactiveFormsModule, MatDatepickerModule],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
