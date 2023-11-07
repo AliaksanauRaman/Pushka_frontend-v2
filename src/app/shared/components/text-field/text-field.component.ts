@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { FieldErrorsComponent } from '@shared/components/field-errors/field-errors.component';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
@@ -23,7 +22,6 @@ import { BaseTextFieldDirective } from '@shared/base/base-text-field.directive';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [FieldErrorsComponent],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
