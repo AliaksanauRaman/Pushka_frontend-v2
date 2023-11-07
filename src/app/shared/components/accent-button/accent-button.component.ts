@@ -1,13 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
   Input,
   signal,
 } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
+import { DisableDirective } from '@shared/directives/disable.directive';
 
 @Component({
   selector: 'button[puAccentButton]',
@@ -16,16 +16,12 @@ import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [NgIf, SpinnerComponent],
+  hostDirectives: [DisableDirective],
 })
 export class AccentButtonComponent {
   @Input()
   public set isLoading(value: boolean) {
     this._isLoading.set(value);
-  }
-
-  @HostBinding('attr.disabled')
-  public get hasDisabledAttr(): true | null {
-    return this._isLoading() ? true : null;
   }
 
   protected readonly _isLoading = signal(false);
