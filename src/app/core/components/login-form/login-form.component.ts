@@ -12,7 +12,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { takeUntil, tap } from 'rxjs';
+import { tap } from 'rxjs';
 
 import { EmailFieldComponent } from '@shared/components/email-field/email-field.component';
 import { PasswordFieldComponent } from '@shared/components/password-field/password-field.component';
@@ -20,7 +20,6 @@ import { AccentButtonComponent } from '@shared/components/accent-button/accent-b
 
 import { LoginFormService } from './login-form.service';
 
-import { BaseDestroyer } from '@shared/base/base-destroyer';
 import { CustomValidators } from '@shared/validators';
 import { ValidLoginFormValue } from '@shared/types/valid-login-form-value';
 
@@ -44,7 +43,7 @@ import { ValidLoginFormValue } from '@shared/types/valid-login-form-value';
     AccentButtonComponent,
   ],
 })
-export class LoginFormComponent extends BaseDestroyer {
+export class LoginFormComponent {
   private readonly _formBuilder = inject(NonNullableFormBuilder);
   private readonly _service = inject(LoginFormService);
 
@@ -67,8 +66,7 @@ export class LoginFormComponent extends BaseDestroyer {
       } else {
         this._loginForm.enable();
       }
-    }),
-    takeUntil(this._destroy$)
+    })
   );
 
   protected handleLoginFormSubmit(): void {

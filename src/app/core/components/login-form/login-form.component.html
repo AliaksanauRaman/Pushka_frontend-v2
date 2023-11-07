@@ -54,7 +54,7 @@
       class="pu-form__submit-button"
       puAccentButton
       [isLoading]="state.isLoading"
-      [disabled]="_loginForm.invalid"
+      [disabled]="_loginForm.invalid || state.isLoading"
       type="submit"
     >
       <span>{{ "actionLabel.login" | translate }}</span>
