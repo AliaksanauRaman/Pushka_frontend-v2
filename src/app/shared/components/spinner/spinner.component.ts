@@ -8,10 +8,12 @@ import {
   signal,
 } from '@angular/core';
 
-import { SpinnerSize } from './spinner-size';
 import {
+  SpinnerSize,
+  SpinnerColor,
   SPINNER_DIMENSIONS,
   SPINNER_CONTAINER_DIMENSIONS,
+  SPINNER_FILLS,
 } from './spinner.component.config';
 
 @Component({
@@ -26,10 +28,16 @@ export class SpinnerComponent {
   private readonly _spinnerContainerDimensions = inject(
     SPINNER_CONTAINER_DIMENSIONS
   );
+  private readonly _spinnerFills = inject(SPINNER_FILLS);
 
   @Input()
   public set size(value: SpinnerSize) {
     this._size.set(value);
+  }
+
+  @Input()
+  public set color(value: SpinnerColor) {
+    this._color.set(value);
   }
 
   @HostBinding('style.width.px')
@@ -43,6 +51,7 @@ export class SpinnerComponent {
   }
 
   private readonly _size = signal<SpinnerSize>('small');
+  private readonly _color = signal<SpinnerColor>('white');
 
   protected readonly _dimensions = computed(
     () => this._spinnerDimensions[this._size()]
@@ -50,4 +59,5 @@ export class SpinnerComponent {
   protected readonly _containerDimensions = computed(
     () => this._spinnerContainerDimensions[this._size()]
   );
+  protected readonly _fill = computed(() => this._spinnerFills[this._color()]);
 }
