@@ -10,7 +10,6 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { map, tap } from 'rxjs';
 
-import { FieldErrorsComponent } from '@shared/components/field-errors/field-errors.component';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
@@ -37,14 +36,7 @@ import { Place } from '@shared/types/place';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [
-    NgIf,
-    NgFor,
-    AsyncPipe,
-    NgOptimizedImage,
-    OverlayModule,
-    FieldErrorsComponent,
-  ],
+  imports: [NgIf, NgFor, AsyncPipe, NgOptimizedImage, OverlayModule],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
