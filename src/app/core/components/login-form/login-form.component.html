@@ -7,24 +7,47 @@
     class="pu-form__field"
     [puLabel]="'fieldLabel.email' | translate"
     [puPlaceholder]="'fieldPlaceholder.email' | translate"
-    [errors]="_loginForm.controls.email.errors"
-    [errorsMappings]="{
-      required: 'fieldError.emailIsRequired' | translate,
-      emailFormat: 'fieldError.incorrectEmailFormat' | translate,
-    }"
     formControlName="email"
   ></pu-email-field>
+
+  <div
+    class="pu-form__errors"
+    *ngIf="_loginForm.controls.email as emailControl"
+  >
+    <ng-container *ngIf="emailControl.touched">
+      <p class="pu-form__errors-item" *ngIf="emailControl.errors?.['required']">
+        {{ "fieldError.emailIsRequired" | translate }}
+      </p>
+
+      <p
+        class="pu-form__errors-item"
+        *ngIf="emailControl.errors?.['emailFormat']"
+      >
+        {{ "fieldError.incorrectEmailFormat" | translate }}
+      </p>
+    </ng-container>
+  </div>
 
   <pu-password-field
     class="pu-form__field"
     [puLabel]="'fieldLabel.password' | translate"
     [puPlaceholder]="'fieldPlaceholder.password' | translate"
-    [errors]="_loginForm.controls.password.errors"
-    [errorsMappings]="{
-      required: 'fieldError.passwordIsRequired' | translate
-    }"
     formControlName="password"
   ></pu-password-field>
+
+  <div
+    class="pu-form__errors"
+    *ngIf="_loginForm.controls.password as passwordControl"
+  >
+    <ng-container *ngIf="passwordControl.touched">
+      <p
+        class="pu-form__errors-item"
+        *ngIf="passwordControl.errors?.['required']"
+      >
+        {{ "fieldError.passwordIsRequired" | translate }}
+      </p>
+    </ng-container>
+  </div>
 
   <ng-container *ngIf="state$ | async as state">
     <button
