@@ -13,7 +13,6 @@ import {
 import { map, filter, tap, takeUntil } from 'rxjs';
 
 import { CountryCodeFieldComponent } from '../country-code-field/country-code-field.component';
-import { FieldErrorsComponent } from '@shared/components/field-errors/field-errors.component';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
@@ -38,11 +37,7 @@ import { PhoneFormValue } from '@shared/types/phone-form-value';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CountryCodeFieldComponent,
-    FieldErrorsComponent,
-  ],
+  imports: [ReactiveFormsModule, CountryCodeFieldComponent],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
