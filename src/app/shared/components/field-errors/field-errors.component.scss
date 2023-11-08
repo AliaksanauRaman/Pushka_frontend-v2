@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 18px;
+  padding: 0 var(--base-field-padding);
+}
+
+.error {
+  flex-shrink: 0;
+  color: var(--error-color);
+  line-height: 18px;
+}

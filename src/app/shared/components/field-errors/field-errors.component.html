@@ -1,0 +1,5 @@
+<ng-container *ngIf="_areErrorsVisible()">
+  <p class="error" *ngIf="_errorMessage() as errorMessage">
+    {{ errorMessage }}
+  </p>
+</ng-container>
