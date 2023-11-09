@@ -1,0 +1,8 @@
+.cdk-dialog-container {
+  outline: none;
+}
+
+.cdk-overlay-backdrop {
+  background-color: var(--backdrop-color);
+  transition: none;
+}
