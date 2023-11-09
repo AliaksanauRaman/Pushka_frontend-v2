@@ -1,0 +1,80 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.pu-field-container {
+  &:has(> input.filter-inner-field:focus) {
+    .pu-field {
+      border-color: var(--primary-color);
+      box-shadow: var(--primary-field-box-shadow);
+      caret-color: var(--primary-color);
+      // The following property is needed to show box-shadow on ios devices
+      -webkit-appearance: none;
+    }
+  }
+}
+
+.pu-field {
+  height: var(--base-field-height);
+  padding: 0 70px 0 var(--base-field-padding);
+  background-color: var(--white-color);
+}
+
+.filter-inner-field {
+  --padding-right: 70px;
+  --divider-width: 2px;
+  --divider-margin: 16px;
+
+  position: absolute;
+  width: calc(
+    (
+        100% - var(--base-field-padding) - var(--padding-right) -
+          var(--divider-width) - (var(--divider-margin) * 2)
+      ) / 2
+  );
+  height: 100%;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  &.filter-inner-field--departure-place {
+    left: var(--base-field-padding);
+  }
+
+  &.filter-inner-field--destination {
+    right: 70px;
+  }
+}
+
+.divider {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  width: 2px;
+  height: 16px;
+  background-color: var(--light-gray-color);
+  transform: translate(-28px, -50%);
+}
+
+.apply-filter-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 48px;
+  background-color: var(--primary-color);
+  border-radius: 12px;
+
+  &:focus {
+    background-color: var(--primary-focused-color);
+  }
+
+  &:active {
+    background-color: var(--primary-active-color);
+  }
+}

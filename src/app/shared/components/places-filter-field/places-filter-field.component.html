@@ -1,0 +1,32 @@
+<div class="pu-field-container">
+  <input
+    class="pu-field"
+    type="text"
+    tabindex="-1"
+    readonly
+    (focus)="departurePlaceInput.focus()"
+  />
+
+  <input
+    #departurePlaceInput
+    class="filter-inner-field filter-inner-field--departure-place"
+    placeholder="Откуда"
+    type="text"
+  />
+
+  <div class="divider"></div>
+
+  <input
+    class="filter-inner-field filter-inner-field--destination"
+    placeholder="Куда"
+    type="text"
+  />
+
+  <button
+    class="apply-filter-button"
+    puIconButton
+    puIconSrc="/assets/icons/white-filter-check.svg"
+    puIconAlt="Filter"
+    puAriaLabel="Apply filter"
+  ></button>
+</div>
