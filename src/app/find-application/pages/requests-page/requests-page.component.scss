@@ -1,7 +1,10 @@
 :host {
   display: flex;
   flex-direction: column;
-  padding: 16px;
+}
+
+.places-filter {
+  margin-bottom: 28px;
 }
 
 .card {
