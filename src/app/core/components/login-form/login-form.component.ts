@@ -14,12 +14,14 @@ import {
 import { TranslateModule } from '@ngx-translate/core';
 import { tap } from 'rxjs';
 
+import { FieldErrorsComponent } from '@shared/components/field-errors/field-errors.component';
 import { EmailFieldComponent } from '@shared/components/email-field/email-field.component';
 import { PasswordFieldComponent } from '@shared/components/password-field/password-field.component';
 import { AccentButtonComponent } from '@shared/components/accent-button/accent-button.component';
 
 import { LoginFormService } from './login-form.service';
 
+import { LOGIN_FORM_CONFIG } from './login-form.config';
 import { CustomValidators } from '@shared/validators';
 import { ValidLoginFormValue } from '@shared/types/valid-login-form-value';
 
@@ -38,6 +40,7 @@ import { ValidLoginFormValue } from '@shared/types/valid-login-form-value';
     AsyncPipe,
     ReactiveFormsModule,
     TranslateModule,
+    FieldErrorsComponent,
     EmailFieldComponent,
     PasswordFieldComponent,
     AccentButtonComponent,
@@ -46,13 +49,20 @@ import { ValidLoginFormValue } from '@shared/types/valid-login-form-value';
 export class LoginFormComponent {
   private readonly _formBuilder = inject(NonNullableFormBuilder);
   private readonly _service = inject(LoginFormService);
+  protected readonly _config = inject(LOGIN_FORM_CONFIG);
 
   @Output()
   public readonly success = new EventEmitter<void>();
 
   protected readonly _loginForm = this._formBuilder.group({
     email: ['', [Validators.required, CustomValidators.emailFormat]],
-    password: ['', [Validators.required]],
+    password: [
+      '',
+      [
+        Validators.required,
+        Validators.maxLength(this._config.passwordMaxLength),
+      ],
+    ],
   });
   protected readonly state$ = this._service.state$.pipe(
     tap(({ isSuccess, isLoading }) => {
