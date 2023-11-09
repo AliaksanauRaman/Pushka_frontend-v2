@@ -35,6 +35,15 @@
     & + .tick-icon {
       opacity: 1;
     }
+
+    &:disabled {
+      background-color: var(--disabled-field-color);
+      border-color: var(--disabled-field-color);
+    }
+  }
+
+  &:disabled {
+    border-color: var(--disabled-field-color);
   }
 }
 
@@ -51,4 +60,8 @@
 .label {
   flex-grow: 1;
   line-height: 20px;
+
+  &.label--disabled {
+    color: var(--disabled-text-color);
+  }
 }

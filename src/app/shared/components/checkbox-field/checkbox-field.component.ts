@@ -8,6 +8,7 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { z } from 'zod';
 
+import { DisabledDirective } from '@shared/directives/disabled.directive';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 
@@ -26,6 +27,7 @@ import { BaseReactiveFieldDirective } from '@shared/base/base-reactive-field.dir
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  imports: [DisabledDirective],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },

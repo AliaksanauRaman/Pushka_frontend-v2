@@ -3,6 +3,8 @@
     [id]="_idDirective.id()"
     class="checkbox"
     [checked]="_isChecked()"
+    puDisabled
+    [disabled]="_isDisabled()"
     type="checkbox"
     (click)="toggleIsChecked()"
     (blur)="touchField()"
@@ -25,6 +27,9 @@
   </svg>
 </div>
 
-<label class="label" [for]="_idDirective.id()">{{
-  _labelDirective.label()
-}}</label>
+<label
+  class="label"
+  [class.label--disabled]="_isDisabled()"
+  [for]="_idDirective.id()"
+  >{{ _labelDirective.label() }}</label
+>
