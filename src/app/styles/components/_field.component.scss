@@ -4,7 +4,7 @@
       border-color: var(--error-color);
 
       &:focus {
-        box-shadow: 0px 0px 0px 4px rgba(218, 41, 28, 0.15);
+        box-shadow: var(--error-field-box-shadow);
         caret-color: var(--error-color);
       }
     }
@@ -26,6 +26,28 @@
       &::placeholder {
         color: var(--disabled-text-color);
       }
+    }
+  }
+}
+
+.pu-label-and-characters-counter {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  padding: 0 var(--base-field-padding);
+
+  .pu-label {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .pu-characters-counter {
+    flex-shrink: 0;
+    margin-left: 10px;
+
+    &.pu-characters-counter--disabled {
+      color: var(--disabled-text-color);
     }
   }
 }
@@ -62,22 +84,15 @@
   border-radius: 16px;
 
   &::placeholder {
-    color: var(--gray-color);
+    color: var(--field-placeholder-color);
   }
 
   &:focus {
     border-color: var(--primary-color);
     outline: none;
-    box-shadow: 0px 0px 0px 4px rgba(1, 129, 168, 0.15);
+    box-shadow: var(--primary-field-box-shadow);
     caret-color: var(--primary-color);
     // The following property is needed to show box-shadow on ios devices
     -webkit-appearance: none;
   }
-}
-
-.pu-field-errors {
-  flex-shrink: 0;
-  min-height: 18px;
-  margin-top: 8px;
-  padding: 0 var(--base-field-padding);
 }

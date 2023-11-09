@@ -1,6 +1,17 @@
-<label class="pu-label" [for]="_idDirective.id()">{{
-  _labelDirective.label()
-}}</label>
+<div class="pu-label-and-characters-counter">
+  <label class="pu-label" [for]="_idDirective.id()">{{
+    _labelDirective.label()
+  }}</label>
+
+  <div
+    class="pu-characters-counter"
+    [class.pu-characters-counter--disabled]="_isDisabled()"
+  >
+    <span>{{ _value().length }}</span>
+    <span>/</span>
+    <span>{{ _maxLength() }}</span>
+  </div>
+</div>
 
 <input
   #fieldRef
