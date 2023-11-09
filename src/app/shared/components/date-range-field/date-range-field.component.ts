@@ -22,7 +22,7 @@ import { MAT_DATE_FORMATS_PROVIDER } from '@shared/providers/mat-date-formats';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 
-import { BaseReactiveFieldWithErrorsDirective } from '@shared/base/base-reactive-field-with-errors.directive';
+import { BaseReactiveFieldDirective } from '@shared/base/base-reactive-field.directive';
 import { DateRange } from '@shared/types/date-range';
 
 @Component({
@@ -50,7 +50,7 @@ import { DateRange } from '@shared/types/date-range';
   ],
 })
 export class DateRangeFieldComponent
-  extends BaseReactiveFieldWithErrorsDirective<DateRange>
+  extends BaseReactiveFieldDirective<DateRange>
   implements OnInit
 {
   private readonly _formBuilder = inject(NonNullableFormBuilder);

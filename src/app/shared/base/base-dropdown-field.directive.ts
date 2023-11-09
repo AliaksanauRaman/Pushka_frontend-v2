@@ -2,12 +2,12 @@ import { Directive, inject, signal } from '@angular/core';
 
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
 
-import { BaseReactiveFieldWithErrorsDirective } from './base-reactive-field-with-errors.directive';
+import { BaseReactiveFieldDirective } from './base-reactive-field.directive';
 
 @Directive()
 export abstract class BaseDropdownFieldDirective<
   T
-> extends BaseReactiveFieldWithErrorsDirective<T> {
+> extends BaseReactiveFieldDirective<T> {
   protected readonly _placeholderDirective = inject(PlaceholderDirective);
   protected readonly _isPanelOpened = signal(false);
 
