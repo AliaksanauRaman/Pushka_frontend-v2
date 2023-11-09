@@ -5,10 +5,11 @@
 
 .pu-form__field {
   flex-shrink: 0;
+}
 
-  &:not(:last-child) {
-    margin-bottom: 8px;
-  }
+.pu-form__field-errors {
+  flex-shrink: 0;
+  margin: 8px 0;
 }
 
 .pu-form__submit-button {
