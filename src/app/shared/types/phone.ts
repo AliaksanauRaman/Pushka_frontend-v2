@@ -5,6 +5,10 @@ export class Phone implements IComparable<Phone> {
     return value instanceof Phone;
   }
 
+  public get isEmpty(): boolean {
+    return this.countryCode === '' && this.number === '';
+  }
+
   constructor(
     public readonly countryCode: string,
     public readonly number: string
