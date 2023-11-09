@@ -14,7 +14,7 @@ export abstract class BaseReactiveFieldDirective<T>
   }
 
   protected readonly _isDisabled = signal(false);
-  protected readonly _isTouched = signal(false);
+  protected _isTouched = false;
 
   public abstract writeValue(value: unknown): void;
 
@@ -31,12 +31,12 @@ export abstract class BaseReactiveFieldDirective<T>
   }
 
   protected touchField(): void {
-    if (this._isTouched()) {
+    if (this._isTouched) {
       return;
     }
 
+    this._isTouched = true;
     this.onTouched();
-    this._isTouched.set(true);
   }
 
   protected onChange(value: T): void {}
