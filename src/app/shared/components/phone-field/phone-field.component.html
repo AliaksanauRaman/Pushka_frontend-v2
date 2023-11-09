@@ -5,17 +5,38 @@
 <form class="phone-form" [formGroup]="_phoneForm">
   <pu-country-code-field
     class="country-code-field"
+    [puPlaceholder]="_countryCodePlaceholder()"
+    [puDisabled]="_isDisabled()"
     puAriaLabel="Country code"
     formControlName="countryCode"
+    (touch)="handleCountryCodeTouch()"
   ></pu-country-code-field>
 
-  <input
-    [id]="_idDirective.id()"
-    class="pu-field"
-    [placeholder]="_placeholderDirective.placeholder()"
-    type="tel"
-    inputmode="numeric"
-    pattern="[0-9]*"
-    formControlName="number"
-  />
+  <div class="pu-field-container">
+    <input
+      [id]="_idDirective.id()"
+      class="pu-field"
+      [placeholder]="_numberPlaceholder()"
+      puDisabled
+      [disabled]="_isDisabled()"
+      type="tel"
+      inputmode="numeric"
+      pattern="[0-9]*"
+      formControlName="number"
+      (blur)="handleNumberFieldBlur()"
+    />
+
+    <button
+      class="clear-button"
+      *ngIf="_value() !== null"
+      puIconButton
+      puIconSrc="/assets/icons/gray-cross.svg"
+      puIconAlt="Cross"
+      puAriaLabel="Clear phone"
+      puDisabled
+      [disabled]="_isDisabled()"
+      type="button"
+      (click)="clearPhone()"
+    ></button>
+  </div>
 </form>

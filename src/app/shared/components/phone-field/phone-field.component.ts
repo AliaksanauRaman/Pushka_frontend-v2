@@ -1,23 +1,28 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
+  Input,
   forwardRef,
   inject,
   signal,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NgIf } from '@angular/common';
 import {
   NG_VALUE_ACCESSOR,
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { map, filter, tap, takeUntil } from 'rxjs';
+import { map, filter, tap } from 'rxjs';
 
-import { CountryCodeFieldComponent } from '../country-code-field/country-code-field.component';
+import { CountryCodeFieldComponent } from '@shared/components/country-code-field/country-code-field.component';
+import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
+import { DisabledDirective } from '@shared/directives/disabled.directive';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
-import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
 
-import { BaseReactiveFieldWithErrorsDirective } from '@shared/base/base-reactive-field-with-errors.directive';
+import { BaseReactiveFieldDirective } from '@shared/base/base-reactive-field.directive';
 import { Phone } from '@shared/types/phone';
 import { PhoneFormValue } from '@shared/types/phone-form-value';
 
@@ -37,24 +42,43 @@ import { PhoneFormValue } from '@shared/types/phone-form-value';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ReactiveFormsModule, CountryCodeFieldComponent],
+  imports: [
+    NgIf,
+    ReactiveFormsModule,
+    CountryCodeFieldComponent,
+    IconButtonComponent,
+    DisabledDirective,
+  ],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
-    { directive: PlaceholderDirective, inputs: ['puPlaceholder'] },
   ],
 })
-export class PhoneFieldComponent extends BaseReactiveFieldWithErrorsDirective<Phone | null> {
+export class PhoneFieldComponent extends BaseReactiveFieldDirective<Phone | null> {
+  private readonly _destroyRef = inject(DestroyRef);
   private readonly _formBuilder = inject(NonNullableFormBuilder);
-
   protected readonly _idDirective = inject(IdDirective);
   protected readonly _labelDirective = inject(LabelDirective);
-  protected readonly _placeholderDirective = inject(PlaceholderDirective);
+
+  @Input()
+  public set puCountryCodePlaceholder(value: string) {
+    this._countryCodePlaceholder.set(value);
+  }
+
+  @Input()
+  public set puNumberPlaceholder(value: string) {
+    this._numberPlaceholder.set(value);
+  }
+
   protected readonly _phoneForm = this._formBuilder.group({
     countryCode: [''],
     number: [''],
   });
   protected readonly _value = signal<Phone | null>(null);
+  protected readonly _countryCodePlaceholder = signal('');
+  protected readonly _numberPlaceholder = signal('');
+  protected _countryCodeIsTouched = false;
+  protected _numberIsTouched = false;
 
   public ngOnInit(): void {
     this._phoneForm.valueChanges
@@ -63,10 +87,15 @@ export class PhoneFieldComponent extends BaseReactiveFieldWithErrorsDirective<Ph
         map((formValue) => formValue.toPhone()),
         filter((phone) => this.checkIsNewValue(phone)),
         tap((phone) => {
+          if (phone.isEmpty) {
+            this.clearPhone();
+            return;
+          }
+
           this._value.set(phone);
           this.onChange(phone);
         }),
-        takeUntil(this._destroy$)
+        takeUntilDestroyed(this._destroyRef)
       )
       .subscribe();
   }
@@ -82,6 +111,42 @@ export class PhoneFieldComponent extends BaseReactiveFieldWithErrorsDirective<Ph
     }
 
     this.writePhone(value);
+  }
+
+  protected handleCountryCodeTouch(): void {
+    if (this._isTouched) {
+      return;
+    }
+
+    this._countryCodeIsTouched = true;
+
+    if (this.checkIsShouldBeTouched()) {
+      this.touchField();
+    }
+  }
+
+  protected handleNumberFieldBlur(): void {
+    if (this._isTouched) {
+      return;
+    }
+
+    this._numberIsTouched = true;
+
+    if (this.checkIsShouldBeTouched()) {
+      this.touchField();
+    }
+  }
+
+  protected clearPhone(): void {
+    this._phoneForm.setValue(
+      {
+        countryCode: '',
+        number: '',
+      },
+      { emitEvent: false }
+    );
+    this._value.set(null);
+    this.onChange(null);
   }
 
   private writeNull(): void {
@@ -101,5 +166,9 @@ export class PhoneFieldComponent extends BaseReactiveFieldWithErrorsDirective<Ph
   private checkIsNewValue(value: Phone): boolean {
     const currentValue = this._value();
     return currentValue === null || !currentValue.equalsTo(value);
+  }
+
+  private checkIsShouldBeTouched(): boolean {
+    return this._countryCodeIsTouched && this._numberIsTouched;
   }
 }

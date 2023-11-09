@@ -12,8 +12,26 @@
   margin-right: 8px;
 }
 
-.pu-field {
+.pu-field-container {
   flex-grow: 1;
+}
+
+.pu-field {
   height: var(--base-field-height);
   padding: 0 var(--base-field-padding);
+
+  &:has(+ .clear-button) {
+    padding-right: 48px;
+  }
+}
+
+.clear-button {
+  position: absolute;
+  right: var(--base-field-padding);
+  bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
 }
