@@ -1,17 +1,23 @@
 <div class="pu-field-outer">
-  <input
-    #fieldRef
+  <button
     #menuTrigger="cdkMenuTriggerFor"
     class="pu-field"
+    [class.pu-field--active]="menuTrigger.isOpen()"
     [cdkMenuTriggerFor]="countryCodeList"
-    [ariaLabel]="_ariaLabelDirective.ariaLabel()"
-    [placeholder]="_placeholderDirective.placeholder()"
-    [value]="_viewValue()"
-    type="text"
-    readonly
-    (focus)="menuTrigger.open()"
-    (click)="fieldRef.focus()"
-  />
+    [attr.aria-label]="_ariaLabelDirective.ariaLabel()"
+    puDisabled
+    [disabled]="_isDisabled()"
+    type="button"
+    (cdkMenuClosed)="touchField()"
+  >
+    <ng-container *ngIf="_viewValue() as value; else placeholder">
+      {{ value }}
+    </ng-container>
+
+    <ng-template #placeholder>
+      <span class="placeholder">{{ _placeholderDirective.placeholder() }}</span>
+    </ng-template>
+  </button>
 
   <img
     class="caret-icon"

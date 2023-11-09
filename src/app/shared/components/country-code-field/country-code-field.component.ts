@@ -1,18 +1,21 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
+  EventEmitter,
+  Input,
+  Output,
   computed,
   forwardRef,
   inject,
   signal,
 } from '@angular/core';
-import { NgFor, NgOptimizedImage } from '@angular/common';
+import { NgFor, NgIf, NgOptimizedImage } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
 import { TranslateModule } from '@ngx-translate/core';
 import { z } from 'zod';
 
+import { DisabledDirective } from '@shared/directives/disabled.directive';
 import { AriaLabelDirective } from '@shared/directives/aria-label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
 
@@ -37,22 +40,30 @@ import { CountryCode } from '@shared/types/country-code';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
+    NgIf,
     NgFor,
     NgOptimizedImage,
     CdkMenu,
     CdkMenuItem,
     CdkMenuTrigger,
     TranslateModule,
+    DisabledDirective,
   ],
   hostDirectives: [
     { directive: AriaLabelDirective, inputs: ['puAriaLabel'] },
     { directive: PlaceholderDirective, inputs: ['puPlaceholder'] },
   ],
 })
-export class CountryCodeFieldComponent
-  extends BaseReactiveFieldDirective<string>
-  implements OnInit
-{
+// TODO: Think about making it not a CVA
+export class CountryCodeFieldComponent extends BaseReactiveFieldDirective<string> {
+  @Input()
+  public set puDisabled(value: boolean) {
+    this._isDisabled.set(value);
+  }
+
+  @Output()
+  public readonly touch = new EventEmitter<void>();
+
   protected readonly _countryCodes = inject(COUNTRY_CODES);
   protected readonly _ariaLabelDirective = inject(AriaLabelDirective);
   protected readonly _placeholderDirective = inject(PlaceholderDirective);
@@ -86,8 +97,9 @@ export class CountryCodeFieldComponent
     this._value.set(countryCode);
   }
 
-  public ngOnInit(): void {
-    this._placeholderDirective.puPlaceholder = '+XXX';
+  protected override touchField(): void {
+    super.touchField();
+    this.touch.emit();
   }
 
   protected trackByCountryCode(_: number, countryCode: CountryCode): string {

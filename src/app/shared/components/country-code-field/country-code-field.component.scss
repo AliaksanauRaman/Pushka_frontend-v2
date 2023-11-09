@@ -1,3 +1,31 @@
+:host-context(.pu-form__field.ng-invalid.ng-touched) {
+  .pu-field {
+    border-color: var(--error-color);
+
+    &:focus {
+      box-shadow: var(--error-field-box-shadow);
+      caret-color: var(--error-color);
+    }
+  }
+}
+
+:host-context(.pu-form__field.pu-disabled) {
+  .pu-label {
+    color: var(--disabled-text-color);
+  }
+
+  .pu-field {
+    color: var(--disabled-text-color);
+    background-color: var(--disabled-field-color);
+    border-color: var(--disabled-field-color);
+    box-shadow: none;
+
+    &::placeholder {
+      color: var(--disabled-text-color);
+    }
+  }
+}
+
 :host {
   display: block;
 }
@@ -7,9 +35,20 @@
 }
 
 .pu-field {
+  display: flex;
+  align-items: center;
   width: 90px;
   height: var(--base-field-height);
   padding: 0 var(--base-field-padding);
+
+  &.pu-field--active {
+    border-color: var(--primary-color);
+    box-shadow: var(--primary-field-box-shadow);
+  }
+}
+
+.placeholder {
+  color: var(--field-placeholder-color);
 }
 
 .caret-icon {
@@ -50,6 +89,11 @@
   text-align: left;
 
   &.country-code-list-item--selected {
+    font-weight: 600;
     color: var(--accent-color);
+  }
+
+  &:focus {
+    outline: none;
   }
 }
