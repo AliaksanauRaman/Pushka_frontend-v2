@@ -1,0 +1,91 @@
+<form
+  class="pu-form"
+  [formGroup]="_registerForm"
+  (ngSubmit)="handleRegisterFormSubmit()"
+>
+  <pu-text-field
+    class="pu-form__field"
+    [puLabel]="'fieldLabel.fullName' | translate"
+    [puPlaceholder]="'fieldPlaceholder.fullName' | translate"
+    [puMaxLength]="_config.fullNameMaxLength"
+    formControlName="fullName"
+  >
+  </pu-text-field>
+
+  <pu-field-errors
+    class="pu-form__field-errors"
+    [areErrorsVisible]="_registerForm.controls.fullName.touched"
+    [errors]="_registerForm.controls.fullName.errors"
+    [errorsMappings]="{
+      required: 'fieldError.fullNameIsRequired' | translate,
+    }"
+  ></pu-field-errors>
+
+  <pu-email-field
+    class="pu-form__field"
+    [puLabel]="'fieldLabel.email' | translate"
+    [puPlaceholder]="'fieldPlaceholder.email' | translate"
+    [puMaxLength]="_config.emailMaxLength"
+    formControlName="email"
+  ></pu-email-field>
+
+  <pu-field-errors
+    class="pu-form__field-errors"
+    [areErrorsVisible]="_registerForm.controls.email.touched"
+    [errors]="_registerForm.controls.email.errors"
+    [errorsMappings]="{
+      required: 'fieldError.emailIsRequired' | translate,
+      emailFormat: 'fieldError.incorrectEmailFormat' | translate
+    }"
+  ></pu-field-errors>
+
+  <pu-password-field
+    class="pu-form__field"
+    [puLabel]="'fieldLabel.password' | translate"
+    [puPlaceholder]="'fieldPlaceholder.password' | translate"
+    formControlName="password"
+  ></pu-password-field>
+
+  <pu-field-errors
+    *ngIf="_registerForm.controls.password as passwordField"
+    class="pu-form__field-errors"
+    [areErrorsVisible]="passwordField.touched"
+    [errors]="passwordField.errors"
+    [errorsMappings]="{
+      required: 'fieldError.passwordIsRequired' | translate,
+      minlength: 'fieldError.passwordIsTooShort' | translate : passwordField.errors?.['minlength'],
+      maxlength: 'fieldError.passwordIsTooLong' | translate : passwordField.errors?.['maxlength'],
+      atLeastOneLatinLetter: 'fieldError.passwordMustHaveAtLeastOneLatinLetter' | translate,
+      atLeastOneDigit: 'fieldError.passwordMustHaveAtLeastOneDigit' | translate,
+    }"
+  ></pu-field-errors>
+
+  <pu-password-field
+    class="pu-form__field"
+    [puLabel]="'fieldLabel.passwordConfirmation' | translate"
+    [puPlaceholder]="'fieldPlaceholder.passwordConfirmation' | translate"
+    formControlName="passwordConfirmation"
+  ></pu-password-field>
+
+  <pu-field-errors
+    class="pu-form__field-errors"
+    [areErrorsVisible]="_registerForm.controls.passwordConfirmation.touched"
+    [errors]="_registerForm.controls.passwordConfirmation.errors"
+    [errorsMappings]="{
+      required: 'fieldError.passwordConfirmationIsRequired' | translate,
+      passwordsMatch: 'fieldError.passwordsDoNotMatch' | translate
+    }"
+  ></pu-field-errors>
+
+  <ng-container *ngIf="state$ | async as state">
+    <button
+      class="pu-form__submit-button"
+      puAccentButton
+      [isLoading]="state.isLoading"
+      [disabled]="_registerForm.invalid || state.isLoading"
+      type="submit"
+    >
+      <span>{{ "actionLabel.register" | translate }}</span>
+    </button>
+  </ng-container>
+</form>
