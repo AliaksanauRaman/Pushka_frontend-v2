@@ -3,6 +3,7 @@
   --black-color: #000000;
   --white-contrast-color: var(--black-color);
   --primary-color: #0181a8;
+  --primary-field-box-shadow: 0px 0px 0px 4px rgba(1, 129, 168, 0.15);
   --primary-focused-color: #01a9dc;
   --primary-active-color: #00638a;
   --primary-contrast-color: var(--white-color);
@@ -13,8 +14,10 @@
   --accent-contrast-color: var(--white-color);
   --light-accent-color: #fed7ce;
   --error-color: #da291c;
+  --error-field-box-shadow: 0px 0px 0px 4px rgba(218, 41, 28, 0.15);
   --divider-color: #e0e0e0;
   --gray-color: #757575;
+  --field-placeholder-color: var(--gray-color);
   --light-gray-color: #cecece;
   --background-gray-color: #f0f4f5;
   --field-color: #f0f4f5;
@@ -25,6 +28,7 @@
   --disabled-button-text-color: var(--disabled-text-color);
   --field-border-color: var(--light-gray-color);
   --success-snack-bar-color: #38b000;
+  --error-snack-bar-color: var(--black-color);
 
   --base-field-height: 56px;
   --base-field-padding: 12px;
