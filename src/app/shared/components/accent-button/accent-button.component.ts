@@ -7,7 +7,7 @@ import {
 import { NgIf } from '@angular/common';
 
 import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
-import { DisableDirective } from '@shared/directives/disable.directive';
+import { DisabledDirective } from '@shared/directives/disabled.directive';
 
 @Component({
   selector: 'button[puAccentButton]',
@@ -16,7 +16,12 @@ import { DisableDirective } from '@shared/directives/disable.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [NgIf, SpinnerComponent],
-  hostDirectives: [DisableDirective],
+  hostDirectives: [
+    {
+      directive: DisabledDirective,
+      inputs: ['disabled'],
+    },
+  ],
 })
 export class AccentButtonComponent {
   @Input()
