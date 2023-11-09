@@ -1,98 +1,164 @@
-<form [formGroup]="_sendParcelForm" (ngSubmit)="handleSendParcelFormSubmit()">
-  <ng-container *ngIf="_places$ | async as places">
-    <pu-place-field
-      class="form-field"
-      puLabel="Откуда"
-      puPlaceholder="Выберите город"
-      [places]="places"
-      [errors]="_sendParcelForm.controls.departurePlace.errors"
-      [errorsMappings]="{
-        required: 'fieldError.departurePlaceRequired' | translate
-      }"
-      formControlName="departurePlace"
-    ></pu-place-field>
-
-    <pu-place-field
-      class="form-field"
-      puLabel="Куда"
-      puPlaceholder="Выберите город"
-      [places]="places"
-      [errors]="_sendParcelForm.controls.destination.errors"
-      [errorsMappings]="{
-        required: 'fieldError.destinationRequired' | translate
-      }"
-      formControlName="destination"
-    ></pu-place-field>
-  </ng-container>
-
-  <pu-date-range-field
-    class="form-field"
-    puLabel="Период действия заявки"
-    puStartDatePlaceholder="От"
-    puEndDatePlaceholder="До"
-    [errors]="_sendParcelForm.controls.validityPeriod.errors"
-    [errorsMappings]="{
-      startDateRequired:
-        'fieldError.validityPeriodStartDateIsRequired' | translate,
-      endDateRequired: 'fieldError.validityPeriodEndDateIsRequired' | translate
-    }"
-    formControlName="validityPeriod"
-  ></pu-date-range-field>
-
-  <pu-textarea-field
-    class="form-field"
-    puLabel="Что Вы хотите отправить?"
-    puPlaceholder="Укажите что вы хотите передать (например, велосипед), размеры, вес,  приблизительную стоимость и другую доп. информацию, а также как с вами связаться."
-    [errors]="_sendParcelForm.controls.description.errors"
-    [errorsMappings]="{
-      required: 'fieldError.descriptionIsRequired' | translate
-    }"
-    formControlName="description"
-  ></pu-textarea-field>
-
-  <pu-text-field
-    class="form-field"
-    puLabel="Имя"
-    puPlaceholder="Введите имя"
-    [errors]="_sendParcelForm.controls.fullName.errors"
-    [errorsMappings]="{ required: 'fieldError.fullNameIsRequired' | translate }"
-    formControlName="fullName"
-  ></pu-text-field>
-
-  <pu-email-field
-    class="form-field"
-    puLabel="E-mail"
-    puPlaceholder="Введите e-mail"
-    [errors]="_sendParcelForm.controls.email.errors"
-    [errorsMappings]="{ required: 'fieldError.emailIsRequired' | translate }"
-    formControlName="email"
-  ></pu-email-field>
-
-  <pu-phone-field
-    class="form-field"
-    puLabel="Номер телефона (необязательно)"
-    puPlaceholder="Введите номер телефона"
-    formControlName="phone"
-  ></pu-phone-field>
-
-  <pu-checkbox-field
-    class="form-field"
-    puLabel="Я подтверждаю, что моя посылка не содержит запрещенных веществ и товаров, а также не нарушает законов стран-участниц"
-    formControlName="allowedItemsConfirmation"
-  ></pu-checkbox-field>
-
-  <pu-checkbox-field
-    class="form-field"
-    puLabel="Я даю право на хранение и обработку данных"
-    formControlName="noServiceResponsibilityConfirmation"
-  ></pu-checkbox-field>
-
-  <button
-    class="submit-form-button"
-    puAccentButton
-    [disabled]="_sendParcelForm.invalid"
-    type="submit"
+<ng-container *ngIf="_state$ | async as state">
+  <form
+    class="pu-form"
+    [formGroup]="_sendParcelForm"
+    (ngSubmit)="handleSendParcelFormSubmit()"
   >
-    <span>Создать заявку</span>
-  </button>
-</form>
+    <ng-container *ngIf="_places$ | async as places">
+      <pu-place-field
+        class="pu-form__field"
+        [puLabel]="'fieldLabel.departurePlace' | translate"
+        [puPlaceholder]="'fieldPlaceholder.departurePlace' | translate"
+        [places]="places"
+        formControlName="departurePlace"
+      ></pu-place-field>
+
+      <pu-field-errors
+        class="pu-form__field-errors"
+        [areErrorsVisible]="_sendParcelForm.controls.departurePlace.touched"
+        [errors]="_sendParcelForm.controls.departurePlace.errors"
+        [errorsMappings]="{
+          required: 'fieldError.departurePlaceIsRequired' | translate
+        }"
+      ></pu-field-errors>
+
+      <pu-place-field
+        class="pu-form__field"
+        [puLabel]="'fieldLabel.destination' | translate"
+        [puPlaceholder]="'fieldPlaceholder.destination' | translate"
+        [places]="places"
+        formControlName="destination"
+      ></pu-place-field>
+
+      <pu-field-errors
+        class="pu-form__field-errors"
+        [areErrorsVisible]="_sendParcelForm.controls.destination.touched"
+        [errors]="_sendParcelForm.controls.destination.errors"
+        [errorsMappings]="{
+          required: 'fieldError.destinationIsRequired' | translate
+        }"
+      ></pu-field-errors>
+    </ng-container>
+
+    <pu-date-range-field
+      class="pu-form__field"
+      [puLabel]="'fieldLabel.validityPeriod' | translate"
+      [puStartDatePlaceholder]="
+        'fieldPlaceholder.validityPeriodStartDate' | translate
+      "
+      [puEndDatePlaceholder]="
+        'fieldPlaceholder.validityPeriodEndDate' | translate
+      "
+      formControlName="validityPeriod"
+    ></pu-date-range-field>
+
+    <pu-field-errors
+      class="pu-form__field-errors"
+      [areErrorsVisible]="_sendParcelForm.controls.validityPeriod.touched"
+      [errors]="_sendParcelForm.controls.validityPeriod.errors"
+      [errorsMappings]="{
+        startDateRequired:
+          'fieldError.validityPeriodStartDateIsRequired' | translate,
+        endDateRequired:
+          'fieldError.validityPeriodEndDateIsRequired' | translate
+      }"
+    ></pu-field-errors>
+
+    <pu-textarea-field
+      class="pu-form__field"
+      [puLabel]="'fieldLabel.description' | translate"
+      [puPlaceholder]="'fieldPlaceholder.description' | translate"
+      [puMaxLength]="_config.descriptionMaxLength"
+      formControlName="description"
+    ></pu-textarea-field>
+
+    <pu-field-errors
+      class="pu-form__field-errors"
+      [areErrorsVisible]="_sendParcelForm.controls.description.touched"
+      [errors]="_sendParcelForm.controls.description.errors"
+      [errorsMappings]="{
+        required: 'fieldError.descriptionIsRequired' | translate,
+      }"
+    ></pu-field-errors>
+
+    <pu-text-field
+      class="pu-form__field"
+      [puLabel]="'fieldLabel.fullName' | translate"
+      [puPlaceholder]="'fieldPlaceholder.fullName' | translate"
+      [puMaxLength]="_config.fullNameMaxLength"
+      formControlName="fullName"
+    ></pu-text-field>
+
+    <pu-field-errors
+      class="pu-form__field-errors"
+      [areErrorsVisible]="_sendParcelForm.controls.fullName.touched"
+      [errors]="_sendParcelForm.controls.fullName.errors"
+      [errorsMappings]="{
+        required: 'fieldError.fullNameIsRequired' | translate
+      }"
+    ></pu-field-errors>
+
+    <pu-email-field
+      class="pu-form__field"
+      [puLabel]="'fieldLabel.email' | translate"
+      [puPlaceholder]="'fieldPlaceholder.email' | translate"
+      [puMaxLength]="_config.emailMaxLength"
+      formControlName="email"
+    ></pu-email-field>
+
+    <pu-field-errors
+      class="pu-form__field-errors"
+      [areErrorsVisible]="_sendParcelForm.controls.email.touched"
+      [errors]="_sendParcelForm.controls.email.errors"
+      [errorsMappings]="{
+        required: 'fieldError.emailIsRequired' | translate,
+        emailFormat: 'fieldError.incorrectEmailFormat' | translate
+      }"
+    ></pu-field-errors>
+
+    <pu-phone-field
+      class="pu-form__field"
+      [puLabel]="'fieldLabel.notRequiredPhone' | translate"
+      [puCountryCodePlaceholder]="'fieldPlaceholder.countryCode' | translate"
+      [puNumberPlaceholder]="'fieldPlaceholder.phoneNumber' | translate"
+      formControlName="phone"
+    ></pu-phone-field>
+
+    <pu-field-errors
+      class="pu-form__field-errors"
+      [areErrorsVisible]="_sendParcelForm.controls.phone.touched"
+      [errors]="_sendParcelForm.controls.phone.errors"
+      [errorsMappings]="{
+        countryCodeRequired: 'fieldError.countryCodeIsMissing' | translate,
+        phoneNumberRequired: 'fieldError.phoneNumberIsMissing' | translate,
+        phoneNumberFormat: 'fieldError.incorrectPhoneNumberFormat' | translate
+      }"
+    ></pu-field-errors>
+
+    <pu-checkbox-field
+      class="pu-form__field"
+      [puLabel]="'allowedItemsConfirmationText' | translate"
+      formControlName="allowedItemsConfirmation"
+    ></pu-checkbox-field>
+
+    <div class="checkboxes-spacer"></div>
+
+    <pu-checkbox-field
+      class="pu-form__field"
+      [puLabel]="'noServiceResponsibilityConfirmationText' | translate"
+      formControlName="noServiceResponsibilityConfirmation"
+    ></pu-checkbox-field>
+
+    <ng-container *ngIf="_state$ | async as state">
+      <button
+        class="pu-form__submit-button"
+        puAccentButton
+        [isLoading]="state.isLoading"
+        [disabled]="_sendParcelForm.invalid || state.isLoading"
+        type="submit"
+      >
+        <span>{{ "actionLabel.createApplication" | translate }}</span>
+      </button>
+    </ng-container>
+  </form>
+</ng-container>

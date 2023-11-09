@@ -2,13 +2,11 @@
   display: block;
 }
 
-.form-field {
-  &:not(:last-child) {
-    margin-bottom: 8px;
-  }
+.checkboxes-spacer {
+  flex-shrink: 0;
+  height: 14px;
 }
 
-.submit-form-button {
-  width: 100%;
+.pu-form__submit-button {
   margin-top: 40px;
 }
