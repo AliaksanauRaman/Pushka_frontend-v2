@@ -2,7 +2,8 @@
   "actionLabel": {
     "login": "Log in",
     "logout": "Log out",
-    "register": "Register"
+    "register": "Register",
+    "createApplication": "Create application"
   },
   "navigationLabel": {
     "sendParcel": "Send parcel",
@@ -20,25 +21,31 @@
     "unknownLoginRequestError": "An unknown error has occurred during the log in process. Please, try again later."
   },
   "fieldError": {
-    "departurePlaceRequired": "Select an option from the list",
-    "destinationRequired": "Select an option from the list",
+    "departurePlaceIsRequired": "Select an option from the list",
+    "destinationIsRequired": "Select an option from the list",
     "validityPeriodStartDateIsRequired": "The start date of the validity period is required",
     "validityPeriodEndDateIsRequired": "The end date of the validity period is required",
     "descriptionIsRequired": "Description is required",
-    "fullNameIsRequired": "Name is required",
+    "fullNameIsRequired": "Full name is required",
     "emailIsRequired": "Email is required",
-    "passwordIsRequired": "Password is required",
-    "passwordConfirmationIsRequired": "Password confirmation is required",
     "incorrectEmailFormat": "Incorrect e-mail format",
-    "_countryCodeIsMissing": "Country code is missing",
-    "_incorrectPhoneNumberFormat": "Incorrect phone number format, only 7 to 12 digits allowed without spaces"
+    "passwordIsRequired": "Password is required",
+    "passwordIsTooShort": "Minimal password length is: {{ requiredLength }}. Current length is: {{ actualLength }}.",
+    "passwordIsTooLong": "Maximal password length is: {{ requiredLength }}. Current length is: {{ actualLength }}.",
+    "passwordMustHaveAtLeastOneLatinLetter": "Password must have at least one letter",
+    "passwordMustHaveAtLeastOneDigit": "Password must have at least one digit",
+    "passwordConfirmationIsRequired": "Password confirmation is required",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "countryCodeIsMissing": "Country code is missing",
+    "phoneNumberIsMissing": "Number is missing",
+    "incorrectPhoneNumberFormat": "Incorrect phone number format, only 7 to 12 digits allowed without spaces"
   },
   "fieldLabel": {
     "departurePlace": "Departure",
     "destination": "Destination",
     "validityPeriod": "Application validity period",
     "description": "What do you want to send?",
-    "fullName": "Name",
+    "fullName": "Full name",
     "email": "E-mail",
     "notRequiredPhone": "Phone number (not required)",
     "password": "Password",
@@ -50,9 +57,10 @@
     "validityPeriodStartDate": "From",
     "validityPeriodEndDate": "To",
     "description": "Description",
-    "fullName": "Enter name",
+    "fullName": "Enter full name",
     "email": "Enter e-mail",
-    "phone": "Enter phone number",
+    "countryCode": "Code",
+    "phoneNumber": "Enter number",
     "password": "Enter password",
     "passwordConfirmation": "Repeat password"
   },
@@ -96,5 +104,7 @@
       "kaunas": "Kaunas"
     },
     "other": "Other city"
-  }
+  },
+  "allowedItemsConfirmationText": "I confirm that my parcel does not contain any prohibited substances or goods and that its transportation does not violate the laws of the participating countries",
+  "noServiceResponsibilityConfirmationText": "I understand that the service is not responsible for the quality of the deal"
 }

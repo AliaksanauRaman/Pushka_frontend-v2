@@ -2,7 +2,8 @@
   "actionLabel": {
     "login": "Войти",
     "logout": "Выйти",
-    "register": "Зарегистрироваться"
+    "register": "Зарегистрироваться",
+    "createApplication": "Создать заявку"
   },
   "navigationLabel": {
     "sendParcel": "Отправить посылку",
@@ -20,25 +21,31 @@
     "unknownLoginRequestError": "Неизвестная ошибка входа в систему. Пожалуйста, повторите попытку позже."
   },
   "fieldError": {
-    "departurePlaceRequired": "Выберите вариант из списка",
-    "destinationRequired": "Выберите вариант из списка",
+    "departurePlaceIsRequired": "Выберите вариант из списка",
+    "destinationIsRequired": "Выберите вариант из списка",
     "validityPeriodStartDateIsRequired": "Дата начала срока действия обязательна",
     "validityPeriodEndDateIsRequired": "Дата окончания срока действия обязательна",
     "descriptionIsRequired": "Описание обязательно",
-    "fullNameIsRequired": "Имя обязательно",
+    "fullNameIsRequired": "Полное имя обязательно",
     "emailIsRequired": "Электронная почта обязательна",
-    "passwordIsRequired": "Пароль обязателен",
-    "passwordConfirmationIsRequired": "Подтверждение пароля обязательно",
     "incorrectEmailFormat": "Неверный формат электронной почты",
-    "_countryCodeIsMissing": "Пропущен код страны",
-    "_incorrectPhoneNumberFormat": "Неверный формат номера телефона, допускаются только цифры без пробелов в количестве от 7 до 12"
+    "passwordIsRequired": "Пароль обязателен",
+    "passwordIsTooShort": "Минимальная длина пароля: {{ requiredLength }}. Текущая длина: {{ actualLength }}.",
+    "passwordIsTooLong": "Максимальная длина пароля: {{ requiredLength }}. Текущая длина: {{ actualLength }}.",
+    "passwordMustHaveAtLeastOneLatinLetter": "Пароль обязан содержать минимум одну латинскую букву",
+    "passwordMustHaveAtLeastOneDigit": "Пароль обязан содержать минимум одну цифру",
+    "passwordConfirmationIsRequired": "Подтверждение пароля обязательно",
+    "passwordsDoNotMatch": "Пароли не совпадают",
+    "countryCodeIsMissing": "Пропущен код страны",
+    "phoneNumberIsMissing": "Пропущен номер",
+    "incorrectPhoneNumberFormat": "Неверный формат номера телефона, допускаются только цифры без пробелов в количестве от 7 до 12"
   },
   "fieldLabel": {
     "departurePlace": "Откуда",
     "destination": "Куда",
     "validityPeriod": "Период действия заявки",
     "description": "Что Вы хотите отправить?",
-    "fullName": "Имя",
+    "fullName": "Полное имя",
     "email": "Электронная почта",
     "notRequiredPhone": "Номер телефона (необязательно)",
     "password": "Пароль",
@@ -50,9 +57,10 @@
     "validityPeriodStartDate": "От",
     "validityPeriodEndDate": "До",
     "description": "Описание",
-    "fullName": "Введите имя",
+    "fullName": "Введите полное имя",
     "email": "Введите электронную почту",
-    "phone": "Введите номер телефона",
+    "countryCode": "Код",
+    "phoneNumber": "Введите номер",
     "password": "Введите пароль",
     "passwordConfirmation": "Повторите пароль"
   },
@@ -96,5 +104,7 @@
       "kaunas": "Каунас"
     },
     "other": "Другой город"
-  }
+  },
+  "allowedItemsConfirmationText": "Я подтверждаю, что моя посылка не содержит запрещенных веществ и товаров, а ее транспортировка не нарушает законов стран-участниц",
+  "noServiceResponsibilityConfirmationText": "Я понимаю, что сервис не несет ответственности за качество сделки"
 }

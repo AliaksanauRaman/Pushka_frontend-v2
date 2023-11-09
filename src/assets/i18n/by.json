@@ -2,7 +2,8 @@
   "actionLabel": {
     "login": "Увайсці",
     "logout": "Выйсці",
-    "register": "Зарэгістравацца"
+    "register": "Зарэгістравацца",
+    "createApplication": "Стварыць заяўку"
   },
   "navigationLabel": {
     "sendParcel": "Адправіць пасылку",
@@ -20,25 +21,31 @@
     "unknownLoginRequestError": "Невадомая памылка ўвахода ў сістэму. Калі ласка, паўтарыце спробу пазней."
   },
   "fieldError": {
-    "departurePlaceRequired": "Абярыце варыянт з спісу",
-    "destinationRequired": "Абярыце варыянт з спісу",
+    "departurePlaceIsRequired": "Абярыце варыянт з спісу",
+    "destinationIsRequired": "Абярыце варыянт з спісу",
     "validityPeriodStartDateIsRequired": "Дата пачатку тэрміну дзеяння абавязковая",
     "validityPeriodEndDateIsRequired": "Дата сканчэння тэрміну дзеяння абавязковая",
     "descriptionIsRequired": "Апісанне абавязковае",
-    "fullNameIsRequired": "Імя абавязковае",
+    "fullNameIsRequired": "Поўнае імя абавязковае",
     "emailIsRequired": "Электронная пошта абавязковая",
-    "passwordIsRequired": "Пароль абавязковы",
-    "passwordConfirmationIsRequired": "Пацверджанне пароля абавязковае",
     "incorrectEmailFormat": "Няправільны фармат электроннай пошты",
-    "_countryCodeIsMissing": "Прапушчаны код краіны",
-    "_incorrectPhoneNumberFormat": "Няправільны фармат нумара тэлефона, дапускаюцца толькі лічбы без прабелаў у колькасці ад 7 да 12"
+    "passwordIsRequired": "Пароль абавязковы",
+    "passwordIsTooShort": "Мінімальная дліна паролю: {{ requiredLength }}. Бягучая дліна: {{ actualLength }}.",
+    "passwordIsTooLong": "Максімальная дліна паролю: {{ requiredLength }}. Бягучая дліна: {{ actualLength }}.",
+    "passwordMustHaveAtLeastOneLatinLetter": "Пароль павінен ўтрымваць мінімум адну лацінскую літару",
+    "passwordMustHaveAtLeastOneDigit": "Пароль павінен ўтрымваць мінімум адну лічбу",
+    "passwordConfirmationIsRequired": "Пацверджанне пароля абавязковае",
+    "passwordsDoNotMatch": "Паролі не супадаюць",
+    "countryCodeIsMissing": "Прапушчаны код краіны",
+    "phoneNumberIsMissing": "Прапушчаны нумар тэлефону",
+    "incorrectPhoneNumberFormat": "Няправільны фармат нумара тэлефону, дапускаюцца толькі лічбы без прабелаў у колькасці ад 7 да 12"
   },
   "fieldLabel": {
     "departurePlace": "Адкуль",
     "destination": "Куды",
     "validityPeriod": "Перыяд дзеяння заяўкі",
     "description": "Што Вы хаціце адправіць?",
-    "fullName": "Імя",
+    "fullName": "Поўнае імя",
     "email": "Электронная пошта",
     "notRequiredPhone": "Нумар тэлефону (неабавязкова)",
     "password": "Пароль",
@@ -50,9 +57,10 @@
     "validityPeriodStartDate": "Ад",
     "validityPeriodEndDate": "Да",
     "description": "Апісанне",
-    "fullName": "Увядзіце імя",
+    "fullName": "Увядзіце поўнае імя",
     "email": "Увядзіце электронную пошту",
-    "phone": "Увядзіце нумар тэлефону",
+    "countryCode": "Код",
+    "phoneNumber": "Увядзіце нумар",
     "password": "Увядзіце пароль",
     "passwordConfirmation": "Паўтарыце пароль"
   },
@@ -96,5 +104,7 @@
       "kaunas": "Коўна"
     },
     "other": "Іншы горад"
-  }
+  },
+  "allowedItemsConfirmationText": "Я пацвярджаю, што мая пасылка не ўтрымвае забароненых рэчываў і тавараў, а яе транспартацыя не парушае законаў краін-удзельніц",
+  "noServiceResponsibilityConfirmationText": "Я разумею, што сэрвіс не нясе адказнасці за якасць пагаднення"
 }
