@@ -87,10 +87,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "pushka-v2:build:production"
+              "buildTarget": "pushka-v2:build:production"
             },
             "development": {
-              "browserTarget": "pushka-v2:build:development"
+              "buildTarget": "pushka-v2:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -98,7 +98,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pushka-v2:build"
+            "buildTarget": "pushka-v2:build"
           }
         },
         "test": {
