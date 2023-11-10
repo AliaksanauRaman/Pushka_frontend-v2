@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { CreateDeliveryOfferFormComponent } from '../../components/create-delivery-offer-form/create-delivery-offer-form.component';
+import { DeliverParcelFormComponent } from '../../components/deliver-parcel-form/deliver-parcel-form.component';
 
 @Component({
   selector: 'pu-deliver-parcel-page',
@@ -8,6 +8,6 @@ import { CreateDeliveryOfferFormComponent } from '../../components/create-delive
   styleUrls: ['./deliver-parcel-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CreateDeliveryOfferFormComponent],
+  imports: [DeliverParcelFormComponent],
 })
 export class DeliverParcelPageComponent {}
