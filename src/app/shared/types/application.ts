@@ -1,12 +1,17 @@
 import { Phone } from './phone';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 
+type ApplicationPlace = Readonly<{
+  cityLabel: string;
+  countryLabel: string;
+}>;
+
 export class Application {
   constructor(
     public readonly id: number,
     public readonly userId: number,
-    public readonly departurePlaceId: number,
-    public readonly destinationId: number,
+    public readonly departurePlace: ApplicationPlace,
+    public readonly destination: ApplicationPlace,
     public readonly validityPeriodStart: Date,
     public readonly validityPeriodEnd: Date,
     public readonly description: string,

@@ -12,8 +12,8 @@ import { CreateDeliveryOfferDto } from '@shared/dtos/create-delivery-offer.dto';
 const MOCK_DELIVERY_OFFER = new DeliveryOffer(
   1,
   1,
-  'city.belarus.minsk',
-  'city.poland.warsaw',
+  { cityLabel: 'city.belarus.minsk', countryLabel: 'country.belarus' },
+  { cityLabel: 'city.poland.warsaw', countryLabel: 'country.poland' },
   new Date(),
   new Date(),
   'Some description',
