@@ -1,0 +1,135 @@
+<form
+  class="pu-form"
+  [formGroup]="_deliverParcelForm"
+  (ngSubmit)="handleDeliverParcelFormSubmit()"
+>
+  <ng-container *ngIf="_places$ | async as places">
+    <pu-place-field
+      class="pu-form-field"
+      puLabel="Откуда"
+      puPlaceholder="Выберите город"
+      [places]="places"
+      formControlName="departurePlace"
+    ></pu-place-field>
+
+    <pu-field-errors
+      class="pu-form__field-errors"
+      [areErrorsVisible]="_deliverParcelForm.controls.departurePlace.touched"
+      [errors]="_deliverParcelForm.controls.departurePlace.errors"
+      [errorsMappings]="{
+        required: 'fieldError.departurePlaceIsRequired' | translate
+      }"
+    ></pu-field-errors>
+
+    <pu-place-field
+      class="pu-form-field"
+      puLabel="Куда"
+      puPlaceholder="Выберите город"
+      [places]="places"
+      formControlName="destination"
+    ></pu-place-field>
+
+    <pu-field-errors
+      class="pu-form__field-errors"
+      [areErrorsVisible]="_deliverParcelForm.controls.destination.touched"
+      [errors]="_deliverParcelForm.controls.destination.errors"
+      [errorsMappings]="{
+        required: 'fieldError.destinationIsRequired' | translate
+      }"
+    ></pu-field-errors>
+  </ng-container>
+
+  <pu-date-range-field
+    class="pu-form-field"
+    puLabel="Период действия заявки"
+    puStartDatePlaceholder="От"
+    puEndDatePlaceholder="До"
+    formControlName="validityPeriod"
+  ></pu-date-range-field>
+
+  <pu-field-errors
+    class="pu-form__field-errors"
+    [areErrorsVisible]="_deliverParcelForm.controls.validityPeriod.touched"
+    [errors]="_deliverParcelForm.controls.validityPeriod.errors"
+    [errorsMappings]="{
+      startDateRequired:
+        'fieldError.validityPeriodStartDateIsRequired' | translate,
+      endDateRequired: 'fieldError.validityPeriodEndDateIsRequired' | translate
+    }"
+  ></pu-field-errors>
+
+  <pu-textarea-field
+    class="pu-form-field"
+    puLabel="Что Вы хотите отправить?"
+    puPlaceholder="Укажите что вы хотите передать (например, велосипед), размеры, вес,  приблизительную стоимость и другую доп. информацию, а также как с вами связаться."
+    formControlName="description"
+  ></pu-textarea-field>
+
+  <pu-field-errors
+    class="pu-form__field-errors"
+    [areErrorsVisible]="_deliverParcelForm.controls.description.touched"
+    [errors]="_deliverParcelForm.controls.description.errors"
+    [errorsMappings]="{
+      required: 'fieldError.descriptionIsRequired' | translate
+    }"
+  ></pu-field-errors>
+
+  <pu-text-field
+    class="pu-form-field"
+    puLabel="Имя"
+    puPlaceholder="Введите имя"
+    formControlName="fullName"
+  ></pu-text-field>
+
+  <pu-field-errors
+    class="pu-form__field-errors"
+    [areErrorsVisible]="_deliverParcelForm.controls.fullName.touched"
+    [errors]="_deliverParcelForm.controls.fullName.errors"
+    [errorsMappings]="{
+      required: 'fieldError.fullNameIsRequired' | translate
+    }"
+  ></pu-field-errors>
+
+  <pu-email-field
+    class="pu-form-field"
+    puLabel="E-mail"
+    puPlaceholder="Введите e-mail"
+    formControlName="email"
+  ></pu-email-field>
+
+  <pu-field-errors
+    class="pu-form__field-errors"
+    [areErrorsVisible]="_deliverParcelForm.controls.fullName.touched"
+    [errors]="_deliverParcelForm.controls.email.errors"
+    [errorsMappings]="{ required: 'fieldError.emailIsRequired' | translate }"
+  ></pu-field-errors>
+
+  <pu-phone-field
+    class="pu-form-field"
+    puLabel="Номер телефона (необязательно)"
+    puCountryCodePlaceholder="Code"
+    puNumberPlaceholder="Phone"
+    formControlName="phone"
+  ></pu-phone-field>
+
+  <pu-checkbox-field
+    class="pu-form-field"
+    puLabel="Я подтверждаю, что моя посылка не содержит запрещенных веществ и товаров, а также не нарушает законов стран-участниц"
+    formControlName="allowedItemsConfirmation"
+  ></pu-checkbox-field>
+
+  <pu-checkbox-field
+    class="pu-form-field"
+    puLabel="Я даю право на хранение и обработку данных"
+    formControlName="noServiceResponsibilityConfirmation"
+  ></pu-checkbox-field>
+
+  <button
+    class="pu-submit-form-button"
+    puAccentButton
+    [disabled]="_deliverParcelForm.invalid"
+    type="submit"
+  >
+    <span>Создать заявку</span>
+  </button>
+</form>
