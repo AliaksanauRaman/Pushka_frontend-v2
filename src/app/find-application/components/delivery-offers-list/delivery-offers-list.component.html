@@ -1,0 +1,38 @@
+@for (deliveryOffer of _deliveryOffersList.value; track deliveryOffer.id) {
+  <pu-application-card
+    class="delivery-offer-card"
+    [application]="deliveryOffer"
+  />
+} @empty {
+  <div class="empty-list-view">
+    <p class="empty-list-view__message">
+      <span>{{ "emptyDeliveryOffersListMessage" | translate }}</span>
+
+      <a
+        class="deliver-parcel-link"
+        puTextLink
+        routerLink="/deliver-parcel"
+      >
+        {{ "navigationLabel.deliverParcel" | translate }}
+      </a>
+    </p>
+
+    <pu-placeholder
+      class="illustration"
+      [style.height.px]="300"
+    />
+  </div>
+}
+
+@if (_fabIsVisible()) {
+  <button
+    class="fab"
+    puIconButton
+    puIconSrc="/assets/icons/white-caret-up.svg"
+    puIconAlt="Caret up"
+    puAriaLabel="Scroll to the start of the list"
+    puIconWidth="32"
+    puIconHeight="32"
+    (click)="scrollToTop()"
+  ></button>
+}
