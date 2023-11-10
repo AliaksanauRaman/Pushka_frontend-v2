@@ -1,17 +1,29 @@
-<div class="departure">
-  <div class="place-name">Гомель</div>
-  <div class="date">{{ today | date : "mediumDate" }}</div>
-</div>
-
-<img
-  class="direction-icon"
-  ngSrc="/assets/images/direction-image.svg"
-  alt="Direction"
-  width="48"
-  height="8"
-/>
-
-<div class="arrival">
-  <div class="place-name">Краков</div>
-  <div class="date">{{ today | date : "mediumDate" }}</div>
-</div>
+@if (_application(); as application) {
+  <div class="departure">
+    <div class="place-name">
+      {{ application.departurePlace.cityLabel | translate }}
+    </div>
+  
+    <div class="date">
+      {{ application.validityPeriodStart | date : _viewDateFormat }}
+    </div>
+  </div>
+  
+  <img
+    class="direction-icon"
+    ngSrc="/assets/images/direction-image.svg"
+    alt="Direction"
+    width="48"
+    height="8"
+  />
+  
+  <div class="arrival">
+    <div class="place-name">
+      {{ application.destination.cityLabel | translate }}
+    </div>
+  
+    <div class="date">
+      {{ application.validityPeriodEnd | date : _viewDateFormat }}
+    </div>
+  </div>  
+}
