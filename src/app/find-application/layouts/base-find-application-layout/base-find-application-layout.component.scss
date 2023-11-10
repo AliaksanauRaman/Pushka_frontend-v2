@@ -3,6 +3,8 @@
 }
 
 .content {
-  padding: 28px 16px 34px 16px;
+  display: flex;
+  flex-direction: column;
+  height: 597px;
   background-color: var(--background-gray-color);
 }
