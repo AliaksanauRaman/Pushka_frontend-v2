@@ -1,1 +1,22 @@
-<p>offers-page works!</p>
+@if (_service.state(); as state) {
+  @if (state.isLoading) {
+    <div class="loading-view">
+      <pu-spinner class="spinner" size="big" color="primary" />
+    </div>
+  } @else if (state.deliveryOffersList) {
+    <div class="content-view">
+      @if (state.deliveryOffersList.value.length > 0) {
+        <pu-filter-by-place-field class="filter-by-place" />
+      }
+      
+      <pu-delivery-offers-list
+        class="delivery-offers-list"
+        [deliveryOffersList]="state.deliveryOffersList"
+      />
+    </div>
+  } @else if (state.requestErrorMessage) {
+    <div class="error-view">
+      <p>{{ state.requestErrorMessage }}</p>
+    </div>
+  }
+}
