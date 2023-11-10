@@ -1,38 +1,43 @@
-<div class="user">
-  <img
-    class="avatar"
-    ngSrc="/assets/images/default-contacts-avatar-image.svg"
-    alt="Avatar"
-    width="40"
-    height="40"
-  />
+@if (_application(); as application) {
+  <div class="user">
+    <pu-account-avatar class="avatar" />
 
-  <div class="full-name-and-show-contacts">
-    <div class="full-name">
-      <span>Матвей</span>
-    </div>
+    <div class="full-name-and-show-contacts">
+      <div class="full-name">
+        <span>{{ application.fullName }}</span>
+      </div>
 
-    <label class="show-contacts-label" [for]="_showContactsButtonId">
-      <span class="show-contacts-label__text">Контакты</span>
-      <img
-        class="show-contacts-label__icon"
-        ngSrc="/assets/icons/gray-caret-down.svg"
-        alt="Caret"
-        width="24"
-        height="24"
+      <label class="show-contacts-label" [for]="_showContactsButtonId">
+        <span class="show-contacts-label__text">
+          {{ "actionLabel.contacts" | translate }}
+        </span>
+
+        <img
+          class="show-contacts-label__icon"
+          ngSrc="/assets/icons/gray-caret-down.svg"
+          alt="Caret"
+          width="24"
+          height="24"
+        />
+      </label>
+
+      <input
+        #checkbox
+        [id]="_showContactsButtonId"
+        class="show-contacts-button"
+        type="checkbox"
+        (change)="_areContactsShown.set(checkbox.checked)"
       />
-    </label>
-    <input
-      #checkbox
-      [id]="_showContactsButtonId"
-      class="show-contacts-button"
-      type="checkbox"
-      (change)="_areContactsShown.set(checkbox.checked)"
-    />
+    </div>
   </div>
-</div>
 
-<div class="contacts" *ngIf="_areContactsShown()">
-  <pu-phone class="contacts__item" [phone]="phone"></pu-phone>
-  <pu-email class="contacts__item" [email]="email"></pu-email>
-</div>
+  @if (_areContactsShown()) {
+    <div class="contacts">
+      @if (application.phone) {
+        <pu-phone class="contacts__item" [phone]="application.phone" />
+      }
+
+      <pu-email class="contacts__item" [email]="application.email" />
+    </div>
+  }
+}
