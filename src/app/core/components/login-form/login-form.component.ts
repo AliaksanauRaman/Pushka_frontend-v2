@@ -2,6 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Input,
+  OnInit,
   Output,
   inject,
 } from '@angular/core';
@@ -46,10 +48,15 @@ import { ValidLoginFormValue } from '@shared/types/valid-login-form-value';
     AccentButtonComponent,
   ],
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
   private readonly _formBuilder = inject(NonNullableFormBuilder);
   private readonly _service = inject(LoginFormService);
   protected readonly _config = inject(LOGIN_FORM_CONFIG);
+
+  @Input()
+  public set initialEmail(value: string) {
+    this._initialEmail = value;
+  }
 
   @Output()
   public readonly success = new EventEmitter<void>();
@@ -78,6 +85,13 @@ export class LoginFormComponent {
       }
     })
   );
+  private _initialEmail = '';
+
+  public ngOnInit(): void {
+    this._loginForm.patchValue({
+      email: this._initialEmail,
+    });
+  }
 
   protected handleLoginFormSubmit(): void {
     if (this._loginForm.invalid) {
