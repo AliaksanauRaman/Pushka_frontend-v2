@@ -1,0 +1,23 @@
+:host {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  height: 38px;
+  padding: 0 16px;
+  font-weight: 700;
+  color: var(--accent-contrast-color);
+  text-align: center;
+  background-color: var(--accent-color);
+  border-radius: 12px 12px 0 0;
+
+  &.pu-dialog-tab-item--active {
+    z-index: 1;
+    font-size: 1.3rem;
+    height: 100%;
+    color: var(--white-contrast-color);
+    background-color: var(--white-color);
+    box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.4);
+  }
+}
