@@ -9,35 +9,35 @@
 ></button>
 
 @if (_service.state$ | async; as state) {
-<ul class="tabs">
-  <li class="tabs__item">
-    <button
-      class="tabs__item-content"
-      [class.active]="state.isLoginView"
-      type="button"
-      (click)="_service.switchToLoginView()"
-    >
-      <span>{{ "navigationLabel.login" | translate }}</span>
-    </button>
-  </li>
+  <ul class="tabs">
+    <li class="tabs__item">
+      <button
+        class="tabs__item-content"
+        [class.active]="state.isLoginView"
+        type="button"
+        (click)="_service.switchToLoginView()"
+      >
+        <span>{{ "navigationLabel.login" | translate }}</span>
+      </button>
+    </li>
 
-  <li class="tabs__item">
-    <button
-      class="tabs__item-content"
-      [class.active]="state.isRegisterView"
-      type="button"
-      (click)="_service.switchToRegisterView()"
-    >
-      <span>{{ "navigationLabel.register" | translate }}</span>
-    </button>
-  </li>
-</ul>
+    <li class="tabs__item">
+      <button
+        class="tabs__item-content"
+        [class.active]="state.isRegisterView"
+        type="button"
+        (click)="_service.switchToRegisterView()"
+      >
+        <span>{{ "navigationLabel.register" | translate }}</span>
+      </button>
+    </li>
+  </ul>
 
-<div class="form-container">
-  @if (state.isLoginView) {
-  <pu-login-form (success)="_service.handleSuccessLogin()" />
-  } @else if (state.isRegisterView) {
-  <pu-register-form (success)="_service.handleSuccessRegister()" />
-  }
-</div>
+  <div class="form-container">
+    @if (state.isLoginView) {
+      <pu-login-form (success)="_service.handleSuccessLogin()" />
+    } @else if (state.isRegisterView) {
+      <pu-register-form (success)="_service.handleSuccessRegister()" />
+    }
+  </div>
 }
