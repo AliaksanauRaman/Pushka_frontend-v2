@@ -1,0 +1,42 @@
+:host {
+  position: relative;
+  display: block;
+  margin: 0 16px;
+}
+
+// Some shared styles?
+.close-dialog-button {
+  position: absolute;
+  top: -54px;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--black-color);
+  border-radius: 50%;
+}
+
+.dialog-content {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 24px;
+  background-color: var(--white-color);
+  border-radius: 0 0 24px 24px;
+}
+
+.instructions {
+  padding: 40px 12px 24px 12px;
+}
+
+.instructions__title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.instructions__message {
+  font-size: 1.15rem;
+  text-align: center;
+}

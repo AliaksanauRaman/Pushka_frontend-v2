@@ -1,0 +1,46 @@
+<button
+  class="close-dialog-button"
+  puIconButton
+  puIconSrc="/assets/icons/white-cross.svg"
+  puIconAlt="Cross"
+  puAriaLabel="Close Dialog"
+  type="button"
+  (click)="closeDialog()"
+></button>
+
+<pu-dialog-tabs>
+  @for (tab of _dialogTabsService.tabs(); track tab.label) {
+    <button
+      puDialogTabItem
+      [isActive]="_dialogTabsService.checkIsTabActive(tab)"
+      type="button"
+      (click)="_dialogTabsService.activateTab(tab)"
+    >
+      {{ tab.label | translate }}
+    </button>
+  }
+</pu-dialog-tabs>
+
+<section class="dialog-content">
+  @if (_isFirstTabActive()) {
+    <div class="instructions">
+      <h2 class="instructions__title">Завершите вход</h2>
+    
+      <p class="instructions__message">Ваша заявка будет опубликована после завершения входа</p>
+    </div>
+  
+    <pu-login-form [initialEmail]="_data.email" (success)="handleSuccessLogin()" />
+  } @else {
+    <div class="instructions">
+      <h2 class="instructions__title">Завершите регистрацию</h2>
+    
+      <p class="instructions__message">Ваша заявка будет опубликована после завершения регистрации и активации аккаунта</p>
+    </div>
+  
+    <pu-register-form
+      [initialEmail]="_data.email"
+      [initialFullName]="_data.fullName"
+      (success)="handleSuccessRegister()"
+    />
+  }
+</section>
