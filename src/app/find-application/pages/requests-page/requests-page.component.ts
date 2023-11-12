@@ -1,14 +1,28 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
+import { HelpRequestsListComponent } from '../../components/help-requests-list/help-requests-list.component';
+import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
 import { FilterByPlaceFieldComponent } from '@shared/components/filter-by-place-field/filter-by-place-field.component';
-import { ApplicationCardComponent } from '../../components/application-card/application-card.component';
+
+import { RequestsPageService } from './requests-page.service';
 
 @Component({
   selector: 'pu-requests-page',
   templateUrl: './requests-page.component.html',
-  styleUrls: ['./requests-page.component.scss'],
+  styleUrls: ['../../styles/_applications-page.component.scss'],
+  providers: [RequestsPageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [FilterByPlaceFieldComponent, ApplicationCardComponent],
+  imports: [
+    HelpRequestsListComponent,
+    SpinnerComponent,
+    FilterByPlaceFieldComponent,
+  ],
 })
-export class RequestsPageComponent {}
+export class RequestsPageComponent {
+  protected readonly _service = inject(RequestsPageService);
+
+  public ngOnInit(): void {
+    this._service.fetchPublishedHelpRequests();
+  }
+}
