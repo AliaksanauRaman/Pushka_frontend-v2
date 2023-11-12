@@ -25,10 +25,7 @@ import { DeliveryOffersList } from '@shared/types/delivery-offer';
 @Component({
   selector: 'pu-delivery-offers-list',
   templateUrl: './delivery-offers-list.component.html',
-  styleUrls: [
-    '../../styles/_applications-list.component.scss',
-    './delivery-offers-list.component.scss',
-  ],
+  styleUrl: '../../styles/_applications-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
