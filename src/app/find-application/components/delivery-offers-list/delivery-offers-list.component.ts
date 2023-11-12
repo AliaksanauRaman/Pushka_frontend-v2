@@ -25,7 +25,10 @@ import { DeliveryOffersList } from '@shared/types/delivery-offer';
 @Component({
   selector: 'pu-delivery-offers-list',
   templateUrl: './delivery-offers-list.component.html',
-  styleUrls: ['./delivery-offers-list.component.scss'],
+  styleUrls: [
+    '../../styles/_applications-list.component.scss',
+    './delivery-offers-list.component.scss',
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -47,10 +50,10 @@ export class DeliveryOffersListComponent implements OnInit {
 
   @Input({ required: true })
   public set deliveryOffersList(value: DeliveryOffersList) {
-    this._deliveryOffersList = value;
+    this._deliveryOffersList.set(value);
   }
 
-  protected _deliveryOffersList!: DeliveryOffersList;
+  protected readonly _deliveryOffersList = signal(new DeliveryOffersList([]));
   protected readonly _fabIsVisible = signal(false);
   // This effect is needed to trigger changes detection
   private readonly _fabIsVisibleChangesWatcher = effect(() =>

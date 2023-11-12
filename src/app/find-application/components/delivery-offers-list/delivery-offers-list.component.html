@@ -1,6 +1,6 @@
-@for (deliveryOffer of _deliveryOffersList.value; track deliveryOffer.id) {
+@for (deliveryOffer of _deliveryOffersList().value; track deliveryOffer.id) {
   <pu-application-card
-    class="delivery-offer-card"
+    class="application-card"
     [application]="deliveryOffer"
   />
 } @empty {
