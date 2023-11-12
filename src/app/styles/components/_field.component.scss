@@ -11,8 +11,6 @@
   }
 
   &.pu-disabled {
-    pointer-events: none;
-
     .pu-label {
       color: var(--disabled-text-color);
     }
@@ -85,6 +83,7 @@
 
   &::placeholder {
     color: var(--field-placeholder-color);
+    text-transform: none;
   }
 
   &:focus {

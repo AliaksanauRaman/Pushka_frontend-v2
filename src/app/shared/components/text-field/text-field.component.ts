@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, forwardRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, forwardRef, signal } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { IdDirective } from '@shared/directives/id.directive';
@@ -28,4 +28,11 @@ import { BaseTextFieldDirective } from '@shared/base/base-text-field.directive';
     { directive: PlaceholderDirective, inputs: ['puPlaceholder'] },
   ],
 })
-export class TextFieldComponent extends BaseTextFieldDirective {}
+export class TextFieldComponent extends BaseTextFieldDirective {
+  @Input()
+  public set isCapitalized(value: boolean) {
+    this._isCapitalized.set(value);
+  }
+
+  protected readonly _isCapitalized = signal(false);
+}
