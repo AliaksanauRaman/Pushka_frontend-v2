@@ -14,7 +14,7 @@ import { OffersPageService } from './offers-page.service';
 @Component({
   selector: 'pu-offers-page',
   templateUrl: './offers-page.component.html',
-  styleUrls: ['./offers-page.component.scss'],
+  styleUrls: ['../../styles/_applications-page.component.scss'],
   providers: [OffersPageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
