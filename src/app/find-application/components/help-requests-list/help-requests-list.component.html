@@ -1,0 +1,38 @@
+@for (helpRequest of _helpRequestsList().value; track helpRequest.id) {
+  <pu-application-card
+    class="application-card"
+    [application]="helpRequest"
+  />
+} @empty {
+  <div class="empty-list-view">
+    <p class="empty-list-view__message">
+      <span>{{ "emptyDeliveryOffersListMessage" | translate }}</span>
+
+      <a
+        class="navigation-link"
+        puTextLink
+        routerLink="/send-parcel"
+      >
+        {{ "navigationLabel.sendParcel" | translate }}
+      </a>
+    </p>
+
+    <pu-placeholder
+      class="illustration"
+      [style.height.px]="300"
+    />
+  </div>
+}
+
+@if (_fabIsVisible()) {
+  <button
+    class="fab"
+    puIconButton
+    puIconSrc="/assets/icons/white-caret-up.svg"
+    puIconAlt="Caret up"
+    puAriaLabel="Scroll to the start of the list"
+    puIconWidth="32"
+    puIconHeight="32"
+    (click)="scrollToTop()"
+  ></button>
+}
