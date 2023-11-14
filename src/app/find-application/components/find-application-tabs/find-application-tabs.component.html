@@ -1,10 +1,10 @@
-<ul class="tabs">
-  <li class="tabs__item" *ngFor="let link of _links">
+<div class="tabs">
+  @for (link of _visibleLinks(); track link.id) {
     <a
-      class="tabs__item-content"
+      class="tabs__item"
       [routerLink]="link.path"
-      routerLinkActive="active"
+      routerLinkActive="tabs__item--active"
       >{{ link.label | translate }}</a
     >
-  </li>
-</ul>
+  }
+</div>

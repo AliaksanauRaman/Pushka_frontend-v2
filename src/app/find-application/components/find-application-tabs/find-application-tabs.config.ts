@@ -1,18 +1,24 @@
 import { InjectionToken } from '@angular/core';
 
-import { NavigationLink } from '@shared/types/navigation-link';
+import { UniqueNavigationLink } from '@shared/types/unique-navigation-link';
 
-export const FIND_APPLICATION_TABS_LINKS = new InjectionToken(
-  'FIND_APPLICATION_TABS_LINKS',
+export const ALL_FIND_APPLICATION_LINKS = new InjectionToken(
+  'ALL_FIND_APPLICATION_LINKS',
   {
     providedIn: 'root',
     factory: () => [
-      new NavigationLink(
+      new UniqueNavigationLink(
+        1,
         'navigationLabel.requests',
         '/find-application/requests'
       ),
-      new NavigationLink('navigationLabel.offers', '/find-application/offers'),
-      new NavigationLink(
+      new UniqueNavigationLink(
+        2,
+        'navigationLabel.offers',
+        '/find-application/offers'
+      ),
+      new UniqueNavigationLink(
+        3,
         'navigationLabel.myApplications',
         '/find-application/my-applications'
       ),
