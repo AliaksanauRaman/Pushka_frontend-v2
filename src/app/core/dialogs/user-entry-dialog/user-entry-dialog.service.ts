@@ -41,11 +41,11 @@ export class UserEntryDialogService {
 
   public handleSuccessLogin(): void {
     this.closeDialog();
-    this._snackBarService.showSuccessMessage('Success login!');
+    this._snackBarService.showSuccessMessage('successLoginMessage');
   }
 
   public handleSuccessRegister(): void {
     this.closeDialog();
-    this._snackBarService.showSuccessMessage('Success register!');
+    this._snackBarService.showImportantMessage('successRegisterMessage');
   }
 }
