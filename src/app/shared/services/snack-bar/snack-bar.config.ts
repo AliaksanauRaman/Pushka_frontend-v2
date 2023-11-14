@@ -1,14 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-type SnackBarConfig = Readonly<{
-  baseClass: string;
-  successClass: string;
-  errorClass: string;
-  successDuration: number;
-  errorDuration: number;
-}>;
-
-export const SNACK_BAR_CONFIG = new InjectionToken<SnackBarConfig>(
+export const SNACK_BAR_CONFIG = new InjectionToken(
   'SNACK_BAR_CONFIG',
   {
     providedIn: 'root',
@@ -16,6 +8,7 @@ export const SNACK_BAR_CONFIG = new InjectionToken<SnackBarConfig>(
       baseClass: 'pu-snack-bar',
       successClass: 'pu-snack-bar--success',
       errorClass: 'pu-snack-bar--error',
+      importantClass: 'pu-snack-bar--important',
       successDuration: 3000,
       errorDuration: 5000,
     }),

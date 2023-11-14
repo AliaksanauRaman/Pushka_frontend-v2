@@ -28,4 +28,14 @@ export class SnackBarService {
       data: new SnackBarData(message),
     });
   }
+
+  public showImportantMessage(message: string): void {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      panelClass: [this._config.baseClass, this._config.importantClass],
+      data: new SnackBarData(message, {
+        showClose: false,
+        actionLabel: 'actionLabel.ok',
+      }),
+    });
+  }
 }
