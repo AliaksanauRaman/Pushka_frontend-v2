@@ -5,7 +5,9 @@ import {
   forwardRef,
   inject,
   signal,
+  computed,
 } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import {
   FormControl,
   ReactiveFormsModule,
@@ -20,6 +22,7 @@ import { DATE_ADAPTER_PROVIDER } from '@shared/providers/date-adapter';
 import { MAT_DATE_FORMATS_PROVIDER } from '@shared/providers/mat-date-formats';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
+import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
 
 import { BaseReactiveFieldDirective } from '@shared/base/base-reactive-field.directive';
 import { mapDateToUTCDate } from '@shared/utils/map-date-to-utc-date';
@@ -27,7 +30,10 @@ import { mapDateToUTCDate } from '@shared/utils/map-date-to-utc-date';
 @Component({
   selector: 'pu-date-field',
   templateUrl: './date-field.component.html',
-  styleUrls: ['./date-field.component.scss'],
+  styleUrls: [
+    '../../../styles/components/_field.component.scss',
+    './date-field.component.scss',
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -39,13 +45,13 @@ import { mapDateToUTCDate } from '@shared/utils/map-date-to-utc-date';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ReactiveFormsModule, MatDatepickerModule],
+  imports: [NgOptimizedImage, ReactiveFormsModule, MatDatepickerModule],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
+    { directive: PlaceholderDirective, inputs: ['puPlaceholder'] },
   ],
 })
-// TODO: Not used
 export class DateFieldComponent extends BaseReactiveFieldDirective<Date | null> {
   @Input()
   public set puMinDate(value: Date | null) {
@@ -54,7 +60,11 @@ export class DateFieldComponent extends BaseReactiveFieldDirective<Date | null> 
 
   protected readonly _idDirective = inject(IdDirective);
   protected readonly _labelDirective = inject(LabelDirective);
-  protected readonly _minDate = signal<Date | null>(null);
+  protected readonly _placeholderDirective = inject(PlaceholderDirective);
+  protected readonly _minDate = signal<Date | null>(new Date());
+  protected readonly _maxDate = computed(
+    () => new Date(new Date().setMonth(new Date().getMonth() + 3))
+  );
   protected readonly _inputField = new FormControl<Date | null>(null);
 
   public override writeValue(value: unknown): void {
@@ -78,11 +88,6 @@ export class DateFieldComponent extends BaseReactiveFieldDirective<Date | null> 
     }
 
     this.onChange(mapDateToUTCDate(selectedDate));
-  }
-
-  protected reset(): void {
-    this._inputField.setValue(null);
-    this.onChange(null);
   }
 
   private writeNull(): void {
