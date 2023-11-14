@@ -1,6 +1,7 @@
 :root {
   --white-color: #ffffff;
   --black-color: #000000;
+  --gray-text-color: #acacac;
   --white-contrast-color: var(--black-color);
   --primary-color: #0181a8;
   --primary-field-box-shadow: 0px 0px 0px 4px rgba(1, 129, 168, 0.15);
@@ -22,14 +23,16 @@
   --background-gray-color: #f0f4f5;
   --field-color: #f0f4f5;
   --field-text-color: var(--black-color);
-  --disabled-text-color: #acacac;
+  --disabled-text-color: var(--gray-text-color);
   --disabled-field-color: #ccc;
   --disabled-button-color: var(--light-gray-color);
   --disabled-button-text-color: var(--disabled-text-color);
   --field-border-color: var(--light-gray-color);
   --success-snack-bar-color: #38b000;
   --error-snack-bar-color: var(--black-color);
+  --important-snack-bar-color: var(--black-color);
   --backdrop-color: rgba(30, 30, 30, 0.7);
+  --hint-text-color: #747474;
 
   --base-field-height: 56px;
   --base-field-padding: 12px;
