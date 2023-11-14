@@ -43,9 +43,10 @@
   .pu-characters-counter {
     flex-shrink: 0;
     margin-left: 10px;
+    color: var(--gray-text-color);
 
     &.pu-characters-counter--disabled {
-      color: var(--disabled-text-color);
+      opacity: 0.7;
     }
   }
 }
