@@ -72,11 +72,11 @@ export class ForceLoginDialogComponent implements OnInit {
 
   protected handleSuccessLogin(): void {
     this.closeDialog();
-    this._snackBarService.showSuccessMessage('Success login!');
+    this._snackBarService.showSuccessMessage('successLoginMessage');
   }
 
   protected handleSuccessRegister(): void {
     this.closeDialog();
-    this._snackBarService.showSuccessMessage('Success register!');
+    this._snackBarService.showImportantMessage('successRegisterMessage');
   }
 }
