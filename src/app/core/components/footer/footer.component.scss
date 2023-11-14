@@ -18,5 +18,10 @@
 }
 
 .socials {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.socials__item {
   flex-shrink: 0;
 }

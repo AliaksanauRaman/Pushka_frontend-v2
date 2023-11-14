@@ -11,7 +11,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { AriaLabelDirective } from '@shared/directives/aria-label.directive';
 
 @Component({
-  selector: 'button[puIconButton]',
+  selector: '[puIconButton]',
   templateUrl: './icon-button.component.html',
   styleUrls: ['./icon-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
