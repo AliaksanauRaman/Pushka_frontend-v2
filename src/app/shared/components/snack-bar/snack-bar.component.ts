@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import {
   MAT_SNACK_BAR_DATA,
+  MatSnackBarModule,
   MatSnackBarRef,
 } from '@angular/material/snack-bar';
 import { TranslateModule } from '@ngx-translate/core';
+
+import { IconButtonComponent } from '../icon-button/icon-button.component';
 
 import { SnackBarData } from '@shared/types/snack-bar-data';
 
@@ -14,7 +16,11 @@ import { SnackBarData } from '@shared/types/snack-bar-data';
   styleUrls: ['./snack-bar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgOptimizedImage, TranslateModule],
+  imports: [
+    MatSnackBarModule,
+    TranslateModule,
+    IconButtonComponent,
+  ],
 })
 export class SnackBarComponent {
   protected readonly _snackBarRef = inject(MatSnackBarRef);

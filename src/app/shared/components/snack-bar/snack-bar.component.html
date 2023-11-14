@@ -1,14 +1,27 @@
-<p class="text">{{ _data.message | translate }}</p>
+<p class="text" matSnackBarLabel>{{ _data.message | translate }}</p>
 
-<button
-  class="close-snack-bar-button"
-  type="button"
-  (click)="_snackBarRef.dismiss()"
->
-  <img
-    ngSrc="/assets/icons/close-snack-bar.svg"
-    alt="Close"
-    width="24"
-    height="24"
-  />
-</button>
+<span class="actions" matSnackBarActions>
+  @if (_data.config.actionLabel; as actionLabel) {
+    <button
+      class="actions__item actions__item--labeled"
+      matSnackBarAction
+      type="button"
+      (click)="_snackBarRef.dismissWithAction()"
+    >
+      {{ actionLabel | translate }}
+    </button>
+  }
+  
+  @if (_data.config.showClose) {
+    <button
+      class="actions__item actions__item--close"
+      matSnackBarAction
+      puIconButton
+      puIconSrc="/assets/icons/close-snack-bar.svg"
+      puIconAlt="Close"
+      puAriaLabel="Close snack bar"
+      type="button"
+      (click)="_snackBarRef.dismissWithAction()"
+    ></button>
+  }
+</span>
