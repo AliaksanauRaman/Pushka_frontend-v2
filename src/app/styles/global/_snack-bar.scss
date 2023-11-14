@@ -1,21 +1,23 @@
 .pu-snack-bar.mat-mdc-snack-bar-container {
   .mdc-snackbar__surface {
     padding-right: 0;
+  }
 
-    .mdc-snackbar__label {
-      padding: 0;
+  &.pu-snack-bar--success {
+    .mdc-snackbar__surface {
+      background-color: var(--success-snack-bar-color);
     }
   }
-}
 
-.pu-snack-bar.pu-snack-bar--success.mat-mdc-snack-bar-container {
-  .mdc-snackbar__surface {
-    background-color: var(--success-snack-bar-color);
+  &.pu-snack-bar--error {
+    .mdc-snackbar__surface {
+      background-color: var(--error-snack-bar-color);
+    }
   }
-}
 
-.pu-snack-bar.pu-snack-bar--error.mat-mdc-snack-bar-container {
-  .mdc-snackbar__surface {
-    background-color: var(--error-snack-bar-color);
+  &.pu-snack-bar--important {
+    .mdc-snackbar__surface {
+      background-color: var(--important-snack-bar-color);
+    }
   }
 }
