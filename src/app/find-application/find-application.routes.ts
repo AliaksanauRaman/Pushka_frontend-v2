@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 
+import { myApplicationsPageGuard } from './guards/my-applications-page.guard';
+
 export const findApplicationRoutes: Routes = [
   {
     path: '',
@@ -29,6 +31,7 @@ export const findApplicationRoutes: Routes = [
       },
       {
         path: 'my-applications',
+        canActivate: [myApplicationsPageGuard],
         loadComponent: () =>
           import(
             './pages/my-applications-page/my-applications-page.component'
