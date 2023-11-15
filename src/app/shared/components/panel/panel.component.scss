@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: calc(3 * 44px) + 16px;
+  margin: 4px 0;
+  padding: 8px 0;
+  background-color: var(--white-color);
+  border-radius: 16px;
+  box-shadow: var(--menu-box-shadow);
+  overflow-y: auto;
+}
