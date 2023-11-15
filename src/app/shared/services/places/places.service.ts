@@ -4,8 +4,9 @@ import { Store } from '@ngxs/store';
 import { combineLatest, map } from 'rxjs';
 
 import { PlacesState } from '@store/places';
-import { Place } from '@shared/types/place';
 import { SelectedLocalizationState } from '@store/selected-localization';
+import { Place } from '@shared/types/place';
+import { TranslatedPlace } from '@shared/types/translated-place';
 
 @Injectable({
   providedIn: 'root',
@@ -22,11 +23,10 @@ export class PlacesService {
     map(([_, places]) => places.map((place) => this.translatePlace(place)))
   );
 
-  private translatePlace(place: Place): Place {
-    return Place.build(
-      place.countryId,
+  private translatePlace(place: Place): TranslatedPlace {
+    return new TranslatedPlace(
+      place,
       this._translateService.instant(place.countryLabel),
-      place.cityId,
       this._translateService.instant(place.cityLabel)
     );
   }
