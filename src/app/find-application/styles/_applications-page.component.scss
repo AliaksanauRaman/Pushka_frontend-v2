@@ -23,6 +23,39 @@
   margin: 28px 16px 12px 16px;
 }
 
+.applications-count-and-clear-filter-button {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  margin: 0 16px;
+}
+
+.applications-count {
+  flex-shrink: 0;
+  color: var(--hint-text-color);
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.clear-filter-button {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: inherit;
+}
+
+.clear-filter-icon {
+  flex-shrink: 0;
+}
+
+.clear-filter-text {
+  margin-left: 4px;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
 .applications-list {
   flex-shrink: 0;
 }
