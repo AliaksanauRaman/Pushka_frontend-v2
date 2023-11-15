@@ -1,10 +1,6 @@
+import { ApplicationPlace } from './application-place';
 import { Phone } from './phone';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
-
-type ApplicationPlace = Readonly<{
-  cityLabel: string;
-  countryLabel: string;
-}>;
 
 export class Application {
   constructor(
@@ -22,10 +18,10 @@ export class Application {
   ) {}
 }
 
-export class ApplicationsList {
-  constructor(public readonly value: ReadonlyArray<Application>) {}
+export class ApplicationsList<T extends Application> {
+  constructor(public readonly value: ReadonlyArray<T>) {}
 
-  public findById(id: number): Application {
+  public findById(id: number): T {
     const foundApplication = this.value.find(
       (application) => application.id === id
     );
