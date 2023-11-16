@@ -1,0 +1,35 @@
+:host {
+  display: block;
+}
+
+.pu-field {
+  align-items: center;
+  height: var(--base-field-height);
+  padding: 0 var(--base-field-padding);
+  background-color: var(--white-color);
+
+  &:disabled {
+    color: var(--disabled-text-color);
+    background-color: var(--disabled-field-color);
+    border-color: var(--disabled-field-color);
+    box-shadow: none;
+  }
+}
+
+.pu-field-container {
+  &.pu-field-container--active {
+    z-index: 1001;
+  }
+}
+
+.caret-icon {
+  pointer-events: none;
+  position: absolute;
+  top: 16px;
+  right: var(--base-field-padding);
+  transition: transform 0.25s ease-in-out;
+
+  &.caret-icon--rotated {
+    transform: rotate(180deg);
+  }
+}

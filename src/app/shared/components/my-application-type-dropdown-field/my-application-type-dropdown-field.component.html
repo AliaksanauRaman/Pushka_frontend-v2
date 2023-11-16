@@ -1,0 +1,50 @@
+<div
+  cdkOverlayOrigin
+  #overlayOrigin="cdkOverlayOrigin"
+  class="pu-field-container"
+  [class.pu-field-container--active]="_isPanelOpen()"
+>
+  <button
+    class="pu-field"
+    puDisabled
+    [disabled]="_isDisabled()"
+    type="button"
+    (click)="togglePanel()"
+  >
+    @if (_selectedOption()?.label; as selectedOptionLabel) {
+      <span>{{ selectedOptionLabel | translate }}</span>
+    } @else {
+      <span></span>
+    }
+  </button>
+
+  <img
+    class="caret-icon"
+    [class.caret-icon--rotated]="_isPanelOpen()"
+    ngSrc="/assets/icons/gray-caret-down.svg"
+    alt="Caret"
+    width="24"
+    height="24"
+  />
+</div>
+
+<ng-template
+  cdkConnectedOverlay
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayWidth]="
+    overlayOrigin.elementRef.nativeElement.offsetWidth
+  "
+  [cdkConnectedOverlayOpen]="_isPanelOpen()"
+  (detach)="closePanel()"
+  (backdropClick)="closePanel()"
+>
+  <pu-panel>
+    @for (option of _options(); track option.type) {
+      <button puPanelItem type="button" (click)="selectOption(option)">
+        {{ option.label | translate }}
+      </button>
+    }
+  </pu-panel>
+</ng-template>
