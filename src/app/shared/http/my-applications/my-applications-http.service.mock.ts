@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, delay, of } from 'rxjs';
 
 import { IMyApplicationsHttpService } from './my-applications-http.service.interface';
 import {
@@ -57,6 +57,6 @@ export class MyApplicationsHttpServiceMock
         OFFER,
         REQUEST,
       ])
-    );
+    ).pipe(delay(1500));
   }
 }
