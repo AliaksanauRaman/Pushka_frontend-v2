@@ -5,6 +5,14 @@ import { MyApplicationType } from '@shared/enums/my-application-type.enum';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 
 export class MyApplication extends Application {
+  public get isRequest(): boolean {
+    return this.type === MyApplicationType.REQUEST;
+  }
+
+  public get isOffer(): boolean {
+    return this.type === MyApplicationType.OFFER;
+  }
+
   constructor(
     public readonly type: MyApplicationType,
     id: number,
