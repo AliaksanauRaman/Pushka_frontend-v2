@@ -7,40 +7,34 @@ import {
   signal,
 } from '@angular/core';
 
-type TagType = 'my-delivery-offer' | 'my-help-request';
+import { MyApplicationType } from '@shared/enums/my-application-type.enum';
 
 @Component({
   selector: 'pu-application-card-tag',
-  templateUrl: './application-card-tag.component.html',
-  styleUrls: ['./application-card-tag.component.scss'],
+  template: '{{ _text() }}',
+  styleUrl: './application-card-tag.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
 export class ApplicationCardTagComponent {
   @Input()
-  public set type(value: TagType) {
+  public set applicationType(value: MyApplicationType) {
     this._type.set(value);
   }
 
   @HostBinding('class.my-delivery-offer')
   public get hasMyDeliveryOfferClass(): boolean {
-    return this._hasMyDeliveryOfferClass();
+    return this._type() === MyApplicationType.OFFER;
   }
 
   @HostBinding('class.my-help-request')
   public get hasMyHelpRequestClass(): boolean {
-    return this._hasMyHelpRequestClass();
+    return this._type() === MyApplicationType.REQUEST;
   }
 
-  protected readonly _type = signal<TagType>('my-help-request');
-  protected readonly _hasMyDeliveryOfferClass = computed(
-    () => this._type() === 'my-delivery-offer'
-  );
-  protected readonly _hasMyHelpRequestClass = computed(
-    () => this._type() === 'my-help-request'
-  );
+  protected readonly _type = signal<MyApplicationType>(MyApplicationType.OFFER);
   protected readonly _text = computed(() =>
-    this._type() === 'my-delivery-offer'
+    this._type() === MyApplicationType.OFFER
       ? 'Мое предложение помощи'
       : 'Мой запрос'
   );
