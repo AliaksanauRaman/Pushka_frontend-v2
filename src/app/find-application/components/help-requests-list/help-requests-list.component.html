@@ -1,6 +1,7 @@
 @for (helpRequest of _helpRequestsList().value; track helpRequest.id) {
-  <pu-application-card
+  <pu-help-request-card
     class="application-card"
+    [isMine]="_user()?.id === helpRequest.userId"
     [application]="helpRequest"
   />
 } @empty {
