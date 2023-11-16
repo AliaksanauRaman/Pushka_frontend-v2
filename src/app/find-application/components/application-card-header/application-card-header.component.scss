@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.tag {
+  flex-shrink: 0;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.delete-application-button {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
