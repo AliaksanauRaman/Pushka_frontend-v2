@@ -1,6 +1,7 @@
 @for (deliveryOffer of _deliveryOffersList().value; track deliveryOffer.id) {
-  <pu-application-card
+  <pu-delivery-offer-card
     class="application-card"
+    [isMine]="_user()?.id === deliveryOffer.userId"
     [application]="deliveryOffer"
   />
 } @empty {
