@@ -1,0 +1,23 @@
+@if (_application.value(); as application) {
+  @if (_isMine()) {
+    <pu-application-card-header
+      class="header"
+      [applicationType]="_type"
+    />
+  }
+
+  <pu-delivery-offer-card-transportation-info
+    class="transportation-info"
+    [application]="application"
+  />
+
+  <pu-application-card-comment
+    class="comment"
+    [application]="application"
+  />
+
+  <pu-application-card-user-details
+    class="user-details"
+    [application]="application"
+  />
+}
