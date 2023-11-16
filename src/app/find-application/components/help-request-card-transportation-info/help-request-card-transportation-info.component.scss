@@ -1,0 +1,26 @@
+:host {
+  display: block;
+}
+
+.direction {
+  display: flex;
+  align-items: center;
+  min-height: 23px;
+  margin-bottom: 4px;
+}
+
+.image {
+  flex-shrink: 0;
+  margin: 0 16px;
+}
+
+.place-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--black-color);
+}
+
+.validity-period-end {
+  color: var(--gray-color);
+}
+

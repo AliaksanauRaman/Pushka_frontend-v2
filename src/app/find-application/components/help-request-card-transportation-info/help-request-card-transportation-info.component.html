@@ -1,0 +1,24 @@
+@if (_application.value(); as application) {
+  <div class="direction">
+    <div class="place-name">
+      {{ application.departurePlace.cityLabel | translate }}
+    </div>
+
+    <img
+      class="image"
+      ngSrc="/assets/images/direction-image.svg"
+      alt="Direction"
+      width="48"
+      height="8"
+    />
+
+    <div class="place-name">
+      {{ application.destination.cityLabel | translate }}
+    </div>
+  </div>
+
+  <div class="validity-period-end">
+    <span>{{ "applicationIsValidUntil" | translate }} </span>
+    <span>{{ application.validityPeriodEnd | date : _dateViewFormat }}</span>
+  </div>
+}
