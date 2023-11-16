@@ -8,7 +8,7 @@ import { CreateHelpRequestDto } from '@shared/dtos/create-help-request.dto';
 
 const MOCK_HELP_REQUEST = new HelpRequest(
   1,
-  1,
+  28244,
   { cityLabel: 'city.belarus.minsk', countryLabel: 'country.belarus' },
   { cityLabel: 'city.poland.warsaw', countryLabel: 'country.poland' },
   new Date(),
