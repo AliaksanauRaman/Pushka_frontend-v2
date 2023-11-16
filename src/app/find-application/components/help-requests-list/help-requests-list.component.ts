@@ -4,11 +4,8 @@ import {
   Input,
   signal,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
-import { Select } from '@ngxs/store';
 import { TranslateModule } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
 
 import { HelpRequestCardComponent } from '../help-request-card/help-request-card.component';
 import { TextLinkComponent } from '@shared/components/text-link/text-link.component';
@@ -17,8 +14,6 @@ import { IconButtonComponent } from '@shared/components/icon-button/icon-button.
 
 import { BaseApplicationsListComponent } from '../../base/base-applications-list/base-applications-list.component';
 import { HelpRequestsList } from '@shared/types/help-request';
-import { UserState } from '@store/user';
-import { User } from '@shared/types/user';
 
 @Component({
   selector: 'pu-help-requests-list',
@@ -41,9 +36,5 @@ export class HelpRequestsListComponent extends BaseApplicationsListComponent {
     this._helpRequestsList.set(value);
   }
 
-  @Select(UserState.stream)
-  private readonly _user$!: Observable<User | null>;
-
-  protected readonly _user = toSignal(this._user$);
   protected readonly _helpRequestsList = signal(new HelpRequestsList([]));
 }

@@ -8,8 +8,13 @@ import {
   OnInit,
   Directive,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
 import { MAX_SCROLL_TOP_TO_SHOW_FAB } from './base-application-list.config';
+import { UserState } from '@store/user';
+import { User } from '@shared/types/user';
 
 @Directive()
 export abstract class BaseApplicationsListComponent implements OnInit {
@@ -19,6 +24,10 @@ export abstract class BaseApplicationsListComponent implements OnInit {
   private readonly _renderer2 = inject(Renderer2);
   private readonly _maxScrollTopToShowFab = inject(MAX_SCROLL_TOP_TO_SHOW_FAB);
 
+  @Select(UserState.stream)
+  private readonly _user$!: Observable<User | null>;
+
+  protected readonly _user = toSignal(this._user$);
   protected readonly _fabIsVisible = signal(false);
   // This effect is needed to trigger changes detection
   private readonly _fabIsVisibleChangesWatcher = effect(() =>
