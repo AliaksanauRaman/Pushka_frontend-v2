@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, delay, of } from 'rxjs';
 
 import { IHelpRequestsHttpService } from './help-requests-http.interface';
+import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
 import { HelpRequest, HelpRequestsList } from '@shared/types/help-request';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 import { CreateHelpRequestDto } from '@shared/dtos/create-help-request.dto';
@@ -22,7 +23,9 @@ const MOCK_HELP_REQUEST = new HelpRequest(
 
 @Injectable()
 export class HelpRequestsHttpServiceMock implements IHelpRequestsHttpService {
-  public getPublished(): Observable<HelpRequestsList> {
+  public getPublished(
+    _filterValue: FilterByPlaceValue
+  ): Observable<HelpRequestsList> {
     return of(new HelpRequestsList(new Array(10).fill(MOCK_HELP_REQUEST))).pipe(
       delay(1000)
     );
