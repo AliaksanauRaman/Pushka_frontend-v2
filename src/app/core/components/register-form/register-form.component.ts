@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
   inject,
+  signal,
 } from '@angular/core';
 import { AsyncPipe, NgIf } from '@angular/common';
 import {
@@ -13,10 +14,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { A11yModule, FocusOrigin } from '@angular/cdk/a11y';
 import { TranslateModule } from '@ngx-translate/core';
 import { tap } from 'rxjs';
 
 import { FieldErrorsComponent } from '@shared/components/field-errors/field-errors.component';
+import { FieldHintComponent } from '@shared/components/field-hint/field-hint.component';
 import { TextFieldComponent } from '@shared/components/text-field/text-field.component';
 import { EmailFieldComponent } from '@shared/components/email-field/email-field.component';
 import { PasswordFieldComponent } from '@shared/components/password-field/password-field.component';
@@ -42,8 +45,10 @@ import { ValidRegisterFormValue } from '@shared/types/valid-register-form-value'
     NgIf,
     AsyncPipe,
     ReactiveFormsModule,
+    A11yModule,
     TranslateModule,
     FieldErrorsComponent,
+    FieldHintComponent,
     TextFieldComponent,
     EmailFieldComponent,
     PasswordFieldComponent,
@@ -79,7 +84,7 @@ export class RegisterFormComponent implements OnInit {
           Validators.minLength(this._config.passwordMinLength),
           Validators.maxLength(this._config.passwordMaxLength),
           CustomValidators.atLeastOneLatinLetter,
-          CustomValidators.atLeastOneDigit,
+          CustomValidators.atLeastOneNumber,
         ],
       ],
       passwordConfirmation: ['', [Validators.required]],
@@ -100,6 +105,7 @@ export class RegisterFormComponent implements OnInit {
       }
     })
   );
+  protected readonly _isPasswordFieldFocused = signal(false);
   private _initialEmail = '';
   private _initialFullName = '';
 
@@ -118,5 +124,9 @@ export class RegisterFormComponent implements OnInit {
     this._service.handleValidRegisterFormSubmit(
       new ValidRegisterFormValue(this._registerForm.getRawValue())
     );
+  }
+
+  protected handlePasswordFieldFocusChange(focusOrigin: FocusOrigin): void {
+    this._isPasswordFieldFocused.set(focusOrigin !== null);
   }
 }
