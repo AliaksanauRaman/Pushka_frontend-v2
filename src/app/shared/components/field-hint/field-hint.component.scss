@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  min-height: 18px;
+  padding: 0 var(--base-field-padding);
+}
+
+.message {
+  color: var(--hint-text-color);
+  line-height: 18px;
+}
