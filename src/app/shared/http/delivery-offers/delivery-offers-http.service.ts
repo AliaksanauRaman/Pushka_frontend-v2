@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { IDeliveryOffersHttpService } from './delivery-offers-http.interface';
 import { BaseHttpService } from '@shared/base/base-http.service';
 
+import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
 import { DeliveryOffersList } from '@shared/types/delivery-offer';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 import { CreateDeliveryOfferDto } from '@shared/dtos/create-delivery-offer.dto';
@@ -18,14 +19,29 @@ export class DeliveryOffersHttpService
 {
   private readonly _deliveryOffersEndpoint = `${this._apiUrl}/api/help-offers`;
 
-  public getPublished(): Observable<DeliveryOffersList> {
+  public getPublished(
+    filterValue: FilterByPlaceValue
+  ): Observable<DeliveryOffersList> {
+    const cityFromId = filterValue.departurePlace?.cityId;
+    const cityToId = filterValue.destination?.cityId;
+
+    let httpParams = new HttpParams();
+    httpParams = httpParams.append('statuses', ApplicationStatus.PUBLISHED);
+    httpParams = httpParams.append('page', 0);
+    httpParams = httpParams.append('size', 100);
+
+    if (cityFromId) {
+      httpParams = httpParams.append('cityFromId', cityFromId);
+    }
+
+    if (cityToId) {
+      httpParams = httpParams.append('cityToId', cityToId);
+    }
+
     return this._httpClient.get<DeliveryOffersList>(
       `${this._deliveryOffersEndpoint}`,
       {
-        params: new HttpParams()
-          .append('statuses', ApplicationStatus.PUBLISHED)
-          .append('page', 0)
-          .append('size', 10),
+        params: httpParams,
       }
     );
   }

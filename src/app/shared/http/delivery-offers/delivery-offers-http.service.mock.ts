@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, delay, of } from 'rxjs';
 
 import { IDeliveryOffersHttpService } from './delivery-offers-http.interface';
+import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
 import {
   DeliveryOffer,
   DeliveryOffersList,
@@ -27,7 +28,7 @@ const MOCK_DELIVERY_OFFER = new DeliveryOffer(
 export class DeliveryOffersHttpServiceMock
   implements IDeliveryOffersHttpService
 {
-  public getPublished(): Observable<DeliveryOffersList> {
+  public getPublished(_filterValue: FilterByPlaceValue): Observable<DeliveryOffersList> {
     return of(
       new DeliveryOffersList(new Array(10).fill(MOCK_DELIVERY_OFFER))
     ).pipe(delay(1000));
