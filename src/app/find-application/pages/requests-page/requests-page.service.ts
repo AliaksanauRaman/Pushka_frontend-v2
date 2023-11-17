@@ -1,11 +1,15 @@
-import { DestroyRef, Injectable, inject } from '@angular/core';
+import { DestroyRef, Injectable, Signal, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { catchError, tap, throwError } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { catchError, combineLatest, tap, throwError } from 'rxjs';
 
 import { HelpRequestsHttpService } from '@shared/http/help-requests/help-requests-http.service';
+import { PlacesService } from '@shared/services/places/places.service';
+import { FilterByPlaceQueryService } from '../../services/filter-by-place-query/filter-by-place-query.service';
 
 import { BaseStateService } from '@shared/base/base-state.service';
 import { HelpRequestsList } from '@shared/types/help-request';
+import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
 
 type RequestsPageState = {
   isLoading: boolean;
@@ -16,11 +20,29 @@ type RequestsPageState = {
 @Injectable()
 export class RequestsPageService extends BaseStateService<RequestsPageState> {
   private readonly _destroyRef = inject(DestroyRef);
-  private readonly _helpRequestsHttpService = inject(
-    HelpRequestsHttpService
+  private readonly _activatedRoute = inject(ActivatedRoute);
+  private readonly _helpRequestsHttpService = inject(HelpRequestsHttpService);
+  private readonly _placesService = inject(PlacesService);
+  private readonly _filterByPlaceQueryService = inject(
+    FilterByPlaceQueryService
   );
 
-  public fetchPublishedHelpRequests(): void {
+  private readonly _filterByPlaceValue = signal(
+    new FilterByPlaceValue(null, null)
+  );
+
+  public get filterByPlaceValue(): Signal<FilterByPlaceValue> {
+    return this._filterByPlaceValue.asReadonly();
+  }
+
+  constructor() {
+    super();
+    this.subToPageQueryChanges();
+  }
+
+  public fetchPublishedHelpRequests(
+    filterValue = this._filterByPlaceValue()
+  ): void {
     this.updateState({
       isLoading: true,
       helpRequestsList: null,
@@ -28,7 +50,7 @@ export class RequestsPageService extends BaseStateService<RequestsPageState> {
     });
 
     this._helpRequestsHttpService
-      .getPublished()
+      .getPublished(filterValue)
       .pipe(
         tap((helpRequestsList) =>
           this.updateState({
@@ -51,11 +73,38 @@ export class RequestsPageService extends BaseStateService<RequestsPageState> {
       .subscribe();
   }
 
+  public handleFilterByPlaceChange(value: FilterByPlaceValue): void {
+    this._filterByPlaceQueryService.updateQuery(this._activatedRoute, value);
+  }
+
+  public handleClearFilterByPlace(): void {
+    this._filterByPlaceQueryService.clearQuery(this._activatedRoute);
+  }
+
   protected getInitialState(): RequestsPageState {
     return {
       isLoading: false,
       helpRequestsList: null,
       responseErrorMessage: '',
     };
+  }
+
+  private subToPageQueryChanges(): void {
+    combineLatest([
+      this._activatedRoute.queryParams,
+      this._placesService.translatedPlaces$,
+    ])
+      .pipe(
+        tap(([query, translatedPlaces]) =>
+          this._filterByPlaceValue.set(
+            this._filterByPlaceQueryService.getValueFromQuery(
+              query,
+              translatedPlaces
+            )
+          )
+        ),
+        takeUntilDestroyed(this._destroyRef)
+      )
+      .subscribe();
   }
 }

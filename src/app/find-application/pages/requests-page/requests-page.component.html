@@ -5,8 +5,41 @@
     </div>
   } @else if (state.helpRequestsList) {
     <div class="content-view">
-      @if (state.helpRequestsList.value.length > 0) {
-        <pu-filter-by-place-field class="filter-by-place" />
+      @if (state.helpRequestsList.value.length; as applicationsCount) {
+        <pu-filter-by-place-field
+          class="filter-by-place"
+          [value]="_service.filterByPlaceValue()"
+          (valueChange)="_service.handleFilterByPlaceChange($event)"
+          (filter)="_service.fetchPublishedHelpRequests()"
+        />
+
+        <div class="applications-count-and-clear-filter-button">
+          <div class="applications-count">
+            {{ "applicationsCount" | translate : { count: applicationsCount } }}
+          </div>
+
+          <div class="spacer"></div>
+
+          @if (!_service.filterByPlaceValue().isEmpty) {
+            <button
+              class="clear-filter-button"
+              type="button"
+              (click)="_service.handleClearFilterByPlace()"
+            >
+              <img
+                class="clear-filter-icon"
+                ngSrc="/assets/icons/accent-cross.svg"
+                alt="Cross"
+                width="24"
+                height="24"
+              />
+
+              <span class="clear-filter-text">{{
+                "actionLabel.clearFilter" | translate
+              }}</span>
+            </button>
+          }
+        </div>
       }
       
       <pu-help-requests-list

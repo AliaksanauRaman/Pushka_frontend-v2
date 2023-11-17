@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { HelpRequestsListComponent } from '../../components/help-requests-list/help-requests-list.component';
 import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
@@ -14,6 +16,8 @@ import { RequestsPageService } from './requests-page.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
+    NgOptimizedImage,
+    TranslateModule,
     HelpRequestsListComponent,
     SpinnerComponent,
     FilterByPlaceFieldComponent,
