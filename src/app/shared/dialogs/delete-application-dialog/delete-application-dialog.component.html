@@ -1,0 +1,32 @@
+<div class="top-actions">
+  <div class="spacer"></div>
+
+  <button
+    class="close-dialog-button"
+    puIconButton
+    puIconSrc="/assets/icons/gray-cross.svg"
+    puIconAlt="Cross"
+    puAriaLabel="Close dialog"
+    type="button"
+    (click)="closeDialog()"
+  ></button>
+</div>
+
+<h2 class="title">{{ "deleteApplicationDialog.title" | translate }}</h2>
+
+<p class="message">{{ "deleteApplicationDialog.message" | translate }}</p>
+
+<pu-placeholder class="illustration" [style.height.px]="100" />
+
+<button class="delete-button" puAccentButton type="button">
+  <span>{{ "actionLabel.delete" | translate }}</span>
+</button>
+
+<button
+  class="cancel-button"
+  puSecondaryButton
+  type="button"
+  (click)="closeDialog()"
+>
+  <span>{{ "actionLabel.cancel" | translate }}</span>
+</button>
