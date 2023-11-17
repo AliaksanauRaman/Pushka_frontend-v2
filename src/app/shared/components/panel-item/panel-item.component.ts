@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+  signal,
+} from '@angular/core';
 
 @Component({
   selector: '[puPanelItem]',
@@ -7,4 +13,16 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class PanelItemComponent {}
+export class PanelItemComponent {
+  @Input()
+  public set isPlaceholder(value: boolean) {
+    this._isPlaceholder.set(value);
+  }
+
+  @HostBinding('class.pu-panel-item--placeholder')
+  public get hasPuPanelItemPlaceholderClass(): boolean {
+    return this._isPlaceholder();
+  }
+
+  protected readonly _isPlaceholder = signal(false);
+}

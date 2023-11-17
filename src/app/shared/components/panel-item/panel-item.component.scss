@@ -6,4 +6,8 @@
   padding: 0 16px;
   color: var(--white-contrast-color);
   text-align: left;
+
+  &.pu-panel-item--placeholder {
+    color: var(--hint-text-color);
+  }
 }
