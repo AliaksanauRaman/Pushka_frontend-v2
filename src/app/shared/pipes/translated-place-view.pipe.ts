@@ -7,7 +7,7 @@ import { TranslatedPlace } from '@shared/types/translated-place';
   standalone: true
 })
 export class TranslatedPlaceViewPipe implements PipeTransform {
-  public transform(value: TranslatedPlace): unknown {
+  public transform(value: TranslatedPlace): string {
     return `${value.plainCityLabel}, ${value.plainCountryLabel}`;
   }
 }
