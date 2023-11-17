@@ -1,34 +1,33 @@
-import { PlaceFieldStateName } from './place-field-state-name.enum';
-import { Place } from '@shared/types/place';
+import { TranslatedPlace } from '@shared/types/translated-place';
 
 type PlaceFieldStateOptions = Readonly<{
-  name: PlaceFieldStateName;
   fieldValue: string;
-  selectedPlace: Place | null;
-  filteredPlaces: ReadonlyArray<Place>;
+  selectedPlace: TranslatedPlace | null;
+  allPlaces: ReadonlyArray<TranslatedPlace>;
+  filteredPlaces: ReadonlyArray<TranslatedPlace>;
   isClearAvailable: boolean;
   isEmitChange: boolean;
 }>;
 
 export class PlaceFieldState {
-  public readonly name: PlaceFieldStateName;
   public readonly fieldValue: string;
-  public readonly selectedPlace: Place | null;
-  public readonly filteredPlaces: ReadonlyArray<Place>;
+  public readonly selectedPlace: TranslatedPlace | null;
+  public readonly allPlaces: ReadonlyArray<TranslatedPlace>;
+  public readonly filteredPlaces: ReadonlyArray<TranslatedPlace>;
   public readonly isClearAvailable: boolean;
   public readonly isEmitChange: boolean;
 
   constructor({
-    name,
     fieldValue,
     selectedPlace,
+    allPlaces,
     filteredPlaces,
     isClearAvailable,
     isEmitChange,
   }: PlaceFieldStateOptions) {
-    this.name = name;
     this.fieldValue = fieldValue;
     this.selectedPlace = selectedPlace;
+    this.allPlaces = allPlaces;
     this.filteredPlaces = filteredPlaces;
     this.isClearAvailable = isClearAvailable;
     this.isEmitChange = isEmitChange;

@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { PlaceFieldState } from './place-field-state';
-import { PlaceFieldStateName } from './place-field-state-name.enum';
-import { Place } from '@shared/types/place';
+import { TranslatedPlace } from '@shared/types/translated-place';
+import { filterPlaces } from '@shared/utils/filter-places';
 
 const INITIAL_STATE = new PlaceFieldState({
-  name: PlaceFieldStateName.INITIAL,
   fieldValue: '',
   selectedPlace: null,
+  allPlaces: [],
   filteredPlaces: [],
   isClearAvailable: false,
   isEmitChange: false,
@@ -16,7 +16,7 @@ const INITIAL_STATE = new PlaceFieldState({
 
 @Injectable()
 export class PlaceFieldService {
-  private _places: ReadonlyArray<Place> = [];
+  private _places: ReadonlyArray<TranslatedPlace> = [];
   private readonly _placeFieldState$ = new BehaviorSubject<{
     prev: PlaceFieldState;
     current: PlaceFieldState;
@@ -29,7 +29,7 @@ export class PlaceFieldService {
 
   public readonly state$ = this._placeFieldState$.asObservable();
 
-  public handlePlacesSet(places: ReadonlyArray<Place>): void {
+  public handlePlacesSet(places: ReadonlyArray<TranslatedPlace>): void {
     this._places = places;
 
     const selectedPlace = this.getCurrentSelectedPlace();
@@ -45,8 +45,8 @@ export class PlaceFieldService {
 
     this.updateState(
       new PlaceFieldState({
-        name: PlaceFieldStateName.PLACES_SET,
         fieldValue: '',
+        allPlaces: this._places,
         selectedPlace: newSelectedPlace,
         filteredPlaces: places,
         isClearAvailable: false,
@@ -61,8 +61,8 @@ export class PlaceFieldService {
     if (pureFieldValue === '') {
       this.updateState(
         new PlaceFieldState({
-          name: PlaceFieldStateName.FIELD_INPUT,
           fieldValue,
+          allPlaces: this._places,
           selectedPlace: null,
           filteredPlaces: this._places,
           isClearAvailable: false,
@@ -72,30 +72,24 @@ export class PlaceFieldService {
       return;
     }
 
-    // TODO: Enhance filtering
     this.updateState(
       new PlaceFieldState({
-        name: PlaceFieldStateName.FIELD_INPUT,
         fieldValue,
         selectedPlace: null,
-        filteredPlaces: this._places.filter((place) => {
-          return (
-            place.countryLabel.toLowerCase().includes(pureFieldValue) ||
-            place.cityLabel.toLowerCase().includes(pureFieldValue)
-          );
-        }),
+        allPlaces: this._places,
+        filteredPlaces: filterPlaces(this._places, fieldValue),
         isClearAvailable: true,
         isEmitChange: true,
       })
     );
   }
 
-  public handleWritePlace(place: Place): void {
+  public handleWritePlace(place: TranslatedPlace): void {
     this.updateState(
       new PlaceFieldState({
-        name: PlaceFieldStateName.WRITE_PLACE,
         fieldValue: this.buildPlaceFieldValue(place),
         selectedPlace: place,
+        allPlaces: this._places,
         filteredPlaces: [place],
         isClearAvailable: true,
         isEmitChange: false,
@@ -106,9 +100,9 @@ export class PlaceFieldService {
   public handleWriteNull(): void {
     this.updateState(
       new PlaceFieldState({
-        name: PlaceFieldStateName.WRITE_NULL,
         fieldValue: '',
         selectedPlace: null,
+        allPlaces: this._places,
         filteredPlaces: this._places,
         isClearAvailable: false,
         isEmitChange: false,
@@ -119,9 +113,9 @@ export class PlaceFieldService {
   public handleClear(): void {
     this.updateState(
       new PlaceFieldState({
-        name: PlaceFieldStateName.CLEAR,
         fieldValue: '',
         selectedPlace: null,
+        allPlaces: this._places,
         filteredPlaces: this._places,
         isClearAvailable: false,
         isEmitChange: true,
@@ -129,12 +123,12 @@ export class PlaceFieldService {
     );
   }
 
-  public handlePlaceSelect(place: Place): void {
+  public handlePlaceSelect(place: TranslatedPlace): void {
     this.updateState(
       new PlaceFieldState({
-        name: PlaceFieldStateName.PLACE_SELECT,
         fieldValue: this.buildPlaceFieldValue(place),
         selectedPlace: place,
+        allPlaces: this._places,
         filteredPlaces: [place],
         isClearAvailable: true,
         isEmitChange: true,
@@ -142,7 +136,7 @@ export class PlaceFieldService {
     );
   }
 
-  private getCurrentSelectedPlace(): Place | null {
+  private getCurrentSelectedPlace(): TranslatedPlace | null {
     return this._placeFieldState$.getValue().current.selectedPlace;
   }
 
@@ -187,7 +181,7 @@ export class PlaceFieldService {
     return false;
   }
 
-  private buildPlaceFieldValue(place: Place): string {
-    return `${place.countryLabel}, ${place.cityLabel}`;
+  private buildPlaceFieldValue(place: TranslatedPlace): string {
+    return `${place.plainCityLabel}, ${place.plainCountryLabel}`;
   }
 }

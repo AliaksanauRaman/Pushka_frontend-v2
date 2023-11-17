@@ -5,11 +5,13 @@ import {
   forwardRef,
   inject,
 } from '@angular/core';
-import { AsyncPipe, NgIf, NgFor, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
 import { map, tap } from 'rxjs';
 
+import { PanelComponent } from '@shared/components/panel/panel.component';
+import { PanelItemComponent } from '@shared/components/panel-item/panel-item.component';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
@@ -17,7 +19,11 @@ import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
 import { PlaceFieldService } from './place-field.service';
 
 import { BaseDropdownFieldDirective } from '@shared/base/base-dropdown-field.directive';
-import { Place } from '@shared/types/place';
+import { TranslatedPlace } from '@shared/types/translated-place';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { TranslateModule } from '@ngx-translate/core';
+import { DisabledDirective } from '@shared/directives/disabled.directive';
+import { TranslatedPlaceViewPipe } from '@shared/pipes/translated-place-view.pipe';
 
 @Component({
   selector: 'pu-place-field',
@@ -36,16 +42,28 @@ import { Place } from '@shared/types/place';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgIf, NgFor, AsyncPipe, NgOptimizedImage, OverlayModule],
+  imports: [
+    NgOptimizedImage,
+    OverlayModule,
+    TranslateModule,
+    DisabledDirective,
+    PanelComponent,
+    PanelItemComponent,
+    TranslatedPlaceViewPipe,
+  ],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
     { directive: PlaceholderDirective, inputs: ['puPlaceholder'] },
   ],
 })
-export class PlaceFieldComponent extends BaseDropdownFieldDirective<Place | null> {
+export class PlaceFieldComponent extends BaseDropdownFieldDirective<TranslatedPlace | null> {
+  protected readonly _service = inject(PlaceFieldService);
+  protected readonly _idDirective = inject(IdDirective);
+  protected readonly _labelDirective = inject(LabelDirective);
+
   @Input({ required: true })
-  public set places(value: ReadonlyArray<Place>) {
+  public set places(value: ReadonlyArray<TranslatedPlace>) {
     if (value.length === 0) {
       return;
     }
@@ -53,9 +71,6 @@ export class PlaceFieldComponent extends BaseDropdownFieldDirective<Place | null
     this._service.handlePlacesSet(value);
   }
 
-  protected readonly _service = inject(PlaceFieldService);
-  protected readonly _idDirective = inject(IdDirective);
-  protected readonly _labelDirective = inject(LabelDirective);
   protected readonly _state$ = this._service.state$.pipe(
     tap(({ isSelectedPlaceChange, current }) => {
       if (isSelectedPlaceChange) {
@@ -64,6 +79,7 @@ export class PlaceFieldComponent extends BaseDropdownFieldDirective<Place | null
     }),
     map(({ current }) => current)
   );
+  protected readonly _state = toSignal(this._state$);
   protected readonly _panelPositions: Array<ConnectedPosition> = [
     {
       originX: 'start',
@@ -80,8 +96,8 @@ export class PlaceFieldComponent extends BaseDropdownFieldDirective<Place | null
   ];
 
   public override writeValue(value: unknown): void {
-    if (value !== null && !Place.is(value)) {
-      throw new Error('A null or Place is expected!');
+    if (value !== null && !TranslatedPlace.is(value)) {
+      throw new Error('A null or TranslatedPlace is expected!');
     }
 
     if (value === null) {
@@ -92,7 +108,13 @@ export class PlaceFieldComponent extends BaseDropdownFieldDirective<Place | null
     this._service.handleWritePlace(value);
   }
 
-  protected trackByPlaceId(_: number, place: Place): number {
-    return place.id;
+  protected selectPlace(place: TranslatedPlace): void {
+    this._service.handlePlaceSelect(place);
+    this.closePanel();
+  }
+
+  protected override closePanel(): void {
+    super.closePanel();
+    this.touchField();
   }
 }

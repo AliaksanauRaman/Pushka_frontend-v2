@@ -1,66 +1,74 @@
-<ng-container *ngIf="_state$ | async as state">
+@if (_state(); as state) {
   <label class="pu-label" [for]="_idDirective.id()">{{
     _labelDirective.label()
   }}</label>
 
-  <div class="pu-field-container">
+  <div
+    #overlayOrigin="cdkOverlayOrigin"
+    cdkOverlayOrigin
+    class="pu-field-container"
+    [class.pu-field-container--active]="_isPanelOpened()"
+  >
     <input
       #fieldRef
-      #origin="cdkOverlayOrigin"
-      cdkOverlayOrigin
       [id]="_idDirective.id()"
       class="pu-field"
       [placeholder]="_placeholderDirective.placeholder()"
       [value]="state.fieldValue"
+      puDisabled
+      [disabled]="state.allPlaces.length === 0"
       type="text"
       (focus)="openPanel()"
-      (blur)="touchField(); closePanel()"
       (input)="_service.handleFieldInput(fieldRef.value)"
     />
 
-    <button
-      class="clear-button"
-      *ngIf="state.isClearAvailable"
-      type="button"
-      aria-label="Clear place field text"
-      (click)="_service.handleClear()"
-    >
+    @if (state.isClearAvailable) {
+      <button
+        class="clear-button"
+        type="button"
+        aria-label="Clear place field text"
+        (click)="_service.handleClear()"
+      >
+        <img
+          ngSrc="/assets/icons/gray-cross.svg"
+          alt="Cross"
+          width="24"
+          height="24"
+        />
+      </button>
+    } @if (!state.isClearAvailable) {
       <img
-        ngSrc="/assets/icons/gray-cross.svg"
-        alt="Cross"
+        class="caret-icon"
+        [class.caret-icon--rotated]="_isPanelOpened()"
+        ngSrc="/assets/icons/gray-caret-down.svg"
+        alt="Caret"
         width="24"
         height="24"
       />
-    </button>
-
-    <img
-      class="caret-icon"
-      [class.rotated]="_isPanelOpened()"
-      *ngIf="!state.isClearAvailable"
-      ngSrc="/assets/icons/gray-caret-down.svg"
-      alt="Caret"
-      width="24"
-      height="24"
-    />
+    }
   </div>
 
   <ng-template
     cdkConnectedOverlay
-    [cdkConnectedOverlayOrigin]="origin"
+    cdkConnectedOverlayHasBackdrop
+    cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+    [cdkConnectedOverlayOrigin]="overlayOrigin"
     [cdkConnectedOverlayOpen]="_isPanelOpened()"
-    [cdkConnectedOverlayWidth]="fieldRef.offsetWidth"
+    [cdkConnectedOverlayWidth]="
+      overlayOrigin.elementRef.nativeElement.offsetWidth
+    "
     [cdkConnectedOverlayPositions]="_panelPositions"
+    (detach)="closePanel(); fieldRef.blur()"
+    (backdropClick)="closePanel()"
   >
-    <div class="panel">
-      <button
-        class="panel__item"
-        *ngFor="let place of state.filteredPlaces; trackBy: trackByPlaceId"
-        type="button"
-        (mousedown)="_service.handlePlaceSelect(place)"
-      >
-        <!-- TODO: Pipe? -->
-        <span>{{ place.countryLabel }}, {{ place.cityLabel }}</span>
-      </button>
-    </div>
+    <pu-panel>
+      @for (place of state.filteredPlaces; track place.id) {
+        <button puPanelItem type="button" (click)="selectPlace(place)">
+          <span>{{ place | translatedPlaceView }}</span>
+        </button>
+      } @empty {
+        <div puPanelItem [isPlaceholder]="true">{{ 'noMatchesFound' | translate }}</div>
+      }
+    </pu-panel>
   </ng-template>
-</ng-container>
+}
