@@ -1,4 +1,9 @@
-<div class="pu-field-container">
+<div
+  cdkOverlayOrigin
+  #overlayOrigin="cdkOverlayOrigin"
+  class="pu-field-container"
+  [class.pu-field-container--active]="_panel.isOpened()"
+>
   <input
     class="pu-field"
     type="text"
@@ -9,17 +14,26 @@
 
   <input
     #departurePlaceInput
-    class="filter-inner-field filter-inner-field--departure-place"
-    placeholder="Откуда"
+    class="inner-field inner-field--departure-place"
+    [placeholder]="'fieldLabel.departurePlace' | translate"
     type="text"
+    maxlength="30"
+    [value]="_service.departurePlaceFieldValue()"
+    (focus)="handleDeparturePlaceFieldFocus()"
+    (input)="_service.handleDeparturePlaceFieldInput(departurePlaceInput.value)"
   />
 
   <div class="divider"></div>
 
   <input
-    class="filter-inner-field filter-inner-field--destination"
-    placeholder="Куда"
+    #destinationInput
+    class="inner-field inner-field--destination"
+    [placeholder]="'fieldLabel.destination' | translate"
     type="text"
+    maxlength="30"
+    [value]="_service.destinationFieldValue()"
+    (focus)="handleDestinationFieldFocus()"
+    (input)="_service.handleDestinationFieldInput(destinationInput.value)"
   />
 
   <button
@@ -28,5 +42,33 @@
     puIconSrc="/assets/icons/white-filter-check.svg"
     puIconAlt="Filter"
     puAriaLabel="Apply filter"
+    puDisabled
+    [disabled]="_service.value().isEmpty"
+    (click)="applyFilter()"
   ></button>
 </div>
+
+<ng-template
+  cdkConnectedOverlay
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayOpen]="_panel.isOpened()"
+  [cdkConnectedOverlayWidth]="
+    overlayOrigin.elementRef.nativeElement.offsetWidth
+  "
+  (backdropClick)="_panel.close()"
+  (detach)="_panel.close(); departurePlaceInput.blur(); destinationInput.blur()"
+>
+  <pu-panel>
+    @for (place of _service.filteredPlaces(); track place.id) {
+      <button puPanelItem type="button" (click)="selectPlace(place)">
+        <span>{{ place | translatedPlaceView }}</span>
+      </button>
+    } @empty {
+      <div puPanelItem [isPlaceholder]="true">
+        {{ "noMatchesFound" | translate }}
+      </div>
+    }
+  </pu-panel>
+</ng-template>

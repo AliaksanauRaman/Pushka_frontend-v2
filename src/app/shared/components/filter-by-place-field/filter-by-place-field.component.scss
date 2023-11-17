@@ -4,7 +4,7 @@
 }
 
 .pu-field-container {
-  &:has(> input.filter-inner-field:focus) {
+  &:has(> input.inner-field:focus) {
     .pu-field {
       border-color: var(--primary-color);
       box-shadow: var(--primary-field-box-shadow);
@@ -12,6 +12,10 @@
       // The following property is needed to show box-shadow on ios devices
       -webkit-appearance: none;
     }
+  }
+
+  &.pu-field-container--active {
+    z-index: 1001;
   }
 }
 
@@ -21,7 +25,7 @@
   background-color: var(--white-color);
 }
 
-.filter-inner-field {
+.inner-field {
   --padding-right: 70px;
   --divider-width: 2px;
   --divider-margin: 16px;
@@ -39,11 +43,11 @@
   border: none;
   outline: none;
 
-  &.filter-inner-field--departure-place {
+  &.inner-field--departure-place {
     left: var(--base-field-padding);
   }
 
-  &.filter-inner-field--destination {
+  &.inner-field--destination {
     right: 70px;
   }
 }
@@ -76,5 +80,9 @@
 
   &:active {
     background-color: var(--primary-active-color);
+  }
+
+  &:disabled {
+    background-color: var(--disabled-field-color);
   }
 }
