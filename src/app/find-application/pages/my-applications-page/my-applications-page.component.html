@@ -1,1 +1,25 @@
-<h2>My applications</h2>
+@if (_service.state(); as state) {
+  <pu-my-application-type-dropdown-field
+    class="my-applications-dropdown-field"
+    [isDisabled]="state.isLoading"
+    [options]="_myApplicationTypesOptions"
+    [selectedOption]="_selectedOption()"
+    (optionSelect)="handleApplicationTypeOptionSelect($event)"
+  ></pu-my-application-type-dropdown-field>
+
+  @if (state.isLoading) {
+    <div class="loading-view">
+      <pu-spinner class="spinner" size="big" color="primary" />
+    </div>
+  } @else if (state.myApplicationsList) {
+    <div class="content-view">
+      <pu-my-applications-list
+        [myApplicationsList]="state.myApplicationsList"
+      ></pu-my-applications-list>
+    </div>
+  } @else if (state.responseErrorMessage) {
+    <div class="error-view">
+      <p>{{ state.responseErrorMessage }}</p>
+    </div>
+  }
+}
