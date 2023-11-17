@@ -6,7 +6,7 @@ import { countryCodeRequired } from './country-code-required.validator';
 import { phoneNumberRequired } from './phone-number-required';
 import { phoneNumberFormat } from './phone-number-format.validator';
 import { atLeastOneLatinLetter } from './at-least-one-latin-letter.validator';
-import { atLeastOneDigit } from './at-least-one-digit.validator';
+import { atLeastOneNumber } from './at-least-one-number.validator';
 import { passwordsMatch } from './passwords-match.validator';
 import { DateRange } from '@shared/types/date-range';
 import { Phone } from '@shared/types/phone';
@@ -48,10 +48,10 @@ export class CustomValidators {
     return atLeastOneLatinLetter(control);
   }
 
-  public static atLeastOneDigit(
+  public static atLeastOneNumber(
     control: AbstractControl<string>
   ): ValidationErrors | null {
-    return atLeastOneDigit(control);
+    return atLeastOneNumber(control);
   }
 
   public static passwordsMatch(

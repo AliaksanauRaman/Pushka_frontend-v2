@@ -2,7 +2,7 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 const NUMBER_REGEX = /\d+/;
 
-export const atLeastOneDigit = (
+export const atLeastOneNumber = (
   control: AbstractControl<string>
 ): ValidationErrors | null => {
   const { value } = control;
@@ -15,5 +15,5 @@ export const atLeastOneDigit = (
     return null;
   }
 
-  return { atLeastOneDigit: true };
+  return { atLeastOneNumber: true };
 };
