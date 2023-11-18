@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
   Output,
+  inject,
   signal,
 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
@@ -14,6 +15,8 @@ import { PanelComponent } from '@shared/components/panel/panel.component';
 import { PanelItemComponent } from '@shared/components/panel-item/panel-item.component';
 import { DisabledDirective } from '@shared/directives/disabled.directive';
 
+import { PanelService } from '@shared/services/panel/panel.service';
+
 import { MyApplicationTypeOption } from '@shared/types/my-application-type-option';
 
 @Component({
@@ -23,6 +26,7 @@ import { MyApplicationTypeOption } from '@shared/types/my-application-type-optio
     '../../../styles/components/_field.component.scss',
     './my-application-type-dropdown-field.component.scss',
   ],
+  providers: [PanelService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -36,6 +40,8 @@ import { MyApplicationTypeOption } from '@shared/types/my-application-type-optio
   ],
 })
 export class MyApplicationTypeDropdownFieldComponent {
+  protected readonly _panel = inject(PanelService);
+
   @Input({ required: true })
   public set options(value: ReadonlyArray<MyApplicationTypeOption>) {
     this._options.set(value);
@@ -54,7 +60,6 @@ export class MyApplicationTypeDropdownFieldComponent {
   @Output()
   public readonly optionSelect = new EventEmitter<MyApplicationTypeOption>();
 
-  protected readonly _isPanelOpen = signal(false);
   protected readonly _options = signal<ReadonlyArray<MyApplicationTypeOption>>(
     []
   );
@@ -63,16 +68,8 @@ export class MyApplicationTypeDropdownFieldComponent {
   );
   protected readonly _isDisabled = signal(false);
 
-  protected togglePanel(): void {
-    this._isPanelOpen.update((prev) => !prev);
-  }
-
-  protected closePanel(): void {
-    this._isPanelOpen.set(false);
-  }
-
   protected selectOption(option: MyApplicationTypeOption): void {
-    this.closePanel();
+    this._panel.close();
     this.optionSelect.emit(option);
   }
 }

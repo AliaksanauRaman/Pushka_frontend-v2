@@ -7,19 +7,10 @@
   height: var(--base-field-height);
   padding: 0 var(--base-field-padding);
   background-color: var(--white-color);
-
-  &:disabled {
-    color: var(--disabled-text-color);
-    background-color: var(--disabled-field-color);
-    border-color: var(--disabled-field-color);
-    box-shadow: none;
-  }
 }
 
-.pu-field-container {
-  &.pu-field-container--active {
-    z-index: 1001;
-  }
+.pu-field-container.pu-field-container--active {
+  z-index: 1001;
 }
 
 .caret-icon {
