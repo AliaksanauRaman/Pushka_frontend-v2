@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { AsyncPipe } from '@angular/common';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
@@ -10,7 +11,7 @@ import { tap } from 'rxjs';
 
 import { FieldErrorsComponent } from '@shared/components/field-errors/field-errors.component';
 import { PlaceFieldComponent } from '@shared/components/place-field/place-field.component';
-import { DateRangeFieldComponent } from '@shared/components/date-range-field/date-range-field.component';
+import { DateFieldComponent } from '@shared/components/date-field/date-field.component';
 import { TextareaFieldComponent } from '@shared/components/textarea-field/textarea-field.component';
 import { TextFieldComponent } from '@shared/components/text-field/text-field.component';
 import { EmailFieldComponent } from '@shared/components/email-field/email-field.component';
@@ -24,7 +25,6 @@ import { PlacesService } from '@shared/services/places/places.service';
 import { SEND_PARCEL_FORM_CONFIG } from './send-parcel-form.config';
 import { CustomValidators } from '@shared/validators';
 import { Place } from '@shared/types/place';
-import { DateRange } from '@shared/types/date-range';
 import { Phone } from '@shared/types/phone';
 import { ValidSendParcelFormValue } from '@shared/types/valid-send-parcel-form-value';
 
@@ -39,13 +39,12 @@ import { ValidSendParcelFormValue } from '@shared/types/valid-send-parcel-form-v
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    NgIf,
     AsyncPipe,
     ReactiveFormsModule,
     TranslateModule,
     FieldErrorsComponent,
     PlaceFieldComponent,
-    DateRangeFieldComponent,
+    DateFieldComponent,
     TextareaFieldComponent,
     TextFieldComponent,
     EmailFieldComponent,
@@ -58,7 +57,9 @@ export class SendParcelFormComponent {
   private readonly _formBuilder = inject(NonNullableFormBuilder);
   private readonly _service = inject(SendParcelFormService);
   protected readonly _config = inject(SEND_PARCEL_FORM_CONFIG);
-  protected readonly _places$ = inject(PlacesService).translatedPlaces$;
+  protected readonly _places = toSignal(
+    inject(PlacesService).translatedPlaces$
+  );
 
   protected readonly _state$ = this._service.state$.pipe(
     tap((state) => {
@@ -76,10 +77,7 @@ export class SendParcelFormComponent {
   protected readonly _sendParcelForm = this._formBuilder.group({
     departurePlace: [null as Place | null, [Validators.required]],
     destination: [null as Place | null, [Validators.required]],
-    validityPeriod: [
-      null as DateRange | null,
-      CustomValidators.requiredDateRange,
-    ],
+    applicationIsValidUntil: [null as Date | null, [Validators.required]],
     description: ['', [Validators.required]],
     fullName: ['', [Validators.required]],
     email: ['', [Validators.required, CustomValidators.emailFormat]],

@@ -1,17 +1,17 @@
-<ng-container *ngIf="_state$ | async as state">
+@if (_state$ | async; as state) {
   <form
     class="pu-form"
     [formGroup]="_sendParcelForm"
     (ngSubmit)="handleSendParcelFormSubmit()"
   >
-    <ng-container *ngIf="_places$ | async as places">
+    @if (_places(); as places) {
       <pu-place-field
         class="pu-form__field"
         [puLabel]="'fieldLabel.departurePlace' | translate"
         [puPlaceholder]="'fieldPlaceholder.departurePlace' | translate"
         [places]="places"
         formControlName="departurePlace"
-      ></pu-place-field>
+      />
 
       <pu-field-errors
         class="pu-form__field-errors"
@@ -20,7 +20,7 @@
         [errorsMappings]="{
           required: 'fieldError.departurePlaceIsRequired' | translate
         }"
-      ></pu-field-errors>
+      />
 
       <pu-place-field
         class="pu-form__field"
@@ -28,7 +28,7 @@
         [puPlaceholder]="'fieldPlaceholder.destination' | translate"
         [places]="places"
         formControlName="destination"
-      ></pu-place-field>
+      />
 
       <pu-field-errors
         class="pu-form__field-errors"
@@ -37,32 +37,26 @@
         [errorsMappings]="{
           required: 'fieldError.destinationIsRequired' | translate
         }"
-      ></pu-field-errors>
-    </ng-container>
+      />
+    }
 
-    <pu-date-range-field
+    <pu-date-field
       class="pu-form__field"
-      [puLabel]="'fieldLabel.validityPeriod' | translate"
-      [puStartDatePlaceholder]="
-        'fieldPlaceholder.validityPeriodStartDate' | translate
-      "
-      [puEndDatePlaceholder]="
-        'fieldPlaceholder.validityPeriodEndDate' | translate
-      "
-      formControlName="validityPeriod"
-    ></pu-date-range-field>
+      [puLabel]="'fieldLabel.applicationIsValidUntil' | translate"
+      [puPlaceholder]="'fieldPlaceholder.date' | translate"
+      formControlName="applicationIsValidUntil"
+    />
 
     <pu-field-errors
       class="pu-form__field-errors"
-      [areErrorsVisible]="_sendParcelForm.controls.validityPeriod.touched"
-      [errors]="_sendParcelForm.controls.validityPeriod.errors"
+      [areErrorsVisible]="
+        _sendParcelForm.controls.applicationIsValidUntil.touched
+      "
+      [errors]="_sendParcelForm.controls.applicationIsValidUntil.errors"
       [errorsMappings]="{
-        startDateRequired:
-          'fieldError.validityPeriodStartDateIsRequired' | translate,
-        endDateRequired:
-          'fieldError.validityPeriodEndDateIsRequired' | translate
-      }"
-    ></pu-field-errors>
+          required: 'fieldError.applicationIsValidUntilIsRequired' | translate,
+        }"
+    />
 
     <pu-textarea-field
       class="pu-form__field"
@@ -70,25 +64,24 @@
       [puPlaceholder]="'fieldPlaceholder.description' | translate"
       [puMaxLength]="_config.descriptionMaxLength"
       formControlName="description"
-    ></pu-textarea-field>
+    />
 
     <pu-field-errors
       class="pu-form__field-errors"
       [areErrorsVisible]="_sendParcelForm.controls.description.touched"
       [errors]="_sendParcelForm.controls.description.errors"
       [errorsMappings]="{
-        required: 'fieldError.descriptionIsRequired' | translate,
-      }"
-    ></pu-field-errors>
+          required: 'fieldError.descriptionIsRequired' | translate,
+        }"
+    />
 
     <pu-text-field
       class="pu-form__field"
       [puLabel]="'fieldLabel.fullName' | translate"
       [puPlaceholder]="'fieldPlaceholder.fullName' | translate"
       [puMaxLength]="_config.fullNameMaxLength"
-      [isCapitalized]="true"
       formControlName="fullName"
-    ></pu-text-field>
+    />
 
     <pu-field-errors
       class="pu-form__field-errors"
@@ -97,7 +90,7 @@
       [errorsMappings]="{
         required: 'fieldError.fullNameIsRequired' | translate
       }"
-    ></pu-field-errors>
+    />
 
     <pu-email-field
       class="pu-form__field"
@@ -105,7 +98,7 @@
       [puPlaceholder]="'fieldPlaceholder.email' | translate"
       [puMaxLength]="_config.emailMaxLength"
       formControlName="email"
-    ></pu-email-field>
+    />
 
     <pu-field-errors
       class="pu-form__field-errors"
@@ -115,7 +108,7 @@
         required: 'fieldError.emailIsRequired' | translate,
         emailFormat: 'fieldError.incorrectEmailFormat' | translate
       }"
-    ></pu-field-errors>
+    />
 
     <pu-phone-field
       class="pu-form__field"
@@ -123,7 +116,7 @@
       [puCountryCodePlaceholder]="'fieldPlaceholder.countryCode' | translate"
       [puNumberPlaceholder]="'fieldPlaceholder.phoneNumber' | translate"
       formControlName="phone"
-    ></pu-phone-field>
+    />
 
     <pu-field-errors
       class="pu-form__field-errors"
@@ -134,13 +127,13 @@
         phoneNumberRequired: 'fieldError.phoneNumberIsMissing' | translate,
         phoneNumberFormat: 'fieldError.incorrectPhoneNumberFormat' | translate
       }"
-    ></pu-field-errors>
+    />
 
     <pu-checkbox-field
       class="pu-form__field"
       [puLabel]="'allowedItemsConfirmationText' | translate"
       formControlName="allowedItemsConfirmation"
-    ></pu-checkbox-field>
+    />
 
     <div class="checkboxes-spacer"></div>
 
@@ -148,18 +141,16 @@
       class="pu-form__field"
       [puLabel]="'noServiceResponsibilityConfirmationText' | translate"
       formControlName="noServiceResponsibilityConfirmation"
-    ></pu-checkbox-field>
+    />
 
-    <ng-container *ngIf="_state$ | async as state">
-      <button
-        class="pu-form__submit-button"
-        puAccentButton
-        [isLoading]="state.isLoading"
-        [disabled]="_sendParcelForm.invalid || state.isLoading"
-        type="submit"
-      >
-        <span>{{ "actionLabel.createApplication" | translate }}</span>
-      </button>
-    </ng-container>
+    <button
+      class="pu-form__submit-button"
+      puAccentButton
+      [isLoading]="state.isLoading"
+      [disabled]="_sendParcelForm.invalid || state.isLoading"
+      type="submit"
+    >
+      <span>{{ "actionLabel.createApplication" | translate }}</span>
+    </button>
   </form>
-</ng-container>
+}
