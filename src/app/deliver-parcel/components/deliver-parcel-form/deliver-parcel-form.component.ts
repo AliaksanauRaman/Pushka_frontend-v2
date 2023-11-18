@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { AsyncPipe } from '@angular/common';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { tap } from 'rxjs';
 
 import { FieldErrorsComponent } from '@shared/components/field-errors/field-errors.component';
 import { PlaceFieldComponent } from '@shared/components/place-field/place-field.component';
@@ -17,21 +19,27 @@ import { PhoneFieldComponent } from '@shared/components/phone-field/phone-field.
 import { CheckboxFieldComponent } from '@shared/components/checkbox-field/checkbox-field.component';
 import { AccentButtonComponent } from '@shared/components/accent-button/accent-button.component';
 
+import { DeliverParcelFormService } from './deliver-parcel-form.service';
 import { PlacesService } from '@shared/services/places/places.service';
 
+import { DELIVER_PARCEL_FORM_CONFIG } from './deliver-parcel-form.config';
 import { CustomValidators } from '@shared/validators';
 import { Place } from '@shared/types/place';
 import { DateRange } from '@shared/types/date-range';
 import { Phone } from '@shared/types/phone';
+import { ValidDeliverParcelFormValue } from '@shared/types/valid-deliver-parcel-form-value';
 
 @Component({
   selector: 'pu-deliver-parcel-form',
   templateUrl: './deliver-parcel-form.component.html',
-  styleUrls: ['./deliver-parcel-form.component.scss'],
+  styleUrls: [
+    '../../../styles/components/_form.component.scss',
+    './deliver-parcel-form.component.scss',
+  ],
+  providers: [DeliverParcelFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    NgIf,
     AsyncPipe,
     ReactiveFormsModule,
     TranslateModule,
@@ -48,11 +56,30 @@ import { Phone } from '@shared/types/phone';
 })
 export class DeliverParcelFormComponent {
   private readonly _formBuilder = inject(NonNullableFormBuilder);
-  protected readonly _places$ = inject(PlacesService).translatedPlaces$;
+  private readonly _service = inject(DeliverParcelFormService);
+  protected readonly _config = inject(DELIVER_PARCEL_FORM_CONFIG);
+  protected readonly _places = toSignal(
+    inject(PlacesService).translatedPlaces$
+  );
+
+  protected readonly _state$ = this._service.state$.pipe(
+    tap((state) => {
+      if (state.isSuccess) {
+        return;
+      }
+
+      if (state.isLoading) {
+        this._deliverParcelForm.disable();
+      } else {
+        this._deliverParcelForm.enable();
+      }
+    })
+  );
 
   protected readonly _deliverParcelForm = this._formBuilder.group({
     departurePlace: [null as Place | null, [Validators.required]],
     destination: [null as Place | null, Validators.required],
+    // TODO Naming
     validityPeriod: [
       null as DateRange | null,
       CustomValidators.requiredDateRange,
@@ -70,6 +97,8 @@ export class DeliverParcelFormComponent {
       return;
     }
 
-    console.log(this._deliverParcelForm.getRawValue());
+    this._service.handleValidDeliverParcelFormSubmit(
+      new ValidDeliverParcelFormValue(this._deliverParcelForm.getRawValue())
+    );
   }
 }
