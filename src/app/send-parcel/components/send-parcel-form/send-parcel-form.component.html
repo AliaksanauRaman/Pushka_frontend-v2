@@ -1,148 +1,148 @@
-@if (_state$ | async; as state) {
-  <form
-    class="pu-form"
-    [formGroup]="_sendParcelForm"
-    (ngSubmit)="handleSendParcelFormSubmit()"
-  >
-    @if (_places(); as places) {
-      <pu-place-field
-        class="pu-form__field"
-        [puLabel]="'fieldLabel.departurePlace' | translate"
-        [puPlaceholder]="'fieldPlaceholder.departurePlace' | translate"
-        [places]="places"
-        formControlName="departurePlace"
-      />
-
-      <pu-field-errors
-        class="pu-form__field-errors"
-        [areErrorsVisible]="_sendParcelForm.controls.departurePlace.touched"
-        [errors]="_sendParcelForm.controls.departurePlace.errors"
-        [errorsMappings]="{
-          required: 'fieldError.departurePlaceIsRequired' | translate
-        }"
-      />
-
-      <pu-place-field
-        class="pu-form__field"
-        [puLabel]="'fieldLabel.destination' | translate"
-        [puPlaceholder]="'fieldPlaceholder.destination' | translate"
-        [places]="places"
-        formControlName="destination"
-      />
-
-      <pu-field-errors
-        class="pu-form__field-errors"
-        [areErrorsVisible]="_sendParcelForm.controls.destination.touched"
-        [errors]="_sendParcelForm.controls.destination.errors"
-        [errorsMappings]="{
-          required: 'fieldError.destinationIsRequired' | translate
-        }"
-      />
-    }
-
-    <pu-date-field
+<form
+  class="pu-form"
+  [formGroup]="_sendParcelForm"
+  (ngSubmit)="handleSendParcelFormSubmit()"
+>
+  @if (_places(); as places) {
+    <pu-place-field
       class="pu-form__field"
-      [puLabel]="'fieldLabel.applicationIsValidUntil' | translate"
-      [puPlaceholder]="'fieldPlaceholder.date' | translate"
-      formControlName="applicationIsValidUntil"
+      [puLabel]="'fieldLabel.departurePlace' | translate"
+      [puPlaceholder]="'fieldPlaceholder.departurePlace' | translate"
+      [places]="places"
+      formControlName="departurePlace"
     />
 
     <pu-field-errors
       class="pu-form__field-errors"
-      [areErrorsVisible]="
-        _sendParcelForm.controls.applicationIsValidUntil.touched
-      "
-      [errors]="_sendParcelForm.controls.applicationIsValidUntil.errors"
+      [areErrorsVisible]="_sendParcelForm.controls.departurePlace.touched"
+      [errors]="_sendParcelForm.controls.departurePlace.errors"
       [errorsMappings]="{
+        required: 'fieldError.departurePlaceIsRequired' | translate
+      }"
+    />
+
+    <pu-place-field
+      class="pu-form__field"
+      [puLabel]="'fieldLabel.destination' | translate"
+      [puPlaceholder]="'fieldPlaceholder.destination' | translate"
+      [places]="places"
+      formControlName="destination"
+    />
+
+    <pu-field-errors
+      class="pu-form__field-errors"
+      [areErrorsVisible]="_sendParcelForm.controls.destination.touched"
+      [errors]="_sendParcelForm.controls.destination.errors"
+      [errorsMappings]="{
+        required: 'fieldError.destinationIsRequired' | translate
+      }"
+    />
+  }
+
+  <pu-date-field
+    class="pu-form__field"
+    [puLabel]="'fieldLabel.applicationIsValidUntil' | translate"
+    [puPlaceholder]="'fieldPlaceholder.date' | translate"
+    formControlName="applicationIsValidUntil"
+  />
+
+  <pu-field-errors
+    class="pu-form__field-errors"
+    [areErrorsVisible]="
+      _sendParcelForm.controls.applicationIsValidUntil.touched
+    "
+    [errors]="_sendParcelForm.controls.applicationIsValidUntil.errors"
+    [errorsMappings]="{
           required: 'fieldError.applicationIsValidUntilIsRequired' | translate,
         }"
-    />
+  />
 
-    <pu-textarea-field
-      class="pu-form__field"
-      [puLabel]="'fieldLabel.description' | translate"
-      [puPlaceholder]="'fieldPlaceholder.description' | translate"
-      [puMaxLength]="_config.descriptionMaxLength"
-      formControlName="description"
-    />
+  <pu-textarea-field
+    class="pu-form__field"
+    [puLabel]="'fieldLabel.description' | translate"
+    [puPlaceholder]="'fieldPlaceholder.description' | translate"
+    [puMaxLength]="_config.descriptionMaxLength"
+    formControlName="description"
+  />
 
-    <pu-field-errors
-      class="pu-form__field-errors"
-      [areErrorsVisible]="_sendParcelForm.controls.description.touched"
-      [errors]="_sendParcelForm.controls.description.errors"
-      [errorsMappings]="{
+  <pu-field-errors
+    class="pu-form__field-errors"
+    [areErrorsVisible]="_sendParcelForm.controls.description.touched"
+    [errors]="_sendParcelForm.controls.description.errors"
+    [errorsMappings]="{
           required: 'fieldError.descriptionIsRequired' | translate,
         }"
-    />
+  />
 
-    <pu-text-field
-      class="pu-form__field"
-      [puLabel]="'fieldLabel.fullName' | translate"
-      [puPlaceholder]="'fieldPlaceholder.fullName' | translate"
-      [puMaxLength]="_config.fullNameMaxLength"
-      formControlName="fullName"
-    />
+  <pu-text-field
+    class="pu-form__field"
+    [puLabel]="'fieldLabel.fullName' | translate"
+    [puPlaceholder]="'fieldPlaceholder.fullName' | translate"
+    [puMaxLength]="_config.fullNameMaxLength"
+    formControlName="fullName"
+  />
 
-    <pu-field-errors
-      class="pu-form__field-errors"
-      [areErrorsVisible]="_sendParcelForm.controls.fullName.touched"
-      [errors]="_sendParcelForm.controls.fullName.errors"
-      [errorsMappings]="{
-        required: 'fieldError.fullNameIsRequired' | translate
-      }"
-    />
+  <pu-field-errors
+    class="pu-form__field-errors"
+    [areErrorsVisible]="_sendParcelForm.controls.fullName.touched"
+    [errors]="_sendParcelForm.controls.fullName.errors"
+    [errorsMappings]="{
+      required: 'fieldError.fullNameIsRequired' | translate
+    }"
+  />
 
-    <pu-email-field
-      class="pu-form__field"
-      [puLabel]="'fieldLabel.email' | translate"
-      [puPlaceholder]="'fieldPlaceholder.email' | translate"
-      [puMaxLength]="_config.emailMaxLength"
-      formControlName="email"
-    />
+  <pu-email-field
+    class="pu-form__field"
+    [puLabel]="'fieldLabel.email' | translate"
+    [puPlaceholder]="'fieldPlaceholder.email' | translate"
+    [puMaxLength]="_config.emailMaxLength"
+    formControlName="email"
+  />
 
-    <pu-field-errors
-      class="pu-form__field-errors"
-      [areErrorsVisible]="_sendParcelForm.controls.email.touched"
-      [errors]="_sendParcelForm.controls.email.errors"
-      [errorsMappings]="{
-        required: 'fieldError.emailIsRequired' | translate,
-        emailFormat: 'fieldError.incorrectEmailFormat' | translate
-      }"
-    />
+  <pu-field-errors
+    class="pu-form__field-errors"
+    [areErrorsVisible]="_sendParcelForm.controls.email.touched"
+    [errors]="_sendParcelForm.controls.email.errors"
+    [errorsMappings]="{
+      required: 'fieldError.emailIsRequired' | translate,
+      emailFormat: 'fieldError.incorrectEmailFormat' | translate
+    }"
+  />
 
-    <pu-phone-field
-      class="pu-form__field"
-      [puLabel]="'fieldLabel.notRequiredPhone' | translate"
-      [puCountryCodePlaceholder]="'fieldPlaceholder.countryCode' | translate"
-      [puNumberPlaceholder]="'fieldPlaceholder.phoneNumber' | translate"
-      formControlName="phone"
-    />
+  <pu-phone-field
+    class="pu-form__field"
+    [puLabel]="'fieldLabel.notRequiredPhone' | translate"
+    [puCountryCodePlaceholder]="'fieldPlaceholder.countryCode' | translate"
+    [puNumberPlaceholder]="'fieldPlaceholder.phoneNumber' | translate"
+    formControlName="phone"
+  />
 
-    <pu-field-errors
-      class="pu-form__field-errors"
-      [areErrorsVisible]="_sendParcelForm.controls.phone.touched"
-      [errors]="_sendParcelForm.controls.phone.errors"
-      [errorsMappings]="{
-        countryCodeRequired: 'fieldError.countryCodeIsMissing' | translate,
-        phoneNumberRequired: 'fieldError.phoneNumberIsMissing' | translate,
-        phoneNumberFormat: 'fieldError.incorrectPhoneNumberFormat' | translate
-      }"
-    />
+  <pu-field-errors
+    class="pu-form__field-errors"
+    [areErrorsVisible]="_sendParcelForm.controls.phone.touched"
+    [errors]="_sendParcelForm.controls.phone.errors"
+    [errorsMappings]="{
+      countryCodeRequired: 'fieldError.countryCodeIsMissing' | translate,
+      phoneNumberRequired: 'fieldError.phoneNumberIsMissing' | translate,
+      phoneNumberFormat: 'fieldError.incorrectPhoneNumberFormat' | translate
+    }"
+  />
 
-    <pu-checkbox-field
-      class="pu-form__field"
-      [puLabel]="'allowedItemsConfirmationText' | translate"
-      formControlName="allowedItemsConfirmation"
-    />
+  <pu-checkbox-field
+    class="pu-form__field"
+    [puLabel]="'allowedItemsConfirmationText' | translate"
+    formControlName="allowedItemsConfirmation"
+  />
 
-    <div class="checkboxes-spacer"></div>
+  <div class="checkboxes-spacer"></div>
 
-    <pu-checkbox-field
-      class="pu-form__field"
-      [puLabel]="'noServiceResponsibilityConfirmationText' | translate"
-      formControlName="noServiceResponsibilityConfirmation"
-    />
-
+  <pu-checkbox-field
+    class="pu-form__field"
+    [puLabel]="'noServiceResponsibilityConfirmationText' | translate"
+    formControlName="noServiceResponsibilityConfirmation"
+  />
+  
+  @if (_state$ | async; as state) {
     <button
       class="pu-form__submit-button"
       puAccentButton
@@ -152,5 +152,5 @@
     >
       <span>{{ "actionLabel.createApplication" | translate }}</span>
     </button>
-  </form>
-}
+  }
+</form>
