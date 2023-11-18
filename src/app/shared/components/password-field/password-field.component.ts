@@ -8,7 +8,7 @@ import {
 import { NgOptimizedImage } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { DisabledDirective } from '@shared/directives/disabled.directive';
+import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
@@ -32,7 +32,7 @@ type PasswordFieldType = 'password' | 'text';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgOptimizedImage, DisabledDirective],
+  imports: [NgOptimizedImage, IconButtonComponent],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
@@ -57,6 +57,9 @@ export class PasswordFieldComponent extends BaseTextFieldDirective {
   );
   protected readonly _eyeIconAlt = computed(() =>
     this._fieldType() === 'password' ? 'Eye' : 'Eye off'
+  );
+  protected readonly _toggleVisibilityButtonAriaLabel = computed(() =>
+    this._fieldType() === 'password' ? 'Show password' : 'Hide password'
   );
 
   protected toggleVisibility(): void {
