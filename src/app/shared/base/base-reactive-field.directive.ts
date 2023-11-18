@@ -1,4 +1,4 @@
-import { Directive, HostBinding, signal } from '@angular/core';
+import { Directive, signal } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 
 import { BaseDestroyer } from '@shared/base/base-destroyer';
@@ -8,11 +8,6 @@ export abstract class BaseReactiveFieldDirective<T>
   extends BaseDestroyer
   implements ControlValueAccessor
 {
-  @HostBinding('class.pu-disabled')
-  public get hasPuDisabledClass(): boolean {
-    return this._isDisabled();
-  }
-
   protected readonly _isDisabled = signal(false);
   protected _isTouched = false;
 

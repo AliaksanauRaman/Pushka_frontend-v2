@@ -9,23 +9,6 @@
   }
 }
 
-:host-context(.pu-form__field.pu-disabled) {
-  .pu-label {
-    color: var(--disabled-text-color);
-  }
-
-  .pu-field {
-    color: var(--disabled-text-color);
-    background-color: var(--disabled-field-color);
-    border-color: var(--disabled-field-color);
-    box-shadow: none;
-
-    &::placeholder {
-      color: var(--disabled-text-color);
-    }
-  }
-}
-
 :host {
   display: block;
 }
