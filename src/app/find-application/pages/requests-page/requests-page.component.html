@@ -5,7 +5,7 @@
     </div>
   } @else if (state.helpRequestsList) {
     <div class="content-view">
-      @if (state.helpRequestsList.value.length; as applicationsCount) {
+      @if (state.helpRequestsList.content.length; as applicationsCount) {
         <pu-filter-by-place-field
           class="filter-by-place"
           [value]="_service.filterByPlaceValue()"

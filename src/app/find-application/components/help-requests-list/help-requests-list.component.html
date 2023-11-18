@@ -1,4 +1,4 @@
-@for (helpRequest of _helpRequestsList().value; track helpRequest.id) {
+@for (helpRequest of _helpRequestsList().content; track helpRequest.id) {
   <pu-help-request-card
     class="application-card"
     [isMine]="_user()?.id === helpRequest.userId"

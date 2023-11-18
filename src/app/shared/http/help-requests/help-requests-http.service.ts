@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 import { IHelpRequestsHttpService } from './help-requests-http.interface';
 import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
 import { BaseHttpService } from '@shared/base/base-http.service';
-import { HelpRequestsList } from '@shared/types/help-request';
+import { Pageable } from '@shared/types/pageable';
+import { HelpRequest } from '@shared/types/help-request';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 import { CreateHelpRequestDto } from '@shared/dtos/create-help-request.dto';
 
@@ -20,7 +21,7 @@ export class HelpRequestsHttpService
 
   public getPublished(
     filterValue: FilterByPlaceValue
-  ): Observable<HelpRequestsList> {
+  ): Observable<Pageable<HelpRequest>> {
     const cityFromId = filterValue.departurePlace?.cityId;
     const cityToId = filterValue.destination?.cityId;
 
@@ -37,8 +38,8 @@ export class HelpRequestsHttpService
       httpParams = httpParams.append('cityToId', cityToId);
     }
 
-    return this._httpClient.get<HelpRequestsList>(
-      `${this._helpRequestsEndpoint}/published`,
+    return this._httpClient.get<Pageable<HelpRequest>>(
+      `${this._helpRequestsEndpoint}`,
       {
         params: httpParams,
       }

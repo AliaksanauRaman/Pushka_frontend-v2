@@ -8,12 +8,13 @@ import { PlacesService } from '@shared/services/places/places.service';
 import { FilterByPlaceQueryService } from '../../services/filter-by-place-query/filter-by-place-query.service';
 
 import { BaseStateService } from '@shared/base/base-state.service';
-import { HelpRequestsList } from '@shared/types/help-request';
+import { Pageable } from '@shared/types/pageable';
+import { HelpRequest } from '@shared/types/help-request';
 import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
 
 type RequestsPageState = {
   isLoading: boolean;
-  helpRequestsList: HelpRequestsList | null;
+  helpRequestsList: Pageable<HelpRequest> | null;
   responseErrorMessage: string;
 };
 
