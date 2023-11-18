@@ -10,11 +10,6 @@
 .pu-field {
   height: var(--base-field-height);
   padding: 0 48px 0 var(--base-field-padding);
-
-  &:disabled {
-    color: var(--disabled-field-text-color);
-    background-color: var(--disabled-field-color);
-  }
 }
 
 .clear-button {

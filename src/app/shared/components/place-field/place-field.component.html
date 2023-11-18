@@ -1,7 +1,10 @@
 @if (_state(); as state) {
-  <label class="pu-label" [for]="_idDirective.id()">{{
-    _labelDirective.label()
-  }}</label>
+  <label
+    class="pu-label"
+    [class.pu-label--disabled]="_isDisabled()"
+    [for]="_idDirective.id()"
+    >{{ _labelDirective.label() }}</label
+  >
 
   <div
     #overlayOrigin="cdkOverlayOrigin"
@@ -16,7 +19,7 @@
       [placeholder]="_placeholderDirective.placeholder()"
       [value]="state.fieldValue"
       puDisabled
-      [disabled]="state.allPlaces.length === 0"
+      [disabled]="_isDisabled() || state.allPlaces.length === 0"
       type="text"
       (focus)="openPanel()"
       (input)="_service.handleFieldInput(fieldRef.value)"
@@ -25,6 +28,8 @@
     @if (state.isClearAvailable) {
       <button
         class="clear-button"
+        puDisabled
+        [disabled]="_isDisabled()"
         type="button"
         aria-label="Clear place field text"
         (click)="_service.handleClear()"
@@ -36,7 +41,9 @@
           height="24"
         />
       </button>
-    } @if (!state.isClearAvailable) {
+    }
+    
+    @if (!state.isClearAvailable) {
       <img
         class="caret-icon"
         [class.caret-icon--rotated]="_isPanelOpened()"
@@ -67,7 +74,9 @@
           <span>{{ place | translatedPlaceView }}</span>
         </button>
       } @empty {
-        <div puPanelItem [isPlaceholder]="true">{{ 'noMatchesFound' | translate }}</div>
+        <div puPanelItem [isPlaceholder]="true">
+          {{ "noMatchesFound" | translate }}
+        </div>
       }
     </pu-panel>
   </ng-template>
