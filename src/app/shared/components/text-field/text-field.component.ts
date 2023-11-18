@@ -29,6 +29,7 @@ import { BaseTextFieldDirective } from '@shared/base/base-text-field.directive';
   ],
 })
 export class TextFieldComponent extends BaseTextFieldDirective {
+  // TODO: Remove
   @Input()
   public set isCapitalized(value: boolean) {
     this._isCapitalized.set(value);
