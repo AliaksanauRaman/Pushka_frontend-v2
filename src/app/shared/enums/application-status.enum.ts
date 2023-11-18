@@ -1,5 +1,5 @@
 export enum ApplicationStatus {
-  PUBLISHED = 'published',
-  PENDING = 'pending',
-  DELETED = 'deleted',
+  PUBLISHED = 'PUBLISHED',
+  PENDING = 'PENDING',
+  DELETED = 'DELETED',
 }
