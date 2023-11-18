@@ -9,7 +9,6 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { DialogModule } from '@angular/cdk/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxsModule } from '@ngxs/store';
-import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { CoreTranslateModule } from '@core/translate/core-translate.module';
 
 import { authorizationInterceptor } from '@core/interceptors/authorization.interceptor';
@@ -26,10 +25,6 @@ export const APP_CONFIG: ApplicationConfig = {
       DialogModule,
       MatSnackBarModule,
       NgxsModule.forRoot(STORE, { developmentMode: !environment.isProduction }),
-      NgxsLoggerPluginModule.forRoot({
-        collapsed: false,
-        disabled: environment.isProduction,
-      }),
       CoreTranslateModule
     ),
     provideRouter(appRoutes, withPreloading(PreloadAllModules)),
