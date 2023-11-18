@@ -1,16 +1,6 @@
 :host {
   display: flex;
   flex-direction: column;
-
-  &.pu-disabled {
-    .date-view-input {
-      color: var(--disabled-text-color);
-
-      &::placeholder {
-        color: var(--disabled-text-color);
-      }
-    }
-  }
 }
 
 .pu-field {
@@ -37,6 +27,14 @@
 
   &::placeholder {
     color: var(--field-placeholder-color);
+  }
+
+  &:disabled {
+    color: var(--disabled-text-color);
+
+    &::placeholder {
+      color: var(--disabled-text-color);
+    }
   }
 }
 

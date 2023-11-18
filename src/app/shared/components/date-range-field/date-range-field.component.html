@@ -1,4 +1,8 @@
-<label class="pu-label" [for]="_idDirective.id()">
+<label
+  class="pu-label"
+  [class.pu-label--disabled]="_isDisabled()"
+  [for]="_idDirective.id()"
+>
   <span>{{ _labelDirective.label() }}</span>
 </label>
 
@@ -7,6 +11,7 @@
     #fieldRef
     [id]="_idDirective.id()"
     class="pu-field"
+    [disabled]="_isDisabled()"
     type="text"
     readonly
     (focus)="dateRangePicker.open()"
@@ -17,6 +22,7 @@
     class="date-view-input date-view-input--start"
     [value]="startDateRef.value"
     [placeholder]="_startDatePlaceholder()"
+    [disabled]="_isDisabled()"
     type="text"
     tabindex="-1"
   />
@@ -33,6 +39,7 @@
     class="date-view-input date-view-input--end"
     [value]="endDateRef.value"
     [placeholder]="_endDatePlaceholder()"
+    [disabled]="_isDisabled()"
     type="text"
     tabindex="-1"
   />
