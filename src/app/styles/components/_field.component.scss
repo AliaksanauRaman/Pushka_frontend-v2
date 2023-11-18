@@ -9,23 +9,6 @@
       }
     }
   }
-
-  &.pu-disabled {
-    .pu-label {
-      color: var(--disabled-text-color);
-    }
-
-    .pu-field {
-      color: var(--disabled-text-color);
-      background-color: var(--disabled-field-color);
-      border-color: var(--disabled-field-color);
-      box-shadow: none;
-
-      &::placeholder {
-        color: var(--disabled-text-color);
-      }
-    }
-  }
 }
 
 .pu-label-and-characters-counter {
@@ -61,6 +44,10 @@
   font-size: 1.15rem;
   font-weight: 700;
   line-height: 21px;
+
+  &.pu-label--disabled {
+    color: var(--disabled-text-color);
+  }
 }
 
 .pu-field-container {
@@ -94,5 +81,16 @@
     caret-color: var(--primary-color);
     // The following property is needed to show box-shadow on ios devices
     -webkit-appearance: none;
+  }
+
+  &:disabled {
+    color: var(--disabled-text-color);
+    background-color: var(--disabled-field-color);
+    border-color: var(--disabled-field-color);
+    box-shadow: none;
+
+    &::placeholder {
+      color: var(--disabled-text-color);
+    }
   }
 }
