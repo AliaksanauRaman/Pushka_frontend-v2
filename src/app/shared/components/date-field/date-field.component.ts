@@ -21,7 +21,6 @@ import {
 import { DATE_ADAPTER_PROVIDER } from '@shared/providers/date-adapter';
 import { MAT_DATE_FORMATS_PROVIDER } from '@shared/providers/mat-date-formats';
 
-import { DisabledDirective } from '@shared/directives/disabled.directive';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
@@ -47,12 +46,7 @@ import { mapDateToUTCDate } from '@shared/utils/map-date-to-utc-date';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [
-    NgOptimizedImage,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    DisabledDirective,
-  ],
+  imports: [NgOptimizedImage, ReactiveFormsModule, MatDatepickerModule],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
@@ -85,6 +79,16 @@ export class DateFieldComponent extends BaseReactiveFieldDirective<Date | null> 
     }
 
     this.writeDate(value);
+  }
+
+  public override setDisabledState(isDisabled: boolean): void {
+    super.setDisabledState(isDisabled);
+
+    if (isDisabled) {
+      this._inputField.disable();
+    } else {
+      this._inputField.enable();
+    }
   }
 
   protected handleDateChange(event: MatDatepickerInputEvent<unknown>): void {
