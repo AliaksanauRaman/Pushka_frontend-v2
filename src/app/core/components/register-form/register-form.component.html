@@ -10,8 +10,7 @@
     [puMaxLength]="_config.fullNameMaxLength"
     [isCapitalized]="true"
     formControlName="fullName"
-  >
-  </pu-text-field>
+  />
 
   <pu-field-errors
     class="pu-form__field-errors"
@@ -20,7 +19,7 @@
     [errorsMappings]="{
       required: 'fieldError.fullNameIsRequired' | translate,
     }"
-  ></pu-field-errors>
+  />
 
   <pu-email-field
     class="pu-form__field"
@@ -28,7 +27,7 @@
     [puPlaceholder]="'fieldPlaceholder.email' | translate"
     [puMaxLength]="_config.emailMaxLength"
     formControlName="email"
-  ></pu-email-field>
+  />
 
   <pu-field-errors
     class="pu-form__field-errors"
@@ -38,7 +37,7 @@
       required: 'fieldError.emailIsRequired' | translate,
       emailFormat: 'fieldError.incorrectEmailFormat' | translate
     }"
-  ></pu-field-errors>
+  />
 
   <pu-password-field
     cdkMonitorSubtreeFocus
@@ -47,7 +46,7 @@
     [puPlaceholder]="'fieldPlaceholder.password' | translate"
     formControlName="password"
     (cdkFocusChange)="handlePasswordFieldFocusChange($event)"
-  ></pu-password-field>
+  />
 
   @if (_registerForm.controls.password; as passwordField) {
     @if (_isPasswordFieldFocused()) {
@@ -67,7 +66,7 @@
           atLeastOneLatinLetter: 'fieldError.passwordMustHaveAtLeastOneLatinLetter' | translate,
           atLeastOneNumber: 'fieldError.passwordMustHaveAtLeastOneNumber' | translate,
         }"
-      ></pu-field-errors>
+      />
     }
   }
 
@@ -76,7 +75,7 @@
     [puLabel]="'fieldLabel.passwordConfirmation' | translate"
     [puPlaceholder]="'fieldPlaceholder.passwordConfirmation' | translate"
     formControlName="passwordConfirmation"
-  ></pu-password-field>
+  />
 
   <pu-field-errors
     class="pu-form__field-errors"
@@ -86,7 +85,7 @@
       required: 'fieldError.passwordConfirmationIsRequired' | translate,
       passwordsMatch: 'fieldError.passwordsDoNotMatch' | translate
     }"
-  ></pu-field-errors>
+  />
 
   <ng-container *ngIf="state$ | async as state">
     <button
