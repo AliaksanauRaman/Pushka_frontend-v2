@@ -19,6 +19,13 @@ import { MyApplicationsList } from '@shared/types/my-application';
   selector: 'pu-my-applications-list',
   templateUrl: './my-applications-list.component.html',
   styleUrl: '../../styles/_applications-list.component.scss',
+  styles: [
+    `
+      :host {
+        height: 608px;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
