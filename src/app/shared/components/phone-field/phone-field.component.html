@@ -1,24 +1,24 @@
-<label class="pu-label" [for]="_idDirective.id()">{{
-  _labelDirective.label()
-}}</label>
+<label
+  class="pu-label"
+  [class.pu-label--disabled]="_isDisabled()"
+  [for]="_idDirective.id()"
+  >{{ _labelDirective.label() }}</label
+>
 
 <form class="phone-form" [formGroup]="_phoneForm">
   <pu-country-code-field
     class="country-code-field"
     [puPlaceholder]="_countryCodePlaceholder()"
-    [puDisabled]="_isDisabled()"
     puAriaLabel="Country code"
     formControlName="countryCode"
     (touch)="handleCountryCodeTouch()"
-  ></pu-country-code-field>
+  />
 
   <div class="pu-field-container">
     <input
       [id]="_idDirective.id()"
       class="pu-field"
       [placeholder]="_numberPlaceholder()"
-      puDisabled
-      [disabled]="_isDisabled()"
       type="tel"
       inputmode="numeric"
       pattern="[0-9]*"
@@ -26,17 +26,17 @@
       (blur)="handleNumberFieldBlur()"
     />
 
-    <button
-      class="clear-button"
-      *ngIf="_value() !== null"
-      puIconButton
-      puIconSrc="/assets/icons/gray-cross.svg"
-      puIconAlt="Cross"
-      puAriaLabel="Clear phone"
-      puDisabled
-      [disabled]="_isDisabled()"
-      type="button"
-      (click)="clearPhone()"
-    ></button>
+    @if (_value() !== null) {
+      <button
+        class="clear-button"
+        puIconButton
+        puIconSrc="/assets/icons/gray-cross.svg"
+        puIconAlt="Cross"
+        puAriaLabel="Clear phone"
+        [disabled]="_isDisabled()"
+        type="button"
+        (click)="clearPhone()"
+      ></button>
+    }
   </div>
 </form>

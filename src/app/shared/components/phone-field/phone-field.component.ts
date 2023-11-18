@@ -8,7 +8,6 @@ import {
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NgIf } from '@angular/common';
 import {
   NG_VALUE_ACCESSOR,
   NonNullableFormBuilder,
@@ -18,7 +17,6 @@ import { map, filter, tap } from 'rxjs';
 
 import { CountryCodeFieldComponent } from '@shared/components/country-code-field/country-code-field.component';
 import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
-import { DisabledDirective } from '@shared/directives/disabled.directive';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 
@@ -43,11 +41,9 @@ import { PhoneFormValue } from '@shared/types/phone-form-value';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    NgIf,
     ReactiveFormsModule,
     CountryCodeFieldComponent,
     IconButtonComponent,
-    DisabledDirective,
   ],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
@@ -111,6 +107,16 @@ export class PhoneFieldComponent extends BaseReactiveFieldDirective<Phone | null
     }
 
     this.writePhone(value);
+  }
+
+  public override setDisabledState(isDisabled: boolean): void {
+    super.setDisabledState(isDisabled);
+
+    if (isDisabled) {
+      this._phoneForm.disable();
+    } else {
+      this._phoneForm.enable();
+    }
   }
 
   protected handleCountryCodeTouch(): void {

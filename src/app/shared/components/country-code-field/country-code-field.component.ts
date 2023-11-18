@@ -2,20 +2,18 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Input,
   Output,
   computed,
   forwardRef,
   inject,
   signal,
 } from '@angular/core';
-import { NgFor, NgIf, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
 import { TranslateModule } from '@ngx-translate/core';
 import { z } from 'zod';
 
-import { DisabledDirective } from '@shared/directives/disabled.directive';
 import { AriaLabelDirective } from '@shared/directives/aria-label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
 
@@ -40,14 +38,11 @@ import { CountryCode } from '@shared/types/country-code';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    NgIf,
-    NgFor,
     NgOptimizedImage,
     CdkMenu,
     CdkMenuItem,
     CdkMenuTrigger,
     TranslateModule,
-    DisabledDirective,
   ],
   hostDirectives: [
     { directive: AriaLabelDirective, inputs: ['puAriaLabel'] },
@@ -56,11 +51,6 @@ import { CountryCode } from '@shared/types/country-code';
 })
 // TODO: Think about making it not a CVA
 export class CountryCodeFieldComponent extends BaseReactiveFieldDirective<string> {
-  @Input()
-  public set puDisabled(value: boolean) {
-    this._isDisabled.set(value);
-  }
-
   @Output()
   public readonly touch = new EventEmitter<void>();
 
@@ -100,10 +90,6 @@ export class CountryCodeFieldComponent extends BaseReactiveFieldDirective<string
   protected override touchField(): void {
     super.touchField();
     this.touch.emit();
-  }
-
-  protected trackByCountryCode(_: number, countryCode: CountryCode): string {
-    return countryCode.value;
   }
 
   protected handleCountryCodeSelect(countryCode: CountryCode): void {

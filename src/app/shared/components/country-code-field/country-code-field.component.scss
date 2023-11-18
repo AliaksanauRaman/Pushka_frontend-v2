@@ -49,6 +49,10 @@
 
 .placeholder {
   color: var(--field-placeholder-color);
+
+  &.placeholder--disabled {
+    color: var(--disabled-text-color);
+  }
 }
 
 .caret-icon {

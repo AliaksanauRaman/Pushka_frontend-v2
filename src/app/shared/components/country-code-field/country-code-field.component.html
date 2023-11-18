@@ -5,18 +5,20 @@
     [class.pu-field--active]="menuTrigger.isOpen()"
     [cdkMenuTriggerFor]="countryCodeList"
     [attr.aria-label]="_ariaLabelDirective.ariaLabel()"
-    puDisabled
     [disabled]="_isDisabled()"
     type="button"
     (cdkMenuClosed)="touchField()"
   >
-    <ng-container *ngIf="_viewValue() as value; else placeholder">
-      {{ value }}
-    </ng-container>
-
-    <ng-template #placeholder>
-      <span class="placeholder">{{ _placeholderDirective.placeholder() }}</span>
-    </ng-template>
+    @if (_viewValue(); as value) {
+      <span>{{ value }}</span>
+    } @else {
+      <span
+        class="placeholder"
+        [class.placeholder--disabled]="_isDisabled()"
+      >
+        {{ _placeholderDirective.placeholder() }}
+      </span>
+    }
   </button>
 
   <img
@@ -31,20 +33,21 @@
 
 <ng-template #countryCodeList>
   <div class="country-code-list-panel" cdkMenu>
-    <button
-      class="country-code-list-item"
-      [class.country-code-list-item--selected]="
-        _value()?.value === countryCode.value
-      "
-      *ngFor="let countryCode of _countryCodes; trackBy: trackByCountryCode"
-      cdkMenuItem
-      (cdkMenuItemTriggered)="handleCountryCodeSelect(countryCode)"
-    >
-      <span
-        >{{ countryCode.value }} ({{
-          countryCode.countryLabel | translate
-        }})</span
+    @for (countryCode of _countryCodes; track countryCode.value) {
+      <button
+        class="country-code-list-item"
+        [class.country-code-list-item--selected]="
+          _value()?.value === countryCode.value
+        "
+        cdkMenuItem
+        (cdkMenuItemTriggered)="handleCountryCodeSelect(countryCode)"
       >
-    </button>
+        <span
+          >{{ countryCode.value }} ({{
+            countryCode.countryLabel | translate
+          }})</span
+        >
+      </button>
+    }
   </div>
 </ng-template>
