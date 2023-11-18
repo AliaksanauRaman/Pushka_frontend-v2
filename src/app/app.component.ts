@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+
+import { UnderDevelopmentPageComponent } from '@core/pages/under-development-page/under-development-page.component';
 
 @Component({
   selector: 'pu-root',
@@ -7,6 +8,6 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [UnderDevelopmentPageComponent],
 })
 export class AppComponent {}
