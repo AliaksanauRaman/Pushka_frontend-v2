@@ -1,7 +1,10 @@
 <div class="pu-label-and-characters-counter">
-  <label class="pu-label" [for]="_idDirective.id()">{{
-    _labelDirective.label()
-  }}</label>
+  <label
+    class="pu-label"
+    [class.pu-label--disabled]="_isDisabled()"
+    [for]="_idDirective.id()"
+    >{{ _labelDirective.label() }}</label
+  >
 
   <div
     class="pu-characters-counter"
