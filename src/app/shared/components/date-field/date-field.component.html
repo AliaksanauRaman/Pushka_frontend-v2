@@ -1,6 +1,9 @@
-<label class="pu-label" [for]="_idDirective.id()">{{
-  _labelDirective.label()
-}}</label>
+<label
+  class="pu-label"
+  [class.pu-label--disabled]="_isDisabled()"
+  [for]="_idDirective.id()"
+  >{{ _labelDirective.label() }}</label
+>
 
 <div class="pu-field-container">
   <input
@@ -12,6 +15,8 @@
     [max]="_maxDate()"
     [placeholder]="_placeholderDirective.placeholder()"
     [formControl]="_inputField"
+    puDisabled
+    [disabled]="_isDisabled()"
     type="text"
     readonly
     (focus)="datepicker.open()"
