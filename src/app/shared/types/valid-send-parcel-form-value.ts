@@ -1,13 +1,13 @@
 import { Place } from './place';
-import { DateRange } from './date-range';
 import { Phone } from './phone';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 import { CreateHelpRequestDto } from '@shared/dtos/create-help-request.dto';
+import { mapDateToUTCDate } from '@shared/utils/map-date-to-utc-date';
 
 type RawSendParcelFormValue = Readonly<{
   departurePlace: Place | null;
   destination: Place | null;
-  validityPeriod: DateRange | null;
+  applicationIsValidUntil: Date | null
   description: string;
   fullName: string;
   email: string;
@@ -20,8 +20,7 @@ type RawSendParcelFormValue = Readonly<{
 export class ValidSendParcelFormValue {
   public readonly departurePlace: Place;
   public readonly destination: Place;
-  public readonly validityPeriodStart: Date;
-  public readonly validityPeriodEnd: Date;
+  public readonly applicationIsValidUntil: Date;
   public readonly description: string;
   public readonly fullName: string;
   public readonly email: string;
@@ -32,7 +31,7 @@ export class ValidSendParcelFormValue {
   constructor({
     departurePlace,
     destination,
-    validityPeriod,
+    applicationIsValidUntil,
     description,
     fullName,
     email,
@@ -42,8 +41,7 @@ export class ValidSendParcelFormValue {
   }: RawSendParcelFormValue) {
     this.departurePlace = departurePlace as Place;
     this.destination = destination as Place;
-    this.validityPeriodStart = validityPeriod?.start as Date;
-    this.validityPeriodEnd = validityPeriod?.end as Date;
+    this.applicationIsValidUntil = applicationIsValidUntil as Date;
     this.description = description;
     this.fullName = fullName;
     this.email = email;
@@ -59,8 +57,8 @@ export class ValidSendParcelFormValue {
     return new CreateHelpRequestDto(
       this.departurePlace.id,
       this.destination.id,
-      this.validityPeriodStart,
-      this.validityPeriodEnd,
+      mapDateToUTCDate(new Date()),
+      this.applicationIsValidUntil,
       this.description,
       this.fullName,
       this.email,
