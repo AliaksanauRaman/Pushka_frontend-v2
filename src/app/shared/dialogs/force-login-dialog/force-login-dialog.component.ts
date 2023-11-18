@@ -5,7 +5,7 @@ import {
   computed,
   inject,
 } from '@angular/core';
-import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { DIALOG_DATA } from '@angular/cdk/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
@@ -21,6 +21,8 @@ import {
   DialogTabsService,
 } from '@shared/services/dialog-tabs/dialog-tabs.service';
 
+import { BaseDialogComponent } from '@shared/base/base-dialog.component';
+import { ForceLoginDialogResult } from '@shared/types/force-login-dialog-result';
 import { ForceLoginDialogData } from '@shared/types/force-login-dialog-data';
 
 @Component({
@@ -48,10 +50,12 @@ import { ForceLoginDialogData } from '@shared/types/force-login-dialog-data';
     RegisterFormComponent,
   ],
 })
-export class ForceLoginDialogComponent implements OnInit {
-  private readonly _dialogRef = inject(DialogRef);
+export class ForceLoginDialogComponent
+  extends BaseDialogComponent<ForceLoginDialogResult>
+  implements OnInit
+{
   private readonly _snackBarService = inject(SnackBarService);
-  protected readonly _data: ForceLoginDialogData = inject(DIALOG_DATA);
+  protected readonly _data = inject<ForceLoginDialogData>(DIALOG_DATA);
   protected readonly _dialogTabsService = inject(DialogTabsService);
 
   protected readonly _isFirstTabActive = computed(() => {
@@ -66,17 +70,13 @@ export class ForceLoginDialogComponent implements OnInit {
     this._dialogTabsService.activateFirstTab();
   }
 
-  protected closeDialog(): void {
-    this._dialogRef.close();
-  }
-
   protected handleSuccessLogin(): void {
-    this.closeDialog();
+    this.closeDialog('success-login');
     this._snackBarService.showSuccessMessage('successLoginMessage');
   }
 
   protected handleSuccessRegister(): void {
-    this.closeDialog();
+    this.closeDialog('success-register');
     this._snackBarService.showImportantMessage('successRegisterMessage');
   }
 }
