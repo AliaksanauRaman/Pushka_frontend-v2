@@ -1,9 +1,15 @@
 {
+  "passwordHint": "Мінімум 8 знакаў, улучаючы лацінскія літары і лічбы",
   "actionLabel": {
     "login": "Увайсці",
     "logout": "Выйсці",
     "register": "Зарэгістравацца",
-    "createApplication": "Стварыць заяўку"
+    "createApplication": "Стварыць заяўку",
+    "contacts": "Кантакты",
+    "ok": "Добра",
+    "clearFilter": "Ачысціць фільтр",
+    "delete": "Выдаліць",
+    "cancel": "Адмяніць"
   },
   "navigationLabel": {
     "sendParcel": "Адправіць пасылку",
@@ -20,9 +26,15 @@
     "accountIsNotActivated": "Акаўнт не актываваны. Калі ласка, праверце сваю электронную пошту.",
     "unknownLoginRequestError": "Невадомая памылка ўвахода ў сістэму. Калі ласка, паўтарыце спробу пазней."
   },
+  "myApplications": {
+    "all": "Усе",
+    "request": "Мае запыты",
+    "offer": "Мае прапановы"
+  },
   "fieldError": {
     "departurePlaceIsRequired": "Абярыце варыянт з спісу",
     "destinationIsRequired": "Абярыце варыянт з спісу",
+    "applicationIsValidUntilIsRequired": "Дата сканчэння тэрміну дзеяння заяўкі абавязковая",
     "validityPeriodStartDateIsRequired": "Дата пачатку тэрміну дзеяння абавязковая",
     "validityPeriodEndDateIsRequired": "Дата сканчэння тэрміну дзеяння абавязковая",
     "descriptionIsRequired": "Апісанне абавязковае",
@@ -33,7 +45,7 @@
     "passwordIsTooShort": "Мінімальная дліна паролю: {{ requiredLength }}. Бягучая дліна: {{ actualLength }}.",
     "passwordIsTooLong": "Максімальная дліна паролю: {{ requiredLength }}. Бягучая дліна: {{ actualLength }}.",
     "passwordMustHaveAtLeastOneLatinLetter": "Пароль павінен ўтрымваць мінімум адну лацінскую літару",
-    "passwordMustHaveAtLeastOneDigit": "Пароль павінен ўтрымваць мінімум адну лічбу",
+    "passwordMustHaveAtLeastOneNumber": "Пароль павінен ўтрымваць мінімум адну лічбу",
     "passwordConfirmationIsRequired": "Пацверджанне пароля абавязковае",
     "passwordsDoNotMatch": "Паролі не супадаюць",
     "countryCodeIsMissing": "Прапушчаны код краіны",
@@ -49,11 +61,13 @@
     "email": "Электронная пошта",
     "notRequiredPhone": "Нумар тэлефону (неабавязкова)",
     "password": "Пароль",
-    "passwordConfirmation": "Пацверджанне пароля"
+    "passwordConfirmation": "Пацверджанне пароля",
+    "applicationIsValidUntil": "Заяўка дзейная да"
   },
   "fieldPlaceholder": {
     "departurePlace": "Абярыце горад",
     "destination": "Абярыце горад",
+    "date": "Абярыце дату",
     "validityPeriodStartDate": "Ад",
     "validityPeriodEndDate": "Да",
     "description": "Апісанне",
@@ -106,5 +120,23 @@
     "other": "Іншы горад"
   },
   "allowedItemsConfirmationText": "Я пацвярджаю, што мая пасылка не ўтрымвае забароненых рэчываў і тавараў, а яе транспартацыя не парушае законаў краін-удзельніц",
-  "noServiceResponsibilityConfirmationText": "Я разумею, што сэрвіс не нясе адказнасці за якасць пагаднення"
+  "noServiceResponsibilityConfirmationText": "Я разумею, што сэрвіс не нясе адказнасці за якасць пагаднення",
+  "emptyDeliveryOffersListMessage": "Упс, падаецца, яшчэ не было створана ні воднай прапановы дапамогі ў дастаўке. Вы можаце стаць першым і зрабіць сваю прапанову, націснуў на",
+  "emptyHelpRequestsListMessage": "Упс, падаецца, яшчэ не было створана ні воднага запыта. Вы можаце стаць першым і стварыць запыт, націснуў на",
+  "emptyMyApplicationsListMessage": "У вас яшчэ няма сваіх заявак.",
+  "inOrderToCreateAnApplication": "Каб стварыць заяўку",
+  "or": "ці",
+  "callToAction": {
+    "sendParcel": "Адпраўце пасылку",
+    "deliverParcel": "Дастаўце пасылку"
+  },
+  "successLoginMessage": "Уваход у сістэму прайшоў паспяхова!",
+  "successRegisterMessage": "Рэгістрацыя прайшла паспяхова! Каб актываваць акаўнт падтвердзіце электронную пошту.",
+  "applicationsCount": "{{ count }} заявак",
+  "applicationIsValidUntil": "Заяўка дзейная да",
+  "deleteApplicationDialog": {
+    "title": "Выдаліць заяўку",
+    "message": "Вы сапраўды жадаеце выділіць Вашу заяўку?"
+  },
+  "noMatchesFound": "Супадзенняў не знойдзена."
 }

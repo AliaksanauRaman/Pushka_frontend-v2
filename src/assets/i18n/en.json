@@ -1,9 +1,15 @@
 {
+  "passwordHint": "Minimum of 8 characters, including Latin letters and numbers",
   "actionLabel": {
     "login": "Log in",
     "logout": "Log out",
     "register": "Register",
-    "createApplication": "Create application"
+    "createApplication": "Create application",
+    "contacts": "Contacts",
+    "ok": "Ok",
+    "clearFilter": "Clear filter",
+    "delete": "Delete",
+    "cancel": "Cancel"
   },
   "navigationLabel": {
     "sendParcel": "Send parcel",
@@ -20,9 +26,15 @@
     "accountIsNotActivated": "Account is not activated. Please, check your email.",
     "unknownLoginRequestError": "An unknown error has occurred during the log in process. Please, try again later."
   },
+  "myApplications": {
+    "all": "All",
+    "request": "My requests",
+    "offer": "My offers"
+  },
   "fieldError": {
     "departurePlaceIsRequired": "Select an option from the list",
     "destinationIsRequired": "Select an option from the list",
+    "applicationIsValidUntilIsRequired": "Application validity period end date is required",
     "validityPeriodStartDateIsRequired": "The start date of the validity period is required",
     "validityPeriodEndDateIsRequired": "The end date of the validity period is required",
     "descriptionIsRequired": "Description is required",
@@ -32,13 +44,13 @@
     "passwordIsRequired": "Password is required",
     "passwordIsTooShort": "Minimal password length is: {{ requiredLength }}. Current length is: {{ actualLength }}.",
     "passwordIsTooLong": "Maximal password length is: {{ requiredLength }}. Current length is: {{ actualLength }}.",
-    "passwordMustHaveAtLeastOneLatinLetter": "Password must have at least one letter",
-    "passwordMustHaveAtLeastOneDigit": "Password must have at least one digit",
+    "passwordMustHaveAtLeastOneLatinLetter": "Password must have at least one Latin letter",
+    "passwordMustHaveAtLeastOneNumber": "Password must have at least one number",
     "passwordConfirmationIsRequired": "Password confirmation is required",
     "passwordsDoNotMatch": "Passwords do not match",
     "countryCodeIsMissing": "Country code is missing",
     "phoneNumberIsMissing": "Number is missing",
-    "incorrectPhoneNumberFormat": "Incorrect phone number format, only 7 to 12 digits allowed without spaces"
+    "incorrectPhoneNumberFormat": "Incorrect phone number format, only 7 to 12 numbers allowed without spaces"
   },
   "fieldLabel": {
     "departurePlace": "Departure",
@@ -49,11 +61,13 @@
     "email": "E-mail",
     "notRequiredPhone": "Phone number (not required)",
     "password": "Password",
-    "passwordConfirmation": "Password confirmation"
+    "passwordConfirmation": "Password confirmation",
+    "applicationIsValidUntil": "Application is valid until"
   },
   "fieldPlaceholder": {
     "departurePlace": "Select city",
     "destination": "Select city",
+    "date": "Choose date",
     "validityPeriodStartDate": "From",
     "validityPeriodEndDate": "To",
     "description": "Description",
@@ -106,5 +120,23 @@
     "other": "Other city"
   },
   "allowedItemsConfirmationText": "I confirm that my parcel does not contain any prohibited substances or goods and that its transportation does not violate the laws of the participating countries",
-  "noServiceResponsibilityConfirmationText": "I understand that the service is not responsible for the quality of the deal"
+  "noServiceResponsibilityConfirmationText": "I understand that the service is not responsible for the quality of the deal",
+  "emptyDeliveryOffersListMessage": "Oops, there doesn't seem to be a single offer for delivery yet. You can be the first to make one by clicking on",
+  "emptyHelpRequestsListMessage": "Oops, it seems no request has been created yet. You can be the first and create one by clicking on",
+  "emptyMyApplicationsListMessage": "You don't have your applications yet.",
+  "inOrderToCreateAnApplication": "To create an application",
+  "or": "or",
+  "callToAction": {
+    "sendParcel": "Send a parcel",
+    "deliverParcel": "Deliver a parcel"
+  },
+  "successLoginMessage": "The login was successful!",
+  "successRegisterMessage": "The registration was successful! To activate your account, please confirm your email.",
+  "applicationsCount": "{{ count }} applications",
+  "applicationIsValidUntil": "The application is valid until",
+  "deleteApplicationDialog": {
+    "title": "Delete application",
+    "message": "Do you really wish to have your application deleted?"
+  },
+  "noMatchesFound": "No matches found."
 }

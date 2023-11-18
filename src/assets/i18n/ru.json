@@ -1,9 +1,15 @@
 {
+  "passwordHint": "Минимум 8 символов, включая латинские буквы и цифры",
   "actionLabel": {
     "login": "Войти",
     "logout": "Выйти",
     "register": "Зарегистрироваться",
-    "createApplication": "Создать заявку"
+    "createApplication": "Создать заявку",
+    "contacts": "Контакты",
+    "ok": "Хорошо",
+    "clearFilter": "Очистить фильтр",
+    "delete": "Удалить",
+    "cancel": "Отменить"
   },
   "navigationLabel": {
     "sendParcel": "Отправить посылку",
@@ -20,9 +26,15 @@
     "accountIsNotActivated": "Аккаунт не активирован. Пожалуйста, проверьте свою электронную почту.",
     "unknownLoginRequestError": "Неизвестная ошибка входа в систему. Пожалуйста, повторите попытку позже."
   },
+  "myApplications": {
+    "all": "Все",
+    "request": "Мои запросы",
+    "offer": "Мои предложения"
+  },
   "fieldError": {
     "departurePlaceIsRequired": "Выберите вариант из списка",
     "destinationIsRequired": "Выберите вариант из списка",
+    "applicationIsValidUntilIsRequired": "Дата окончания действия заявки обязательна",
     "validityPeriodStartDateIsRequired": "Дата начала срока действия обязательна",
     "validityPeriodEndDateIsRequired": "Дата окончания срока действия обязательна",
     "descriptionIsRequired": "Описание обязательно",
@@ -33,7 +45,7 @@
     "passwordIsTooShort": "Минимальная длина пароля: {{ requiredLength }}. Текущая длина: {{ actualLength }}.",
     "passwordIsTooLong": "Максимальная длина пароля: {{ requiredLength }}. Текущая длина: {{ actualLength }}.",
     "passwordMustHaveAtLeastOneLatinLetter": "Пароль обязан содержать минимум одну латинскую букву",
-    "passwordMustHaveAtLeastOneDigit": "Пароль обязан содержать минимум одну цифру",
+    "passwordMustHaveAtLeastOneNumber": "Пароль обязан содержать минимум одну цифру",
     "passwordConfirmationIsRequired": "Подтверждение пароля обязательно",
     "passwordsDoNotMatch": "Пароли не совпадают",
     "countryCodeIsMissing": "Пропущен код страны",
@@ -49,11 +61,13 @@
     "email": "Электронная почта",
     "notRequiredPhone": "Номер телефона (необязательно)",
     "password": "Пароль",
-    "passwordConfirmation": "Подтверждение пароля"
+    "passwordConfirmation": "Подтверждение пароля",
+    "applicationIsValidUntil": "Заявка действительна до"
   },
   "fieldPlaceholder": {
     "departurePlace": "Выберите город",
     "destination": "Выберите город",
+    "date": "Выберите дату",
     "validityPeriodStartDate": "От",
     "validityPeriodEndDate": "До",
     "description": "Описание",
@@ -106,5 +120,23 @@
     "other": "Другой город"
   },
   "allowedItemsConfirmationText": "Я подтверждаю, что моя посылка не содержит запрещенных веществ и товаров, а ее транспортировка не нарушает законов стран-участниц",
-  "noServiceResponsibilityConfirmationText": "Я понимаю, что сервис не несет ответственности за качество сделки"
+  "noServiceResponsibilityConfirmationText": "Я понимаю, что сервис не несет ответственности за качество сделки",
+  "emptyDeliveryOffersListMessage": "Упс, кажется, еще не было ни одного предложения помощи в доставке. Вы можете стать первым и сделать свое предложение, нажав на",
+  "emptyHelpRequestsListMessage": "Упс, кажется, еще не было создано ни одного запроса. Вы можете стать первым и создать запрос, нажав на",
+  "emptyMyApplicationsListMessage": "У вас еще нет своих заявок.",
+  "inOrderToCreateAnApplication": "Чтобы создать заявку",
+  "or": "или",
+  "callToAction": {
+    "sendParcel": "Отправьте посылку",
+    "deliverParcel": "Доставьте посылку"
+  },
+  "successLoginMessage": "Вход в систему прошел успешно!",
+  "successRegisterMessage": "Регистрация прошла успешно! Чтобы активировать аккаунт подтвердите электронную почту.",
+  "applicationsCount": "{{ count }} заявок",
+  "applicationIsValidUntil": "Заявка действительна до",
+  "deleteApplicationDialog": {
+    "title": "Удалить заявку",
+    "message": "Вы действительно желаете удалить Вашу заявку?"
+  },
+  "noMatchesFound": "Совпадений не найдено."
 }
