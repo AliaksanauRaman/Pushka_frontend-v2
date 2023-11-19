@@ -1,27 +1,12 @@
-@for (deliveryOffer of _deliveryOffersList().value; track deliveryOffer.id) {
+@for (deliveryOffer of _deliveryOffersList(); track deliveryOffer.id) {
   <pu-delivery-offer-card
     class="application-card"
     [isMine]="_user()?.id === deliveryOffer.userId"
     [application]="deliveryOffer"
   />
 } @empty {
-  <div class="empty-list-view">
-    <p class="empty-list-view__message">
-      <span>{{ "emptyDeliveryOffersListMessage" | translate }}</span>
-
-      <a
-        class="navigation-link"
-        puTextLink
-        routerLink="/deliver-parcel"
-      >
-        {{ "navigationLabel.deliverParcel" | translate }}
-      </a>
-    </p>
-
-    <pu-placeholder
-      class="illustration"
-      [style.height.px]="300"
-    />
+  <div class="empty-list">
+    <p>No results found.</p>
   </div>
 }
 
@@ -34,6 +19,7 @@
     puAriaLabel="Scroll to the start of the list"
     puIconWidth="32"
     puIconHeight="32"
+    type="button"
     (click)="scrollToTop()"
   ></button>
 }

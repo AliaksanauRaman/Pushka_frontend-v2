@@ -4,17 +4,13 @@ import {
   Input,
   signal,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { DeliveryOfferCardComponent } from '../delivery-offer-card/delivery-offer-card.component';
 import { FilterByPlaceFieldComponent } from '@shared/components/filter-by-place-field/filter-by-place-field.component';
-import { TextLinkComponent } from '@shared/components/text-link/text-link.component';
-import { PlaceholderComponent } from '@shared/components/placeholder/placeholder.component';
 import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
 
 import { BaseApplicationsListComponent } from '../../base/base-applications-list/base-applications-list.component';
-import { DeliveryOffersList } from '@shared/types/delivery-offer';
+import { DeliveryOffer } from '@shared/types/delivery-offer';
 
 @Component({
   selector: 'pu-delivery-offers-list',
@@ -23,20 +19,18 @@ import { DeliveryOffersList } from '@shared/types/delivery-offer';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    RouterLink,
-    TranslateModule,
     DeliveryOfferCardComponent,
     FilterByPlaceFieldComponent,
-    TextLinkComponent,
-    PlaceholderComponent,
     IconButtonComponent,
   ],
 })
 export class DeliveryOffersListComponent extends BaseApplicationsListComponent {
   @Input({ required: true })
-  public set deliveryOffersList(value: DeliveryOffersList) {
+  public set deliveryOffersList(value: ReadonlyArray<DeliveryOffer>) {
     this._deliveryOffersList.set(value);
   }
 
-  protected readonly _deliveryOffersList = signal(new DeliveryOffersList([]));
+  protected readonly _deliveryOffersList = signal<ReadonlyArray<DeliveryOffer>>(
+    []
+  );
 }
