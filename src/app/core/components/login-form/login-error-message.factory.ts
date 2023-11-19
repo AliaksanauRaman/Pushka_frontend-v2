@@ -7,7 +7,7 @@ import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 export class LoginErrorMessageFactory {
   public build(errorResponse: unknown): string {
     if (!(errorResponse instanceof HttpErrorResponse)) {
-      return 'backendError.unknownLoginRequestError';
+      return 'backendError.unknownLoginError';
     }
 
     const { status } = errorResponse;
@@ -19,7 +19,7 @@ export class LoginErrorMessageFactory {
       case HttpStatusCode.Forbidden:
         return 'backendError.accountIsNotActivated';
       default:
-        return 'backendError.unknownLoginRequestError';
+        return 'backendError.unknownLoginError';
     }
   }
 }

@@ -9,7 +9,8 @@
     "ok": "Ok",
     "clearFilter": "Clear filter",
     "delete": "Delete",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "tryAgain": "Try again"
   },
   "navigationLabel": {
     "sendParcel": "Send parcel",
@@ -24,7 +25,8 @@
   "backendError": {
     "invalidCredentials": "Invalid email or password.",
     "accountIsNotActivated": "Account is not activated. Please, check your email.",
-    "unknownLoginRequestError": "An unknown error has occurred during the log in process. Please, try again later."
+    "unknownLoginError": "Unknown login error. Please, try again later.",
+    "unknownGetPublishedDeliveryOffersError": "Unknown error getting the list of offers. Please, try again later."
   },
   "myApplications": {
     "all": "All",
@@ -132,11 +134,15 @@
   },
   "successLoginMessage": "The login was successful!",
   "successRegisterMessage": "The registration was successful! To activate your account, please confirm your email.",
-  "applicationsCount": "{{ count }} applications",
+  "applicationsCount": "Total applications: {{ count }}",
   "applicationIsValidUntil": "The application is valid until",
   "deleteApplicationDialog": {
     "title": "Delete application",
     "message": "Do you really wish to have your application deleted?"
   },
-  "noMatchesFound": "No matches found."
+  "noMatchesFound": "No matches found.",
+  "errorView": {
+    "title": "Oops, error!",
+    "message": "Message"
+  }
 }

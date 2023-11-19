@@ -76,7 +76,7 @@ export class OffersPageService extends BaseStateService<GetPublishedDeliveryOffe
                 noFilters,
                 responseData: null,
                 responseErrorMessage:
-                  'backendError.unknownDeliveryOffersRequestError',
+                  'backendError.unknownGetPublishedDeliveryOffersError',
               });
               return throwError(() => error);
             })

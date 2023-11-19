@@ -9,7 +9,8 @@
     "ok": "Добра",
     "clearFilter": "Ачысціць фільтр",
     "delete": "Выдаліць",
-    "cancel": "Адмяніць"
+    "cancel": "Адмяніць",
+    "tryAgain": "Паспрабаваць зноў"
   },
   "navigationLabel": {
     "sendParcel": "Адправіць пасылку",
@@ -24,7 +25,8 @@
   "backendError": {
     "invalidCredentials": "Няправільны адрас электроннай пошты або пароль.",
     "accountIsNotActivated": "Акаўнт не актываваны. Калі ласка, праверце сваю электронную пошту.",
-    "unknownLoginRequestError": "Невадомая памылка ўвахода ў сістэму. Калі ласка, паўтарыце спробу пазней."
+    "unknownLoginError": "Невадомая памылка ўвахода ў сістэму. Калі ласка, паўтарыце спробу пазней.",
+    "unknownGetPublishedDeliveryOffersError": "Невадомая памылка пры атрыманні спіса прапаноў. Калі ласка, паўтарыце спробу пазней."
   },
   "myApplications": {
     "all": "Усе",
@@ -132,11 +134,15 @@
   },
   "successLoginMessage": "Уваход у сістэму прайшоў паспяхова!",
   "successRegisterMessage": "Рэгістрацыя прайшла паспяхова! Каб актываваць акаўнт падтвердзіце электронную пошту.",
-  "applicationsCount": "{{ count }} заявак",
+  "applicationsCount": "Усяго заявак: {{ count }}",
   "applicationIsValidUntil": "Заяўка дзейная да",
   "deleteApplicationDialog": {
     "title": "Выдаліць заяўку",
     "message": "Вы сапраўды жадаеце выділіць Вашу заяўку?"
   },
-  "noMatchesFound": "Супадзенняў не знойдзена."
+  "noMatchesFound": "Супадзенняў не знойдзена.",
+  "errorView": {
+    "title": "Ой, памылка!",
+    "message": "Паведамленне"
+  }
 }
