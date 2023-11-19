@@ -17,17 +17,17 @@ export class FilterByPlaceQueryService {
 
   public getValueFromQuery(
     query: Params,
-    places: ReadonlyArray<TranslatedPlace>
+    translatedPlaces: ReadonlyArray<TranslatedPlace>
   ): FilterByPlaceValue {
     const departurePlaceId = Number(query[ParamName.DEPARTURE_PLACE]);
     const departurePlace = Number.isNaN(departurePlaceId)
       ? null
-      : places.find((place) => place.id === departurePlaceId);
+      : translatedPlaces.find((place) => place.id === departurePlaceId);
 
     const destinationId = Number(query[ParamName.DESTINATION]);
     const destination = Number.isNaN(destinationId)
       ? null
-      : places.find((place) => place.id === destinationId);
+      : translatedPlaces.find((place) => place.id === destinationId);
 
     return new FilterByPlaceValue(departurePlace || null, destination || null);
   }
@@ -35,8 +35,8 @@ export class FilterByPlaceQueryService {
   public updateQuery(
     activatedRoute: ActivatedRoute,
     value: FilterByPlaceValue
-  ): void {
-    this._router.navigate([], {
+  ): Promise<boolean> {
+    return this._router.navigate([], {
       relativeTo: activatedRoute,
       queryParams: {
         [ParamName.DEPARTURE_PLACE]: value.departurePlace?.id,
@@ -46,8 +46,8 @@ export class FilterByPlaceQueryService {
     });
   }
 
-  public clearQuery(activatedRoute: ActivatedRoute): void {
-    this._router.navigate([], {
+  public clearQuery(activatedRoute: ActivatedRoute): Promise<boolean> {
+    return this._router.navigate([], {
       relativeTo: activatedRoute,
       queryParams: {},
     });
