@@ -7,10 +7,9 @@ import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
 import { BaseHttpService } from '@shared/base/base-http.service';
 import { PageableData } from '@shared/types/pageable-data';
 import { HelpRequest } from '@shared/types/help-request';
-import { PageableResponse } from '@shared/types/pageable-response';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 import { CreateHelpRequestDto } from '@shared/dtos/create-help-request.dto';
-import { mapToPageableData } from '@shared/utils/map-to-pageable-data';
+import { helpRequestsPageableData } from '@shared/unknown-types-parsers/help-requests-pageable-data';
 
 @Injectable({
   providedIn: 'root',
@@ -41,10 +40,12 @@ export class HelpRequestsHttpService
     }
 
     return this._httpClient
-      .get<PageableResponse<HelpRequest>>(`${this._helpRequestsEndpoint}`, {
+      .get<unknown>(`${this._helpRequestsEndpoint}`, {
         params: httpParams,
       })
-      .pipe(map(mapToPageableData));
+      .pipe(
+        map((responseData) => helpRequestsPageableData.parse(responseData))
+      );
   }
 
   public createOne(
