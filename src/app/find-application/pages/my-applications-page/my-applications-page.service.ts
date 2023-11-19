@@ -5,12 +5,14 @@ import { catchError, tap, throwError } from 'rxjs';
 import { MyApplicationsHttpService } from '@shared/http/my-applications/my-applications-http.service';
 
 import { BaseStateService } from '@shared/base/base-state.service';
-import { MyApplicationsList } from '@shared/types/my-application';
+import { PageableData } from '@shared/types/pageable-data';
+import { MyApplication } from '@shared/types/my-application';
 import { MyApplicationOptionType } from '@shared/enums/my-application-option-type.enum';
 
 type MyApplicationsPageState = Readonly<{
   isLoading: boolean;
-  myApplicationsList: MyApplicationsList | null;
+  isAllType: boolean;
+  responseData: PageableData<MyApplication> | null;
   responseErrorMessage: string;
 }>;
 
@@ -22,28 +24,33 @@ export class MyApplicationsPageService extends BaseStateService<MyApplicationsPa
   );
 
   public fetchAllMyApplications(type = MyApplicationOptionType.ALL): void {
+    const isAllType = type === MyApplicationOptionType.ALL;
+
     this.updateState({
       isLoading: true,
-      myApplicationsList: null,
+      isAllType,
+      responseData: null,
       responseErrorMessage: '',
     });
 
     this._myApplicationsHttpService
-      .getAll(type)
+      .get(type)
       .pipe(
-        tap((myApplicationsList) =>
+        tap((responseData) =>
           this.updateState({
             isLoading: false,
-            myApplicationsList,
+            isAllType,
+            responseData,
             responseErrorMessage: '',
           })
         ),
         catchError((error: unknown) => {
           this.updateState({
             isLoading: false,
-            myApplicationsList: null,
+            isAllType,
+            responseData: null,
             responseErrorMessage:
-              'backendError.unknownMyApplicationsRequestError',
+              'backendError.unknownGetMyApplicationsError',
           });
           return throwError(() => error);
         }),
@@ -55,7 +62,8 @@ export class MyApplicationsPageService extends BaseStateService<MyApplicationsPa
   protected getInitialState(): Readonly<MyApplicationsPageState> {
     return {
       isLoading: false,
-      myApplicationsList: null,
+      isAllType: false,
+      responseData: null,
       responseErrorMessage: '',
     };
   }

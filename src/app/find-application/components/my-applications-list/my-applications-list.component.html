@@ -1,27 +1,11 @@
-@for (myApplication of _myApplicationsList().value; track myApplication.id) {
+@for (myApplication of _myApplicationsList(); track myApplication.id) {
   <pu-my-application-card
     class="application-card"
     [application]="myApplication"
   />
 } @empty {
-  <!-- TODO -->
-  <div class="empty-list-view">
-    <p class="empty-list-view__message">
-      <span>{{ "emptyDeliveryOffersListMessage" | translate }}</span>
-
-      <a
-        class="navigation-link"
-        puTextLink
-        routerLink="/send-parcel"
-      >
-        {{ "navigationLabel.sendParcel" | translate }}
-      </a>
-    </p>
-
-    <pu-placeholder
-      class="illustration"
-      [style.height.px]="300"
-    />
+  <div class="empty-list">
+    <p>No items found.</p>
   </div>
 }
 

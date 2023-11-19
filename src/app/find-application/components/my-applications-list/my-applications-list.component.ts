@@ -4,16 +4,12 @@ import {
   Input,
   signal,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { MyApplicationCardComponent } from '../my-application-card/my-application-card.component';
-import { TextLinkComponent } from '@shared/components/text-link/text-link.component';
-import { PlaceholderComponent } from '@shared/components/placeholder/placeholder.component';
 import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
 
 import { BaseApplicationsListComponent } from '../../base/base-applications-list/base-applications-list.component';
-import { MyApplicationsList } from '@shared/types/my-application';
+import { MyApplication } from '@shared/types/my-application';
 
 @Component({
   selector: 'pu-my-applications-list',
@@ -28,20 +24,15 @@ import { MyApplicationsList } from '@shared/types/my-application';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [
-    RouterLink,
-    TranslateModule,
-    MyApplicationCardComponent,
-    TextLinkComponent,
-    PlaceholderComponent,
-    IconButtonComponent,
-  ],
+  imports: [MyApplicationCardComponent, IconButtonComponent],
 })
 export class MyApplicationsListComponent extends BaseApplicationsListComponent {
   @Input({ required: true })
-  public set myApplicationsList(value: MyApplicationsList) {
+  public set myApplicationsList(value: ReadonlyArray<MyApplication>) {
     this._myApplicationsList.set(value);
   }
 
-  protected readonly _myApplicationsList = signal(new MyApplicationsList([]));
+  protected readonly _myApplicationsList = signal<ReadonlyArray<MyApplication>>(
+    []
+  );
 }

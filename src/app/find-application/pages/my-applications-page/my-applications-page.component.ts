@@ -7,13 +7,17 @@ import {
   signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Select } from '@ngxs/store';
+import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
 import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
 import { MyApplicationTypeDropdownFieldComponent } from '@shared/components/my-application-type-dropdown-field/my-application-type-dropdown-field.component';
 import { MyApplicationsListComponent } from '../../components/my-applications-list/my-applications-list.component';
+import { ErrorViewComponent } from '../../views/error-view/error-view.component';
+import { TextLinkComponent } from '@shared/components/text-link/text-link.component';
+import { PlaceholderComponent } from '@shared/components/placeholder/placeholder.component';
 
 import { MyApplicationsPageService } from './my-applications-page.service';
 
@@ -33,9 +37,14 @@ import { MyApplicationTypeOption } from '@shared/types/my-application-type-optio
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
+    RouterLink,
+    TranslateModule,
     SpinnerComponent,
     MyApplicationTypeDropdownFieldComponent,
     MyApplicationsListComponent,
+    ErrorViewComponent,
+    TextLinkComponent,
+    PlaceholderComponent,
   ],
 })
 export class MyApplicationsPageComponent implements OnInit {
@@ -75,5 +84,9 @@ export class MyApplicationsPageComponent implements OnInit {
 
     this._selectedOption.set(option);
     this._service.fetchAllMyApplications(option.type);
+  }
+
+  protected handleReload(): void {
+    this._service.fetchAllMyApplications(this._selectedOption().type);
   }
 }
