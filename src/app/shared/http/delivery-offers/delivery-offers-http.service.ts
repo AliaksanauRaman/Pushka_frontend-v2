@@ -7,11 +7,10 @@ import { BaseHttpService } from '@shared/base/base-http.service';
 
 import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
 import { PageableData } from '@shared/types/pageable-data';
-import { PageableResponse } from '@shared/types/pageable-response';
 import { DeliveryOffer } from '@shared/types/delivery-offer';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 import { CreateDeliveryOfferDto } from '@shared/dtos/create-delivery-offer.dto';
-import { mapToPageableData } from '@shared/utils/map-to-pageable-data';
+import { deliveryOffersPageableData } from '@shared/unknown-types-parsers/delivery-offers-pageable-data';
 
 @Injectable({
   providedIn: 'root',
@@ -42,10 +41,12 @@ export class DeliveryOffersHttpService
     }
 
     return this._httpClient
-      .get<PageableResponse<DeliveryOffer>>(`${this._deliveryOffersEndpoint}`, {
+      .get<unknown>(`${this._deliveryOffersEndpoint}`, {
         params: httpParams,
       })
-      .pipe(map(mapToPageableData));
+      .pipe(
+        map((responseData) => deliveryOffersPageableData.parse(responseData))
+      );
   }
 
   public createOne(
