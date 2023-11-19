@@ -5,7 +5,7 @@ import { catchError, combineLatest, tap, throwError } from 'rxjs';
 
 import { HelpRequestsHttpService } from '@shared/http/help-requests/help-requests-http.service';
 import { PlacesService } from '@shared/services/places/places.service';
-import { FilterByPlaceQueryService } from '../../services/filter-by-place-query/filter-by-place-query.service';
+import { FilterByPlaceQueryService } from '@shared/services/filter-by-place-query/filter-by-place-query.service';
 
 import { BaseStateService } from '@shared/base/base-state.service';
 import { Pageable } from '@shared/types/pageable';
