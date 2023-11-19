@@ -1,7 +1,7 @@
 @if (_application.value(); as application) {
   <div class="departure">
     <div class="place-name">
-      {{ application.departurePlace.cityLabel | translate }}
+      {{ application.departurePlace | cardPlaceLabel | translate }}
     </div>
 
     <div class="date">
@@ -19,7 +19,7 @@
 
   <div class="arrival">
     <div class="place-name">
-      {{ application.destination.cityLabel | translate }}
+      {{ application.destination | cardPlaceLabel | translate }}
     </div>
 
     <div class="date">

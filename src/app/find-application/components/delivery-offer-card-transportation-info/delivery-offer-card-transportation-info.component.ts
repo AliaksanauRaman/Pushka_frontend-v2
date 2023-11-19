@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { CardPlaceLabelPipe } from '../../pipes/card-place-label.pipe';
 import { ApplicationDirective } from '../../directives/application/application.directive';
 
 import { DATE_VIEW_FORMAT } from '../../dependencies/date-view-format';
@@ -14,7 +15,7 @@ import { Application } from '@shared/types/application';
   styleUrl: './delivery-offer-card-transportation-info.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgOptimizedImage, DatePipe, TranslateModule],
+  imports: [NgOptimizedImage, DatePipe, TranslateModule, CardPlaceLabelPipe],
   hostDirectives: [
     {
       directive: ApplicationDirective,
