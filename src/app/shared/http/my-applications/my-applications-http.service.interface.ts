@@ -1,8 +1,9 @@
 import { Observable } from "rxjs";
 
 import { MyApplicationOptionType } from "@shared/enums/my-application-option-type.enum";
-import { MyApplicationsList } from "@shared/types/my-application";
+import { PageableData } from "@shared/types/pageable-data";
+import { MyApplication } from "@shared/types/my-application";
 
 export interface IMyApplicationsHttpService {
-  getAll(type: MyApplicationOptionType): Observable<MyApplicationsList>;
+  getAll(type: MyApplicationOptionType): Observable<PageableData<MyApplication>>;
 }

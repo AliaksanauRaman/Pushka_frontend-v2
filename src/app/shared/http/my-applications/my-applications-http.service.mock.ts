@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, delay, of } from 'rxjs';
 
 import { IMyApplicationsHttpService } from './my-applications-http.service.interface';
-import {
-  MyApplication,
-  MyApplicationsList,
-} from '@shared/types/my-application';
+import { PageableData } from '@shared/types/pageable-data';
+import { MyApplication } from '@shared/types/my-application';
 import { MyApplicationType } from '@shared/enums/my-application-type.enum';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 
@@ -43,20 +41,36 @@ const REQUEST = new MyApplication(
 export class MyApplicationsHttpServiceMock
   implements IMyApplicationsHttpService
 {
-  public getAll(): Observable<MyApplicationsList> {
+  public getAll(): Observable<PageableData<MyApplication>> {
+    const data = [
+      OFFER,
+      REQUEST,
+      OFFER,
+      REQUEST,
+      OFFER,
+      REQUEST,
+      OFFER,
+      OFFER,
+      REQUEST,
+      OFFER,
+      REQUEST,
+      OFFER,
+      REQUEST,
+      OFFER,
+    ];
+
     return of(
-      new MyApplicationsList([
-        OFFER,
-        REQUEST,
-        OFFER,
-        REQUEST,
-        OFFER,
-        REQUEST,
-        OFFER,
-        REQUEST,
-        OFFER,
-        REQUEST,
-      ])
-    ).pipe(delay(1500));
+      new PageableData(
+        data,
+        data.length === 0,
+        true,
+        true,
+        0,
+        data.length,
+        data.length,
+        data.length,
+        1
+      )
+    ).pipe(delay(1000));
   }
 }
