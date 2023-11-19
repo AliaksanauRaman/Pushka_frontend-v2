@@ -1,0 +1,7 @@
+<pu-filter-by-place-field
+  class="filter-by-place"
+  [value]="_filterValue()"
+  [translatedPlaces]="_translatedPlaces() || []"
+  (valueChange)="handleFilterValueChange($event)"
+  (filter)="applyFilter.emit()"
+/>
