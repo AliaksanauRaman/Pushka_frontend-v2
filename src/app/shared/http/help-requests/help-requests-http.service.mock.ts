@@ -3,7 +3,8 @@ import { Observable, delay, of } from 'rxjs';
 
 import { IHelpRequestsHttpService } from './help-requests-http.interface';
 import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
-import { HelpRequest, HelpRequestsList } from '@shared/types/help-request';
+import { PageableData } from '@shared/types/pageable-data';
+import { HelpRequest } from '@shared/types/help-request';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 import { CreateHelpRequestDto } from '@shared/dtos/create-help-request.dto';
 
@@ -25,10 +26,22 @@ const MOCK_HELP_REQUEST = new HelpRequest(
 export class HelpRequestsHttpServiceMock implements IHelpRequestsHttpService {
   public getPublished(
     _filterValue: FilterByPlaceValue
-  ): Observable<HelpRequestsList> {
-    return of(new HelpRequestsList(new Array(10).fill(MOCK_HELP_REQUEST))).pipe(
-      delay(1000)
-    );
+  ): Observable<PageableData<HelpRequest>> {
+    const data = new Array(20).fill(MOCK_HELP_REQUEST);
+
+    return of(
+      new PageableData(
+        data,
+        data.length === 0,
+        true,
+        true,
+        0,
+        data.length,
+        data.length,
+        data.length,
+        1
+      )
+    ).pipe(delay(1000));
   }
 
   public createOne(

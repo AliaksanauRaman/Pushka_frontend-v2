@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 import { IHelpRequestsHttpService } from './help-requests-http.interface';
 import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
 import { BaseHttpService } from '@shared/base/base-http.service';
-import { Pageable } from '@shared/types/pageable';
+import { PageableData } from '@shared/types/pageable-data';
 import { HelpRequest } from '@shared/types/help-request';
+import { PageableResponse } from '@shared/types/pageable-response';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 import { CreateHelpRequestDto } from '@shared/dtos/create-help-request.dto';
+import { mapToPageableData } from '@shared/utils/map-to-pageable-data';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +23,7 @@ export class HelpRequestsHttpService
 
   public getPublished(
     filterValue: FilterByPlaceValue
-  ): Observable<Pageable<HelpRequest>> {
+  ): Observable<PageableData<HelpRequest>> {
     const cityFromId = filterValue.departurePlace?.cityId;
     const cityToId = filterValue.destination?.cityId;
 
@@ -38,12 +40,11 @@ export class HelpRequestsHttpService
       httpParams = httpParams.append('cityToId', cityToId);
     }
 
-    return this._httpClient.get<Pageable<HelpRequest>>(
-      `${this._helpRequestsEndpoint}`,
-      {
+    return this._httpClient
+      .get<PageableResponse<HelpRequest>>(`${this._helpRequestsEndpoint}`, {
         params: httpParams,
-      }
-    );
+      })
+      .pipe(map(mapToPageableData));
   }
 
   public createOne(
