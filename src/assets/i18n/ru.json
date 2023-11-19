@@ -26,7 +26,9 @@
     "invalidCredentials": "Неправильный адрес электронной почты или пароль.",
     "accountIsNotActivated": "Аккаунт не активирован. Пожалуйста, проверьте свою электронную почту.",
     "unknownLoginError": "Неизвестная ошибка входа в систему. Пожалуйста, повторите попытку позже.",
-    "unknownGetPublishedDeliveryOffersError": "Неизвестная ошибка получения списка предложений. Пожалуйста, повторите попытку позже."
+    "unknownGetPublishedDeliveryOffersError": "Неизвестная ошибка получения списка предложений. Пожалуйста, повторите попытку позже.",
+    "unknownGetPublishedHelpRequestsError": "Неизвестная ошибка получения списка запросов. Пожалуйста, повторите попытку позже.",
+    "unknownGetMyApplicationsError": "Неизвестная ошибка получения списка ваших заявок. Пожалуйста, повторите попытку позже."
   },
   "myApplications": {
     "all": "Все",
@@ -125,7 +127,7 @@
   "noServiceResponsibilityConfirmationText": "Я понимаю, что сервис не несет ответственности за качество сделки",
   "emptyDeliveryOffersListMessage": "Упс, кажется, еще не было ни одного предложения помощи в доставке. Вы можете стать первым и сделать свое предложение, нажав на",
   "emptyHelpRequestsListMessage": "Упс, кажется, еще не было создано ни одного запроса. Вы можете стать первым и создать запрос, нажав на",
-  "emptyMyApplicationsListMessage": "У вас еще нет своих заявок.",
+  "emptyMyApplicationsListMessage": "У вас еще нет заявок.",
   "inOrderToCreateAnApplication": "Чтобы создать заявку",
   "or": "или",
   "callToAction": {

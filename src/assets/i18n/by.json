@@ -26,7 +26,9 @@
     "invalidCredentials": "Няправільны адрас электроннай пошты або пароль.",
     "accountIsNotActivated": "Акаўнт не актываваны. Калі ласка, праверце сваю электронную пошту.",
     "unknownLoginError": "Невадомая памылка ўвахода ў сістэму. Калі ласка, паўтарыце спробу пазней.",
-    "unknownGetPublishedDeliveryOffersError": "Невадомая памылка пры атрыманні спіса прапаноў. Калі ласка, паўтарыце спробу пазней."
+    "unknownGetPublishedDeliveryOffersError": "Невадомая памылка пры атрыманні спіса прапаноў. Калі ласка, паўтарыце спробу пазней.",
+    "unknownGetPublishedHelpRequestsError": "Невадомая памылка пры атрыманні спіса запытаў. Калі ласка, паўтарыце спробу пазней.",
+    "unknownGetMyApplicationsError": "Невадомая памылка пры атрыманні спіса вашых заявак. Калі ласка, паўтарыце спробу пазней."
   },
   "myApplications": {
     "all": "Усе",
@@ -125,7 +127,7 @@
   "noServiceResponsibilityConfirmationText": "Я разумею, што сэрвіс не нясе адказнасці за якасць пагаднення",
   "emptyDeliveryOffersListMessage": "Упс, падаецца, яшчэ не было створана ні воднай прапановы дапамогі ў дастаўке. Вы можаце стаць першым і зрабіць сваю прапанову, націснуў на",
   "emptyHelpRequestsListMessage": "Упс, падаецца, яшчэ не было створана ні воднага запыта. Вы можаце стаць першым і стварыць запыт, націснуў на",
-  "emptyMyApplicationsListMessage": "У вас яшчэ няма сваіх заявак.",
+  "emptyMyApplicationsListMessage": "У вас яшчэ няма заявак.",
   "inOrderToCreateAnApplication": "Каб стварыць заяўку",
   "or": "ці",
   "callToAction": {

@@ -26,7 +26,9 @@
     "invalidCredentials": "Invalid email or password.",
     "accountIsNotActivated": "Account is not activated. Please, check your email.",
     "unknownLoginError": "Unknown login error. Please, try again later.",
-    "unknownGetPublishedDeliveryOffersError": "Unknown error getting the list of offers. Please, try again later."
+    "unknownGetPublishedDeliveryOffersError": "Unknown error getting the list of offers. Please, try again later.",
+    "unknownGetPublishedHelpRequestsError": "Unknown error getting the list of requests. Please, try again later.",
+    "unknownGetMyApplicationsError": "Unknown error getting the list of your applications. Please, try again later."
   },
   "myApplications": {
     "all": "All",
@@ -125,7 +127,7 @@
   "noServiceResponsibilityConfirmationText": "I understand that the service is not responsible for the quality of the deal",
   "emptyDeliveryOffersListMessage": "Oops, there doesn't seem to be a single offer for delivery yet. You can be the first to make one by clicking on",
   "emptyHelpRequestsListMessage": "Oops, it seems no request has been created yet. You can be the first and create one by clicking on",
-  "emptyMyApplicationsListMessage": "You don't have your applications yet.",
+  "emptyMyApplicationsListMessage": "You don't have applications yet.",
   "inOrderToCreateAnApplication": "To create an application",
   "or": "or",
   "callToAction": {
