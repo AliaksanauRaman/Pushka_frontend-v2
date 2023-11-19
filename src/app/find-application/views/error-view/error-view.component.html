@@ -1,0 +1,17 @@
+<h2 class="title">{{ "errorView.title" | translate }}</h2>
+
+<p class="message">
+  <strong>{{ "errorView.message" | translate }}: </strong>
+  <span>{{ _errorMessage() | translate }}</span>
+</p>
+
+<pu-placeholder class="illustration" />
+
+<button
+  class="refresh-button"
+  puAccentButton
+  type="button"
+  (click)="reload.emit()"
+>
+  {{ "actionLabel.tryAgain" | translate }}
+</button>
