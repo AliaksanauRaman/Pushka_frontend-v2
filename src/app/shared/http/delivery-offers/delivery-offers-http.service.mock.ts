@@ -5,10 +5,10 @@ import { IDeliveryOffersHttpService } from './delivery-offers-http.interface';
 import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
 import {
   DeliveryOffer,
-  DeliveryOffersList,
 } from '@shared/types/delivery-offer';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 import { CreateDeliveryOfferDto } from '@shared/dtos/create-delivery-offer.dto';
+import { PageableData } from '@shared/types/pageable-data';
 
 const MOCK_DELIVERY_OFFER = new DeliveryOffer(
   1,
@@ -28,9 +28,23 @@ const MOCK_DELIVERY_OFFER = new DeliveryOffer(
 export class DeliveryOffersHttpServiceMock
   implements IDeliveryOffersHttpService
 {
-  public getPublished(_filterValue: FilterByPlaceValue): Observable<DeliveryOffersList> {
+  public getPublished(
+    _filterValue: FilterByPlaceValue
+  ): Observable<PageableData<DeliveryOffer>> {
+    const data = new Array(20).fill(MOCK_DELIVERY_OFFER);
+
     return of(
-      new DeliveryOffersList(new Array(10).fill(MOCK_DELIVERY_OFFER))
+      new PageableData(
+        data,
+        data.length === 0,
+        true,
+        true,
+        0,
+        data.length,
+        data.length,
+        data.length,
+        1
+      )
     ).pipe(delay(1000));
   }
 

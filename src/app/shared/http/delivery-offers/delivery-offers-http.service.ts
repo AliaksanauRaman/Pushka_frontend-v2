@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 import { IDeliveryOffersHttpService } from './delivery-offers-http.interface';
 import { BaseHttpService } from '@shared/base/base-http.service';
 
 import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
-import { DeliveryOffersList } from '@shared/types/delivery-offer';
+import { PageableData } from '@shared/types/pageable-data';
+import { PageableResponse } from '@shared/types/pageable-response';
+import { DeliveryOffer } from '@shared/types/delivery-offer';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 import { CreateDeliveryOfferDto } from '@shared/dtos/create-delivery-offer.dto';
+import { mapToPageableData } from '@shared/utils/map-to-pageable-data';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +24,7 @@ export class DeliveryOffersHttpService
 
   public getPublished(
     filterValue: FilterByPlaceValue
-  ): Observable<DeliveryOffersList> {
+  ): Observable<PageableData<DeliveryOffer>> {
     const cityFromId = filterValue.departurePlace?.cityId;
     const cityToId = filterValue.destination?.cityId;
 
@@ -38,12 +41,11 @@ export class DeliveryOffersHttpService
       httpParams = httpParams.append('cityToId', cityToId);
     }
 
-    return this._httpClient.get<DeliveryOffersList>(
-      `${this._deliveryOffersEndpoint}`,
-      {
+    return this._httpClient
+      .get<PageableResponse<DeliveryOffer>>(`${this._deliveryOffersEndpoint}`, {
         params: httpParams,
-      }
-    );
+      })
+      .pipe(map(mapToPageableData));
   }
 
   public createOne(
