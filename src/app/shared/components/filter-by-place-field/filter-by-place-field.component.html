@@ -9,6 +9,7 @@
     type="text"
     tabindex="-1"
     readonly
+    [disabled]="_translatedPlaces().length === 0"
     (focus)="departurePlaceInput.focus()"
   />
 
@@ -18,9 +19,10 @@
     [placeholder]="'fieldLabel.departurePlace' | translate"
     type="text"
     maxlength="30"
-    [value]="_service.departurePlaceFieldValue()"
+    [value]="_departurePlaceFieldViewValue()"
+    [disabled]="_translatedPlaces().length === 0"
     (focus)="handleDeparturePlaceFieldFocus()"
-    (input)="_service.handleDeparturePlaceFieldInput(departurePlaceInput.value)"
+    (input)="handleDeparturePlaceFieldInput(departurePlaceInput.value)"
   />
 
   <div class="divider"></div>
@@ -31,9 +33,10 @@
     [placeholder]="'fieldLabel.destination' | translate"
     type="text"
     maxlength="30"
-    [value]="_service.destinationFieldValue()"
+    [value]="_destinationFieldViewValue()"
+    [disabled]="_translatedPlaces().length === 0"
     (focus)="handleDestinationFieldFocus()"
-    (input)="_service.handleDestinationFieldInput(destinationInput.value)"
+    (input)="handleDestinationFieldInput(destinationInput.value)"
   />
 
   <button
@@ -43,7 +46,7 @@
     puIconAlt="Filter"
     puAriaLabel="Apply filter"
     puDisabled
-    [disabled]="_service.value().isEmpty"
+    [disabled]="_value().isEmpty"
     (click)="applyFilter()"
   ></button>
 </div>
@@ -61,7 +64,7 @@
   (detach)="_panel.close(); departurePlaceInput.blur(); destinationInput.blur()"
 >
   <pu-panel>
-    @for (place of _service.filteredPlaces(); track place.id) {
+    @for (place of _filteredPlaces(); track place.id) {
       <button puPanelItem type="button" (click)="selectPlace(place)">
         <span>{{ place | translatedPlaceView }}</span>
       </button>

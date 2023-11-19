@@ -4,8 +4,9 @@ import {
   EventEmitter,
   Input,
   Output,
-  effect,
+  computed,
   inject,
+  signal,
 } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { TranslateModule } from '@ngx-translate/core';
@@ -16,11 +17,11 @@ import { PanelComponent } from '@shared/components/panel/panel.component';
 import { PanelItemComponent } from '@shared/components/panel-item/panel-item.component';
 import { TranslatedPlaceViewPipe } from '@shared/pipes/translated-place-view.pipe';
 
-import { FilterByPlaceFieldService } from './filter-by-place-field.service';
 import { PanelService } from '@shared/services/panel/panel.service';
 
 import { TranslatedPlace } from '@shared/types/translated-place';
 import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
+import { filterPlaces } from '@shared/utils/filter-places';
 
 @Component({
   selector: 'pu-filter-by-place-field',
@@ -29,7 +30,7 @@ import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
     '../../../styles/components/_field.component.scss',
     './filter-by-place-field.component.scss',
   ],
-  providers: [FilterByPlaceFieldService, PanelService],
+  providers: [PanelService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -43,16 +44,16 @@ import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
   ],
 })
 export class FilterByPlaceFieldComponent {
-  protected readonly _service = inject(FilterByPlaceFieldService);
   protected readonly _panel = inject(PanelService);
-
-  private readonly _emitOnValueChange = effect(() =>
-    this.valueChange.emit(this._service.value())
-  );
 
   @Input()
   public set value(value: FilterByPlaceValue) {
-    this._service.setValue(value);
+    this._value.set(value);
+  }
+
+  @Input()
+  public set translatedPlaces(value: ReadonlyArray<TranslatedPlace>) {
+    this._translatedPlaces.set(value);
   }
 
   @Output()
@@ -61,23 +62,96 @@ export class FilterByPlaceFieldComponent {
   @Output()
   public readonly filter = new EventEmitter<void>();
 
+  protected readonly _value = signal(new FilterByPlaceValue(null, null));
+  protected readonly _translatedPlaces = signal<ReadonlyArray<TranslatedPlace>>(
+    []
+  );
+
+  protected readonly _departurePlaceFieldViewValue = computed(() => {
+    const value = this._value();
+
+    if (value.departurePlace !== null) {
+      return value.departurePlace.plainCityLabel;
+    }
+
+    return this._departurePlaceFieldValue();
+  });
+  protected readonly _filteredDeparturePlaces = computed(() =>
+    filterPlaces(this._translatedPlaces(), this._departurePlaceFieldViewValue())
+  );
+
+  protected readonly _destinationFieldViewValue = computed(() => {
+    const value = this._value();
+
+    if (value.destination !== null) {
+      return value.destination.plainCityLabel;
+    }
+
+    return this._destinationFieldValue();
+  });
+  protected readonly _filteredDestinations = computed(() =>
+    filterPlaces(this._translatedPlaces(), this._destinationFieldViewValue())
+  );
+
+  protected _filteredPlaces = this._filteredDeparturePlaces;
+
+  private readonly _departurePlaceFieldValue = signal('');
+  private readonly _destinationFieldValue = signal('');
+
+  protected handleDeparturePlaceFieldInput(value: string) {
+    this._departurePlaceFieldValue.set(value);
+    this.emitValueChange(this._value().withDeparturePlace(null));
+  }
+
+  protected handleDestinationFieldInput(value: string) {
+    this._destinationFieldValue.set(value);
+    this.emitValueChange(this._value().withDestination(null));
+  }
+
   protected handleDeparturePlaceFieldFocus(): void {
-    this._service.switchToDeparturePlace();
+    this._filteredPlaces = this._filteredDeparturePlaces;
     this._panel.open();
   }
 
   protected handleDestinationFieldFocus(): void {
-    this._service.switchToDestination();
+    this._filteredPlaces = this._filteredDestinations;
     this._panel.open();
   }
 
   protected selectPlace(place: TranslatedPlace): void {
-    this._service.handlePlaceSelect(place);
-    this._panel.close();
+    if (this.checkIsDeparturePlaceActive()) {
+      this._panel.close();
+      this.emitValueChange(this._value().withDeparturePlace(place));
+      return;
+    }
+
+    if (this.checkIsDestinationActive()) {
+      this._panel.close();
+      this.emitValueChange(this._value().withDestination(place));
+      return;
+    }
+
+    throw new Error('No place is active!');
   }
 
   protected applyFilter(): void {
     this._panel.close();
     this.filter.emit();
+  }
+
+  private emitValueChange(newValue: FilterByPlaceValue): void {
+    if (this._value().equalsTo(newValue)) {
+      return;
+    }
+
+    this.valueChange.emit(newValue);
+  }
+
+  private checkIsDeparturePlaceActive(): boolean {
+    return this._filteredPlaces === this._filteredDeparturePlaces;
+  }
+
+  private checkIsDestinationActive(): boolean {
+    return this._filteredPlaces === this._filteredDestinations;
   }
 }
