@@ -5,8 +5,10 @@ import {
   inject,
 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { ErrorViewComponent } from '../../views/error-view/error-view.component';
 import { DeliveryOffersListComponent } from '../../components/delivery-offers-list/delivery-offers-list.component';
 import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
 import { FilterByPlaceFieldQueryContainerComponent } from '@shared/components/filter-by-place-field-query-container/filter-by-place-field-query-container.component';
@@ -24,7 +26,9 @@ import { OffersPageService } from './offers-page.service';
   standalone: true,
   imports: [
     NgOptimizedImage,
+    RouterLink,
     TranslateModule,
+    ErrorViewComponent,
     DeliveryOffersListComponent,
     SpinnerComponent,
     FilterByPlaceFieldQueryContainerComponent,

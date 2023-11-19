@@ -13,32 +13,16 @@
   &:not(:first-child) {
     margin-top: 11px;
   }
-}
 
-.empty-list-view {
-  display: flex;
-  flex-direction: column;
-  margin-top: 12px;
-}
-
-.empty-list-view__message {
-  flex-shrink: 0;
-  text-align: center;
-}
-
-.navigation-link {
-  margin-left: 3px;
-  font-weight: 700;
-}
-
-.illustration {
-  margin-top: 28px;
+  &:last-child {
+    margin-bottom: 15px;
+  }
 }
 
 .fab {
   position: sticky;
   bottom: 0;
-  z-index: 1000;
+  z-index: 999;
   align-self: flex-end;
   flex-shrink: 0;
   width: 48px;
