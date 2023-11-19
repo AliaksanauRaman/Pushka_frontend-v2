@@ -16,6 +16,7 @@ export class PlacesService {
   private readonly _translateService = inject(TranslateService);
 
   public readonly places$ = this._store.select(PlacesState.places);
+  // TODO: Maybe share?
   public readonly translatedPlaces$ = combineLatest([
     this._store.select(SelectedLocalizationState.stream),
     this.places$,
