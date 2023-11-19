@@ -42,8 +42,6 @@ export class Place implements IComparable<Place> {
   constructor(private readonly country: Country, private readonly city: City) {}
 
   public equalsTo(place: Place): boolean {
-    return (
-      this.country.equalsTo(place.country) && this.city.equalsTo(place.city)
-    );
+    return this.id === place.id;
   }
 }
