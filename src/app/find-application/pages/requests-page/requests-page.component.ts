@@ -1,10 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { ErrorViewComponent } from '../../views/error-view/error-view.component';
 import { HelpRequestsListComponent } from '../../components/help-requests-list/help-requests-list.component';
 import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
-import { FilterByPlaceFieldComponent } from '@shared/components/filter-by-place-field/filter-by-place-field.component';
+import { TextLinkComponent } from '@shared/components/text-link/text-link.component';
+import { FilterByPlaceFieldQueryContainerComponent } from '@shared/components/filter-by-place-field-query-container/filter-by-place-field-query-container.component';
+import { PlaceholderComponent } from '@shared/components/placeholder/placeholder.component';
 
 import { RequestsPageService } from './requests-page.service';
 
@@ -17,10 +21,14 @@ import { RequestsPageService } from './requests-page.service';
   standalone: true,
   imports: [
     NgOptimizedImage,
+    RouterLink,
     TranslateModule,
+    ErrorViewComponent,
     HelpRequestsListComponent,
     SpinnerComponent,
-    FilterByPlaceFieldComponent,
+    TextLinkComponent,
+    FilterByPlaceFieldQueryContainerComponent,
+    PlaceholderComponent,
   ],
 })
 export class RequestsPageComponent {

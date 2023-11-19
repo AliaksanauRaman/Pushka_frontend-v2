@@ -1,111 +1,98 @@
-import { DestroyRef, Injectable, Signal, inject, signal } from '@angular/core';
+import { DestroyRef, Injectable, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { catchError, combineLatest, tap, throwError } from 'rxjs';
+import {
+  catchError,
+  filter,
+  forkJoin,
+  switchMap,
+  take,
+  tap,
+  throwError,
+} from 'rxjs';
 
-import { HelpRequestsHttpService } from '@shared/http/help-requests/help-requests-http.service';
 import { PlacesService } from '@shared/services/places/places.service';
+import { HelpRequestsHttpService } from '@shared/http/help-requests/help-requests-http.service';
 import { FilterByPlaceQueryService } from '@shared/services/filter-by-place-query/filter-by-place-query.service';
 
-import { BaseStateService } from '@shared/base/base-state.service';
-import { Pageable } from '@shared/types/pageable';
+import { PageableData } from '@shared/types/pageable-data';
 import { HelpRequest } from '@shared/types/help-request';
-import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
+import { BaseStateService } from '@shared/base/base-state.service';
 
-type RequestsPageState = {
+type GetPublishedHelpRequestsState = Readonly<{
   isLoading: boolean;
-  helpRequestsList: Pageable<HelpRequest> | null;
+  noFilters: boolean;
+  responseData: PageableData<HelpRequest> | null;
   responseErrorMessage: string;
-};
+}>;
 
 @Injectable()
-export class RequestsPageService extends BaseStateService<RequestsPageState> {
-  private readonly _destroyRef = inject(DestroyRef);
+export class RequestsPageService extends BaseStateService<GetPublishedHelpRequestsState> {
   private readonly _activatedRoute = inject(ActivatedRoute);
-  private readonly _helpRequestsHttpService = inject(HelpRequestsHttpService);
+  private readonly _destroyRef = inject(DestroyRef);
   private readonly _placesService = inject(PlacesService);
+  private readonly _helpRequestsHttpService = inject(
+    HelpRequestsHttpService
+  );
   private readonly _filterByPlaceQueryService = inject(
     FilterByPlaceQueryService
   );
 
-  private readonly _filterByPlaceValue = signal(
-    new FilterByPlaceValue(null, null)
-  );
-
-  public get filterByPlaceValue(): Signal<FilterByPlaceValue> {
-    return this._filterByPlaceValue.asReadonly();
-  }
-
-  constructor() {
-    super();
-    this.subToPageQueryChanges();
-  }
-
-  public fetchPublishedHelpRequests(
-    filterValue = this._filterByPlaceValue()
-  ): void {
+  public fetchPublishedHelpRequests(): void {
     this.updateState({
       isLoading: true,
-      helpRequestsList: null,
+      noFilters: true,
+      responseData: null,
       responseErrorMessage: '',
     });
 
-    this._helpRequestsHttpService
-      .getPublished(filterValue)
+    forkJoin([
+      this._activatedRoute.queryParams.pipe(take(1)),
+      this._placesService.translatedPlaces$.pipe(
+        filter((translatedPlaces) => translatedPlaces.length > 0),
+        take(1)
+      ),
+    ])
       .pipe(
-        tap((helpRequestsList) =>
-          this.updateState({
-            isLoading: false,
-            helpRequestsList,
-            responseErrorMessage: '',
-          })
-        ),
-        catchError((error: unknown) => {
-          this.updateState({
-            isLoading: false,
-            helpRequestsList: null,
-            responseErrorMessage:
-              'backendError.unknownHelpRequestsRequestError',
-          });
-          return throwError(() => error);
+        switchMap(([query, translatedPlaces]) => {
+          const filter = this._filterByPlaceQueryService.getValueFromQuery(
+            query,
+            translatedPlaces
+          );
+          const noFilters = filter.isEmpty;
+
+          return this._helpRequestsHttpService.getPublished(filter).pipe(
+            tap((responseData) =>
+              this.updateState({
+                isLoading: false,
+                noFilters,
+                responseData,
+                responseErrorMessage: '',
+              })
+            ),
+            catchError((error: unknown) => {
+              this.updateState({
+                isLoading: false,
+                noFilters,
+                responseData: null,
+                responseErrorMessage:
+                  'backendError.unknownGetPublishedHelpRequestsError',
+              });
+              return throwError(() => error);
+            })
+          );
         }),
         takeUntilDestroyed(this._destroyRef)
       )
       .subscribe();
   }
 
-  public handleFilterByPlaceChange(value: FilterByPlaceValue): void {
-    this._filterByPlaceQueryService.updateQuery(this._activatedRoute, value);
-  }
-
-  public handleClearFilterByPlace(): void {
-    this._filterByPlaceQueryService.clearQuery(this._activatedRoute);
-  }
-
-  protected getInitialState(): RequestsPageState {
+  protected override getInitialState(): GetPublishedHelpRequestsState {
     return {
       isLoading: false,
-      helpRequestsList: null,
+      noFilters: true,
+      responseData: null,
       responseErrorMessage: '',
     };
-  }
-
-  private subToPageQueryChanges(): void {
-    combineLatest([
-      this._activatedRoute.queryParams,
-      this._placesService.translatedPlaces$,
-    ])
-      .pipe(
-        tap(([query, translatedPlaces]) =>
-          this._filterByPlaceValue.set(
-            this._filterByPlaceQueryService.getValueFromQuery(
-              query,
-              translatedPlaces
-            )
-          )
-        ),
-        takeUntilDestroyed(this._destroyRef)
-      )
-      .subscribe();
   }
 }

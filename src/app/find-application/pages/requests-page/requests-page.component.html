@@ -1,30 +1,57 @@
 @if (_service.state(); as state) {
   @if (state.isLoading) {
-    <div class="loading-view">
-      <pu-spinner class="spinner" size="big" color="primary" />
-    </div>
-  } @else if (state.helpRequestsList) {
-    <div class="content-view">
-      @if (state.helpRequestsList.content.length; as applicationsCount) {
-        <pu-filter-by-place-field
+    <section class="loading-view">
+      <pu-spinner
+        class="loading-view__spinner"
+        size="big"
+        color="primary"
+      />
+    </section>
+  } @else if (state.responseErrorMessage !== '') {
+    <pu-error-view
+      [errorMessage]="state.responseErrorMessage"
+      (reload)="_service.fetchPublishedHelpRequests()"
+    />
+  } @else if (state.responseData !== null) {
+    @if (state.noFilters && state.responseData.totalItemsCount === 0) {
+      <section class="empty-view">
+        <p class="empty-view__message">
+          <span>{{ "emptyHelpRequestsListMessage" | translate }}</span>
+    
+          <a
+            class="empty-view__navigation-link"
+            puTextLink
+            routerLink="/send-parcel"
+          >
+            {{ "navigationLabel.sendParcel" | translate }}
+          </a>
+        </p>
+    
+        <pu-placeholder
+          class="empty-view__illustration"
+          [style.height.px]="300"
+        />
+      </section>
+    } @else {
+      <section class="content-view">
+        <pu-filter-by-place-field-query-container
+          #filterByPlaceQueryContainer
           class="filter-by-place"
-          [value]="_service.filterByPlaceValue()"
-          (valueChange)="_service.handleFilterByPlaceChange($event)"
-          (filter)="_service.fetchPublishedHelpRequests()"
+          (applyFilter)="_service.fetchPublishedHelpRequests()"
         />
 
         <div class="applications-count-and-clear-filter-button">
           <div class="applications-count">
-            {{ "applicationsCount" | translate : { count: applicationsCount } }}
+            {{ "applicationsCount" | translate : { count: state.responseData.totalItemsCount} }}
           </div>
 
           <div class="spacer"></div>
 
-          @if (!_service.filterByPlaceValue().isEmpty) {
+          @if (!state.noFilters) {
             <button
               class="clear-filter-button"
               type="button"
-              (click)="_service.handleClearFilterByPlace()"
+              (click)="filterByPlaceQueryContainer.clearFilter()"
             >
               <img
                 class="clear-filter-icon"
@@ -40,16 +67,12 @@
             </button>
           }
         </div>
-      }
-      
-      <pu-help-requests-list
-        class="applications-list"
-        [helpRequestsList]="state.helpRequestsList"
-      />
-    </div>
-  } @else if (state.responseErrorMessage) {
-    <div class="error-view">
-      <p>{{ state.responseErrorMessage }}</p>
-    </div>
+
+        <pu-help-requests-list
+          class="applications-list"
+          [helpRequestsList]="state.responseData.items"
+        />
+      </section>
+    }
   }
 }
