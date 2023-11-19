@@ -1,55 +1,71 @@
 @if (_service.state(); as state) {
-    @if (state.isLoading) {
+  @if (state.isLoading) {
     <div class="loading-view">
       <pu-spinner class="spinner" size="big" color="primary" />
     </div>
-  } @else if (state.deliveryOffersList) {
-    <div class="content-view">
-      @if (state.deliveryOffersList.value.length; as applicationsCount) {
-        <pu-filter-by-place-field
-          class="filter-by-place"
-          [value]="_service.filterByPlaceValue()"
-          (valueChange)="_service.handleFilterByPlaceChange($event)"
-          (filter)="_service.fetchPublishedDeliveryOffers()"
+  } @else if (state.responseErrorMessage !== '') {
+    <div class="error-view">
+      <p>{{ state.responseErrorMessage }}</p>
+    </div>
+  } @else if (state.responseData !== null) {
+    @if (state.noFilters && state.responseData.totalItemsCount === 0) {
+      <div class="empty-view">
+        <p class="empty-view__message">
+          <span>{{ "emptyDeliveryOffersListMessage" | translate }}</span>
+    
+          <a
+            class="navigation-link"
+            puTextLink
+            routerLink="/deliver-parcel"
+          >
+            {{ "navigationLabel.deliverParcel" | translate }}
+          </a>
+        </p>
+    
+        <pu-placeholder
+          class="illustration"
+          [style.height.px]="300"
         />
+      </div>
+    } @else {
+      <pu-filter-by-place-field-query-container
+        #filterByPlaceQueryContainer
+        class="filter-by-place"
+        (applyFilter)="_service.fetchPublishedDeliveryOffers()"
+      />
 
-        <div class="applications-count-and-clear-filter-button">
-          <div class="applications-count">
-            {{ "applicationsCount" | translate : { count: applicationsCount } }}
-          </div>
-
-          <div class="spacer"></div>
-
-          @if (!_service.filterByPlaceValue().isEmpty) {
-            <button
-              class="clear-filter-button"
-              type="button"
-              (click)="_service.handleClearFilterByPlace()"
-            >
-              <img
-                class="clear-filter-icon"
-                ngSrc="/assets/icons/accent-cross.svg"
-                alt="Cross"
-                width="24"
-                height="24"
-              />
-
-              <span class="clear-filter-text">{{
-                "actionLabel.clearFilter" | translate
-              }}</span>
-            </button>
-          }
+      <div class="applications-count-and-clear-filter-button">
+        <div class="applications-count">
+          {{ "applicationsCount" | translate : { count: state.responseData.totalItemsCount} }}
         </div>
-      }
+
+        <div class="spacer"></div>
+
+        @if (!state.noFilters) {
+          <button
+            class="clear-filter-button"
+            type="button"
+            (click)="filterByPlaceQueryContainer.clearFilter()"
+          >
+            <img
+              class="clear-filter-icon"
+              ngSrc="/assets/icons/accent-cross.svg"
+              alt="Cross"
+              width="24"
+              height="24"
+            />
+
+            <span class="clear-filter-text">{{
+              "actionLabel.clearFilter" | translate
+            }}</span>
+          </button>
+        }
+      </div>
 
       <pu-delivery-offers-list
         class="applications-list"
-        [deliveryOffersList]="state.deliveryOffersList"
+        [deliveryOffersList]="state.responseData.items"
       />
-    </div>
-  } @else if (state.requestErrorMessage) {
-    <div class="error-view">
-      <p>{{ state.requestErrorMessage }}</p>
-    </div>
+    }
   }
 }

@@ -1,112 +1,98 @@
-import { DestroyRef, Injectable, Signal, inject, signal } from '@angular/core';
+import { DestroyRef, Injectable, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { catchError, combineLatest, tap, throwError } from 'rxjs';
+import {
+  catchError,
+  filter,
+  forkJoin,
+  switchMap,
+  take,
+  tap,
+  throwError,
+} from 'rxjs';
 
-import { FilterByPlaceQueryService } from '../../services/filter-by-place-query/filter-by-place-query.service';
 import { PlacesService } from '@shared/services/places/places.service';
 import { DeliveryOffersHttpService } from '@shared/http/delivery-offers/delivery-offers-http.service';
+import { FilterByPlaceQueryService } from '@shared/services/filter-by-place-query/filter-by-place-query.service';
 
+import { PageableData } from '@shared/types/pageable-data';
+import { DeliveryOffer } from '@shared/types/delivery-offer';
 import { BaseStateService } from '@shared/base/base-state.service';
-import { DeliveryOffersList } from '@shared/types/delivery-offer';
-import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
 
-type OffersPageState = {
+type GetPublishedDeliveryOffersState = Readonly<{
   isLoading: boolean;
-  deliveryOffersList: DeliveryOffersList | null;
-  requestErrorMessage: string;
-};
+  noFilters: boolean;
+  responseData: PageableData<DeliveryOffer> | null;
+  responseErrorMessage: string;
+}>;
 
 @Injectable()
-export class OffersPageService extends BaseStateService<OffersPageState> {
-  private readonly _destroyRef = inject(DestroyRef);
+export class OffersPageService extends BaseStateService<GetPublishedDeliveryOffersState> {
   private readonly _activatedRoute = inject(ActivatedRoute);
-  private readonly _filterByPlaceQueryService = inject(
-    FilterByPlaceQueryService
-  );
+  private readonly _destroyRef = inject(DestroyRef);
   private readonly _placesService = inject(PlacesService);
   private readonly _deliveryOffersHttpService = inject(
     DeliveryOffersHttpService
   );
-
-  private readonly _filterByPlaceValue = signal(
-    new FilterByPlaceValue(null, null)
+  private readonly _filterByPlaceQueryService = inject(
+    FilterByPlaceQueryService
   );
 
-  public get filterByPlaceValue(): Signal<FilterByPlaceValue> {
-    return this._filterByPlaceValue.asReadonly();
-  }
-
-  constructor() {
-    super();
-    this.subToPageQueryChanges();
-  }
-
-  public fetchPublishedDeliveryOffers(
-    filterValue = this._filterByPlaceValue()
-  ): void {
+  public fetchPublishedDeliveryOffers(): void {
     this.updateState({
       isLoading: true,
-      deliveryOffersList: null,
-      requestErrorMessage: '',
+      noFilters: true,
+      responseData: null,
+      responseErrorMessage: '',
     });
 
-    this._deliveryOffersHttpService
-      .getPublished(filterValue)
+    forkJoin([
+      this._activatedRoute.queryParams.pipe(take(1)),
+      this._placesService.translatedPlaces$.pipe(
+        filter((translatedPlaces) => translatedPlaces.length > 0),
+        take(1)
+      ),
+    ])
       .pipe(
-        tap((deliveryOffersList) =>
-          this.updateState({
-            isLoading: false,
-            deliveryOffersList: deliveryOffersList,
-            requestErrorMessage: '',
-          })
-        ),
-        catchError((error: unknown) => {
-          this.updateState({
-            isLoading: false,
-            deliveryOffersList: null,
-            requestErrorMessage:
-              'backendError.unknownDeliveryOffersRequestError',
-          });
-          return throwError(() => error);
+        switchMap(([query, translatedPlaces]) => {
+          const filter = this._filterByPlaceQueryService.getValueFromQuery(
+            query,
+            translatedPlaces
+          );
+          const noFilters = filter.isEmpty;
+
+          return this._deliveryOffersHttpService.getPublished(filter).pipe(
+            tap((responseData) =>
+              this.updateState({
+                isLoading: false,
+                noFilters,
+                responseData,
+                responseErrorMessage: '',
+              })
+            ),
+            catchError((error: unknown) => {
+              this.updateState({
+                isLoading: false,
+                noFilters,
+                responseData: null,
+                responseErrorMessage:
+                  'backendError.unknownDeliveryOffersRequestError',
+              });
+              return throwError(() => error);
+            })
+          );
         }),
         takeUntilDestroyed(this._destroyRef)
       )
       .subscribe();
   }
 
-  public handleFilterByPlaceChange(value: FilterByPlaceValue): void {
-    this._filterByPlaceQueryService.updateQuery(this._activatedRoute, value);
-  }
-
-  public handleClearFilterByPlace(): void {
-    this._filterByPlaceQueryService.clearQuery(this._activatedRoute);
-  }
-
-  protected getInitialState(): OffersPageState {
+  protected override getInitialState(): GetPublishedDeliveryOffersState {
     return {
       isLoading: false,
-      deliveryOffersList: null,
-      requestErrorMessage: '',
+      noFilters: true,
+      responseData: null,
+      responseErrorMessage: '',
     };
-  }
-
-  private subToPageQueryChanges(): void {
-    combineLatest([
-      this._activatedRoute.queryParams,
-      this._placesService.translatedPlaces$,
-    ])
-      .pipe(
-        tap(([query, translatedPlaces]) =>
-          this._filterByPlaceValue.set(
-            this._filterByPlaceQueryService.getValueFromQuery(
-              query,
-              translatedPlaces
-            )
-          )
-        ),
-        takeUntilDestroyed(this._destroyRef)
-      )
-      .subscribe();
   }
 }
