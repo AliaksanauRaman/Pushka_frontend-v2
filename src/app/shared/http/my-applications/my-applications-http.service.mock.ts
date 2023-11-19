@@ -41,7 +41,7 @@ const REQUEST = new MyApplication(
 export class MyApplicationsHttpServiceMock
   implements IMyApplicationsHttpService
 {
-  public getAll(): Observable<PageableData<MyApplication>> {
+  public get(): Observable<PageableData<MyApplication>> {
     const data = [
       OFFER,
       REQUEST,

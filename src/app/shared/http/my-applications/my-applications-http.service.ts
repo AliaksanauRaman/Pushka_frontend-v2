@@ -17,7 +17,7 @@ export class MyApplicationsHttpService
   extends BaseHttpService
   implements IMyApplicationsHttpService
 {
-  public getAll(
+  public get(
     type: MyApplicationOptionType
   ): Observable<PageableData<MyApplication>> {
     return this._httpClient
