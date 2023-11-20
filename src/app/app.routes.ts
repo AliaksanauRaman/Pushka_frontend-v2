@@ -15,6 +15,7 @@ export const appRoutes: Routes = [
       },
       {
         path: 'send-parcel',
+        title: 'pageTitle.sendParcel',
         loadComponent: () =>
           import(
             './send-parcel/pages/send-parcel-page/send-parcel-page.component'
@@ -29,6 +30,7 @@ export const appRoutes: Routes = [
       },
       {
         path: 'deliver-parcel',
+        title: 'pageTitle.deliverParcel',
         loadComponent: () =>
           import(
             './deliver-parcel/pages/deliver-parcel-page/deliver-parcel-page.component'
@@ -36,6 +38,7 @@ export const appRoutes: Routes = [
       },
       {
         path: 'not-found',
+        title: 'pageTitle.notFound',
         loadComponent: () =>
           import('./core/pages/not-found-page/not-found-page.component').then(
             (c) => c.NotFoundPageComponent

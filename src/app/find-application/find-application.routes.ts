@@ -17,6 +17,7 @@ export const findApplicationRoutes: Routes = [
       },
       {
         path: 'requests',
+        title: 'pageTitle.findRequest',
         loadComponent: () =>
           import('./pages/requests-page/requests-page.component').then(
             (c) => c.RequestsPageComponent
@@ -24,6 +25,7 @@ export const findApplicationRoutes: Routes = [
       },
       {
         path: 'offers',
+        title: 'pageTitle.findOffer',
         loadComponent: () =>
           import('./pages/offers-page/offers-page.component').then(
             (c) => c.OffersPageComponent
@@ -31,6 +33,7 @@ export const findApplicationRoutes: Routes = [
       },
       {
         path: 'my-applications',
+        title: 'pageTitle.findMyApplication',
         canActivate: [myApplicationsPageGuard],
         loadComponent: () =>
           import(
