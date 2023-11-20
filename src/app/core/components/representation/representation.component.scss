@@ -6,6 +6,8 @@
 }
 
 .title {
+  position: relative;
+  z-index: 1;
   color: var(--primary-contrast-color);
   line-height: 1.4;
 }

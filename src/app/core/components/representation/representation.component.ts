@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'section[puRepresentation]',
@@ -7,6 +8,6 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrls: ['./representation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, TranslateModule],
 })
 export class RepresentationComponent {}

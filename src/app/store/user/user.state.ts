@@ -3,6 +3,7 @@ import { State, Selector, Action, NgxsOnInit, StateContext } from '@ngxs/store';
 
 import { LOCAL_STORAGE } from '@global/local-storage';
 import { JwtService } from '@shared/services/jwt/jwt.service';
+import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
 
 import { LoginUser, LogoutUser } from './user.actions';
 import { User } from '@shared/types/user';
@@ -20,6 +21,7 @@ type StateModel = User | null;
 export class UserState implements NgxsOnInit {
   private readonly _localStorage = inject(LOCAL_STORAGE);
   private readonly _jwtService = inject(JwtService);
+  private readonly _snackBarService = inject(SnackBarService);
 
   public ngxsOnInit(context: StateContext<StateModel>): void {
     const token = this._localStorage.getItem(LocalStorageKey.TOKEN);
@@ -31,7 +33,7 @@ export class UserState implements NgxsOnInit {
     const user = this._jwtService.decode(token).toUser();
 
     if (user === null) {
-      // token has expired
+      this._snackBarService.showErrorMessage('tokenHasExpiredMessage');
     }
 
     context.setState(user);
@@ -56,5 +58,6 @@ export class UserState implements NgxsOnInit {
   public logoutUser(context: StateContext<StateModel>): void {
     this._localStorage.removeItem(LocalStorageKey.TOKEN);
     context.setState(null);
+    this._snackBarService.showSuccessMessage('successLogoutMessage');
   }
 }

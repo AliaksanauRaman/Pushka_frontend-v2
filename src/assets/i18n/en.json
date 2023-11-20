@@ -1,4 +1,6 @@
 {
+  "fromPeopleToPeople": "From people to people!",
+  "convenientWayToTransferParcel": "Convenient way to transfer a parcel",
   "passwordHint": "Minimum of 8 characters, including Latin letters and numbers",
   "actionLabel": {
     "login": "Log in",
@@ -138,7 +140,9 @@
     "sendParcel": "Send a parcel",
     "deliverParcel": "Deliver a parcel"
   },
+  "tokenHasExpiredMessage": "Your session is over. Please log in again.",
   "successLoginMessage": "The login was successful!",
+  "successLogoutMessage": "The logout was successful!",
   "successRegisterMessage": "The registration was successful! To activate your account, please confirm your email.",
   "applicationsCount": "Total applications: {{ count }}",
   "applicationIsValidUntil": "The application is valid until",

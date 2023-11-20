@@ -1,4 +1,6 @@
 {
+  "fromPeopleToPeople": "От людей к людям!",
+  "convenientWayToTransferParcel": "Удобный способ передать посылку",
   "passwordHint": "Минимум 8 символов, включая латинские буквы и цифры",
   "actionLabel": {
     "login": "Войти",
@@ -138,7 +140,9 @@
     "sendParcel": "Отправьте посылку",
     "deliverParcel": "Доставьте посылку"
   },
+  "tokenHasExpiredMessage": "Ваш сеанс истек. Пожалуйста, войдите в систему снова.",
   "successLoginMessage": "Вход в систему прошел успешно!",
+  "successLogoutMessage": "Выход из системы прошел успешно!",
   "successRegisterMessage": "Регистрация прошла успешно! Чтобы активировать аккаунт подтвердите электронную почту.",
   "applicationsCount": "Всего заявок: {{ count }}",
   "applicationIsValidUntil": "Заявка действительна до",
