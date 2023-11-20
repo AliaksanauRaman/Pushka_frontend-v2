@@ -2,6 +2,7 @@ import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
   PreloadAllModules,
+  TitleStrategy,
   provideRouter,
   withPreloading,
 } from '@angular/router';
@@ -12,6 +13,7 @@ import { NgxsModule } from '@ngxs/store';
 import { CoreTranslateModule } from '@core/translate/core-translate.module';
 
 import { authorizationInterceptor } from '@core/interceptors/authorization.interceptor';
+import { PushkaTitleStrategy } from '@core/translate/pushka-title-strategy';
 
 import { STORE } from './store';
 import { appRoutes } from './app.routes';
@@ -28,5 +30,6 @@ export const APP_CONFIG: ApplicationConfig = {
       CoreTranslateModule
     ),
     provideRouter(appRoutes, withPreloading(PreloadAllModules)),
+    { provide: TitleStrategy, useClass: PushkaTitleStrategy },
   ],
 };
