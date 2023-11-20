@@ -55,7 +55,9 @@
         ></pu-my-application-type-dropdown-field>
   
         <pu-my-applications-list
+          class="applications-list"
           [myApplicationsList]="state.responseData.items"
+          (myApplicationDeleted)="_service.deleteMyApplication($event)"
         ></pu-my-applications-list>
       </div>
     }

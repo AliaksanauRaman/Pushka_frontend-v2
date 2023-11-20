@@ -59,6 +59,19 @@ export class MyApplicationsPageService extends BaseStateService<MyApplicationsPa
       .subscribe();
   }
 
+  public deleteMyApplication(myApplication: MyApplication): void {
+    const currentState = this.getState();
+
+    if (currentState.responseData === null) {
+      throw new Error('Response data cannot be null!');
+    }
+
+    this.updateState({
+      ...currentState,
+      responseData: currentState.responseData.deleteItem(myApplication),
+    });
+  }
+
   protected getInitialState(): Readonly<MyApplicationsPageState> {
     return {
       isLoading: false,

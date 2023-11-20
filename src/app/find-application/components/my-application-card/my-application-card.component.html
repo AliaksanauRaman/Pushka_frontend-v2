@@ -2,6 +2,7 @@
   <pu-application-card-header
     class="header"
     [applicationType]="application.type"
+    (deletionConfirm)="handleDeletionConfirm(application)"
   />
 
   @if (application.isOffer) {
@@ -27,4 +28,14 @@
     class="user-details"
     [application]="application"
   />
+}
+
+@if (_isDeleting()) {
+  <div class="deleting-overlay">
+    <pu-spinner
+      class="deleting-overlay__spinner"
+      color="primary"
+      size="medium"
+    />
+  </div>
 }

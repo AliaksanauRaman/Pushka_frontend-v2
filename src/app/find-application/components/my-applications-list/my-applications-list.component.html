@@ -1,7 +1,9 @@
 @for (myApplication of _myApplicationsList(); track myApplication.id) {
   <pu-my-application-card
+    @fadeInSlideOut
     class="application-card"
     [application]="myApplication"
+    (deleted)="myApplicationDeleted.emit(myApplication)"
   />
 } @empty {
   <div class="empty-list">
