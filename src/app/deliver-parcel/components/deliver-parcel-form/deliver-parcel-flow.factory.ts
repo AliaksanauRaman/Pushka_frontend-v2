@@ -2,7 +2,7 @@ import { Injectable, Injector, inject } from '@angular/core';
 
 import { BaseDeliverParcelFlowService } from './base-deliver-parcel-flow.service';
 import { AuthorizedDeliverParcelFlowService } from './authorized-deliver-parcel-flow.service';
-import { UnauthorizedSendParcelFlowService } from './unauthorized-deliver-parcel-flow.service';
+import { UnauthorizedDeliverParcelFlowService } from './unauthorized-deliver-parcel-flow.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +15,6 @@ export class DeliverParcelFlowFactory {
       return this._injector.get(AuthorizedDeliverParcelFlowService);
     }
 
-    return this._injector.get(UnauthorizedSendParcelFlowService);
+    return this._injector.get(UnauthorizedDeliverParcelFlowService);
   }
 }

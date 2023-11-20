@@ -106,6 +106,7 @@ export class DeliverParcelFormComponent {
           this._deliverParcelForm.enable();
         }),
         takeUntilDestroyed(this._destroyRef)
-      );
+      )
+      .subscribe();
   }
 }

@@ -9,7 +9,7 @@ import { ValidDeliverParcelFormValue } from '@shared/types/valid-deliver-parcel-
 @Injectable({
   providedIn: 'root',
 })
-export class UnauthorizedSendParcelFlowService extends BaseDeliverParcelFlowService {
+export class UnauthorizedDeliverParcelFlowService extends BaseDeliverParcelFlowService {
   private readonly _forceLoginDialogHelperService = inject(
     ForceLoginDialogHelperService
   );
