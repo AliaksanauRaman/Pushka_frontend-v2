@@ -1,9 +1,11 @@
 :host {
+  position: relative;
   display: block;
   padding: 24px;
   background-color: var(--white-color);
   border-radius: 16px;
   box-shadow: 2px 4px 14px 0px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 }
 
 .header {
@@ -16,4 +18,21 @@
 
 .comment {
   margin-bottom: 12px;
+}
+
+.deleting-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.65);
+}
+
+.deleting-overlay__spinner {
+  flex-shrink: 0;
 }
