@@ -1,4 +1,13 @@
 {
+  "pageTitle": {
+    "sendParcel": "Отправить посылку",
+    "findRequest": "Найти запрос",
+    "findOffer": "Найти предложение",
+    "findMyApplication": "Найти мою заявку",
+    "deliverParcel": "Доставить посылку",
+    "notFound": "Страница не найдена",
+    "default": "Pushka"
+  },
   "fromPeopleToPeople": "От людей к людям!",
   "convenientWayToTransferParcel": "Удобный способ передать посылку",
   "passwordHint": "Минимум 8 символов, включая латинские буквы и цифры",

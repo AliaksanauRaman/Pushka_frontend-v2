@@ -1,4 +1,13 @@
 {
+  "pageTitle": {
+    "sendParcel": "Send a parcel",
+    "findRequest": "Find a request",
+    "findOffer": "Find an offer",
+    "findMyApplication": "Find my application",
+    "deliverParcel": "Deliver a parcel",
+    "notFound": "Page not found",
+    "default": "Pushka"
+  },
   "fromPeopleToPeople": "From people to people!",
   "convenientWayToTransferParcel": "Convenient way to transfer a parcel",
   "passwordHint": "Minimum of 8 characters, including Latin letters and numbers",
