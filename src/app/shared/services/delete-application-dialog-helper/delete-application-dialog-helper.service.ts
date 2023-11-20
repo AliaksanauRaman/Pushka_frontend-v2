@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { DeleteApplicationDialogComponent } from '@shared/dialogs/delete-application-dialog/delete-application-dialog.component';
 
@@ -8,9 +9,13 @@ import { BaseDialogHelperService } from '@shared/base/base-dialog-helper.service
   providedIn: 'root',
 })
 export class DeleteApplicationDialogHelperService extends BaseDialogHelperService {
-  public openDialog(): void {
-    this._dialog.open(DeleteApplicationDialogComponent, {
+  public openDialog(): Observable<true | undefined> {
+    return this._dialog.open<
+      true | undefined,
+      unknown,
+      DeleteApplicationDialogComponent
+    >(DeleteApplicationDialogComponent, {
       width: '100%',
-    });
+    }).closed;
   }
 }
