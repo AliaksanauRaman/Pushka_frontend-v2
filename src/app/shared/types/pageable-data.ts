@@ -1,5 +1,7 @@
-export class PageableData<T> {
-  public static buildEmpty<T>(): PageableData<T> {
+export class PageableData<T extends { readonly id: number }> {
+  public static buildEmpty<
+    T extends { readonly id: number }
+  >(): PageableData<T> {
     return new PageableData([], true, true, true, 0, 0, 0, 0, 1);
   }
 
@@ -14,4 +16,20 @@ export class PageableData<T> {
     public readonly totalItemsCount: number,
     public readonly totalPagesCount: number
   ) {}
+
+  public deleteItem(item: T): PageableData<T> {
+    const newItems = this.items.filter(({ id }) => id !== item.id);
+
+    return new PageableData(
+      newItems,
+      newItems.length === 0,
+      this.isFirstPage,
+      this.isLastPage,
+      this.pageIndex,
+      newItems.length,
+      this.pageSize,
+      this.totalItemsCount - 1,
+      this.totalPagesCount
+    );
+  }
 }
