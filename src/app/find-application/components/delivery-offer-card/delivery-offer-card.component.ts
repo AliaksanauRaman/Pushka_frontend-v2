@@ -1,12 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   EventEmitter,
   Input,
   Output,
   inject,
   signal,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { catchError, finalize, tap, throwError } from 'rxjs';
 
 import { ApplicationCardHeaderComponent } from '../application-card-header/application-card-header.component';
@@ -43,7 +45,10 @@ import { MyApplicationType } from '@shared/enums/my-application-type.enum';
   ],
 })
 export class DeliveryOfferCardComponent {
-  private readonly _deliveryOffersHttpService = inject(DeliveryOffersHttpService);
+  private readonly _destroyRef = inject(DestroyRef);
+  private readonly _deliveryOffersHttpService = inject(
+    DeliveryOffersHttpService
+  );
   private readonly _snackBarService = inject(SnackBarService);
   protected readonly _application =
     inject<ApplicationDirective<Application>>(ApplicationDirective);
@@ -63,14 +68,18 @@ export class DeliveryOfferCardComponent {
   protected deleteDeliveryOffer(id: number): void {
     this._isDeleting.set(true);
 
-    this._deliveryOffersHttpService.deleteOne(id)
+    this._deliveryOffersHttpService
+      .deleteOne(id)
       .pipe(
         tap(() => this.deleted.emit()),
-        catchError(error => {
-          this._snackBarService.showErrorMessage('backendError.unknownDeliveryOfferDeletionError');
+        catchError((error: unknown) => {
+          this._snackBarService.showErrorMessage(
+            'backendError.unknownDeliveryOfferDeletionError'
+          );
           return throwError(() => error);
         }),
-        finalize(() => this._isDeleting.set(false))
+        finalize(() => this._isDeleting.set(false)),
+        takeUntilDestroyed(this._destroyRef)
       )
       .subscribe();
   }
