@@ -1,13 +1,19 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { AsyncPipe } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngxs/store';
 import { TranslateModule } from '@ngx-translate/core';
-import { tap } from 'rxjs';
+import { finalize, tap } from 'rxjs';
 
 import { FieldErrorsComponent } from '@shared/components/field-errors/field-errors.component';
 import { PlaceFieldComponent } from '@shared/components/place-field/place-field.component';
@@ -19,7 +25,7 @@ import { PhoneFieldComponent } from '@shared/components/phone-field/phone-field.
 import { CheckboxFieldComponent } from '@shared/components/checkbox-field/checkbox-field.component';
 import { AccentButtonComponent } from '@shared/components/accent-button/accent-button.component';
 
-import { DeliverParcelFormService } from './deliver-parcel-form.service';
+import { DeliverParcelFlowFactory } from './deliver-parcel-flow.factory';
 import { PlacesService } from '@shared/services/places/places.service';
 
 import { DELIVER_PARCEL_FORM_CONFIG } from './deliver-parcel-form.config';
@@ -28,6 +34,7 @@ import { Place } from '@shared/types/place';
 import { DateRange } from '@shared/types/date-range';
 import { Phone } from '@shared/types/phone';
 import { ValidDeliverParcelFormValue } from '@shared/types/valid-deliver-parcel-form-value';
+import { UserState } from '@store/user';
 
 @Component({
   selector: 'pu-deliver-parcel-form',
@@ -36,11 +43,9 @@ import { ValidDeliverParcelFormValue } from '@shared/types/valid-deliver-parcel-
     '../../../styles/components/_form.component.scss',
     './deliver-parcel-form.component.scss',
   ],
-  providers: [DeliverParcelFormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    AsyncPipe,
     ReactiveFormsModule,
     TranslateModule,
     FieldErrorsComponent,
@@ -55,25 +60,13 @@ import { ValidDeliverParcelFormValue } from '@shared/types/valid-deliver-parcel-
   ],
 })
 export class DeliverParcelFormComponent {
+  private readonly _destroyRef = inject(DestroyRef);
+  private readonly _store = inject(Store);
   private readonly _formBuilder = inject(NonNullableFormBuilder);
-  private readonly _service = inject(DeliverParcelFormService);
+  private readonly _flowFactory = inject(DeliverParcelFlowFactory);
   protected readonly _config = inject(DELIVER_PARCEL_FORM_CONFIG);
   protected readonly _places = toSignal(
     inject(PlacesService).translatedPlaces$
-  );
-
-  protected readonly _state$ = this._service.state$.pipe(
-    tap((state) => {
-      if (state.isSuccess) {
-        return;
-      }
-
-      if (state.isLoading) {
-        this._deliverParcelForm.disable();
-      } else {
-        this._deliverParcelForm.enable();
-      }
-    })
   );
 
   protected readonly _deliverParcelForm = this._formBuilder.group({
@@ -91,14 +84,28 @@ export class DeliverParcelFormComponent {
     allowedItemsConfirmation: [false, Validators.requiredTrue],
     noServiceResponsibilityConfirmation: [false, Validators.requiredTrue],
   });
+  protected readonly _isLoading = signal(false);
 
   protected handleDeliverParcelFormSubmit(): void {
     if (this._deliverParcelForm.invalid) {
       return;
     }
 
-    this._service.handleValidDeliverParcelFormSubmit(
-      new ValidDeliverParcelFormValue(this._deliverParcelForm.getRawValue())
-    );
+    this._isLoading.set(true);
+    this._deliverParcelForm.disable();
+
+    this._flowFactory
+      .buildFlow(this._store.selectSnapshot(UserState.stream) !== null)
+      .handleValidDeliverParcelFormSubmit(
+        new ValidDeliverParcelFormValue(this._deliverParcelForm.getRawValue())
+      )
+      .pipe(
+        tap(() => this._deliverParcelForm.reset()),
+        finalize(() => {
+          this._isLoading.set(false);
+          this._deliverParcelForm.enable();
+        }),
+        takeUntilDestroyed(this._destroyRef)
+      );
   }
 }
