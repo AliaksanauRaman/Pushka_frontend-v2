@@ -1,13 +1,14 @@
 import { Place } from './place';
 import { Phone } from './phone';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
-import { CreateHelpRequestDto } from '@shared/dtos/create-help-request.dto';
+import { AuthorizedCreateHelpRequestDto } from '@shared/dtos/authorized-create-help-request.dto';
+import { UnauthorizedCreateHelpRequestDto } from '@shared/dtos/unauthorized-create-help-request.dto';
 import { mapDateToUTCDate } from '@shared/utils/map-date-to-utc-date';
 
 type RawSendParcelFormValue = Readonly<{
   departurePlace: Place | null;
   destination: Place | null;
-  applicationIsValidUntil: Date | null
+  applicationIsValidUntil: Date | null;
   description: string;
   fullName: string;
   email: string;
@@ -51,10 +52,8 @@ export class ValidSendParcelFormValue {
       noServiceResponsibilityConfirmation;
   }
 
-  public toCreateHelpRequestDto(
-    status: ApplicationStatus
-  ): CreateHelpRequestDto {
-    return new CreateHelpRequestDto(
+  public toAuthorizedDto(): AuthorizedCreateHelpRequestDto {
+    return new AuthorizedCreateHelpRequestDto(
       this.departurePlace.id,
       this.destination.id,
       mapDateToUTCDate(new Date()),
@@ -63,7 +62,22 @@ export class ValidSendParcelFormValue {
       this.fullName,
       this.email,
       this.phone,
-      status
+      ApplicationStatus.PUBLISHED
+    );
+  }
+
+  public toUnauthorizedDto(userId: number): UnauthorizedCreateHelpRequestDto {
+    return new UnauthorizedCreateHelpRequestDto(
+      userId,
+      this.departurePlace.id,
+      this.destination.id,
+      mapDateToUTCDate(new Date()),
+      this.applicationIsValidUntil,
+      this.description,
+      this.fullName,
+      this.email,
+      this.phone,
+      ApplicationStatus.PENDING
     );
   }
 }
