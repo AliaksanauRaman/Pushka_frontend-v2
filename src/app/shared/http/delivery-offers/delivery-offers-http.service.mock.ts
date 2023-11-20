@@ -12,7 +12,7 @@ import { PageableData } from '@shared/types/pageable-data';
 
 const MOCK_DELIVERY_OFFER = new DeliveryOffer(
   1,
-  1,
+  28244,
   { cityLabel: 'city.belarus.minsk', countryLabel: 'country.belarus' },
   { cityLabel: 'city.poland.warsaw', countryLabel: 'country.poland' },
   new Date(),
@@ -31,7 +31,14 @@ export class DeliveryOffersHttpServiceMock
   public getPublished(
     _filterValue: FilterByPlaceValue
   ): Observable<PageableData<DeliveryOffer>> {
-    const data = new Array(20).fill(MOCK_DELIVERY_OFFER);
+    const data: Array<DeliveryOffer> = [];
+
+    for (let index = 0; index < 20; index++) {
+      data.push({
+        ...MOCK_DELIVERY_OFFER,
+        id: index + 1,
+      });
+    }
 
     return of(
       new PageableData(
@@ -55,6 +62,6 @@ export class DeliveryOffersHttpServiceMock
   }
 
   public deleteOne(_deliveryOfferId: number): Observable<unknown> {
-    throw new Error('Method not implemented.');
+    return of(null).pipe(delay(3000));
   }
 }

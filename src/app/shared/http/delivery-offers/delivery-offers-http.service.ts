@@ -11,6 +11,7 @@ import { DeliveryOffer } from '@shared/types/delivery-offer';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 import { CreateDeliveryOfferDto } from '@shared/dtos/create-delivery-offer.dto';
 import { deliveryOffersPageableData } from '@shared/unknown-types-parsers/delivery-offers-pageable-data';
+import { DeleteApplicationDto } from '@shared/dtos/delete-application.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -62,7 +63,7 @@ export class DeliveryOffersHttpService
   public deleteOne(deliveryOfferId: number): Observable<unknown> {
     return this._httpClient.patch<null>(
       `${this._deliveryOffersEndpoint}/${deliveryOfferId}`,
-      { status: 'DELETED' }, // TODO: Type
+      new DeleteApplicationDto().toMap(),
       { context: this.authorizedContext, observe: 'response' }
     );
   }
