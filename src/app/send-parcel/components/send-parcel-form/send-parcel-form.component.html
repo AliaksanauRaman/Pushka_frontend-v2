@@ -141,16 +141,14 @@
     [puLabel]="'noServiceResponsibilityConfirmationText' | translate"
     formControlName="noServiceResponsibilityConfirmation"
   />
-  
-  @if (_state$ | async; as state) {
-    <button
-      class="pu-form__submit-button"
-      puAccentButton
-      [isLoading]="state.isLoading"
-      [disabled]="_sendParcelForm.invalid || state.isLoading"
-      type="submit"
-    >
-      <span>{{ "actionLabel.createApplication" | translate }}</span>
-    </button>
-  }
+
+  <button
+    class="pu-form__submit-button"
+    puAccentButton
+    [isLoading]="_isLoading()"
+    [disabled]="_isLoading() || _sendParcelForm.invalid"
+    type="submit"
+  >
+    <span>{{ "actionLabel.createApplication" | translate }}</span>
+  </button>
 </form>
