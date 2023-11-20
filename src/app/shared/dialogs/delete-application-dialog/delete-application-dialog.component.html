@@ -18,7 +18,12 @@
 
 <pu-placeholder class="illustration" [style.height.px]="100" />
 
-<button class="delete-button" puAccentButton type="button">
+<button
+  class="delete-button"
+  puAccentButton
+  type="button"
+  (click)="closeDialog(true)"
+>
   <span>{{ "actionLabel.delete" | translate }}</span>
 </button>
 

@@ -22,4 +22,4 @@ import { BaseDialogComponent } from '@shared/base/base-dialog.component';
     SecondaryButtonComponent,
   ],
 })
-export class DeleteApplicationDialogComponent extends BaseDialogComponent {}
+export class DeleteApplicationDialogComponent extends BaseDialogComponent<true | undefined> {}
