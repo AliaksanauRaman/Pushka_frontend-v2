@@ -3,11 +3,10 @@ import { Observable, delay, of } from 'rxjs';
 
 import { IDeliveryOffersHttpService } from './delivery-offers-http.interface';
 import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
-import {
-  DeliveryOffer,
-} from '@shared/types/delivery-offer';
+import { DeliveryOffer } from '@shared/types/delivery-offer';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
-import { CreateDeliveryOfferDto } from '@shared/dtos/create-delivery-offer.dto';
+import { AuthorizedCreateDeliveryOfferDto } from '@shared/dtos/authorized-create-delivery-offer.dto';
+import { UnauthorizedCreateDeliveryOfferDto } from '@shared/dtos/unauthorized-create-delivery-offer.dto';
 import { PageableData } from '@shared/types/pageable-data';
 
 const MOCK_DELIVERY_OFFER = new DeliveryOffer(
@@ -55,10 +54,16 @@ export class DeliveryOffersHttpServiceMock
     ).pipe(delay(1000));
   }
 
-  public createOne(
-    _createDeliveryOfferDto: CreateDeliveryOfferDto
+  public authorizedCreateOne(
+    _dto: AuthorizedCreateDeliveryOfferDto
   ): Observable<unknown> {
-    throw new Error('Method not implemented.');
+    return of(null).pipe(delay(1000));
+  }
+
+  public unauthorizedCreateOne(
+    _dto: UnauthorizedCreateDeliveryOfferDto
+  ): Observable<unknown> {
+    return of(null).pipe(delay(1000));
   }
 
   public deleteOne(_deliveryOfferId: number): Observable<unknown> {

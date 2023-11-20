@@ -9,7 +9,8 @@ import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
 import { PageableData } from '@shared/types/pageable-data';
 import { DeliveryOffer } from '@shared/types/delivery-offer';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
-import { CreateDeliveryOfferDto } from '@shared/dtos/create-delivery-offer.dto';
+import { AuthorizedCreateDeliveryOfferDto } from '@shared/dtos/authorized-create-delivery-offer.dto';
+import { UnauthorizedCreateDeliveryOfferDto } from '@shared/dtos/unauthorized-create-delivery-offer.dto';
 import { deliveryOffersPageableData } from '@shared/unknown-types-parsers/delivery-offers-pageable-data';
 import { DeleteApplicationDto } from '@shared/dtos/delete-application.dto';
 
@@ -50,13 +51,22 @@ export class DeliveryOffersHttpService
       );
   }
 
-  public createOne(
-    createDeliveryOfferDto: CreateDeliveryOfferDto
+  public authorizedCreateOne(
+    dto: AuthorizedCreateDeliveryOfferDto
   ): Observable<unknown> {
     return this._httpClient.post<unknown>(
       this._deliveryOffersEndpoint,
-      createDeliveryOfferDto.toMap(),
+      dto.toMap(),
       { context: this.authorizedContext }
+    );
+  }
+
+  public unauthorizedCreateOne(
+    dto: UnauthorizedCreateDeliveryOfferDto
+  ): Observable<unknown> {
+    return this._httpClient.post<unknown>(
+      this._deliveryOffersEndpoint,
+      dto.toMap()
     );
   }
 
