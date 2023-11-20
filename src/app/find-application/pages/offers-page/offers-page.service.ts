@@ -87,6 +87,19 @@ export class OffersPageService extends BaseStateService<GetPublishedDeliveryOffe
       .subscribe();
   }
 
+  public deleteDeliveryOffer(deliveryOffer: DeliveryOffer): void {
+    const currentState = this.getState();
+
+    if (currentState.responseData === null) {
+      throw new Error('Response data cannot be null!');
+    }
+
+    this.updateState({
+      ...currentState,
+      responseData: currentState.responseData.deleteItem(deliveryOffer),
+    });
+  }
+
   protected override getInitialState(): GetPublishedDeliveryOffersState {
     return {
       isLoading: false,

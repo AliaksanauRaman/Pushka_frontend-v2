@@ -71,6 +71,7 @@
         <pu-delivery-offers-list
           class="applications-list"
           [deliveryOffersList]="state.responseData.items"
+          (deliveryOfferDeleted)="_service.deleteDeliveryOffer($event)"
         />
       </section>
     }

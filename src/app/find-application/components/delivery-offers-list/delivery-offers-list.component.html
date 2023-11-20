@@ -1,8 +1,10 @@
 @for (deliveryOffer of _deliveryOffersList(); track deliveryOffer.id) {
   <pu-delivery-offer-card
+    @fadeInSlideOut
     class="application-card"
     [isMine]="_user()?.id === deliveryOffer.userId"
     [application]="deliveryOffer"
+    (deleted)="deliveryOfferDeleted.emit(deliveryOffer)"
   />
 } @empty {
   <div class="empty-list">
