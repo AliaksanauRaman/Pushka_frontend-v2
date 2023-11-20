@@ -14,7 +14,6 @@ import { DialogTabItemComponent } from '@shared/components/dialog-tab-item/dialo
 import { LoginFormComponent } from '@core/components/login-form/login-form.component'; // TODO: Move to shared
 import { RegisterFormComponent } from '@core/components/register-form/register-form.component'; // TODO: Move to shared
 
-import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
 import {
   DIALOG_TABS,
   DialogTab,
@@ -22,8 +21,13 @@ import {
 } from '@shared/services/dialog-tabs/dialog-tabs.service';
 
 import { BaseDialogComponent } from '@shared/base/base-dialog.component';
-import { ForceLoginDialogResult } from '@shared/types/force-login-dialog-result';
+import {
+  ForceLoginDialogResult,
+  SuccessLoginDialogResult,
+  SuccessRegisterDialogResult,
+} from '@shared/types/force-login-dialog-result';
 import { ForceLoginDialogData } from '@shared/types/force-login-dialog-data';
+import { RegisterResponseData } from '@shared/types/register-response-data';
 
 @Component({
   selector: 'pu-force-login-dialog',
@@ -54,7 +58,6 @@ export class ForceLoginDialogComponent
   extends BaseDialogComponent<ForceLoginDialogResult>
   implements OnInit
 {
-  private readonly _snackBarService = inject(SnackBarService);
   protected readonly _data = inject<ForceLoginDialogData>(DIALOG_DATA);
   protected readonly _dialogTabsService = inject(DialogTabsService);
 
@@ -71,12 +74,10 @@ export class ForceLoginDialogComponent
   }
 
   protected handleSuccessLogin(): void {
-    this.closeDialog('success-login');
-    this._snackBarService.showSuccessMessage('successLoginMessage');
+    this.closeDialog(new SuccessLoginDialogResult());
   }
 
-  protected handleSuccessRegister(): void {
-    this.closeDialog('success-register');
-    this._snackBarService.showImportantMessage('successRegisterMessage');
+  protected handleSuccessRegister(data: RegisterResponseData): void {
+    this.closeDialog(new SuccessRegisterDialogResult(data));
   }
 }
