@@ -10,7 +10,9 @@
     "clearFilter": "Clear filter",
     "delete": "Delete",
     "cancel": "Cancel",
-    "tryAgain": "Try again"
+    "tryAgain": "Try again",
+    "more": "More",
+    "less": "Less"
   },
   "navigationLabel": {
     "sendParcel": "Send parcel",
@@ -30,6 +32,8 @@
     "unknownGetPublishedHelpRequestsError": "Unknown error getting the list of requests. Please, try again later.",
     "unknownGetMyApplicationsError": "Unknown error getting the list of your applications. Please, try again later."
   },
+  "myRequest": "My request",
+  "myOffer": "My offer",
   "myApplications": {
     "all": "All",
     "request": "My requests",

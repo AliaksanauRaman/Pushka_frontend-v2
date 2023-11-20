@@ -10,7 +10,9 @@
     "clearFilter": "Ачысціць фільтр",
     "delete": "Выдаліць",
     "cancel": "Адмяніць",
-    "tryAgain": "Паспрабаваць зноў"
+    "tryAgain": "Паспрабаваць зноў",
+    "more": "Яшчэ",
+    "less": "Свярнуць"
   },
   "navigationLabel": {
     "sendParcel": "Адправіць пасылку",
@@ -30,6 +32,8 @@
     "unknownGetPublishedHelpRequestsError": "Невадомая памылка пры атрыманні спіса запытаў. Калі ласка, паўтарыце спробу пазней.",
     "unknownGetMyApplicationsError": "Невадомая памылка пры атрыманні спіса вашых заявак. Калі ласка, паўтарыце спробу пазней."
   },
+  "myRequest": "Мой запыт",
+  "myOffer": "Мая прапанова",
   "myApplications": {
     "all": "Усе",
     "request": "Мае запыты",

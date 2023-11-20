@@ -6,15 +6,17 @@ import {
   computed,
   signal,
 } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MyApplicationType } from '@shared/enums/my-application-type.enum';
 
 @Component({
   selector: 'pu-application-card-tag',
-  template: '{{ _text() }}',
+  template: '{{ _text() | translate }}',
   styleUrl: './application-card-tag.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  imports: [TranslateModule],
 })
 export class ApplicationCardTagComponent {
   @Input()
@@ -34,8 +36,6 @@ export class ApplicationCardTagComponent {
 
   protected readonly _type = signal<MyApplicationType>(MyApplicationType.OFFER);
   protected readonly _text = computed(() =>
-    this._type() === MyApplicationType.OFFER
-      ? 'Мое предложение помощи'
-      : 'Мой запрос'
+    this._type() === MyApplicationType.OFFER ? 'myOffer' : 'myRequest'
   );
 }

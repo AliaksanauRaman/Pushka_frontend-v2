@@ -9,6 +9,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MATH } from '@global/math';
 import { GeneratorService } from '@shared/services/generator/generator.service';
@@ -23,6 +24,7 @@ import { ApplicationDirective } from '../../directives/application/application.d
   styleUrls: ['./application-card-comment.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  imports: [TranslateModule],
   hostDirectives: [
     {
       directive: ApplicationDirective,
@@ -48,6 +50,9 @@ export class ApplicationCardCommentComponent implements AfterViewInit {
   });
   protected readonly _isExpandable = signal(false);
   protected readonly _isExpanded = signal(false);
+  protected readonly _expandTextLabel = computed(() =>
+    this._isExpanded() ? 'actionLabel.less' : 'actionLabel.more'
+  );
 
   public ngAfterViewInit(): void {
     this._isExpandable.set(

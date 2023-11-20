@@ -10,7 +10,9 @@
     "clearFilter": "Очистить фильтр",
     "delete": "Удалить",
     "cancel": "Отменить",
-    "tryAgain": "Попробовать снова"
+    "tryAgain": "Попробовать снова",
+    "more": "Еще",
+    "less": "Свернуть"
   },
   "navigationLabel": {
     "sendParcel": "Отправить посылку",
@@ -30,6 +32,8 @@
     "unknownGetPublishedHelpRequestsError": "Неизвестная ошибка получения списка запросов. Пожалуйста, повторите попытку позже.",
     "unknownGetMyApplicationsError": "Неизвестная ошибка получения списка ваших заявок. Пожалуйста, повторите попытку позже."
   },
+  "myRequest": "Мой запрос",
+  "myOffer": "Мое предложение",
   "myApplications": {
     "all": "Все",
     "request": "Мои запросы",
