@@ -6,7 +6,6 @@ import {
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { AsyncPipe } from '@angular/common';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
@@ -46,7 +45,6 @@ import { UserState } from '@store/user';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    AsyncPipe,
     ReactiveFormsModule,
     TranslateModule,
     FieldErrorsComponent,
@@ -97,6 +95,7 @@ export class SendParcelFormComponent {
 
     this._isLoading.set(true);
     this._sendParcelForm.disable();
+
     this._flowFactory
       .buildFlow(this._store.selectSnapshot(UserState.stream) !== null)
       .handleValidSendParcelFormSubmit(

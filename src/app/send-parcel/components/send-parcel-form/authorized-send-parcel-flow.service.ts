@@ -16,7 +16,7 @@ export class AuthorizedSendParcelFlowService extends BaseSendParcelFlowService {
       .pipe(
         tap(() =>
           this._snackBarService.showSuccessMessage(
-            'successHelpRequestCreationMessage'
+            'successApplicationCreationMessage'
           )
         )
       );
