@@ -10,6 +10,7 @@ import { HelpRequest } from '@shared/types/help-request';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 import { CreateHelpRequestDto } from '@shared/dtos/create-help-request.dto';
 import { helpRequestsPageableData } from '@shared/unknown-types-parsers/help-requests-pageable-data';
+import { DeleteApplicationDto } from '@shared/dtos/delete-application.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -61,7 +62,7 @@ export class HelpRequestsHttpService
   public deleteOne(helpRequestId: number): Observable<unknown> {
     return this._httpClient.patch<null>(
       `${this._helpRequestsEndpoint}/${helpRequestId}`,
-      { status: 'DELETED' }, // TODO: Type
+      new DeleteApplicationDto().toMap(),
       { context: this.authorizedContext, observe: 'response' }
     );
   }

@@ -27,7 +27,14 @@ export class HelpRequestsHttpServiceMock implements IHelpRequestsHttpService {
   public getPublished(
     _filterValue: FilterByPlaceValue
   ): Observable<PageableData<HelpRequest>> {
-    const data = new Array(20).fill(MOCK_HELP_REQUEST);
+    const data: Array<HelpRequest> = [];
+
+    for (let index = 0; index < 20; index++) {
+      data.push({
+        ...MOCK_HELP_REQUEST,
+        id: index + 1,
+      });
+    }
 
     return of(
       new PageableData(
@@ -51,6 +58,6 @@ export class HelpRequestsHttpServiceMock implements IHelpRequestsHttpService {
   }
 
   public deleteOne(_helpRequestId: number): Observable<unknown> {
-    throw new Error('Method not implemented.');
+    return of(null).pipe(delay(3000));
   }
 }
