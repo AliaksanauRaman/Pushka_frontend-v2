@@ -25,7 +25,7 @@ export class UsersHttpService
     );
 
     return this._httpClient
-      .post<unknown>(`${this._apiUrl}/api/register`, registerDto.toMap(), {
+      .post<unknown>(`${this._apiUrl}/api/registration`, registerDto.toMap(), {
         params: new HttpParams().append('lang', selectedLocalization.language),
       })
       .pipe(map((responseData) => registerResponseData.parse(responseData)));
