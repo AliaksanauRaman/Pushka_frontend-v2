@@ -1,15 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  DestroyRef,
   EventEmitter,
   Input,
   Output,
   inject,
   signal,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { catchError, finalize, tap, throwError } from 'rxjs';
+import { tap } from 'rxjs';
 
 import { ApplicationCardHeaderComponent } from '../application-card-header/application-card-header.component';
 import { HelpRequestCardTransportationInfoComponent } from '../help-request-card-transportation-info/help-request-card-transportation-info.component';
@@ -18,8 +16,7 @@ import { ApplicationCardUserDetailsComponent } from '../application-card-user-de
 import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
 import { ApplicationDirective } from '../../directives/application/application.directive';
 
-import { HelpRequestsHttpService } from '@shared/http/help-requests/help-requests-http.service';
-import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
+import { DeleteHelpRequestService } from '../../services/delete-help-request/delete-help-request.service';
 
 import { Application } from '@shared/types/application';
 import { MyApplicationType } from '@shared/enums/my-application-type.enum';
@@ -29,6 +26,7 @@ import { MyApplicationType } from '@shared/enums/my-application-type.enum';
   standalone: true,
   templateUrl: './help-request-card.component.html',
   styleUrl: '../../styles/_application-card.component.scss',
+  providers: [DeleteHelpRequestService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ApplicationCardHeaderComponent,
@@ -45,9 +43,7 @@ import { MyApplicationType } from '@shared/enums/my-application-type.enum';
   ],
 })
 export class HelpRequestCardComponent {
-  private readonly _destroyRef = inject(DestroyRef);
-  private readonly _helpRequestsHttpService = inject(HelpRequestsHttpService);
-  private readonly _snackBarService = inject(SnackBarService);
+  protected readonly _deleteHelpRequest = inject(DeleteHelpRequestService);
   protected readonly _application =
     inject<ApplicationDirective<Application>>(ApplicationDirective);
 
@@ -61,24 +57,11 @@ export class HelpRequestCardComponent {
 
   protected readonly _isMine = signal(false);
   protected readonly _type = MyApplicationType.REQUEST;
-  protected readonly _isDeleting = signal(false);
 
   protected deleteHelpRequest(id: number): void {
-    this._isDeleting.set(true);
-
-    this._helpRequestsHttpService
-      .deleteOne(id)
-      .pipe(
-        tap(() => this.deleted.emit()),
-        catchError((error: unknown) => {
-          this._snackBarService.showErrorMessage(
-            'backendError.unknownHelpRequestDeletionError'
-          );
-          return throwError(() => error);
-        }),
-        finalize(() => this._isDeleting.set(false)),
-        takeUntilDestroyed(this._destroyRef)
-      )
+    this._deleteHelpRequest
+      .deleteById(id)
+      .pipe(tap(() => this.deleted.emit()))
       .subscribe();
   }
 }
