@@ -1,8 +1,10 @@
 @for (helpRequest of _helpRequestsList(); track helpRequest.id) {
   <pu-help-request-card
+    @fadeInSlideOut
     class="application-card"
     [isMine]="_user()?.id === helpRequest.userId"
     [application]="helpRequest"
+    (deleted)="helpRequestDeleted.emit(helpRequest)"
   />
 } @empty {
   <div class="empty-list">

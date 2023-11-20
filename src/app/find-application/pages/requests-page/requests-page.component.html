@@ -71,6 +71,7 @@
         <pu-help-requests-list
           class="applications-list"
           [helpRequestsList]="state.responseData.items"
+          (helpRequestDeleted)="_service.deleteHelpRequest($event)"
         />
       </section>
     }

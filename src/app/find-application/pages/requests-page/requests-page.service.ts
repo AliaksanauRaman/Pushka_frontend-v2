@@ -87,6 +87,19 @@ export class RequestsPageService extends BaseStateService<GetPublishedHelpReques
       .subscribe();
   }
 
+  public deleteHelpRequest(helpRequest: HelpRequest): void {
+    const currentState = this.getState();
+
+    if (currentState.responseData === null) {
+      throw new Error('Response data cannot be null!');
+    }
+
+    this.updateState({
+      ...currentState,
+      responseData: currentState.responseData.deleteItem(helpRequest),
+    });
+  }
+
   protected override getInitialState(): GetPublishedHelpRequestsState {
     return {
       isLoading: false,
