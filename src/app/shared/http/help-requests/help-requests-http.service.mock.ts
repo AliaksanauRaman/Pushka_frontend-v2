@@ -6,7 +6,8 @@ import { FilterByPlaceValue } from '@shared/types/filter-by-place-value';
 import { PageableData } from '@shared/types/pageable-data';
 import { HelpRequest } from '@shared/types/help-request';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
-import { CreateHelpRequestDto } from '@shared/dtos/create-help-request.dto';
+import { AuthorizedCreateHelpRequestDto } from '@shared/dtos/authorized-create-help-request.dto';
+import { UnauthorizedCreateHelpRequestDto } from '@shared/dtos/unauthorized-create-help-request.dto';
 
 const MOCK_HELP_REQUEST = new HelpRequest(
   1,
@@ -51,8 +52,14 @@ export class HelpRequestsHttpServiceMock implements IHelpRequestsHttpService {
     ).pipe(delay(1000));
   }
 
-  public createOne(
-    _createHelpRequestDto: CreateHelpRequestDto
+  public authorizedCreateOne(
+    _dto: AuthorizedCreateHelpRequestDto
+  ): Observable<unknown> {
+    throw new Error('Method not implemented.');
+  }
+
+  public unauthorizedCreateOne(
+    _dto: UnauthorizedCreateHelpRequestDto
   ): Observable<unknown> {
     throw new Error('Method not implemented.');
   }

@@ -8,7 +8,8 @@ import { BaseHttpService } from '@shared/base/base-http.service';
 import { PageableData } from '@shared/types/pageable-data';
 import { HelpRequest } from '@shared/types/help-request';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
-import { CreateHelpRequestDto } from '@shared/dtos/create-help-request.dto';
+import { AuthorizedCreateHelpRequestDto } from '@shared/dtos/authorized-create-help-request.dto';
+import { UnauthorizedCreateHelpRequestDto } from '@shared/dtos/unauthorized-create-help-request.dto';
 import { helpRequestsPageableData } from '@shared/unknown-types-parsers/help-requests-pageable-data';
 import { DeleteApplicationDto } from '@shared/dtos/delete-application.dto';
 
@@ -49,13 +50,22 @@ export class HelpRequestsHttpService
       );
   }
 
-  public createOne(
-    createHelpRequestDto: CreateHelpRequestDto
+  public authorizedCreateOne(
+    dto: AuthorizedCreateHelpRequestDto
   ): Observable<unknown> {
     return this._httpClient.post<unknown>(
       this._helpRequestsEndpoint,
-      createHelpRequestDto.toMap(),
+      dto.toMap(),
       { context: this.authorizedContext }
+    );
+  }
+
+  public unauthorizedCreateOne(
+    dto: UnauthorizedCreateHelpRequestDto
+  ): Observable<unknown> {
+    return this._httpClient.post<unknown>(
+      this._helpRequestsEndpoint,
+      dto.toMap()
     );
   }
 
