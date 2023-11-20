@@ -7,10 +7,11 @@ import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
 
 import { BaseStateService } from '@shared/base/base-state.service';
 import { ValidRegisterFormValue } from '@shared/types/valid-register-form-value';
+import { RegisterResponseData } from '@shared/types/register-response-data';
 
 type RegisterFormState = Readonly<{
   isLoading: boolean;
-  isSuccess: boolean;
+  responseData: RegisterResponseData | null;
 }>;
 
 @Injectable()
@@ -24,22 +25,22 @@ export class RegisterFormService extends BaseStateService<RegisterFormState> {
   ): void {
     this.updateState({
       isLoading: true,
-      isSuccess: false,
+      responseData: null,
     });
 
     this._usersHttpService
       .register(validFormValue.toRegisterDto())
       .pipe(
-        tap(() =>
+        tap((responseData) =>
           this.updateState({
             isLoading: false,
-            isSuccess: true,
+            responseData,
           })
         ),
         catchError((error: unknown) => {
           this.updateState({
             isLoading: false,
-            isSuccess: false,
+            responseData: null,
           });
           // TODO: More errors
           this._snackBarService.showErrorMessage(
@@ -55,7 +56,7 @@ export class RegisterFormService extends BaseStateService<RegisterFormState> {
   protected getInitialState(): RegisterFormState {
     return {
       isLoading: false,
-      isSuccess: false,
+      responseData: null,
     };
   }
 }

@@ -30,6 +30,7 @@ import { RegisterFormService } from './register-form.service';
 import { REGISTER_FORM_CONFIG } from './register-form.config';
 import { CustomValidators } from '@shared/validators';
 import { ValidRegisterFormValue } from '@shared/types/valid-register-form-value';
+import { RegisterResponseData } from '@shared/types/register-response-data';
 
 @Component({
   selector: 'pu-register-form',
@@ -71,7 +72,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
   @Output()
-  public readonly success = new EventEmitter<void>();
+  public readonly success = new EventEmitter<RegisterResponseData>();
 
   protected readonly _registerForm = this._formBuilder.group(
     {
@@ -92,9 +93,9 @@ export class RegisterFormComponent implements OnInit {
     { validators: [CustomValidators.passwordsMatch] }
   );
   protected readonly state$ = this._service.state$.pipe(
-    tap(({ isSuccess, isLoading }) => {
-      if (isSuccess) {
-        this.success.emit();
+    tap(({ responseData, isLoading }) => {
+      if (responseData !== null) {
+        this.success.emit(responseData);
         return;
       }
 
