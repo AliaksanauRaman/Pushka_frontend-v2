@@ -6,7 +6,10 @@ import {
   Output,
   signal,
 } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
+import { transition, trigger, useAnimation } from '@angular/animations';
+
+import { applicationCardFadeIn } from '@shared/animations/application-card-fade-in';
+import { applicationCardSlideOut } from '@shared/animations/application-card-slide-out';
 
 import { MyApplicationCardComponent } from '../my-application-card/my-application-card.component';
 import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
@@ -27,17 +30,8 @@ import { MyApplication } from '@shared/types/my-application';
   ],
   animations: [
     trigger('fadeInSlideOut', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('300ms ease-out', style({ opacity: 1 })),
-      ]),
-      transition(
-        ':leave',
-        animate(
-          '300ms ease-in',
-          style({ height: '0px', padding: '0px', left: '100%', opacity: 0 })
-        )
-      ),
+      transition(':enter', useAnimation(applicationCardFadeIn)),
+      transition(':leave', useAnimation(applicationCardSlideOut)),
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
