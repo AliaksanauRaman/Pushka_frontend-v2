@@ -1,22 +1,40 @@
-.pu-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.pu-form__field {
-  flex-shrink: 0;
-}
+@import '../screen-size-mixins';
 
 .pu-form__field-hint {
-  flex-shrink: 0;
   margin: 8px 0;
 }
 
 .pu-form__field-errors {
-  flex-shrink: 0;
   margin: 8px 0;
 }
 
 .pu-form__submit-button {
-  flex-shrink: 0;
+  width: 100%;
+}
+
+@include for-laptop {
+  .pu-form__row {
+    display: flex;
+    margin-bottom: 14px;
+  }
+
+  .pu-form__row-small-spacer {
+    flex-shrink: 0;
+    width: 112px;
+  }
+  
+  .pu-form__field-container {
+    &.pu-form__field-container--half-width {
+      width: calc(50% - 56px);
+    }
+
+    &:not(.pu-form__field-container--half-width) {
+      flex-grow: 1;
+    }
+  }
+
+  .pu-form__submit-button {
+    max-width: 440px;
+    margin: 0 auto;
+  }
 }

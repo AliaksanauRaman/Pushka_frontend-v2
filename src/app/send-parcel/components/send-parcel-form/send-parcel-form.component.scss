@@ -1,5 +1,11 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: block;
+}
+
+.laptop-direction-image {
+  display: none;
 }
 
 .checkboxes-spacer {
@@ -9,4 +15,23 @@
 
 .pu-form__submit-button {
   margin-top: 40px;
+}
+
+@include for-laptop {
+  .laptop-direction-image {
+    position: relative;
+    top: 46px;
+    display: block;
+    flex-shrink: 0;
+    width: 32px;
+    height: 16px;
+    margin: 0 40px;
+    background-image: url('/assets/images/laptop-direction-arrow.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  .pu-form__submit-button {
+    margin-top: 60px;
+  }
 }
