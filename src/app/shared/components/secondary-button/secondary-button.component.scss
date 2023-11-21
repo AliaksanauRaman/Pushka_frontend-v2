@@ -1,3 +1,5 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: inline-block;
   height: 40px;
@@ -19,5 +21,11 @@
   &:disabled {
     color: var(--disabled-button-text-color);
     background-color: var(--disabled-button-color);
+  }
+}
+
+@include for-laptop {
+  :host {
+    padding: 0 34px;
   }
 }
