@@ -1,10 +1,10 @@
-<ul class="links">
-  <li class="links__item" *ngFor="let link of _navigationLinks">
+<div class="links">
+  @for (link of _navigationLinks; track link) {
     <a
-      class="links__item-content"
+      class="links__item"
       [routerLink]="link.path"
-      routerLinkActive="active"
+      routerLinkActive="links__item--active"
       >{{ link.label | translate }}</a
     >
-  </li>
-</ul>
+  }
+</div>
