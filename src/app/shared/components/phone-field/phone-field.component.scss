@@ -5,15 +5,16 @@
 
 .phone-form {
   display: flex;
-}
 
-.country-code-field {
-  flex-shrink: 0;
-  margin-right: 8px;
-}
+  .country-code-field {
+    flex-shrink: 0;
+    margin-right: 8px;
+  }
 
-.pu-field-container {
-  flex-grow: 1;
+  .pu-field-container {
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
 }
 
 .pu-field {
