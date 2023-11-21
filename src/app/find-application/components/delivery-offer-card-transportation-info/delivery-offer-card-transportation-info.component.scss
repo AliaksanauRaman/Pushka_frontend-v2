@@ -1,3 +1,5 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: flex;
   align-items: center;
@@ -8,9 +10,14 @@
   flex-shrink: 0;
 }
 
-.direction-icon {
+.image {
   flex-shrink: 0;
+  width: 48px;
+  height: 8px;
   margin: 0 16px;
+  background-image: url('/assets/images/direction-image.svg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 .place-name {
@@ -25,3 +32,22 @@
   color: var(--gray-color);
 }
 
+@include for-laptop {
+  :host {
+    height: 55px;
+  }
+
+  .image {
+    width: 75px;
+    height: 12px;
+    margin: 0 12px;
+  }
+
+  .place-name {
+    font-size: 2.4rem;
+  }
+
+  .date {
+    font-size: 1.8rem;
+  }
+}
