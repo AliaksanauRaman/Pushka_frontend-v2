@@ -3,7 +3,7 @@ import { AsyncPipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
-import { LoginFormComponent } from '@core/components/login-form/login-form.component';
+import { LoginFormComponent } from '@shared/components/login-form/login-form.component';
 import { RegisterFormComponent } from '@shared/components/register-form/register-form.component';
 
 import { UserEntryDialogService } from './user-entry-dialog.service';

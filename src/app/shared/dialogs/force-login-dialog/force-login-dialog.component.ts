@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
 import { DialogTabsComponent } from '@shared/components/dialog-tabs/dialog-tabs.component';
 import { DialogTabItemComponent } from '@shared/components/dialog-tab-item/dialog-tab-item.component';
-import { LoginFormComponent } from '@core/components/login-form/login-form.component'; // TODO: Move to shared
+import { LoginFormComponent } from '@shared/components/login-form/login-form.component';
 import { RegisterFormComponent } from '@shared/components/register-form/register-form.component';
 
 import {
