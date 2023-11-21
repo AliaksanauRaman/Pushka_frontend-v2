@@ -29,8 +29,8 @@ import { TranslatedPlaceViewPipe } from '@shared/pipes/translated-place-view.pip
   selector: 'pu-place-field',
   templateUrl: './place-field.component.html',
   styleUrls: [
-    './place-field.component.scss',
     '../../../styles/components/_field.component.scss',
+    './place-field.component.scss',
   ],
   providers: [
     {
