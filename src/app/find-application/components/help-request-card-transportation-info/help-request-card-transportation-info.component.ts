@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { DatePipe, NgOptimizedImage } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { CardPlaceLabelPipe } from '../../pipes/card-place-label.pipe';
@@ -15,7 +15,7 @@ import { Application } from '@shared/types/application';
   styleUrl: './help-request-card-transportation-info.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgOptimizedImage, DatePipe, TranslateModule, CardPlaceLabelPipe],
+  imports: [DatePipe, TranslateModule, CardPlaceLabelPipe],
   hostDirectives: [
     {
       directive: ApplicationDirective,
