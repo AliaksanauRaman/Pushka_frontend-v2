@@ -24,5 +24,9 @@
 </ng-template>
 
 <ng-template #accountMenu let-user="user">
-  <pu-account-menu class="account-menu" [user]="user" (logout)="logoutUser()" />
+  <pu-account-menu
+    class="account-menu"
+    [userEmail]="user.email"
+    (logout)="logoutUser()"
+  />
 </ng-template>

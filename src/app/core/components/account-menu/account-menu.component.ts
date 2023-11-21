@@ -4,14 +4,13 @@ import {
   EventEmitter,
   Input,
   Output,
+  signal,
 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { CdkMenu, CdkMenuItem } from '@angular/cdk/menu';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { AccountAvatarComponent } from '@shared/components/account-avatar/account-avatar.component';
-
-import { User } from '@shared/types/user';
 
 @Component({
   selector: 'pu-account-menu',
@@ -33,12 +32,12 @@ import { User } from '@shared/types/user';
 })
 export class AccountMenuComponent {
   @Input({ required: true })
-  public set user(value: User) {
-    this._user = value;
+  public set userEmail(value: string) {
+    this._userEmail.set(value);
   }
 
   @Output()
   public readonly logout = new EventEmitter<void>();
 
-  protected _user!: User;
+  protected readonly _userEmail = signal('');
 }
