@@ -78,8 +78,15 @@ export class DeliverParcelFormComponent {
     ],
     description: ['', Validators.required],
     fullName: ['', Validators.required],
-    email: ['', Validators.required],
-    phone: [null as Phone | null],
+    email: ['', [Validators.required, CustomValidators.emailFormat]],
+    phone: [
+      null as Phone | null,
+      [
+        CustomValidators.countryCodeRequired,
+        CustomValidators.phoneNumberRequired,
+        CustomValidators.phoneNumberFormat,
+      ],
+    ],
     allowedItemsConfirmation: [false, Validators.requiredTrue],
     noServiceResponsibilityConfirmation: [false, Validators.requiredTrue],
   });
