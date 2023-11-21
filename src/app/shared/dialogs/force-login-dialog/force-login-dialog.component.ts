@@ -12,7 +12,7 @@ import { IconButtonComponent } from '@shared/components/icon-button/icon-button.
 import { DialogTabsComponent } from '@shared/components/dialog-tabs/dialog-tabs.component';
 import { DialogTabItemComponent } from '@shared/components/dialog-tab-item/dialog-tab-item.component';
 import { LoginFormComponent } from '@core/components/login-form/login-form.component'; // TODO: Move to shared
-import { RegisterFormComponent } from '@core/components/register-form/register-form.component'; // TODO: Move to shared
+import { RegisterFormComponent } from '@shared/components/register-form/register-form.component';
 
 import {
   DIALOG_TABS,
