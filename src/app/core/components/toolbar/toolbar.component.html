@@ -5,23 +5,27 @@
 <div class="actions">
   <pu-localization-selection-container class="actions__item" />
 
-  <button
-    class="actions__item open-account-menu-button"
-    *ngIf="_user$ | async as user; else loginButton"
-    [cdkMenuTriggerFor]="accountMenu"
-    [cdkMenuTriggerData]="{ user }"
-    type="button"
-    aria-label="Open account menu"
-  >
-    <pu-account-avatar />
-  </button>
+  @if (_user$ | async; as user) {
+    <button
+      class="actions__item open-account-menu-button"
+      [cdkMenuTriggerFor]="accountMenu"
+      [cdkMenuTriggerData]="{ user }"
+      type="button"
+      aria-label="Open account menu"
+    >
+      <pu-account-avatar />
+    </button>
+  } @else {
+    <button
+      class="actions__item"
+      puSecondaryButton
+      type="button"
+      (click)="openEntryDialog()"
+    >
+      <span>{{ "actionLabel.login" | translate }}</span>
+    </button>
+  }
 </div>
-
-<ng-template #loginButton>
-  <button class="actions__item" puSecondaryButton (click)="openEntryDialog()">
-    <span>{{ "actionLabel.login" | translate }}</span>
-  </button>
-</ng-template>
 
 <ng-template #accountMenu let-user="user">
   <pu-account-menu
