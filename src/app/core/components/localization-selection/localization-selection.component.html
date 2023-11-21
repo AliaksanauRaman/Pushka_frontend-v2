@@ -8,19 +8,17 @@
 
 <ng-template #languageListMenu>
   <div class="menu" cdkMenu>
-    <button
-      class="menu__item"
-      [class.selected]="
-        localization.language === _selectedLocalization()?.language
-      "
-      *ngFor="
-        let localization of _localizations();
-        trackBy: trackByLocalizationLabel
-      "
-      cdkMenuItem
-      (cdkMenuItemTriggered)="select.emit(localization)"
-    >
-      <span>{{ localization.label }}</span>
-    </button>
+    @for (localization of _localizations(); track localization.label) {
+      <button
+        class="menu__item"
+        [class.menu__item--selected]="
+          localization.language === _selectedLocalization()?.language
+        "
+        cdkMenuItem
+        (cdkMenuItemTriggered)="select.emit(localization)"
+      >
+        <span>{{ localization.label }}</span>
+      </button>
+    }
   </div>
 </ng-template>

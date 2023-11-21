@@ -1,3 +1,5 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: block;
 }
@@ -13,17 +15,20 @@
 .menu {
   display: flex;
   flex-direction: column;
+  width: 52px;
   margin-top: 8px;
-  padding: 5px 9px;
+  padding: 8px 0;
   background-color: var(--white-color);
   border-radius: 16px;
   box-shadow: var(--menu-box-shadow);
+  overflow: hidden;
 }
 
 .menu__item {
   flex-shrink: 0;
-  padding: 7px;
-  border-radius: 50%;
+  width: 100%;
+  height: 44px;
+  font-size: 1.6rem;
   font-weight: 500;
   color: var(--white-contrast-color);
 
@@ -31,7 +36,26 @@
     outline: none;
   }
 
-  &.selected {
+  &.menu__item--selected {
+    font-weight: 600;
     color: var(--accent-color);
+  }
+}
+
+@include for-laptop {
+  .open-menu-button {
+    padding-bottom: 2px;
+    font-size: 2rem;
+  }
+
+  .menu {
+    width: 64px;
+    margin-top: 16px;
+    padding: 0;
+  }
+
+  .menu__item {
+    height: 60px;
+    font-size: 2rem;
   }
 }

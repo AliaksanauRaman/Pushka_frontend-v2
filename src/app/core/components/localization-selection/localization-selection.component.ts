@@ -6,7 +6,6 @@ import {
   EventEmitter,
   signal,
 } from '@angular/core';
-import { NgFor } from '@angular/common';
 import { CdkMenu, CdkMenuItem, CdkMenuTrigger } from '@angular/cdk/menu';
 import { ConnectedPosition } from '@angular/cdk/overlay';
 
@@ -18,7 +17,7 @@ import { Localization } from '@shared/types/localization';
   styleUrls: ['./localization-selection.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgFor, CdkMenuTrigger, CdkMenu, CdkMenuItem],
+  imports: [CdkMenuTrigger, CdkMenu, CdkMenuItem],
 })
 export class LocalizationSelectionComponent {
   @Input({ required: true })
@@ -42,11 +41,4 @@ export class LocalizationSelectionComponent {
   };
   protected readonly _localizations = signal<ReadonlyArray<Localization>>([]);
   protected readonly _selectedLocalization = signal<Localization | null>(null);
-
-  protected trackByLocalizationLabel(
-    _: number,
-    localization: Localization
-  ): string {
-    return localization.label;
-  }
 }
