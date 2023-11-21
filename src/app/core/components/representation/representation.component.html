@@ -4,4 +4,9 @@
   <span>{{ "convenientWayToTransferParcel" | translate }}</span>
 </h1>
 
-<div class="image"></div>
+<div
+  #cdkDrag="cdkDrag"
+  class="image"
+  cdkDrag
+  (cdkDragEnded)="cdkDrag.reset()"
+></div>

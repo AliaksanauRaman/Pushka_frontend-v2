@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CdkDrag } from '@angular/cdk/drag-drop';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -7,6 +8,6 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './representation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [TranslateModule],
+  imports: [CdkDrag, TranslateModule],
 })
 export class RepresentationComponent {}
