@@ -1,0 +1,5 @@
+@mixin for-laptop {
+  @media (min-width: 960px) {
+    @content;
+  }
+}
