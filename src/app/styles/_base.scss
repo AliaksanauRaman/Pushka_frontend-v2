@@ -1,19 +1,15 @@
-/*
-  mobile devices: 350-411px
-*/
-
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-size: 14px; /* 14px = 1rem; 16px = 1.15rem; 18px = 1.3rem */
+  font-size: 10px; /* 14px = 1rem; 16px = 1.15rem; 18px = 1.3rem */
   overflow: auto;
 }
 
 body {
   font-family: "Mulish", sans-serif;
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 400;
   background-color: var(--primary-color);
 }
@@ -28,12 +24,12 @@ h6 {
 }
 
 h1 {
-  font-size: 1.7rem;
+  font-size: 2.35rem;
   font-weight: 700;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
 }
 

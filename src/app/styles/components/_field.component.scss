@@ -38,12 +38,12 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  min-height: 21px;
+  min-height: 2rem;
   margin-bottom: 6px;
   padding: 0 var(--base-field-padding);
-  font-size: 1.15rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  line-height: 21px;
+  line-height: 2rem;
 
   &.pu-label--disabled {
     color: var(--disabled-text-color);
@@ -63,7 +63,7 @@
 .pu-field {
   display: flex;
   flex-shrink: 0;
-  font-size: 1.15rem;
+  font-size: 1.6rem;
   color: var(--field-text-color);
   background-color: var(--field-color);
   border: 1px solid var(--field-border-color);

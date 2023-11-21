@@ -3,9 +3,7 @@
 <div class="spacer"></div>
 
 <div class="actions">
-  <pu-localization-selection-container
-    class="actions__item"
-  ></pu-localization-selection-container>
+  <pu-localization-selection-container class="actions__item" />
 
   <button
     class="actions__item open-account-menu-button"
@@ -15,7 +13,7 @@
     type="button"
     aria-label="Open account menu"
   >
-    <pu-account-avatar></pu-account-avatar>
+    <pu-account-avatar />
   </button>
 </div>
 
@@ -26,9 +24,5 @@
 </ng-template>
 
 <ng-template #accountMenu let-user="user">
-  <pu-account-menu
-    class="account-menu"
-    [user]="user"
-    (logout)="logoutUser()"
-  ></pu-account-menu>
+  <pu-account-menu class="account-menu" [user]="user" (logout)="logoutUser()" />
 </ng-template>
