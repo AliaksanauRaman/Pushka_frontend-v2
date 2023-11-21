@@ -1,4 +1,4 @@
-@import '../../../styles/screen-size-mixins';
+@import "../../../styles/screen-size-mixins";
 
 :host {
   position: relative;
@@ -17,10 +17,30 @@
   position: absolute;
   right: 16px;
   bottom: 7px;
+  width: 213px;
+  height: 109px;
+  background-image: url("/assets/images/mobile-representation.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 @include for-laptop {
+  :host {
+    height: 232px;
+  }
+
+  .title {
+    padding-top: 20px;
+    padding-right: 420px;
+    font-size: 4.3rem;
+  }
+
   .image {
+    top: -40px;
     right: var(--laptop-horizontal-padding);
+    bottom: 0;
+    width: 441px;
+    height: 263px;
+    background-image: url("/assets/images/laptop-representation.png");
   }
 }
