@@ -1,6 +1,6 @@
-<p #text class="text">{{ _text() }}</p>
+<p #textRef class="text">{{ _text() }}</p>
 
-@if (_isExpandable()) {
+@if (textRef.scrollHeight > textRef.offsetHeight || _isExpanded()) {
   <input
     #checkbox
     [id]="_expandTextButtonId"

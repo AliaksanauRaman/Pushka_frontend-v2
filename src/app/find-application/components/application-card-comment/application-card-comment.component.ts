@@ -1,22 +1,17 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  ElementRef,
-  ViewChild,
   computed,
   inject,
   signal,
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { MATH } from '@global/math';
 import { GeneratorService } from '@shared/services/generator/generator.service';
 
-import { MAX_COLLAPSED_TEXT_HEIGHT } from './application-card-comment.config';
-import { Application } from '@shared/types/application';
 import { ApplicationDirective } from '../../directives/application/application.directive';
+
+import { Application } from '@shared/types/application';
 
 @Component({
   selector: 'pu-application-card-comment',
@@ -32,33 +27,18 @@ import { ApplicationDirective } from '../../directives/application/application.d
     },
   ],
 })
-export class ApplicationCardCommentComponent implements AfterViewInit {
-  private readonly _math = inject(MATH);
-  private readonly _cdRef = inject(ChangeDetectorRef);
+export class ApplicationCardCommentComponent {
   private readonly _application =
     inject<ApplicationDirective<Application>>(ApplicationDirective);
-  private readonly _maxCollapsedTextHeight = inject(MAX_COLLAPSED_TEXT_HEIGHT);
   protected readonly _expandTextButtonId =
     inject(GeneratorService).generateUUID();
-
-  @ViewChild('text')
-  private readonly _textElement!: ElementRef<HTMLParagraphElement>;
 
   protected readonly _text = computed(() => {
     const application = this._application.value();
     return application === null ? '' : application.description;
   });
-  protected readonly _isExpandable = signal(false);
   protected readonly _isExpanded = signal(false);
   protected readonly _expandTextLabel = computed(() =>
     this._isExpanded() ? 'actionLabel.less' : 'actionLabel.more'
   );
-
-  public ngAfterViewInit(): void {
-    this._isExpandable.set(
-      this._math.floor(this._textElement.nativeElement.scrollHeight) >
-        this._maxCollapsedTextHeight
-    );
-    this._cdRef.detectChanges();
-  }
 }
