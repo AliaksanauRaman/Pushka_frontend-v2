@@ -72,8 +72,7 @@ export class DeliverParcelFormComponent {
   protected readonly _deliverParcelForm = this._formBuilder.group({
     departurePlace: [null as Place | null, [Validators.required]],
     destination: [null as Place | null, Validators.required],
-    // TODO Naming
-    validityPeriod: [
+    departureAndArrivalDates: [
       null as DateRange | null,
       CustomValidators.requiredDateRange,
     ],

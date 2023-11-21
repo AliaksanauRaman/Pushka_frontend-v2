@@ -39,27 +39,25 @@
     />
   }
 
-  <!-- TODO: Wording -->
   <pu-date-range-field
     class="pu-form__field"
-    [puLabel]="'fieldLabel.validityPeriod' | translate"
+    [puLabel]="'fieldLabel.departureAndArrivalDates' | translate"
     [puStartDatePlaceholder]="
-      'fieldPlaceholder.validityPeriodStartDate' | translate
+      'fieldPlaceholder.departureDate' | translate
     "
     [puEndDatePlaceholder]="
-      'fieldPlaceholder.validityPeriodEndDate' | translate
+      'fieldPlaceholder.arrivalDate' | translate
     "
-    formControlName="validityPeriod"
+    formControlName="departureAndArrivalDates"
   />
 
   <pu-field-errors
     class="pu-form__field-errors"
-    [areErrorsVisible]="_deliverParcelForm.controls.validityPeriod.touched"
-    [errors]="_deliverParcelForm.controls.validityPeriod.errors"
+    [areErrorsVisible]="_deliverParcelForm.controls.departureAndArrivalDates.touched"
+    [errors]="_deliverParcelForm.controls.departureAndArrivalDates.errors"
     [errorsMappings]="{
-      startDateRequired:
-        'fieldError.validityPeriodStartDateIsRequired' | translate,
-      endDateRequired: 'fieldError.validityPeriodEndDateIsRequired' | translate
+      startDateRequired: 'fieldError.departureDateIsRequired' | translate,
+      endDateRequired: 'fieldError.arrivalDateIsRequired' | translate
     }"
   />
 

@@ -8,7 +8,7 @@ import { UnauthorizedCreateDeliveryOfferDto } from '@shared/dtos/unauthorized-cr
 type RawDeliverParcelFormValue = Readonly<{
   departurePlace: Place | null;
   destination: Place | null;
-  validityPeriod: DateRange | null;
+  departureAndArrivalDates: DateRange | null;
   description: string;
   fullName: string;
   email: string;
@@ -21,8 +21,8 @@ type RawDeliverParcelFormValue = Readonly<{
 export class ValidDeliverParcelFormValue {
   public readonly departurePlace: Place;
   public readonly destination: Place;
-  public readonly validityPeriodStart: Date;
-  public readonly validityPeriodEnd: Date;
+  public readonly departureDate: Date;
+  public readonly arrivalDate: Date;
   public readonly description: string;
   public readonly fullName: string;
   public readonly email: string;
@@ -33,7 +33,7 @@ export class ValidDeliverParcelFormValue {
   constructor({
     departurePlace,
     destination,
-    validityPeriod,
+    departureAndArrivalDates,
     description,
     fullName,
     email,
@@ -43,8 +43,8 @@ export class ValidDeliverParcelFormValue {
   }: RawDeliverParcelFormValue) {
     this.departurePlace = departurePlace as Place;
     this.destination = destination as Place;
-    this.validityPeriodStart = validityPeriod?.start as Date;
-    this.validityPeriodEnd = validityPeriod?.end as Date;
+    this.departureDate = departureAndArrivalDates?.start as Date;
+    this.arrivalDate = departureAndArrivalDates?.end as Date;
     this.description = description;
     this.fullName = fullName;
     this.email = email;
@@ -58,8 +58,8 @@ export class ValidDeliverParcelFormValue {
     return new AuthorizedCreateDeliveryOfferDto(
       this.departurePlace.id,
       this.destination.id,
-      this.validityPeriodStart,
-      this.validityPeriodEnd,
+      this.departureDate,
+      this.arrivalDate,
       this.description,
       this.fullName,
       this.email,
@@ -73,8 +73,8 @@ export class ValidDeliverParcelFormValue {
       userId,
       this.departurePlace.id,
       this.destination.id,
-      this.validityPeriodStart,
-      this.validityPeriodEnd,
+      this.departureDate,
+      this.arrivalDate,
       this.description,
       this.fullName,
       this.email,
