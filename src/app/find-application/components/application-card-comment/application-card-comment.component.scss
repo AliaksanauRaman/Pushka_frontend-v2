@@ -1,13 +1,13 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: block;
 }
 
 .text {
-  --max-lines: 3;
-
   display: -webkit-inline-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: var(--max-lines);
+  -webkit-line-clamp: 3;
   line-height: 2rem;
   overflow: hidden;
 
@@ -17,6 +17,7 @@
 }
 
 .expand-text-label {
+  cursor: pointer;
   font-weight: 600;
   color: var(--accent-color);
   line-height: 2rem;
@@ -24,4 +25,17 @@
 
 .expand-text-button {
   display: none;
+}
+
+@include for-laptop {
+  .text {
+    -webkit-line-clamp: 1;
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+  }
+
+  .expand-text-label {
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+  }
 }
