@@ -1,3 +1,5 @@
+@import "../../../styles/screen-size-mixins";
+
 :host {
   display: block;
 }
@@ -24,7 +26,7 @@
   &.tabs__item--active {
     font-weight: 700;
 
-    &:after {
+    &::after {
       content: "";
       position: absolute;
       right: 0;
@@ -34,6 +36,30 @@
       height: 4px;
       background-color: var(--primary-color);
       border-radius: 20px;
+    }
+  }
+}
+
+@include for-laptop {
+  .tabs {
+    height: 80px;
+    padding: 24px 0 0 0;
+  }
+
+  .tabs__item {
+    font-size: 2.2rem;
+
+    &:not(:first-child) {
+      margin-left: 40px;
+    }
+
+    &.tabs__item--active {
+      &::after {
+        right: -3px;
+        bottom: -4px;
+        left: -3px;
+        height: 8px;
+      }
     }
   }
 }
