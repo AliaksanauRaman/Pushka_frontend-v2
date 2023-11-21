@@ -23,6 +23,7 @@ import { FieldHintComponent } from '@shared/components/field-hint/field-hint.com
 import { TextFieldComponent } from '@shared/components/text-field/text-field.component';
 import { EmailFieldComponent } from '@shared/components/email-field/email-field.component';
 import { PasswordFieldComponent } from '@shared/components/password-field/password-field.component';
+import { CheckboxFieldComponent } from '@shared/components/checkbox-field/checkbox-field.component';
 import { AccentButtonComponent } from '@shared/components/accent-button/accent-button.component';
 
 import { RegisterFormService } from './register-form.service';
@@ -53,6 +54,7 @@ import { RegisterResponseData } from '@shared/types/register-response-data';
     TextFieldComponent,
     EmailFieldComponent,
     PasswordFieldComponent,
+    CheckboxFieldComponent,
     AccentButtonComponent,
   ],
 })
@@ -89,6 +91,10 @@ export class RegisterFormComponent implements OnInit {
         ],
       ],
       passwordConfirmation: ['', [Validators.required]],
+      personalDataStorageAndProcessingAgreementConfirmation: [
+        false,
+        Validators.requiredTrue,
+      ],
     },
     { validators: [CustomValidators.passwordsMatch] }
   );

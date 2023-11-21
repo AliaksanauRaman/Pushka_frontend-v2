@@ -72,8 +72,8 @@
     "incorrectPhoneNumberFormat": "Няправільны фармат нумара тэлефону, дапускаюцца толькі лічбы без прабелаў у колькасці ад 7 да 12"
   },
   "fieldLabel": {
-    "departurePlace": "Адкуль",
-    "destination": "Куды",
+    "departurePlace": "Месца адпраўлення",
+    "destination": "Месца прызначэння",
     "departureAndArrivalDates": "Даты адпраўлення і прыбыцця",
     "description": "Што Вы хаціце адправіць?",
     "fullName": "Поўнае імя",
@@ -138,6 +138,7 @@
     },
     "other": "Іншы горад"
   },
+  "personalDataStorageAndProcessingAgreementText": "Я згодзен(-на) на апрацоўку і захоўванне маіх асабістых дадзеных",
   "allowedItemsConfirmationText": "Я пацвярджаю, што мая пасылка не ўтрымвае забароненых рэчываў і тавараў, а яе транспартацыя не парушае законаў краін-удзельніц",
   "noServiceResponsibilityConfirmationText": "Я разумею, што сэрвіс не нясе адказнасці за якасць пагаднення",
   "emptyDeliveryOffersListMessage": "Упс, падаецца, яшчэ не было створана ні воднай прапановы дапамогі ў дастаўке. Вы можаце стаць першым і зрабіць сваю прапанову, націснуў на",

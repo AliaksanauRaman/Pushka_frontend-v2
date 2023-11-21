@@ -72,8 +72,8 @@
     "incorrectPhoneNumberFormat": "Incorrect phone number format, only 7 to 12 numbers allowed without spaces"
   },
   "fieldLabel": {
-    "departurePlace": "Departure",
-    "destination": "Destination",
+    "departurePlace": "Place of departure",
+    "destination": "Place of destination",
     "departureAndArrivalDates": "Departure and arrival dates",
     "description": "What do you want to send?",
     "fullName": "Full name",
@@ -138,6 +138,7 @@
     },
     "other": "Other city"
   },
+  "personalDataStorageAndProcessingAgreementText": "I agree to the processing and storage of my personal data",
   "allowedItemsConfirmationText": "I confirm that my parcel does not contain any prohibited substances or goods and that its transportation does not violate the laws of the participating countries",
   "noServiceResponsibilityConfirmationText": "I understand that the service is not responsible for the quality of the deal",
   "emptyDeliveryOffersListMessage": "Oops, there doesn't seem to be a single offer for delivery yet. You can be the first to make one by clicking on",

@@ -72,8 +72,8 @@
     "incorrectPhoneNumberFormat": "Неверный формат номера телефона, допускаются только цифры без пробелов в количестве от 7 до 12"
   },
   "fieldLabel": {
-    "departurePlace": "Откуда",
-    "destination": "Куда",
+    "departurePlace": "Место отправления",
+    "destination": "Место назначения",
     "departureAndArrivalDates": "Даты отправления и прибытия",
     "description": "Что Вы хотите отправить?",
     "fullName": "Полное имя",
@@ -138,6 +138,7 @@
     },
     "other": "Другой город"
   },
+  "personalDataStorageAndProcessingAgreementText": "Я согласен(-на) на обработку и хранение моих персональных данных",
   "allowedItemsConfirmationText": "Я подтверждаю, что моя посылка не содержит запрещенных веществ и товаров, а ее транспортировка не нарушает законов стран-участниц",
   "noServiceResponsibilityConfirmationText": "Я понимаю, что сервис не несет ответственности за качество сделки",
   "emptyDeliveryOffersListMessage": "Упс, кажется, еще не было ни одного предложения помощи в доставке. Вы можете стать первым и сделать свое предложение, нажав на",

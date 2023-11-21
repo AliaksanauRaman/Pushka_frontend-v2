@@ -86,6 +86,12 @@
     }"
   />
 
+  <pu-checkbox-field
+    class="pu-form__field"
+    [puLabel]="'personalDataStorageAndProcessingAgreementText' | translate"
+    formControlName="personalDataStorageAndProcessingAgreementConfirmation"
+  />
+
   <ng-container *ngIf="state$ | async as state">
     <button
       class="pu-form__submit-button"
