@@ -1,3 +1,5 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: block;
 }
@@ -8,4 +10,30 @@
 
 .representation {
   padding: 0 16px;
+}
+
+@include for-laptop {
+  .header {
+    max-width: var(--laptop-max-width);
+    margin: 0 auto;
+    padding: 40px var(--laptop-horizontal-padding);
+  }
+
+  .representation {
+    max-width: var(--laptop-max-width);
+    margin: 0 auto;
+    padding: 0 var(--laptop-horizontal-padding);
+  }
+
+  .navigation {
+    max-width: var(--laptop-max-width);
+    margin: 0 auto;
+    padding: 0 var(--laptop-horizontal-padding);
+  }
+
+  .main {
+    max-width: var(--laptop-max-width);
+    margin: 0 auto 80px auto;
+    padding: 0 var(--laptop-horizontal-padding);
+  }
 }

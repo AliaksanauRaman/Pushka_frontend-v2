@@ -1,9 +1,16 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
+  display: block;
+  height: 52px;
+  background-color: var(--accent-color);
+}
+
+.inner {
   display: flex;
   align-items: center;
-  height: 52px;
+  height: inherit;
   padding: 0 16px;
-  background-color: var(--accent-color);
 }
 
 .copyright {
@@ -24,4 +31,16 @@
 
 .socials__item {
   flex-shrink: 0;
+}
+
+@include for-laptop {
+  :host {
+    height: 72px;
+  }
+
+  .inner {
+    max-width: var(--laptop-max-width);
+    margin: 0 auto;
+    padding: 0 var(--laptop-horizontal-padding);
+  }
 }

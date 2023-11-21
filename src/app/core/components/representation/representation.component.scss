@@ -1,3 +1,5 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   position: relative;
   display: block;
@@ -15,4 +17,10 @@
   position: absolute;
   right: 16px;
   bottom: 7px;
+}
+
+@include for-laptop {
+  .image {
+    right: var(--laptop-horizontal-padding);
+  }
 }
