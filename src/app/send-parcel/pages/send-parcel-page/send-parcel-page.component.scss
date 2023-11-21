@@ -1,5 +1,19 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: block;
   padding: 40px 16px 48px 16px;
   background-color: var(--white-color);
+}
+
+@include for-laptop {
+  :host {
+    padding: 60px 80px 76px 80px;
+    border-radius: 0 0 16px 16px;
+  }
+
+  .form {
+    max-width: 904px;
+    margin: 0 auto;
+  }
 }
