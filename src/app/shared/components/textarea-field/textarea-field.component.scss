@@ -1,10 +1,21 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: flex;
   flex-direction: column;
 }
 
 .pu-field {
+  min-height: 120px;
+  max-height: 200px;
   padding: 10px var(--base-field-padding);
   line-height: 2rem;
-  resize: none;
+  resize: vertical;
+}
+
+@include for-laptop {
+  .pu-field {
+    min-height: 80px;
+    max-height: 120px;
+  }
 }
