@@ -10,6 +10,7 @@
     #fieldRef
     [id]="_idDirective.id()"
     class="pu-field"
+    [class.pu-field--active]="datepicker.opened"
     [matDatepicker]="datepicker"
     [min]="_minDate()"
     [max]="_maxDate()"
@@ -33,6 +34,6 @@
 
 <mat-datepicker
   #datepicker
-  [touchUi]="true"
+  [touchUi]="!_screenSize.isLaptop()"
   (closed)="touchField()"
 ></mat-datepicker>

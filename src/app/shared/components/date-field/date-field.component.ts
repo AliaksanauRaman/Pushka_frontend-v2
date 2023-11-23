@@ -20,6 +20,7 @@ import {
 
 import { DATE_ADAPTER_PROVIDER } from '@shared/providers/date-adapter';
 import { MAT_DATE_FORMATS_PROVIDER } from '@shared/providers/mat-date-formats';
+import { ScreenSizeService } from '@shared/services/screen-size/screen-size.service';
 
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
@@ -54,14 +55,16 @@ import { mapDateToUTCDate } from '@shared/utils/map-date-to-utc-date';
   ],
 })
 export class DateFieldComponent extends BaseReactiveFieldDirective<Date | null> {
+  protected readonly _screenSize = inject(ScreenSizeService);
+  protected readonly _idDirective = inject(IdDirective);
+  protected readonly _labelDirective = inject(LabelDirective);
+  protected readonly _placeholderDirective = inject(PlaceholderDirective);
+
   @Input()
   public set puMinDate(value: Date | null) {
     this._minDate.set(value);
   }
 
-  protected readonly _idDirective = inject(IdDirective);
-  protected readonly _labelDirective = inject(LabelDirective);
-  protected readonly _placeholderDirective = inject(PlaceholderDirective);
   protected readonly _minDate = signal<Date | null>(new Date());
   protected readonly _maxDate = computed(
     () => new Date(new Date().setMonth(new Date().getMonth() + 3))
