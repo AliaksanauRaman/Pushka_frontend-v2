@@ -23,11 +23,6 @@
   width: 90px;
   height: var(--base-field-height);
   padding: 0 var(--base-field-padding);
-
-  &.pu-field--active {
-    border-color: var(--primary-color);
-    box-shadow: var(--primary-field-box-shadow);
-  }
 }
 
 .placeholder {
@@ -60,7 +55,7 @@
   height: calc(
     var(--vertical-padding) * 2 + var(--max-items) * var(--item-height)
   );
-  margin: 8px 0;
+  margin: 4px 0;
   padding: var(--vertical-padding) 0;
   background-color: var(--white-color);
   border-radius: 16px;

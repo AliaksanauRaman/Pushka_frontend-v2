@@ -7,6 +7,11 @@
         box-shadow: var(--error-field-box-shadow);
         caret-color: var(--error-color);
       }
+
+      &.pu-field--active {
+        box-shadow: var(--error-field-box-shadow);
+        caret-color: var(--error-color);
+      }
     }
   }
 }
@@ -92,5 +97,10 @@
     &::placeholder {
       color: var(--disabled-text-color);
     }
+  }
+
+  &.pu-field--active {
+    border-color: var(--primary-color);
+    box-shadow: var(--primary-field-box-shadow);
   }
 }
