@@ -8,8 +8,10 @@
 }
 
 .calendar-icon {
-  pointer-events: none;
   position: absolute;
   right: var(--base-field-padding);
   bottom: 16px;
+  width: 24px;
+  height: 24px;
+  background-image: url('/assets/icons/calendar.svg');
 }

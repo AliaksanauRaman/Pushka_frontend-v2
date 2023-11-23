@@ -7,7 +7,6 @@ import {
   signal,
   computed,
 } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import {
   FormControl,
   ReactiveFormsModule,
@@ -47,7 +46,7 @@ import { mapDateToUTCDate } from '@shared/utils/map-date-to-utc-date';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgOptimizedImage, ReactiveFormsModule, MatDatepickerModule],
+  imports: [ReactiveFormsModule, MatDatepickerModule],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
