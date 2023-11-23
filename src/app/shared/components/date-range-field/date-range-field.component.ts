@@ -8,7 +8,6 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import {
   NG_VALUE_ACCESSOR,
   NonNullableFormBuilder,
@@ -19,6 +18,7 @@ import { map, takeUntil, tap } from 'rxjs';
 
 import { DATE_ADAPTER_PROVIDER } from '@shared/providers/date-adapter';
 import { MAT_DATE_FORMATS_PROVIDER } from '@shared/providers/mat-date-formats';
+import { ScreenSizeService } from '@shared/services/screen-size/screen-size.service';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 
@@ -43,7 +43,7 @@ import { DateRange } from '@shared/types/date-range';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgOptimizedImage, ReactiveFormsModule, MatDatepickerModule],
+  imports: [ReactiveFormsModule, MatDatepickerModule],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
@@ -54,6 +54,7 @@ export class DateRangeFieldComponent
   implements OnInit
 {
   private readonly _formBuilder = inject(NonNullableFormBuilder);
+  protected readonly _screenSize = inject(ScreenSizeService);
   protected readonly _idDirective = inject(IdDirective);
   protected readonly _labelDirective = inject(LabelDirective);
 

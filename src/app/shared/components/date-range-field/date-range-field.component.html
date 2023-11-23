@@ -7,10 +7,40 @@
 </label>
 
 <div class="pu-field-container">
+  <mat-date-range-input
+    class="date-range-input"
+    [formGroup]="_dateRangeForm"
+    [rangePicker]="dateRangePicker"
+    [min]="_minDate()"
+    [max]="_maxDate()"
+    separator=""
+  >
+    <input
+      #startDateRef
+      [style.display]="'none'"
+      matStartDate
+      formControlName="start"
+    />
+
+    <input
+      #endDateRef
+      [style.display]="'none'"
+      matEndDate
+      formControlName="end"
+    />
+
+    <mat-date-range-picker
+      #dateRangePicker
+      [touchUi]="!_screenSize.isLaptop()"
+      (closed)="touchField()"
+    ></mat-date-range-picker>
+  </mat-date-range-input>
+
   <input
     #fieldRef
     [id]="_idDirective.id()"
     class="pu-field"
+    [class.pu-field--active]="dateRangePicker.opened"
     [disabled]="_isDisabled()"
     type="text"
     readonly
@@ -27,13 +57,7 @@
     tabindex="-1"
   />
 
-  <img
-    class="arrow-icon"
-    ngSrc="/assets/icons/gray-arrow-right.svg"
-    alt="Calendar toggle"
-    width="17"
-    height="16"
-  />
+  <div class="arrow-icon"></div>
 
   <input
     class="date-view-input date-view-input--end"
@@ -44,34 +68,5 @@
     tabindex="-1"
   />
 
-  <img
-    class="calendar-icon"
-    ngSrc="/assets/icons/calendar.svg"
-    alt="Calendar"
-    width="24"
-    height="24"
-  />
+  <div class="calendar-icon"></div>
 </div>
-
-<mat-date-range-input
-  [style.display]="'none'"
-  [formGroup]="_dateRangeForm"
-  [rangePicker]="dateRangePicker"
-  [min]="_minDate()"
-  [max]="_maxDate()"
->
-  <input
-    #startDateRef
-    matStartDate
-    placeholder="Start date"
-    formControlName="start"
-  />
-
-  <input #endDateRef matEndDate placeholder="End date" formControlName="end" />
-
-  <mat-date-range-picker
-    #dateRangePicker
-    [touchUi]="true"
-    (closed)="touchField()"
-  ></mat-date-range-picker>
-</mat-date-range-input>
