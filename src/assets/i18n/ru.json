@@ -15,7 +15,7 @@
     "login": "Войти",
     "logout": "Выйти",
     "register": "Зарегистрироваться",
-    "createApplication": "Создать заявку",
+    "publish": "Опубликовать",
     "contacts": "Контакты",
     "ok": "Хорошо",
     "clearFilter": "Очистить фильтр",
@@ -148,8 +148,12 @@
   "or": "или",
   "callToAction": {
     "sendParcel": "Отправьте посылку",
-    "deliverParcel": "Доставьте посылку"
+    "deliverParcel": "Доставьте посылку",
+    "finishLogin": "Завершите вход",
+    "finishSignup": "Завершите регистрацию"
   },
+  "yourApplicationWillBePublishedAfterLogin": "Ваша заявка будет опубликована после завершения входа",
+  "yourApplicationWillBePublishedAfterAccountActivation": "Ваша заявка будет опубликована после завершения регистрации и активации аккаунта",
   "tokenHasExpiredMessage": "Ваш сеанс истек. Пожалуйста, войдите в систему снова.",
   "successLoginMessage": "Вход в систему прошел успешно!",
   "successLogoutMessage": "Выход из системы прошел успешно!",

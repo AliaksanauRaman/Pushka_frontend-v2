@@ -15,7 +15,7 @@
     "login": "Увайсці",
     "logout": "Выйсці",
     "register": "Зарэгістравацца",
-    "createApplication": "Стварыць заяўку",
+    "publish": "Апублікаваць",
     "contacts": "Кантакты",
     "ok": "Добра",
     "clearFilter": "Ачысціць фільтр",
@@ -148,8 +148,12 @@
   "or": "ці",
   "callToAction": {
     "sendParcel": "Адпраўце пасылку",
-    "deliverParcel": "Дастаўце пасылку"
+    "deliverParcel": "Дастаўце пасылку",
+    "finishLogin": "Скончыце ўваход",
+    "finishSignUp": "Скончыце рэгістрацыю"
   },
+  "yourApplicationWillBePublishedAfterLogin": "Ваша заяўка будзе апублікавана пасля завяршэння ўваходу",
+  "yourApplicationWillBePublishedAfterAccountActivation": "Ваша заяўка будзе апублікавана пасля завяршэння рэгістрацыі і актывацыі акаўнта",
   "tokenHasExpiredMessage": "Ваш сеанс мінуў. Калі ласка, увайдзіце ў сістэму зноў.",
   "successLoginMessage": "Уваход у сістэму прайшоў паспяхова!",
   "successLogoutMessage": "Выхад з сістэмы прайшоў паспяхова!",

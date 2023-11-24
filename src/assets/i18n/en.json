@@ -15,7 +15,7 @@
     "login": "Log in",
     "logout": "Log out",
     "register": "Register",
-    "createApplication": "Create application",
+    "publish": "Publish",
     "contacts": "Contacts",
     "ok": "Ok",
     "clearFilter": "Clear filter",
@@ -148,8 +148,12 @@
   "or": "or",
   "callToAction": {
     "sendParcel": "Send a parcel",
-    "deliverParcel": "Deliver a parcel"
+    "deliverParcel": "Deliver a parcel",
+    "finishLogin": "Finish login",
+    "finishSignUp": "Finish sign up"
   },
+  "yourApplicationWillBePublishedAfterLogin": "Your application will be published once you have completed login",
+  "yourApplicationWillBePublishedAfterAccountActivation": "Your application will be published once you have completed sign up and account activation",
   "tokenHasExpiredMessage": "Your session is over. Please log in again.",
   "successLoginMessage": "The login was successful!",
   "successLogoutMessage": "The logout was successful!",
