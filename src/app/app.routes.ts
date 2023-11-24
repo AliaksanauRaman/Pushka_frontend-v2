@@ -44,8 +44,8 @@ export const appRoutes: Routes = [
         canActivate: [activateUserGuard],
         loadComponent: () =>
           import(
-            './activate-user/components/activate-user-placeholder/activate-user-placeholder.component'
-          ).then((c) => c.ActivateUserPlaceholderComponent),
+            './activate-user/pages/activate-user-page/activate-user-page.component'
+          ).then((c) => c.ActivateUserPageComponent),
       },
       {
         path: 'not-found',
