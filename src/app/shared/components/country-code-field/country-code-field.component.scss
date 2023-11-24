@@ -6,6 +6,11 @@
       box-shadow: var(--error-field-box-shadow);
       caret-color: var(--error-color);
     }
+
+    &.pu-field--active {
+      box-shadow: var(--error-field-box-shadow);
+      caret-color: var(--error-color);
+    }
   }
 }
 
