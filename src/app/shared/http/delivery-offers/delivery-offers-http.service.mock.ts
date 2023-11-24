@@ -51,7 +51,7 @@ export class DeliveryOffersHttpServiceMock
         data.length,
         1
       )
-    ).pipe(delay(1000));
+    ).pipe(delay(200));
   }
 
   public authorizedCreateOne(

@@ -16,7 +16,7 @@ const MOCK_HELP_REQUEST = new HelpRequest(
   { cityLabel: 'city.poland.warsaw', countryLabel: 'country.poland' },
   new Date(),
   new Date(),
-  'Some description',
+  'Some description Some description Some description Some description Some description Some description Some description Some description Some description Some description Some description Some description Some description Some description Some description Some description Some description Some description ',
   'Raman Aliaksanau',
   'raman.aliaksanau@gmail.com',
   null,
@@ -49,7 +49,7 @@ export class HelpRequestsHttpServiceMock implements IHelpRequestsHttpService {
         data.length,
         1
       )
-    ).pipe(delay(1000));
+    ).pipe(delay(200));
   }
 
   public authorizedCreateOne(

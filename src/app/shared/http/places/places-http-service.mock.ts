@@ -7,7 +7,7 @@ import { Place } from '@shared/types/place';
 @Injectable()
 export class PlacesHttpServiceMock implements IPlacesHttpService {
   public getAll(): Observable<ReadonlyArray<Place>> {
-    return of(MOCK_RESPONSE).pipe(delay(1000));
+    return of(MOCK_RESPONSE).pipe(delay(200));
   }
 }
 
