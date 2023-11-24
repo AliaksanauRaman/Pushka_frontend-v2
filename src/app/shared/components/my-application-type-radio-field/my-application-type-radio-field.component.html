@@ -1,0 +1,18 @@
+<div class="group">
+  @for (option of _options(); track option.type) {
+    @if (option.type | myApplicationTypeOptionId; as optionId) {
+      <span class="option">
+        <input
+          [id]="optionId"
+          class="radio"
+          [checked]="_selectedOption()?.equalsTo(option)"
+          type="radio"
+          name="my-application-type"
+          (change)="selectOption(option)"
+        />
+
+        <label class="label" [for]="optionId">{{ option.label | translate }}</label>
+      </span>
+    }
+  }
+</div>
