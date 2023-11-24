@@ -1,8 +1,16 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: block;
   padding: 0 12px;
 }
 
 .pu-form__submit-button {
-  margin-top: 6px;
+  margin-top: 14px;
+}
+
+@include for-laptop {
+  :host {
+    padding: 0 50px;
+  }
 }
