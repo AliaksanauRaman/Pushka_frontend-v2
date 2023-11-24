@@ -7,6 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { transition, trigger, useAnimation } from '@angular/animations';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { applicationCardFadeIn } from '@shared/animations/application-card-fade-in';
 import { applicationCardSlideOut } from '@shared/animations/application-card-slide-out';
@@ -31,6 +32,7 @@ import { DeliveryOffer } from '@shared/types/delivery-offer';
   ],
   standalone: true,
   imports: [
+    TranslateModule,
     DeliveryOfferCardComponent,
     FilterByPlaceFieldComponent,
     IconButtonComponent,

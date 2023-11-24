@@ -169,6 +169,7 @@
     "title": "Ой, ошибка!",
     "message": "Cообщение"
   },
+  "theListIsEmpty": "Список пуст",
   "activateUser": {
     "successActivationMessage": "Поздравляем, регистрация прошла успешно!",
     "notFoundErrorMessage": "Аккаунт не найден или уже был активирован ранее",

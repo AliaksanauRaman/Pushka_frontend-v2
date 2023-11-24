@@ -169,6 +169,7 @@
     "title": "Ой, памылка!",
     "message": "Паведамленне"
   },
+  "theListIsEmpty": "Спіс пусты",
   "activateUser": {
     "successActivationMessage": "Вітаем, рэгістрацыя прайшла паспяхова!",
     "notFoundErrorMessage": "Акаўнт не знойдзены ці ўжо быў актываваны раней",

@@ -7,6 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { transition, trigger, useAnimation } from '@angular/animations';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { applicationCardFadeIn } from '@shared/animations/application-card-fade-in';
 import { applicationCardSlideOut } from '@shared/animations/application-card-slide-out';
@@ -36,7 +37,7 @@ import { MyApplication } from '@shared/types/my-application';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [MyApplicationCardComponent, IconButtonComponent],
+  imports: [TranslateModule, MyApplicationCardComponent, IconButtonComponent],
 })
 export class MyApplicationsListComponent extends BaseApplicationsListComponent {
   @Input({ required: true })

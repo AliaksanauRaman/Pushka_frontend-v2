@@ -169,9 +169,10 @@
     "title": "Oops, error!",
     "message": "Message"
   },
+  "theListIsEmpty": "The list is empty",
   "activateUser": {
     "successActivationMessage": "Congratulations, your registration was successful!",
-    "notFoundErrorMessage": "Account is not found or has been activated",
+    "notFoundErrorMessage": "Account is not found or has already been activated",
     "unauthorizedErrorMessage": "Account activation time has expired",
     "unknownErrorMessage": "An unknown error occurred during account activation"
   }
