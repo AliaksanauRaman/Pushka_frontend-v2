@@ -7,10 +7,7 @@ import { LOCALIZATIONS } from '@shared/dependencies/localizations';
 import { LanguageLocalStorageService } from '@shared/services/language-local-storage/language-local-storage.service';
 import { LanguageBrowserService } from '@shared/services/language-browser/language-browser.service';
 
-import {
-  InitSelectedLocalization,
-  SelectLocalization,
-} from './selected-localization.actions';
+import { SelectLocalization } from './selected-localization.actions';
 import { Localization } from '@shared/types/localization';
 import { Language } from '@shared/enums/language.enum';
 
@@ -54,17 +51,8 @@ export class SelectedLocalizationState implements NgxsOnInit {
       throw new Error('The initial localization must be defined!');
     }
 
-    context.dispatch(new InitSelectedLocalization(initialLocalization));
-  }
-
-  @Action(InitSelectedLocalization)
-  public initSelectedLocalization(
-    context: StateContext<StateModel>,
-    { localization }: InitSelectedLocalization
-  ): Observable<unknown> {
-    return this._translateService
-      .use(localization.language)
-      .pipe(tap(() => context.setState(localization)));
+    context.setState(initialLocalization);
+    this._translateService.use(initialLocalization.language);
   }
 
   @Action(SelectLocalization, { cancelUncompleted: true })
