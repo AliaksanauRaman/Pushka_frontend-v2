@@ -48,7 +48,7 @@ export abstract class BaseApplicationsListComponent implements OnInit {
     });
   }
 
-  protected scrollToTop(): void {
+  protected scrollToTheBeginning(): void {
     this._ngZone.runOutsideAngular(() => {
       this._hostElementRef.nativeElement.scrollTo({
         left: 0,
