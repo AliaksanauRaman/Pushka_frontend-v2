@@ -1,3 +1,5 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: block;
 }
@@ -7,4 +9,10 @@
   flex-direction: column;
   height: 720px;
   background-color: var(--background-gray-color);
+}
+
+@include for-laptop {
+  .content {
+    border-radius: 0 0 16px 16px;
+  }
 }
