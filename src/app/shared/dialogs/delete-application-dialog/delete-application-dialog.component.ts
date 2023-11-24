@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
 import { PlaceholderComponent } from '@shared/components/placeholder/placeholder.component';
 import { AccentButtonComponent } from '@shared/components/accent-button/accent-button.component';
 import { SecondaryButtonComponent } from '@shared/components/secondary-button/secondary-button.component';
@@ -16,10 +15,11 @@ import { BaseDialogComponent } from '@shared/base/base-dialog.component';
   standalone: true,
   imports: [
     TranslateModule,
-    IconButtonComponent,
     PlaceholderComponent,
     AccentButtonComponent,
     SecondaryButtonComponent,
   ],
 })
-export class DeleteApplicationDialogComponent extends BaseDialogComponent<true | undefined> {}
+export class DeleteApplicationDialogComponent extends BaseDialogComponent<
+  true | undefined
+> {}
