@@ -17,14 +17,7 @@
     }
   </button>
 
-  <img
-    class="caret-icon"
-    [class.caret-icon--rotated]="_panel.isOpened()"
-    ngSrc="/assets/icons/gray-caret-down.svg"
-    alt="Caret"
-    width="24"
-    height="24"
-  />
+  <div class="caret-icon" [class.caret-icon--rotated]="_panel.isOpened()"></div>
 </div>
 
 <ng-template
