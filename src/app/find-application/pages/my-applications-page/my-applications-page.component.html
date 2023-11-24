@@ -53,6 +53,14 @@
           [selectedOption]="_selectedOption()"
           (optionSelect)="handleApplicationTypeOptionSelect($event)"
         ></pu-my-application-type-dropdown-field>
+
+        <pu-my-application-type-radio-field
+          class="my-applications-radio-field"
+          [isDisabled]="state.isLoading"
+          [options]="_myApplicationTypesOptions"
+          [selectedOption]="_selectedOption()"
+          (optionSelect)="handleApplicationTypeOptionSelect($event)"
+        ></pu-my-application-type-radio-field>
   
         <pu-my-applications-list
           class="applications-list"

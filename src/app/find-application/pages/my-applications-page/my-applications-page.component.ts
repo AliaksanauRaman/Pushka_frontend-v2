@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 
 import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
 import { MyApplicationTypeDropdownFieldComponent } from '@shared/components/my-application-type-dropdown-field/my-application-type-dropdown-field.component';
+import { MyApplicationTypeRadioFieldComponent } from '@shared/components/my-application-type-radio-field/my-application-type-radio-field.component';
 import { MyApplicationsListComponent } from '../../components/my-applications-list/my-applications-list.component';
 import { ErrorViewComponent } from '../../views/error-view/error-view.component';
 import { TextLinkComponent } from '@shared/components/text-link/text-link.component';
@@ -41,6 +42,7 @@ import { MyApplicationTypeOption } from '@shared/types/my-application-type-optio
     TranslateModule,
     SpinnerComponent,
     MyApplicationTypeDropdownFieldComponent,
+    MyApplicationTypeRadioFieldComponent,
     MyApplicationsListComponent,
     ErrorViewComponent,
     TextLinkComponent,

@@ -1,7 +1,24 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: block;
 }
 
 .my-applications-dropdown-field {
   margin: 28px 16px 18px 16px;
+}
+
+.my-applications-radio-field {
+  display: none;
+}
+
+@include for-laptop {
+  .my-applications-dropdown-field {
+    display: none;
+  }
+  
+  .my-applications-radio-field {
+    display: block;
+    margin: 40px 0 30px 0;
+  }
 }
