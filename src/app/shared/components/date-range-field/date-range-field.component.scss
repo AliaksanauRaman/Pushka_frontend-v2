@@ -48,6 +48,7 @@
 }
 
 .arrow-icon {
+  pointer-events: none;
   position: absolute;
   top: 50%;
   right: 50%;
@@ -58,6 +59,7 @@
 }
 
 .calendar-icon {
+  pointer-events: none;
   position: absolute;
   right: var(--base-field-padding);
   bottom: 16px;

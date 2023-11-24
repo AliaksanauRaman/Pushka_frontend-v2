@@ -8,6 +8,7 @@
 }
 
 .calendar-icon {
+  pointer-events: none;
   position: absolute;
   right: var(--base-field-padding);
   bottom: 16px;
