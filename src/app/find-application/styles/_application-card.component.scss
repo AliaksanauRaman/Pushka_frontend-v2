@@ -1,3 +1,5 @@
+@import '../../styles/screen-size-mixins';
+
 :host {
   position: relative;
   display: block;
@@ -35,4 +37,41 @@
 
 .deleting-overlay__spinner {
   flex-shrink: 0;
+}
+
+@include for-laptop {
+  :host {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 40px;
+    max-width: 1060px;
+  }
+
+  .header {
+    flex-shrink: 0;
+    order: 1;
+    width: 100%;
+  }
+
+  .transportation-info {
+    flex-grow: 1;
+    order: 2;
+    margin-bottom: 0;
+  }
+
+  .comment {
+    flex-shrink: 0;
+    order: 4;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+
+  .user-details {
+    align-self: center;
+    flex-shrink: 0;
+    order: 3;
+    min-width: 320px;
+  }
 }
