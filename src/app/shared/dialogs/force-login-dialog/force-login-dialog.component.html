@@ -23,20 +23,31 @@
 
 <section class="dialog-content">
   @if (_isFirstTabActive()) {
-    <div class="instructions">
-      <h2 class="instructions__title">Завершите вход</h2>
-    
-      <p class="instructions__message">Ваша заявка будет опубликована после завершения входа</p>
-    </div>
-  
-    <pu-login-form [initialEmail]="_data.email" (success)="handleSuccessLogin()" />
+    <section class="instructions">
+      <h1 class="instructions__title">
+        {{ "callToAction.finishLogin" | translate }}
+      </h1>
+
+      <p class="instructions__message">
+        {{ "yourApplicationWillBePublishedAfterLogin" | translate }}
+      </p>
+    </section>
+
+    <pu-login-form
+      [initialEmail]="_data.email"
+      (success)="handleSuccessLogin()"
+    />
   } @else {
-    <div class="instructions">
-      <h2 class="instructions__title">Завершите регистрацию</h2>
-    
-      <p class="instructions__message">Ваша заявка будет опубликована после завершения регистрации и активации аккаунта</p>
-    </div>
-  
+    <section class="instructions">
+      <h1 class="instructions__title">
+        {{ "callToAction.finishSignUp" | translate }}
+      </h1>
+
+      <p class="instructions__message">
+        {{ "yourApplicationWillBePublishedAfterAccountActivation" | translate }}
+      </p>
+    </section>
+
     <pu-register-form
       [initialEmail]="_data.email"
       [initialFullName]="_data.fullName"
