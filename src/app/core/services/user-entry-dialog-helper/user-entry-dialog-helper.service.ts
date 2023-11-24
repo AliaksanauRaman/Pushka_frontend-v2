@@ -18,7 +18,7 @@ export class UserEntryDialogHelperService extends BaseDialogHelperService {
       'data-react-helmet': 'true',
     });
     const dialogRef = this._dialog.open(UserEntryDialogComponent, {
-      width: '100%',
+      width: '664px',
       autoFocus: false,
     });
 

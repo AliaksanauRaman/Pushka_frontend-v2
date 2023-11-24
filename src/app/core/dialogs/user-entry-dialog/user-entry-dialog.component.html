@@ -5,39 +5,26 @@
   puIconAlt="Cross"
   puAriaLabel="Close Dialog"
   type="button"
-  (click)="_service.closeDialog()"
+  (click)="closeDialog()"
 ></button>
 
-@if (_service.state$ | async; as state) {
-  <ul class="tabs">
-    <li class="tabs__item">
-      <button
-        class="tabs__item-content"
-        [class.active]="state.isLoginView"
-        type="button"
-        (click)="_service.switchToLoginView()"
-      >
-        <span>{{ "navigationLabel.login" | translate }}</span>
-      </button>
-    </li>
+<pu-dialog-tabs>
+  @for (tab of _dialogTabsService.tabs(); track tab.label) {
+    <button
+      puDialogTabItem
+      [isActive]="_dialogTabsService.checkIsTabActive(tab)"
+      type="button"
+      (click)="_dialogTabsService.activateTab(tab)"
+    >
+      <span>{{ tab.label | translate }}</span>
+    </button>
+  }
+</pu-dialog-tabs>
 
-    <li class="tabs__item">
-      <button
-        class="tabs__item-content"
-        [class.active]="state.isRegisterView"
-        type="button"
-        (click)="_service.switchToRegisterView()"
-      >
-        <span>{{ "navigationLabel.register" | translate }}</span>
-      </button>
-    </li>
-  </ul>
-
-  <div class="form-container">
-    @if (state.isLoginView) {
-      <pu-login-form (success)="_service.handleSuccessLogin()" />
-    } @else if (state.isRegisterView) {
-      <pu-register-form (success)="_service.handleSuccessRegister()" />
-    }
-  </div>
-}
+<div class="form-container">
+  @if (_isFirstTabActive()) {
+    <pu-login-form (success)="handleSuccessLogin()" />
+  } @else {
+    <pu-register-form (success)="handleSuccessRegister()" />
+  }
+</div>
