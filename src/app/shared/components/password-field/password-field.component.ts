@@ -5,10 +5,8 @@ import {
   forwardRef,
   signal,
 } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
@@ -32,7 +30,6 @@ type PasswordFieldType = 'password' | 'text';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgOptimizedImage, IconButtonComponent],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
@@ -40,31 +37,16 @@ type PasswordFieldType = 'password' | 'text';
   ],
 })
 export class PasswordFieldComponent extends BaseTextFieldDirective {
-  protected readonly _fieldType = signal<PasswordFieldType>('password');
+  protected readonly _isPasswordVisible = signal(false);
 
-  protected readonly _lockIconSrc = computed(() =>
-    this._fieldType() === 'password'
-      ? '/assets/icons/lock.svg'
-      : '/assets/icons/lock-open.svg'
-  );
-  protected readonly _lockIconAlt = computed(() =>
-    this._fieldType() === 'password' ? 'Lock' : 'Lock open'
-  );
-  protected readonly _eyeIconSrc = computed(() =>
-    this._fieldType() === 'password'
-      ? '/assets/icons/eye.svg'
-      : '/assets/icons/eye-off.svg'
-  );
-  protected readonly _eyeIconAlt = computed(() =>
-    this._fieldType() === 'password' ? 'Eye' : 'Eye off'
+  protected readonly _fieldType = computed<PasswordFieldType>(() =>
+    this._isPasswordVisible() ? 'text' : 'password'
   );
   protected readonly _toggleVisibilityButtonAriaLabel = computed(() =>
-    this._fieldType() === 'password' ? 'Show password' : 'Hide password'
+    this._isPasswordVisible() ? 'Hide password' : 'Show password'
   );
 
   protected toggleVisibility(): void {
-    this._fieldType.update((prev) =>
-      prev === 'password' ? 'text' : 'password'
-    );
+    this._isPasswordVisible.update((prev) => !prev);
   }
 }
