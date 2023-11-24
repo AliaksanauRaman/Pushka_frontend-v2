@@ -23,7 +23,7 @@
     "cancel": "Адмяніць",
     "tryAgain": "Паспрабаваць зноў",
     "more": "Яшчэ",
-    "less": "Свярнуць"
+    "less": "Схаваць"
   },
   "navigationLabel": {
     "sendParcel": "Адправіць пасылку",
@@ -168,5 +168,11 @@
   "errorView": {
     "title": "Ой, памылка!",
     "message": "Паведамленне"
+  },
+  "activateUser": {
+    "successActivationMessage": "Вітаем, рэгістрацыя прайшла паспяхова!",
+    "notFoundErrorMessage": "Акаўнт не знойдзены ці ўжо быў актываваны раней",
+    "unauthorizedErrorMessage": "Час актывацыі акаўнта мінуў",
+    "unknownErrorMessage": "Пры актывацыі акаўнта адбылася невядомая памылка"
   }
 }

@@ -168,5 +168,11 @@
   "errorView": {
     "title": "Ой, ошибка!",
     "message": "Cообщение"
+  },
+  "activateUser": {
+    "successActivationMessage": "Поздравляем, регистрация прошла успешно!",
+    "notFoundErrorMessage": "Аккаунт не найден или уже был активирован ранее",
+    "unauthorizedErrorMessage": "Время активации аккаунта истекло",
+    "unknownErrorMessage": "При активации аккаунта произошла неизвестная ошибка"
   }
 }

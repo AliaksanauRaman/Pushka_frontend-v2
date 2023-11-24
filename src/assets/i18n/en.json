@@ -168,5 +168,11 @@
   "errorView": {
     "title": "Oops, error!",
     "message": "Message"
+  },
+  "activateUser": {
+    "successActivationMessage": "Congratulations, your registration was successful!",
+    "notFoundErrorMessage": "Account is not found or has been activated",
+    "unauthorizedErrorMessage": "Account activation time has expired",
+    "unknownErrorMessage": "An unknown error occurred during account activation"
   }
 }
