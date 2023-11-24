@@ -13,4 +13,8 @@
   position: absolute;
   top: 16px;
   left: var(--base-field-padding);
+  width: 24px;
+  height: 24px;
+  background-image: url("/assets/icons/mail.svg");
+  background-size: 100% 100%;
 }

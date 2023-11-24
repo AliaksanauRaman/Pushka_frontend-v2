@@ -5,7 +5,6 @@ import {
   ViewChild,
   forwardRef,
 } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { IdDirective } from '@shared/directives/id.directive';
@@ -31,7 +30,6 @@ import { IFocusableField } from '@shared/interfaces/focusable-field';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgOptimizedImage],
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
