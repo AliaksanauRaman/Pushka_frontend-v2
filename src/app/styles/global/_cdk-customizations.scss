@@ -3,6 +3,13 @@
 }
 
 .cdk-overlay-backdrop {
-  background-color: var(--backdrop-color);
   transition: none;
+
+  &:not(.mat-overlay-transparent-backdrop) {
+    background-color: var(--backdrop-color);
+  }
+}
+
+.mat-datepicker-popup {
+  margin: 4px 0;
 }

@@ -38,6 +38,7 @@
   }
 
   .image {
+    cursor: grab;
     pointer-events: all;
     top: -40px;
     right: var(--laptop-horizontal-padding);
