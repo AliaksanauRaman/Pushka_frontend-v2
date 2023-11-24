@@ -1,10 +1,19 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: block;
-  max-height: 288px;
+  max-height: 286px;
   padding: 0 12px;
   overflow-y: auto;
 }
 
 .pu-form__submit-button {
   margin-top: 40px;
+}
+
+@include for-laptop {
+  :host {
+    max-height: 378px;
+    padding: 0 50px;
+  }
 }
