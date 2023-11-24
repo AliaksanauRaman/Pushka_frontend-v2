@@ -6,8 +6,6 @@ import {
 } from '@angular/material/snack-bar';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { IconButtonComponent } from '../icon-button/icon-button.component';
-
 import { SnackBarData } from '@shared/types/snack-bar-data';
 
 @Component({
@@ -16,11 +14,7 @@ import { SnackBarData } from '@shared/types/snack-bar-data';
   styleUrls: ['./snack-bar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [
-    MatSnackBarModule,
-    TranslateModule,
-    IconButtonComponent,
-  ],
+  imports: [MatSnackBarModule, TranslateModule],
 })
 export class SnackBarComponent {
   protected readonly _snackBarRef = inject(MatSnackBarRef);

@@ -29,6 +29,11 @@
 
   &.actions__item--close {
     width: 40px;
+    height: 40px;
     margin: 4px;
+    background-image: url("/assets/icons/close-snack-bar.svg");
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }
