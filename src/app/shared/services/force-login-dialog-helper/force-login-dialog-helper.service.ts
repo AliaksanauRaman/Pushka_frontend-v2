@@ -17,6 +17,7 @@ export class ForceLoginDialogHelperService extends BaseDialogHelperService {
       ForceLoginDialogData,
       ForceLoginDialogComponent
     >(ForceLoginDialogComponent, {
+      width: '664px',
       data,
     }).closed;
   }

@@ -15,7 +15,7 @@ export class DeleteApplicationDialogHelperService extends BaseDialogHelperServic
       unknown,
       DeleteApplicationDialogComponent
     >(DeleteApplicationDialogComponent, {
-      width: '100%',
+      width: '640px',
     }).closed;
   }
 }
