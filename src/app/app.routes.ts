@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 
+import { activateUserGuard } from './activate-user/guards/activate-user.guard';
+
 export const appRoutes: Routes = [
   {
     path: '',
@@ -35,6 +37,15 @@ export const appRoutes: Routes = [
           import(
             './deliver-parcel/pages/deliver-parcel-page/deliver-parcel-page.component'
           ).then((c) => c.DeliverParcelPageComponent),
+      },
+      {
+        path: 'activate-user',
+        pathMatch: 'full',
+        canActivate: [activateUserGuard],
+        loadComponent: () =>
+          import(
+            './activate-user/components/activate-user-placeholder/activate-user-placeholder.component'
+          ).then((c) => c.ActivateUserPlaceholderComponent),
       },
       {
         path: 'not-found',
