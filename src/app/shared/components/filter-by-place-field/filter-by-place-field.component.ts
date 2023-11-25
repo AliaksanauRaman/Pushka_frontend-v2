@@ -11,8 +11,6 @@ import {
 import { OverlayModule } from '@angular/cdk/overlay';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { DisabledDirective } from '@shared/directives/disabled.directive';
-import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
 import { PanelComponent } from '@shared/components/panel/panel.component';
 import { PanelItemComponent } from '@shared/components/panel-item/panel-item.component';
 import { TranslatedPlaceViewPipe } from '@shared/pipes/translated-place-view.pipe';
@@ -36,8 +34,6 @@ import { filterPlaces } from '@shared/utils/filter-places';
   imports: [
     OverlayModule,
     TranslateModule,
-    DisabledDirective,
-    IconButtonComponent,
     PanelComponent,
     PanelItemComponent,
     TranslatedPlaceViewPipe,

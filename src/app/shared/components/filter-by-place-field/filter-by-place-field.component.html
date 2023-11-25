@@ -8,6 +8,7 @@
     class="pu-field"
     type="text"
     tabindex="-1"
+    aria-label="Filter by place"
     readonly
     [disabled]="_translatedPlaces().length === 0"
     (focus)="departurePlaceInput.focus()"
@@ -17,10 +18,11 @@
     #departurePlaceInput
     class="inner-field inner-field--departure-place"
     [placeholder]="'fieldLabel.departurePlace' | translate"
-    type="text"
-    maxlength="30"
     [value]="_departurePlaceFieldViewValue()"
     [disabled]="_translatedPlaces().length === 0"
+    type="text"
+    maxlength="30"
+    aria-label="Place of departure"
     (focus)="handleDeparturePlaceFieldFocus()"
     (input)="handleDeparturePlaceFieldInput(departurePlaceInput.value)"
   />
@@ -31,22 +33,19 @@
     #destinationInput
     class="inner-field inner-field--destination"
     [placeholder]="'fieldLabel.destination' | translate"
-    type="text"
-    maxlength="30"
     [value]="_destinationFieldViewValue()"
     [disabled]="_translatedPlaces().length === 0"
+    type="text"
+    maxlength="30"
+    aria-label="Place of destination"
     (focus)="handleDestinationFieldFocus()"
     (input)="handleDestinationFieldInput(destinationInput.value)"
   />
 
   <button
     class="apply-filter-button"
-    puIconButton
-    puIconSrc="/assets/icons/white-filter-check.svg"
-    puIconAlt="Filter"
-    puAriaLabel="Apply filter"
-    puDisabled
     [disabled]="_value().isEmpty"
+    aria-label="Apply filter"
     (click)="applyFilter()"
   ></button>
 </div>
