@@ -14,7 +14,6 @@ import { applicationCardSlideOut } from '@shared/animations/application-card-sli
 
 import { DeliveryOfferCardComponent } from '../delivery-offer-card/delivery-offer-card.component';
 import { FilterByPlaceFieldComponent } from '@shared/components/filter-by-place-field/filter-by-place-field.component';
-import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
 
 import { BaseApplicationsListComponent } from '../../base/base-applications-list/base-applications-list.component';
 import { DeliveryOffer } from '@shared/types/delivery-offer';
@@ -35,7 +34,6 @@ import { DeliveryOffer } from '@shared/types/delivery-offer';
     TranslateModule,
     DeliveryOfferCardComponent,
     FilterByPlaceFieldComponent,
-    IconButtonComponent,
   ],
 })
 export class DeliveryOffersListComponent extends BaseApplicationsListComponent {
