@@ -6,8 +6,4 @@
 .pu-field {
   height: var(--base-field-height);
   padding: 0 var(--base-field-padding);
-
-  &.pu-field--capitalized {
-    text-transform: capitalize;
-  }
 }
