@@ -81,6 +81,7 @@
         [puLabel]="'fieldLabel.description' | translate"
         [puPlaceholder]="'fieldPlaceholder.description' | translate"
         [puMaxLength]="_config.descriptionMaxLength"
+        puAutocomplete="off"
         formControlName="description"
       />
 
@@ -102,6 +103,7 @@
         [puLabel]="'fieldLabel.fullName' | translate"
         [puPlaceholder]="'fieldPlaceholder.fullName' | translate"
         [puMaxLength]="_config.fullNameMaxLength"
+        puAutocomplete="name"
         formControlName="fullName"
       />
 
@@ -123,6 +125,7 @@
         [puLabel]="'fieldLabel.email' | translate"
         [puPlaceholder]="'fieldPlaceholder.email' | translate"
         [puMaxLength]="_config.emailMaxLength"
+        puAutocomplete="email"
         formControlName="email"
       />
 
@@ -145,6 +148,7 @@
         [puLabel]="'fieldLabel.notRequiredPhone' | translate"
         [puCountryCodePlaceholder]="'fieldPlaceholder.countryCode' | translate"
         [puNumberPlaceholder]="'fieldPlaceholder.phoneNumber' | translate"
+        puAutocomplete="tel-local"
         formControlName="phone"
       />
 
