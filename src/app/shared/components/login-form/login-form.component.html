@@ -8,6 +8,7 @@
     [puLabel]="'fieldLabel.email' | translate"
     [puPlaceholder]="'fieldPlaceholder.email' | translate"
     [puMaxLength]="_config.emailMaxLength"
+    puAutocomplete="email"
     formControlName="email"
   ></pu-email-field>
 
@@ -25,6 +26,7 @@
     class="pu-form__field"
     [puLabel]="'fieldLabel.password' | translate"
     [puPlaceholder]="'fieldPlaceholder.password' | translate"
+    autocomplete="current-password"
     formControlName="password"
   ></pu-password-field>
 
