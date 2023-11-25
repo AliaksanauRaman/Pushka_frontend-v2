@@ -1,4 +1,4 @@
-@import '../../../styles/screen-size-mixins';
+@import "../../../styles/screen-size-mixins";
 
 :host {
   display: flex;
@@ -35,16 +35,18 @@
     height: 56px;
     font-size: 2rem;
 
-    &:focus {
-      background-color: var(--accent-color);
-    }
+    &:not(:disabled) {
+      &:focus {
+        background-color: var(--accent-color);
+      }
 
-    &:hover {
-      background-color: var(--accent-focused-color);
-    }
+      &:hover {
+        background-color: var(--accent-focused-color);
+      }
 
-    &:active {
-      background-color: var(--accent-active-color);
+      &:active {
+        background-color: var(--accent-active-color);
+      }
     }
   }
 }

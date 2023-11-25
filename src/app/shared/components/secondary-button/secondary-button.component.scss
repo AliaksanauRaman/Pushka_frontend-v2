@@ -1,4 +1,4 @@
-@import '../../../styles/screen-size-mixins';
+@import "../../../styles/screen-size-mixins";
 
 :host {
   display: inline-block;
@@ -28,16 +28,18 @@
   :host {
     padding: 0 34px;
 
-    &:focus {
-      color: var(--primary-color);
-    }
+    &:not(:disabled) {
+      &:focus {
+        color: var(--primary-color);
+      }
 
-    &:hover {
-      color: var(--primary-focused-color);
-    }
-  
-    &:active {
-      color: var(--primary-active-color);
+      &:hover {
+        color: var(--primary-focused-color);
+      }
+
+      &:active {
+        color: var(--primary-active-color);
+      }
     }
   }
 }
