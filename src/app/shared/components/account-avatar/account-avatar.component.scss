@@ -4,7 +4,7 @@
   align-items: center;
   width: 40px;
   height: 40px;
-  background-color: #ededed; // If there are any other entries of this color move it to root
+  background-color: var(--background-gray-color);
   border-radius: 50%;
 }
 

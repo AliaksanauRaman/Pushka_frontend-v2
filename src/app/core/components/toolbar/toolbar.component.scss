@@ -1,4 +1,4 @@
-@import '../../../styles/screen-size-mixins';
+@import "../../../styles/screen-size-mixins";
 
 :host {
   display: flex;
@@ -44,5 +44,13 @@
 @include for-laptop {
   .title {
     font-size: 2.6rem;
+  }
+
+  .open-account-menu-button {
+    &:hover {
+      .avatar {
+        background-color: #ededed;
+      }
+    }
   }
 }

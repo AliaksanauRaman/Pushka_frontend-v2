@@ -1,3 +1,5 @@
+@import '../../../styles/screen-size-mixins';
+
 :host-context(.pu-form__field.ng-invalid.ng-touched) {
   .pu-field {
     border-color: var(--error-color);
@@ -82,5 +84,13 @@
 
   &:focus {
     outline: none;
+  }
+}
+
+@include for-laptop {
+  .country-code-list-item {
+    &:hover {
+      background-color: var(--background-gray-color);
+    }
   }
 }

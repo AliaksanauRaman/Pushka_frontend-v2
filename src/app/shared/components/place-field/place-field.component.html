@@ -70,7 +70,12 @@
   >
     <pu-panel>
       @for (place of state.filteredPlaces; track place.id) {
-        <button puPanelItem type="button" (click)="selectPlace(place)">
+        <button
+          puPanelItem
+          [isSelected]="place.id === state.selectedPlace?.id"
+          type="button"
+          (click)="selectPlace(place)"
+        >
           <span>{{ place | translatedPlaceView }}</span>
         </button>
       } @empty {

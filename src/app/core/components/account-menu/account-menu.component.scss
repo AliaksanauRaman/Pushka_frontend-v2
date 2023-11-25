@@ -57,6 +57,10 @@
   .logout-button {
     height: 65px;
     padding: 0 20px;
+
+    &:hover {
+      background-color: var(--background-gray-color);
+    }
   }
 
   .logout-label {

@@ -57,5 +57,9 @@
   .menu__item {
     height: 60px;
     font-size: 2rem;
+
+    &:hover {
+      background-color: var(--background-gray-color);
+    }
   }
 }

@@ -1,3 +1,5 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: flex;
   align-items: center;
@@ -7,7 +9,20 @@
   color: var(--white-contrast-color);
   text-align: left;
 
+  &.pu-panel-item--selected {
+    font-weight: 600;
+    color: var(--accent-color);
+  }
+
   &.pu-panel-item--placeholder {
     color: var(--hint-text-color);
+  }
+}
+
+@include for-laptop {
+  :host {
+    &:hover {
+      background-color: var(--background-gray-color);
+    }
   }
 }
