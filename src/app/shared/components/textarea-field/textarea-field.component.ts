@@ -4,6 +4,8 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
 import { PlaceholderDirective } from '@shared/directives/placeholder.directive';
+import { AutocompleteDirective } from '@shared/directives/autocomplete.directive';
+
 import { BaseTextFieldDirective } from '@shared/base/base-text-field.directive';
 
 @Component({
@@ -26,6 +28,7 @@ import { BaseTextFieldDirective } from '@shared/base/base-text-field.directive';
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
     { directive: PlaceholderDirective, inputs: ['puPlaceholder'] },
+    { directive: AutocompleteDirective, inputs: ['puAutocomplete'] },
   ],
 })
 export class TextareaFieldComponent extends BaseTextFieldDirective {}
