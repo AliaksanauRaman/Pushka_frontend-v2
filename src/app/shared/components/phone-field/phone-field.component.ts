@@ -19,6 +19,7 @@ import { CountryCodeFieldComponent } from '@shared/components/country-code-field
 import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
 import { IdDirective } from '@shared/directives/id.directive';
 import { LabelDirective } from '@shared/directives/label.directive';
+import { AutocompleteDirective } from '@shared/directives/autocomplete.directive';
 
 import { BaseReactiveFieldDirective } from '@shared/base/base-reactive-field.directive';
 import { Phone } from '@shared/types/phone';
@@ -48,6 +49,7 @@ import { PhoneFormValue } from '@shared/types/phone-form-value';
   hostDirectives: [
     { directive: IdDirective, inputs: ['puId'] },
     { directive: LabelDirective, inputs: ['puLabel'] },
+    { directive: AutocompleteDirective, inputs: ['puAutocomplete'] },
   ],
 })
 export class PhoneFieldComponent extends BaseReactiveFieldDirective<Phone | null> {
@@ -55,6 +57,7 @@ export class PhoneFieldComponent extends BaseReactiveFieldDirective<Phone | null
   private readonly _formBuilder = inject(NonNullableFormBuilder);
   protected readonly _idDirective = inject(IdDirective);
   protected readonly _labelDirective = inject(LabelDirective);
+  protected readonly _autocomplete = inject(AutocompleteDirective);
 
   @Input()
   public set puCountryCodePlaceholder(value: string) {
