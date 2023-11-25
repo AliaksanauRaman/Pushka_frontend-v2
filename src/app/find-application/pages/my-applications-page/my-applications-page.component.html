@@ -1,12 +1,12 @@
 @if (_service.state(); as state) {
   @if (state.isLoading) {
-    <div class="loading-view">
+    <section class="loading-view">
       <pu-spinner
         class="loading-view__spinner"
         size="big"
         color="primary"
       />
-    </div>
+    </section>
   } @else if (state.responseErrorMessage !== '') {
     <pu-error-view
       [errorMessage]="state.responseErrorMessage"

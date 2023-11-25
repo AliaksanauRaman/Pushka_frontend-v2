@@ -1,3 +1,5 @@
+@import '../../styles/screen-size-mixins';
+
 :host {
   display: block;
   flex-grow: 1;
@@ -81,4 +83,10 @@
 
 .applications-list {
   flex-shrink: 0;
+}
+
+@include for-laptop {
+  .loading-view__spinner {
+    margin-top: 70px;
+  }
 }
