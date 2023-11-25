@@ -1,3 +1,5 @@
+@import "../../styles/screen-size-mixins";
+
 :host {
   position: relative;
   display: flex;
@@ -19,7 +21,12 @@
   }
 }
 
-.fab {
+.empty-list {
+  font-style: italic;
+  text-align: center;
+}
+
+.fab-container {
   position: sticky;
   bottom: 0;
   z-index: 999;
@@ -28,8 +35,17 @@
   width: 48px;
   height: 48px;
   margin-top: 12px;
+}
+
+.fab {
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background-color: var(--accent-color);
+  background-image: url("/assets/icons/white-caret-up.svg");
+  background-size: 32px 32px;
+  background-position: center;
+  background-repeat: no-repeat;
 
   &:focus {
     background-color: var(--accent-focused-color);
@@ -37,5 +53,31 @@
 
   &:active {
     background-color: var(--accent-active-color);
+  }
+}
+
+@include for-laptop {
+  :host {
+    padding: 10px 70px 15px 70px;
+  }
+
+  .application-card {
+    width: 100%;
+
+    &:not(:first-child) {
+      margin-top: 16px;
+    }
+  }
+
+  .fab-container {
+    height: 0;
+    margin-top: 0;
+  }
+
+  .fab {
+    position: absolute;
+    right: -38px;
+    bottom: 15px;
+    background-size: 26px 26px;
   }
 }
