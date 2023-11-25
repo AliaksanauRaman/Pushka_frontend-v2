@@ -1,11 +1,51 @@
+@import '../../../styles/screen-size-mixins';
+
 :host {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &.pu-spinner--small {
+    width: 24px;
+    height: 24px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &.pu-spinner--medium {
+    width: 36px;
+    height: 36px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &.pu-spinner--big {
+    width: 48px;
+    height: 48px;
+
+    svg {
+      width: 36px;
+      height: 36px;
+    }
+  }
 }
 
 svg {
   animation: rotation 1s infinite linear;
+}
+
+path {
+  fill: var(--white-color);
+
+  &.primary-color {
+    fill: var(--primary-color);
+  }
 }
 
 @keyframes rotation {
@@ -19,5 +59,39 @@ svg {
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@include for-laptop {
+  :host {
+    &.pu-spinner--small {
+      width: 36px;
+      height: 36px;
+  
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  
+    &.pu-spinner--medium {
+      width: 48px;
+      height: 48px;
+  
+      svg {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  
+    &.pu-spinner--big {
+      width: 60px;
+      height: 60px;
+  
+      svg {
+        width: 48px;
+        height: 48px;
+      }
+    }
   }
 }
