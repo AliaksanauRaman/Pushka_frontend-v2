@@ -7,12 +7,12 @@ import {
   signal,
 } from '@angular/core';
 import { transition, trigger, useAnimation } from '@angular/animations';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { applicationCardFadeIn } from '@shared/animations/application-card-fade-in';
 import { applicationCardSlideOut } from '@shared/animations/application-card-slide-out';
 
 import { HelpRequestCardComponent } from '../help-request-card/help-request-card.component';
-import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
 
 import { BaseApplicationsListComponent } from '../../base/base-applications-list/base-applications-list.component';
 import { HelpRequest } from '@shared/types/help-request';
@@ -29,7 +29,7 @@ import { HelpRequest } from '@shared/types/help-request';
     ]),
   ],
   standalone: true,
-  imports: [HelpRequestCardComponent, IconButtonComponent],
+  imports: [TranslateModule, HelpRequestCardComponent],
 })
 export class HelpRequestsListComponent extends BaseApplicationsListComponent {
   @Input({ required: true })

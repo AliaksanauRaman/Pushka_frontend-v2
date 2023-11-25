@@ -8,19 +8,16 @@
   />
 } @empty {
   <div class="empty-list">
-    <p>No results found.</p>
+    <p>{{ 'theListIsEmpty' | translate }}</p>
   </div>
 }
 
 @if (_fabIsVisible()) {
-  <button
-    class="fab"
-    puIconButton
-    puIconSrc="/assets/icons/white-caret-up.svg"
-    puIconAlt="Caret up"
-    puAriaLabel="Scroll to the start of the list"
-    puIconWidth="32"
-    puIconHeight="32"
-    (click)="scrollToTop()"
-  ></button>
+  <div class="fab-container">
+    <button
+      class="fab"
+      aria-label="Scroll to the beginning of the list"
+      (click)="scrollToTheBeginning()"
+    ></button>
+  </div>
 }
