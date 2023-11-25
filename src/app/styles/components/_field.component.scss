@@ -97,6 +97,11 @@
     &::placeholder {
       color: var(--disabled-text-color);
     }
+
+    &:-webkit-autofill {
+      -webkit-text-fill-color: var(--disabled-text-color);
+      -webkit-box-shadow: 0 0 0 1000px var(--disabled-field-color) inset;
+    }
   }
 
   &.pu-field--active {
