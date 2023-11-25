@@ -13,7 +13,6 @@ import { applicationCardFadeIn } from '@shared/animations/application-card-fade-
 import { applicationCardSlideOut } from '@shared/animations/application-card-slide-out';
 
 import { MyApplicationCardComponent } from '../my-application-card/my-application-card.component';
-import { IconButtonComponent } from '@shared/components/icon-button/icon-button.component';
 
 import { BaseApplicationsListComponent } from '../../base/base-applications-list/base-applications-list.component';
 import { MyApplication } from '@shared/types/my-application';
@@ -21,13 +20,9 @@ import { MyApplication } from '@shared/types/my-application';
 @Component({
   selector: 'pu-my-applications-list',
   templateUrl: './my-applications-list.component.html',
-  styleUrl: '../../styles/_applications-list.component.scss',
-  styles: [
-    `
-      :host {
-        height: 608px;
-      }
-    `,
+  styleUrls: [
+    '../../styles/_applications-list.component.scss',
+    './my-applications-list.component.scss',
   ],
   animations: [
     trigger('fadeInSlideOut', [
@@ -37,7 +32,7 @@ import { MyApplication } from '@shared/types/my-application';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [TranslateModule, MyApplicationCardComponent, IconButtonComponent],
+  imports: [TranslateModule, MyApplicationCardComponent],
 })
 export class MyApplicationsListComponent extends BaseApplicationsListComponent {
   @Input({ required: true })

@@ -1,0 +1,11 @@
+@import '../../../styles/screen-size-mixins';
+
+:host {
+  height: 608px;
+}
+
+@include for-laptop {
+  :host {
+    height: 822px;
+  }
+}

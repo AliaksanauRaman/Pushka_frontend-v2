@@ -12,14 +12,12 @@
 }
 
 @if (_fabIsVisible()) {
-  <button
-    class="fab"
-    puIconButton
-    puIconSrc="/assets/icons/white-caret-up.svg"
-    puIconAlt="Caret up"
-    puAriaLabel="Scroll to the start of the list"
-    puIconWidth="32"
-    puIconHeight="32"
-    (click)="scrollToTheBeginning()"
-  ></button>
+  <div class="fab-container">
+    <button
+      class="fab"
+      type="button"
+      aria-label="Scroll to the beginning of the list"
+      (click)="scrollToTheBeginning()"
+    ></button>
+  </div>
 }
