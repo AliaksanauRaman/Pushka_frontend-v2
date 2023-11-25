@@ -34,5 +34,17 @@
   :host {
     height: 56px;
     font-size: 2rem;
+
+    &:focus {
+      background-color: var(--accent-color);
+    }
+
+    &:hover {
+      background-color: var(--accent-focused-color);
+    }
+
+    &:active {
+      background-color: var(--accent-active-color);
+    }
   }
 }

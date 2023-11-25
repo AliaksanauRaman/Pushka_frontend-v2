@@ -79,5 +79,17 @@
     right: -38px;
     bottom: 15px;
     background-size: 26px 26px;
+
+    &:focus {
+      background-color: var(--accent-color);
+    }
+
+    &:hover {
+      background-color: var(--accent-focused-color);
+    }
+  
+    &:active {
+      background-color: var(--accent-active-color);
+    }
   }
 }
