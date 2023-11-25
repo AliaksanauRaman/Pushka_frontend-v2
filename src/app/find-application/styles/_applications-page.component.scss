@@ -1,4 +1,4 @@
-@import '../../styles/screen-size-mixins';
+@import "../../styles/screen-size-mixins";
 
 :host {
   display: block;
@@ -73,6 +73,10 @@
 
 .clear-filter-icon {
   flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background-image: url("/assets/icons/accent-cross.svg");
+  background-size: 100% 100%;
 }
 
 .clear-filter-text {

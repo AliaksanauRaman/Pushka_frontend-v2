@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -15,12 +14,11 @@ import { RequestsPageService } from './requests-page.service';
 @Component({
   selector: 'pu-requests-page',
   templateUrl: './requests-page.component.html',
-  styleUrls: ['../../styles/_applications-page.component.scss'],
+  styleUrl: '../../styles/_applications-page.component.scss',
   providers: [RequestsPageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    NgOptimizedImage,
     RouterLink,
     TranslateModule,
     ErrorViewComponent,

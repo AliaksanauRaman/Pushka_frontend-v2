@@ -4,7 +4,6 @@ import {
   OnInit,
   inject,
 } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -20,12 +19,11 @@ import { OffersPageService } from './offers-page.service';
 @Component({
   selector: 'pu-offers-page',
   templateUrl: './offers-page.component.html',
-  styleUrls: ['../../styles/_applications-page.component.scss'],
+  styleUrl: '../../styles/_applications-page.component.scss',
   providers: [OffersPageService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    NgOptimizedImage,
     RouterLink,
     TranslateModule,
     ErrorViewComponent,
