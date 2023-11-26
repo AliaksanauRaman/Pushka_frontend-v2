@@ -1,2 +1,14 @@
-<h1>Page not found!</h1>
-<h2>404</h2>
+<h1 class="title">404</h1>
+
+<p class="message">
+  {{ 'pageNotFound.message' | translate }}
+</p>
+
+<button
+  class="main-page-button"
+  puAccentButton
+  type="button"
+  routerLink="/find-application/requests"
+>
+{{ 'pageNotFound.mainPage' | translate }}
+</button>

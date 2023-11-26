@@ -175,5 +175,9 @@
     "notFoundErrorMessage": "Account is not found or has already been activated",
     "unauthorizedErrorMessage": "Account activation time has expired",
     "unknownErrorMessage": "An unknown error occurred during account activation"
+  },
+  "pageNotFound": {
+    "message": "Page not found :(",
+    "mainPage": "Main page"
   }
 }

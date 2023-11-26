@@ -175,5 +175,9 @@
     "notFoundErrorMessage": "Акаўнт не знойдзены ці ўжо быў актываваны раней",
     "unauthorizedErrorMessage": "Час актывацыі акаўнта мінуў",
     "unknownErrorMessage": "Пры актывацыі акаўнта адбылася невядомая памылка"
+  },
+  "pageNotFound": {
+    "message": "Старонка не знойдзена",
+    "mainPage": "Галоўная старонка"
   }
 }
