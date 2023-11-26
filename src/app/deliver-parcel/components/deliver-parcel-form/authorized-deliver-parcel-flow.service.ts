@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 
 import { BaseDeliverParcelFlowService } from './base-deliver-parcel-flow.service';
 import { ValidDeliverParcelFormValue } from '@shared/types/valid-deliver-parcel-form-value';
@@ -16,9 +16,15 @@ export class AuthorizedDeliverParcelFlowService extends BaseDeliverParcelFlowSer
       .pipe(
         tap(() =>
           this._snackBarService.showSuccessMessage(
-            'successApplicationCreationMessage'
+            'successApplicationPublishMessage'
           )
-        )
+        ),
+        catchError((error: unknown) => {
+          this._snackBarService.showErrorMessage(
+            'backendError.unknownCreateDeliveryOfferError'
+          );
+          return throwError(() => error);
+        })
       );
   }
 }

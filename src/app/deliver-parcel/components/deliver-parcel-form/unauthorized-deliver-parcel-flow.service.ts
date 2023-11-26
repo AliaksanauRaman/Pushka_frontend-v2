@@ -1,5 +1,12 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, filter, switchMap, tap, throwError } from 'rxjs';
+import {
+  Observable,
+  catchError,
+  filter,
+  switchMap,
+  tap,
+  throwError,
+} from 'rxjs';
 
 import { ForceLoginDialogHelperService } from '@shared/services/force-login-dialog-helper/force-login-dialog-helper.service';
 
@@ -31,7 +38,7 @@ export class UnauthorizedDeliverParcelFlowService extends BaseDeliverParcelFlowS
               .pipe(
                 tap(() =>
                   this._snackBarService.showSuccessMessage(
-                    'successLoginAndApplicationCreationMessage'
+                    'successLoginAndCreateApplicationMessage'
                   )
                 )
               );
@@ -45,7 +52,7 @@ export class UnauthorizedDeliverParcelFlowService extends BaseDeliverParcelFlowS
               .pipe(
                 tap(() =>
                   this._snackBarService.showImportantMessage(
-                    'successRegisterAndApplicationCreationMessage'
+                    'successRegisterAndCreateApplicationMessage'
                   )
                 )
               );
@@ -54,6 +61,12 @@ export class UnauthorizedDeliverParcelFlowService extends BaseDeliverParcelFlowS
           return throwError(
             () => new Error('Unknown force login dialog result!')
           );
+        }),
+        catchError((error: unknown) => {
+          this._snackBarService.showErrorMessage(
+            'backendError.unknownCreateDeliveryOfferError'
+          );
+          return throwError(() => error);
         })
       );
   }
