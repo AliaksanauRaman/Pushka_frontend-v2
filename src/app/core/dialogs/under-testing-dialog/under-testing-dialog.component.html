@@ -1,0 +1,35 @@
+<button
+  class="close-dialog-button"
+  type="button"
+  aria-label="Close dialog"
+  (click)="closeDialog()"
+></button>
+
+<section class="dialog-window">
+  <p class="message">
+    <strong>RU: </strong>
+    <span
+      >Приложение находится на стадии тестирования. Вы можете увидеть наши
+      креативные тестовые данные :)</span
+    >
+  </p>
+
+  <p class="message">
+    <strong>EN: </strong>
+    <span
+      >The app is still in the testing phase. You can see our creative test data
+      :)</span
+    >
+  </p>
+
+  <div class="actions">
+    <button
+      class="actions__item cancel-button"
+      puAccentButton
+      type="button"
+      (click)="closeDialog()"
+    >
+      <span>OK</span>
+    </button>
+  </div>
+</section>
