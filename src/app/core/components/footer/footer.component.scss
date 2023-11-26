@@ -43,4 +43,12 @@
     margin: 0 auto;
     padding: 0 var(--laptop-horizontal-padding);
   }
+
+  .socials__item {
+    transition: transform 0.25s ease-in-out;
+
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
 }

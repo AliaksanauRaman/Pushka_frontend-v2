@@ -17,6 +17,7 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  padding: 0 10px;
   color: var(--white-contrast-color);
 
   &.tabs__item--active {
@@ -34,16 +35,12 @@
       border-radius: 20px;
     }
   }
-
-  &:not(:first-child) {
-    margin-left: 20px;
-  }
 }
 
 @include for-laptop {
   .tabs {
     height: 80px;
-    padding: 24px 0 0 0;
+    padding: 20px 0 0 0;
   }
 
   .tabs__item {
@@ -56,10 +53,6 @@
         bottom: -4px;
         height: 8px;
       }
-    }
-
-    &:not(:first-child) {
-      margin-left: 0;
     }
 
     &:not(.tabs__item--active) {
