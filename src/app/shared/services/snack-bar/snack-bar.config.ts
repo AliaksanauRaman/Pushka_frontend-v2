@@ -9,8 +9,9 @@ export const SNACK_BAR_CONFIG = new InjectionToken(
       successClass: 'pu-snack-bar--success',
       errorClass: 'pu-snack-bar--error',
       importantClass: 'pu-snack-bar--important',
-      successDuration: 3000,
-      errorDuration: 5000,
+      laptopClass: 'pu-snack-bar--laptop',
+      successDuration: 4000,
+      errorDuration: 6000,
     }),
   }
 );

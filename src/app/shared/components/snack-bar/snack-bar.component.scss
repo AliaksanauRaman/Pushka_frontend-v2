@@ -1,3 +1,5 @@
+@import "../../../styles/screen-size-mixins";
+
 :host {
   display: flex;
   align-items: center;
@@ -35,5 +37,26 @@
     background-size: 24px 24px;
     background-repeat: no-repeat;
     background-position: center;
+  }
+}
+
+@include for-laptop {
+  .text {
+    padding: 20px 0 20px 22px;
+    font-size: 1.8rem;
+    color: var(--white-color);
+    line-height: 2.4rem;
+  }
+
+  .actions__item {
+    &.actions__item--labeled {
+      margin-left: 16px;
+      padding: 0 16px;
+      font-size: 1.8rem;
+    }
+
+    &.actions__item--close {
+      margin: 8px 8px 8px 16px;
+    }
   }
 }
