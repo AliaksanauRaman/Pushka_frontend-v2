@@ -14,7 +14,7 @@
     />
   } @else if (state.responseData !== null) {
     @if (state.isAllType && state.responseData.items.length === 0) {
-      <div class="empty-view">
+      <section class="empty-view">
         <p class="empty-view__message">
           <span>{{ 'emptyMyApplicationsListMessage' | translate }}</span>
           <br>
@@ -43,9 +43,9 @@
           class="empty-view__illustration"
           [style.height.px]="300"
         />
-      </div>
+      </section>
     } @else {
-      <div class="content-view">
+      <section class="content-view">
         <pu-my-application-type-dropdown-field
           class="my-applications-dropdown-field"
           [isDisabled]="state.isLoading"
@@ -67,7 +67,7 @@
           [myApplicationsList]="state.responseData.items"
           (myApplicationDeleted)="_service.deleteMyApplication($event)"
         ></pu-my-applications-list>
-      </div>
+      </section>
     }
   }
 }

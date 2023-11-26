@@ -40,27 +40,23 @@
           (applyFilter)="_service.fetchPublishedHelpRequests()"
         />
 
-        <div class="applications-count-and-clear-filter-button">
-          <div class="applications-count">
-            {{ "applicationsCount" | translate : { count: state.responseData.totalItemsCount} }}
-          </div>
-
-          <div class="spacer"></div>
-
-          @if (!state.noFilters) {
-            <button
-              class="clear-filter-button"
-              type="button"
-              (click)="filterByPlaceQueryContainer.clearFilter()"
-            >
-              <div class="clear-filter-icon"></div>
-
-              <span class="clear-filter-text">{{
-                "actionLabel.clearFilter" | translate
-              }}</span>
-            </button>
-          }
+        <div class="applications-count">
+          {{ "applicationsCount" | translate : { count: state.responseData.totalItemsCount} }}
         </div>
+
+        @if (!state.noFilters) {
+          <button
+            class="clear-filter-button"
+            type="button"
+            (click)="filterByPlaceQueryContainer.clearFilter()"
+          >
+            <div class="clear-filter-button__icon"></div>
+
+            <span class="clear-filter-button__text">{{
+              "actionLabel.clearFilter" | translate
+            }}</span>
+          </button>
+        }
 
         <pu-help-requests-list
           class="applications-list"
