@@ -41,7 +41,15 @@
     "unknownLoginError": "Неизвестная ошибка входа в систему. Пожалуйста, повторите попытку позже.",
     "unknownGetPublishedDeliveryOffersError": "Неизвестная ошибка получения списка предложений. Пожалуйста, повторите попытку позже.",
     "unknownGetPublishedHelpRequestsError": "Неизвестная ошибка получения списка запросов. Пожалуйста, повторите попытку позже.",
-    "unknownGetMyApplicationsError": "Неизвестная ошибка получения списка ваших заявок. Пожалуйста, повторите попытку позже."
+    "unknownGetMyApplicationsError": "Неизвестная ошибка получения списка ваших заявок. Пожалуйста, повторите попытку позже.",
+    "unknownDeliveryOfferDeletionError": "Неизвестная ошибка удаления предложения. Пожалуйста, повторите попытку позже.",
+    "unknownHelpRequestDeletionError": "Неизвестная ошибка удаления запроса. Пожалуйста, повторите попытку позже.",
+    "unknownRegisterError": "Неизвестная ошибка регистарации. Пожалуйста, повторите попытку позже.",
+    "accountAlreadyExists": "Аккаунт с такой электронной почтой уже существует.",
+    "accountIsBlocked": "Ваш аккаунт заблокирован.",
+    "registrationViaEmailIsUnfinished": "Вы уже регестрировались ранее, пожалуйста, проверьте свою электронную почту.",
+    "unknownCreateHelpRequestError": "Неизвестная ошибка публикации заявки. Пожалуйста, повторите попытку позже.",
+    "unknownCreateDeliveryOfferError": "Неизвестная ошибка публикации заявки. Пожалуйста, повторите попытку позже."
   },
   "myRequest": "Мой запрос",
   "myOffer": "Мое предложение",
@@ -141,6 +149,7 @@
   "personalDataStorageAndProcessingAgreementText": "Я согласен(-на) на обработку и хранение моих персональных данных",
   "allowedItemsConfirmationText": "Я подтверждаю, что моя посылка не содержит запрещенных веществ и товаров, а ее транспортировка не нарушает законов стран-участниц",
   "noServiceResponsibilityConfirmationText": "Я понимаю, что сервис не несет ответственности за качество сделки",
+  "iWillTreatTheParcelWithCare": "Я буду бережно относиться к посылке",
   "emptyDeliveryOffersListMessage": "Упс, кажется, еще не было ни одного предложения помощи в доставке. Вы можете стать первым и сделать свое предложение, нажав на",
   "emptyHelpRequestsListMessage": "Упс, кажется, еще не было создано ни одного запроса. Вы можете стать первым и создать запрос, нажав на",
   "emptyMyApplicationsListMessage": "У вас еще нет заявок.",
@@ -150,7 +159,7 @@
     "sendParcel": "Отправьте посылку",
     "deliverParcel": "Доставьте посылку",
     "finishLogin": "Завершите вход",
-    "finishSignup": "Завершите регистрацию"
+    "finishSignUp": "Завершите регистрацию"
   },
   "yourApplicationWillBePublishedAfterLogin": "Ваша заявка будет опубликована после завершения входа",
   "yourApplicationWillBePublishedAfterAccountActivation": "Ваша заявка будет опубликована после завершения регистрации и активации аккаунта",
@@ -158,6 +167,9 @@
   "successLoginMessage": "Вход в систему прошел успешно!",
   "successLogoutMessage": "Выход из системы прошел успешно!",
   "successRegisterMessage": "Регистрация прошла успешно! Чтобы активировать аккаунт подтвердите электронную почту.",
+  "successApplicationPublishMessage": "Ваша заявка успешно опубликована!",
+  "successLoginAndCreateApplicationMessage": "С возвращением! Ваша заявка успешно опубликована!",
+  "successRegisterAndCreateApplicationMessage": "Регистрация прошла успешно! Чтобы активировать аккаунт и опубликовать заявку подтвердите электронную почту.",
   "applicationsCount": "Всего заявок: {{ count }}",
   "applicationIsValidUntil": "Заявка действительна до",
   "deleteApplicationDialog": {
