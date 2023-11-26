@@ -3,6 +3,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs';
 
+const LAPTOP_MEDIA_QUERY = '(min-width: 1024px)';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -11,7 +13,11 @@ export class ScreenSizeService {
 
   public readonly isLaptop = toSignal(
     this._breakpointObserver
-      .observe(['(min-width: 1024px)'])
+      .observe([LAPTOP_MEDIA_QUERY])
       .pipe(map(({ matches }) => matches))
   );
+
+  public checkIsLaptop(): boolean {
+    return this._breakpointObserver.isMatched([LAPTOP_MEDIA_QUERY]);
+  }
 }
