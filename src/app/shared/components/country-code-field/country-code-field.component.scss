@@ -92,5 +92,9 @@
     &:hover {
       background-color: var(--background-gray-color);
     }
+
+    &:focus-visible {
+      background-color: var(--background-gray-color);
+    }
   }
 }
