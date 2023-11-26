@@ -48,11 +48,18 @@
 }
 
 .applications-count {
-  flex-grow: 1;
+  flex-shrink: 0;
   height: 2.4rem;
-  margin: 0 16px 10px 16px;
+  margin: 0 0 10px 16px;
   color: var(--hint-text-color);
   line-height: 2.4rem;
+}
+
+.clear-filter-button-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  margin: 0 16px 10px 0;
 }
 
 .clear-filter-button {
@@ -60,7 +67,6 @@
   align-items: center;
   flex-shrink: 0;
   height: 2.4rem;
-  margin: 0 16px 10px 0;
 }
 
 .clear-filter-button__icon {
@@ -82,6 +88,39 @@
 }
 
 @include for-laptop {
+  .content-view {
+    justify-content: center;
+  }
+
+  .filter-by-place {
+    flex-grow: 1;
+    flex-shrink: 1;
+    order: 2;
+    width: auto;
+    max-width: 506px;
+    margin: 40px 20px 30px 20px;
+  }
+
+  .applications-count {
+    align-self: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    order: 1;
+    margin: 10px 0 0 70px;
+  }
+
+  .clear-filter-button-container {
+    align-self: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    order: 3;
+    margin: 10px 70px 0 0;
+  }
+
+  .applications-list {
+    order: 4;
+  }
+
   .loading-view__spinner {
     margin-top: 70px;
   }

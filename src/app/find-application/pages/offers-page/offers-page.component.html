@@ -44,19 +44,21 @@
           {{ "applicationsCount" | translate : { count: state.responseData.totalItemsCount} }}
         </div>
 
-        @if (!state.noFilters) {
-          <button
-            class="clear-filter-button"
-            type="button"
-            (click)="filterByPlaceQueryContainer.clearFilter()"
-          >
-            <div class="clear-filter-button__icon"></div>
-
-            <span class="clear-filter-button__text">{{
-              "actionLabel.clearFilter" | translate
-            }}</span>
-          </button>
-        }
+        <div class="clear-filter-button-container">
+          @if (!state.noFilters) {
+            <button
+              class="clear-filter-button"
+              type="button"
+              (click)="filterByPlaceQueryContainer.clearFilter()"
+            >
+              <div class="clear-filter-button__icon"></div>
+  
+              <span class="clear-filter-button__text">{{
+                "actionLabel.clearFilter" | translate
+              }}</span>
+            </button>
+          }
+        </div>
 
         <pu-delivery-offers-list
           class="applications-list"
