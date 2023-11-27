@@ -16,11 +16,11 @@
 .image {
   pointer-events: none;
   position: absolute;
-  right: 16px;
-  bottom: 7px;
-  width: 213px;
-  height: 109px;
-  background-image: url("/assets/images/mobile-representation.png");
+  right: -5px;
+  bottom: 11px;
+  width: 240px;
+  height: 96px;
+  background-image: url("/assets/images/representation.png");
   background-size: 100% 100%;
 }
 
@@ -39,12 +39,11 @@
   .image {
     cursor: grab;
     pointer-events: all;
-    top: -40px;
-    right: var(--laptop-horizontal-padding);
-    bottom: 0;
-    width: 441px;
-    height: 263px;
-    background-image: url("/assets/images/laptop-representation.png");
+    right: 0;
+    bottom: 49px;
+    width: 505px;
+    height: 202px;
+    background-image: url("/assets/images/representation.png");
 
     &:active {
       cursor: grabbing;
