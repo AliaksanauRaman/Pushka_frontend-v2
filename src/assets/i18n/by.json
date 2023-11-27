@@ -83,7 +83,8 @@
     "departurePlace": "Месца адпраўлення",
     "destination": "Месца прызначэння",
     "departureAndArrivalDates": "Даты адпраўлення і прыбыцця",
-    "description": "Што Вы хаціце адправіць?",
+    "sendParcelDescription": "Што Вы хаціце адправіць?",
+    "deliverParcelDescription": "Што Вы можаце перавезці?",
     "fullName": "Поўнае імя",
     "email": "Электронная пошта",
     "notRequiredPhone": "Нумар тэлефону (неабавязкова)",
@@ -103,7 +104,9 @@
     "countryCode": "Код",
     "phoneNumber": "Увядзіце нумар",
     "password": "Увядзіце пароль",
-    "passwordConfirmation": "Паўтарыце пароль"
+    "passwordConfirmation": "Паўтарыце пароль",
+    "fromWhere": "Адкуль",
+    "whereTo": "Куды"
   },
   "country": {
     "belarus": "Беларусь",

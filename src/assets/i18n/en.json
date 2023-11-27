@@ -83,7 +83,8 @@
     "departurePlace": "Place of departure",
     "destination": "Place of destination",
     "departureAndArrivalDates": "Departure and arrival dates",
-    "description": "What do you want to send?",
+    "sendParcelDescription": "What do you want to send?",
+    "deliverParcelDescription": "What can you transport?",
     "fullName": "Full name",
     "email": "E-mail",
     "notRequiredPhone": "Phone number (not required)",
@@ -103,7 +104,9 @@
     "countryCode": "Code",
     "phoneNumber": "Enter number",
     "password": "Enter password",
-    "passwordConfirmation": "Repeat password"
+    "passwordConfirmation": "Repeat password",
+    "fromWhere": "From where",
+    "whereTo": "Where to"
   },
   "country": {
     "belarus": "Belarus",

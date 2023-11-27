@@ -17,7 +17,7 @@
   <input
     #departurePlaceInput
     class="inner-field inner-field--departure-place"
-    [placeholder]="'fieldLabel.departurePlace' | translate"
+    [placeholder]="'fieldPlaceholder.fromWhere' | translate"
     [value]="_departurePlaceFieldViewValue()"
     [disabled]="_translatedPlaces().length === 0"
     type="text"
@@ -32,7 +32,7 @@
   <input
     #destinationInput
     class="inner-field inner-field--destination"
-    [placeholder]="'fieldLabel.destination' | translate"
+    [placeholder]="'fieldPlaceholder.whereTo' | translate"
     [value]="_destinationFieldViewValue()"
     [disabled]="_translatedPlaces().length === 0"
     type="text"
