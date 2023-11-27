@@ -11,6 +11,7 @@ import {
 import { Observable, catchError, takeUntil, tap, throwError } from 'rxjs';
 
 import { PlacesHttpService } from '@shared/http/places/places-http.service';
+import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
 
 import { GetPlaces, DestroyGetPlaces } from './places.actions';
 import { Place } from '@shared/types/place';
@@ -32,6 +33,7 @@ type StateModel = Readonly<{
 })
 export class PlacesState implements NgxsOnInit {
   private readonly _placesHttpService = inject(PlacesHttpService);
+  private readonly _snackBarService = inject(SnackBarService);
   private readonly _actions$ = inject(Actions);
 
   @Selector()
@@ -51,6 +53,9 @@ export class PlacesState implements NgxsOnInit {
       tap((places) => context.setState({ places, getError: null })),
       catchError((error: unknown) => {
         context.setState({ places: [], getError: error });
+        this._snackBarService.showErrorMessage(
+          'backendError.unknownPlacesError'
+        );
         return throwError(() => error);
       }),
       takeUntil(this._actions$.pipe(ofAction(DestroyGetPlaces)))
