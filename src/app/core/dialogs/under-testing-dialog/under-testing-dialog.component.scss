@@ -26,7 +26,7 @@
   padding: 0 10px;
   margin-bottom: 30px;
   line-height: 1.8rem;
-  text-align: center;
+  text-align: justify;
 }
 
 .actions__item {
@@ -61,7 +61,6 @@
   }
 
   .message {
-    order: 3;
     margin-bottom: 32px;
     padding: 0 30px;
     font-size: 1.6rem;
@@ -72,7 +71,6 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
-    order: 4;
   }
 
   .actions__item {
