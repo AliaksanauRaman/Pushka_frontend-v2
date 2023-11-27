@@ -98,15 +98,12 @@
     order: 2;
     width: auto;
     max-width: 506px;
-    margin: 40px 20px 30px 20px;
+    margin: 40px 0 30px 0;
   }
 
   .applications-count {
-    align-self: center;
-    flex-grow: 0;
-    flex-shrink: 0;
+    display: none;
     order: 1;
-    margin: 10px 0 0 70px;
   }
 
   .clear-filter-button-container {
@@ -114,7 +111,11 @@
     flex-grow: 0;
     flex-shrink: 0;
     order: 3;
-    margin: 10px 70px 0 0;
+    margin: 0;
+
+    &:not(:empty) {
+      margin: 10px 0 0 20px;
+    }
   }
 
   .applications-list {
