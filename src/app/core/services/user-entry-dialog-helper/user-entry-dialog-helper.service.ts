@@ -20,6 +20,7 @@ export class UserEntryDialogHelperService extends BaseDialogHelperService {
     const dialogRef = this._dialog.open(UserEntryDialogComponent, {
       width: '664px',
       autoFocus: false,
+      panelClass: 'pu-dialog--scrollable',
     });
 
     dialogRef.closed.subscribe({

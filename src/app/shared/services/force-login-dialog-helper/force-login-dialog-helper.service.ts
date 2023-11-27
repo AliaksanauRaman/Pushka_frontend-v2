@@ -11,13 +11,16 @@ import { ForceLoginDialogResult } from '@shared/types/force-login-dialog-result'
   providedIn: 'root',
 })
 export class ForceLoginDialogHelperService extends BaseDialogHelperService {
-  public openDialog(data: ForceLoginDialogData): Observable<ForceLoginDialogResult> {
+  public openDialog(
+    data: ForceLoginDialogData
+  ): Observable<ForceLoginDialogResult> {
     return this._dialog.open<
       ForceLoginDialogResult,
       ForceLoginDialogData,
       ForceLoginDialogComponent
     >(ForceLoginDialogComponent, {
       width: '664px',
+      panelClass: 'pu-dialog--scrollable',
       data,
     }).closed;
   }

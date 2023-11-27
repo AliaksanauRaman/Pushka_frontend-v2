@@ -1,0 +1,13 @@
+@import "../_screen-size-mixins.scss";
+
+.pu-dialog--scrollable {
+  padding-top: 70px;
+  padding-bottom: 16px;
+  overflow-y: auto;
+}
+
+@include for-laptop {
+  .pu-dialog--scrollable {
+    padding-top: 16px;
+  }
+}

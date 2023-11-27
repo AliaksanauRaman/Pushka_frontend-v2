@@ -1,8 +1,7 @@
-@import '../../../styles/screen-size-mixins';
+@import "../../../styles/screen-size-mixins";
 
 :host {
   display: block;
-  max-height: 286px;
   padding: 0 12px;
   overflow-y: auto;
 }
@@ -13,7 +12,6 @@
 
 @include for-laptop {
   :host {
-    max-height: 378px;
     padding: 0 50px;
   }
 }
