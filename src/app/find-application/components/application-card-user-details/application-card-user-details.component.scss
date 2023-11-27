@@ -66,18 +66,28 @@
 }
 
 @include for-laptop {
+  .user {
+    height: 55px;
+  }
+
   .avatar {
     width: 46px;
     height: 46px;
   }
 
+  .full-name-and-show-contacts {
+    justify-content: space-between;
+    height: inherit;
+  }
+
   .full-name {
+    margin-bottom: 0;
     font-size: 2rem;
     font-weight: 700;
   }
 
   .show-contacts-label__text {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 
   .contacts {

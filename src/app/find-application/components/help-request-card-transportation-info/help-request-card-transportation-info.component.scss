@@ -32,11 +32,14 @@
 
 @include for-laptop {
   :host {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 55px;
   }
 
   .direction {
-    min-height: 3rem;
+    margin-bottom: 0;
   }
 
   .image {
@@ -50,6 +53,8 @@
   }
 
   .validity-period-end {
+    flex-shrink: 0;
+    line-height: 2.4rem;
     font-size: 1.7rem;
   }
 }
