@@ -17,11 +17,14 @@
 </div>
 
 <div class="pu-field-container">
-  <div class="mail-icon"></div>
+  @if (_isMailIconVisible()) {
+    <div class="mail-icon"></div>
+  }
 
   <input
     #fieldRef
     class="pu-field"
+    [class.pu-field--with-mail-icon]="_isMailIconVisible()"
     [id]="_idDirective.id()"
     [autocomplete]="_autocomplete.value()"
     [placeholder]="_placeholderDirective.placeholder()"

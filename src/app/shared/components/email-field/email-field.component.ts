@@ -2,8 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  Input,
   ViewChild,
   forwardRef,
+  signal,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -42,8 +44,15 @@ export class EmailFieldComponent
   extends BaseTextFieldDirective
   implements IFocusableField
 {
+  @Input()
+  public set isMailIconVisible(value: boolean) {
+    this._isMailIconVisible.set(value);
+  }
+
   @ViewChild('fieldRef')
   private readonly _fieldRef!: ElementRef<HTMLInputElement>;
+
+  protected readonly _isMailIconVisible = signal(true);
 
   public focus(): void {
     this._fieldRef.nativeElement.focus();
