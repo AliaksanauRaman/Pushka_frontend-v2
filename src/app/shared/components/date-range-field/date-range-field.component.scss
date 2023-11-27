@@ -20,18 +20,20 @@
 .date-view-input {
   pointer-events: none;
   position: absolute;
-  width: 90px;
   height: 100%;
   padding: 0;
+  font-size: 1.6rem;
   background-color: transparent;
   border: none;
 
   &.date-view-input--start {
     left: var(--base-field-padding);
+    width: 105px;
   }
 
   &.date-view-input--end {
     left: 50%;
+    width: 95px;
   }
 
   &::placeholder {
