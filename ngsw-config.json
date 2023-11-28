@@ -37,12 +37,9 @@
       "version": 1,
       "name": "translations",
       "urls": [
-        "https://pushka.dev/assets/i18n/ru.json",
-        "https://pushka.dev/assets/i18n/by.json",
-        "https://pushka.dev/assets/i18n/en.json",
-        "https://www.pushka.dev/assets/i18n/ru.json",
-        "https://www.pushka.dev/assets/i18n/by.json",
-        "https://www.pushka.dev/assets/i18n/en.json"
+        "/assets/i18n/ru.json",
+        "/assets/i18n/by.json",
+        "/assets/i18n/en.json"
       ],
       "cacheConfig": {
         "maxSize": 10,
