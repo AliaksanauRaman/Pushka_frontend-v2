@@ -16,16 +16,25 @@
       }
     },
     {
+      "name": "fonts",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": ["/assets/fonts/**"]
+      }
+    },
+    {
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
       "resources": {
-        "files": ["/assets/fonts/**", "/assets/icons/**", "/assets/images/**"]
+        "files": ["/assets/icons/**", "/assets/images/**"]
       }
     }
   ],
   "dataGroups": [
     {
+      "version": 1,
       "name": "translations",
       "urls": [
         "https://pushka.dev/assets/i18n/ru.json",
@@ -43,13 +52,42 @@
       }
     },
     {
+      "version": 1,
       "name": "places",
       "urls": ["https://pushka-backend.herokuapp.com/api/places"],
       "cacheConfig": {
-        "maxSize": 100,
+        "maxSize": 10,
         "maxAge": "7d",
         "timeout": "10s",
         "strategy": "performance"
+      }
+    },
+    {
+      "version": 1,
+      "name": "help-requests",
+      "urls": ["https://pushka-backend.herokuapp.com/api/help-requests"],
+      "cacheConfig": {
+        "maxSize": 5,
+        "maxAge": "10m",
+        "timeout": "10s",
+        "strategy": "freshness"
+      },
+      "cacheQueryOptions": {
+        "ignoreSearch": false
+      }
+    },
+    {
+      "version": 1,
+      "name": "delivery-offers",
+      "urls": ["https://pushka-backend.herokuapp.com/api/help-offers"],
+      "cacheConfig": {
+        "maxSize": 5,
+        "maxAge": "10m",
+        "timeout": "10s",
+        "strategy": "freshness"
+      },
+      "cacheQueryOptions": {
+        "ignoreSearch": false
       }
     }
   ]
