@@ -79,9 +79,15 @@
           <span>{{ place | translatedPlaceView }}</span>
         </button>
       } @empty {
-        <div puPanelItem [isPlaceholder]="true">
-          {{ "noMatchesFound" | translate }}
-        </div>
+        @for (place of state.otherCityPlaces; track place.id) {
+          <button
+            puPanelItem
+            type="button"
+            (click)="selectPlace(place)"
+          >
+            <span>{{ place | translatedPlaceView }}</span>
+          </button>
+        }
       }
     </pu-panel>
   </ng-template>
