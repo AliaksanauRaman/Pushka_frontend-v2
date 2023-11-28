@@ -193,6 +193,6 @@ export class PlaceFieldService {
   }
 
   private buildPlaceFieldValue(place: TranslatedPlace): string {
-    return `${place.plainCityLabel}, ${place.plainCountryLabel}`;
+    return `${place.plainCountryLabel}, ${place.plainCityLabel}`;
   }
 }
