@@ -2,10 +2,10 @@
   "name": "Pushka",
   "short_name": "Pushka",
   "theme_color": "#0181A8",
-  "background_color": "#f0f4f5",
+  "background_color": "#0181A8",
   "display": "standalone",
-  "scope": "./",
-  "start_url": "./",
+  "start_url": "/index.html",
+  "categories": ["social", "help", "transport"],
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
