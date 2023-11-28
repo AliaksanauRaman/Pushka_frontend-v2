@@ -16,13 +16,10 @@
 }
 
 .empty-view {
-  display: flex;
-  flex-direction: column;
   padding: 40px 16px 48px 16px;
 }
 
 .empty-view__message {
-  flex-shrink: 0;
   line-height: 2rem;
   text-align: center;
 }
@@ -33,7 +30,7 @@
 }
 
 .empty-view__illustration {
-  flex-shrink: 0;
+  height: 220px;
   margin-top: 28px;
 }
 
@@ -88,6 +85,27 @@
 }
 
 @include for-laptop {
+  .loading-view__spinner {
+    margin-top: 70px;
+  }
+
+  .empty-view {
+    padding: 40px 70px;
+  }
+
+  .empty-view__message {
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+  }
+
+  .empty-view__illustration {
+    height: 360px;
+    max-width: 1060px;
+    margin: 40px auto 0 auto;
+  }
+
   .content-view {
     justify-content: center;
   }
@@ -120,9 +138,5 @@
 
   .applications-list {
     order: 4;
-  }
-
-  .loading-view__spinner {
-    margin-top: 70px;
   }
 }
