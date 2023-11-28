@@ -49,7 +49,7 @@ export class FilterByPlaceFieldComponent {
 
   @Input()
   public set translatedPlaces(value: ReadonlyArray<TranslatedPlace>) {
-    this._translatedPlaces.set(value);
+    this._translatedPlaces.set(value.filter((place) => place.isSpecificCity));
   }
 
   @Output()
