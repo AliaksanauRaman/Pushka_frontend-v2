@@ -3,7 +3,7 @@ import { TranslatedPlace } from '@shared/types/translated-place';
 type PlaceFieldStateOptions = Readonly<{
   fieldValue: string;
   selectedPlace: TranslatedPlace | null;
-  allPlaces: ReadonlyArray<TranslatedPlace>;
+  specificCityPlaces: ReadonlyArray<TranslatedPlace>;
   otherCityPlaces: ReadonlyArray<TranslatedPlace>;
   filteredPlaces: ReadonlyArray<TranslatedPlace>;
   isClearAvailable: boolean;
@@ -13,7 +13,7 @@ type PlaceFieldStateOptions = Readonly<{
 export class PlaceFieldState {
   public readonly fieldValue: string;
   public readonly selectedPlace: TranslatedPlace | null;
-  public readonly allPlaces: ReadonlyArray<TranslatedPlace>;
+  public readonly specificCityPlaces: ReadonlyArray<TranslatedPlace>;
   public readonly otherCityPlaces: ReadonlyArray<TranslatedPlace>;
   public readonly filteredPlaces: ReadonlyArray<TranslatedPlace>;
   public readonly isClearAvailable: boolean;
@@ -22,7 +22,7 @@ export class PlaceFieldState {
   constructor({
     fieldValue,
     selectedPlace,
-    allPlaces,
+    specificCityPlaces,
     otherCityPlaces,
     filteredPlaces,
     isClearAvailable,
@@ -30,7 +30,7 @@ export class PlaceFieldState {
   }: PlaceFieldStateOptions) {
     this.fieldValue = fieldValue;
     this.selectedPlace = selectedPlace;
-    this.allPlaces = allPlaces;
+    this.specificCityPlaces = specificCityPlaces;
     this.otherCityPlaces = otherCityPlaces;
     this.filteredPlaces = filteredPlaces;
     this.isClearAvailable = isClearAvailable;

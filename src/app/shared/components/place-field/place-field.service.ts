@@ -8,7 +8,7 @@ import { filterPlaces } from '@shared/utils/filter-places';
 const INITIAL_STATE = new PlaceFieldState({
   fieldValue: '',
   selectedPlace: null,
-  allPlaces: [],
+  specificCityPlaces: [],
   otherCityPlaces: [],
   filteredPlaces: [],
   isClearAvailable: false,
@@ -17,7 +17,7 @@ const INITIAL_STATE = new PlaceFieldState({
 
 @Injectable()
 export class PlaceFieldService {
-  private _places: ReadonlyArray<TranslatedPlace> = [];
+  private _specificCityPlaces: ReadonlyArray<TranslatedPlace> = [];
   private _otherCityPlaces: ReadonlyArray<TranslatedPlace> = [];
 
   private readonly _placeFieldState$ = new BehaviorSubject<{
@@ -32,14 +32,16 @@ export class PlaceFieldService {
 
   public readonly state$ = this._placeFieldState$.asObservable();
 
-  public handlePlacesSet(places: ReadonlyArray<TranslatedPlace>): void {
-    this._places = places;
-    this._otherCityPlaces = this._places.filter((place) => place.isOtherCity);
+  public handleAllPlacesSet(allPlaces: ReadonlyArray<TranslatedPlace>): void {
+    this._specificCityPlaces = allPlaces.filter(
+      (place) => place.isSpecificCity
+    );
+    this._otherCityPlaces = allPlaces.filter((place) => place.isOtherCity);
 
     const selectedPlace = this.getCurrentSelectedPlace();
     const newSelectedPlace =
       selectedPlace !== null
-        ? places.find(({ id }) => id === selectedPlace.id) || null
+        ? allPlaces.find(({ id }) => id === selectedPlace.id) || null
         : null;
 
     if (newSelectedPlace !== null) {
@@ -50,10 +52,10 @@ export class PlaceFieldService {
     this.updateState(
       new PlaceFieldState({
         fieldValue: '',
-        allPlaces: this._places,
+        specificCityPlaces: this._specificCityPlaces,
         otherCityPlaces: this._otherCityPlaces,
         selectedPlace: newSelectedPlace,
-        filteredPlaces: places,
+        filteredPlaces: this._specificCityPlaces,
         isClearAvailable: false,
         isEmitChange: false,
       })
@@ -67,10 +69,10 @@ export class PlaceFieldService {
       this.updateState(
         new PlaceFieldState({
           fieldValue,
-          allPlaces: this._places,
+          specificCityPlaces: this._specificCityPlaces,
           otherCityPlaces: this._otherCityPlaces,
           selectedPlace: null,
-          filteredPlaces: this._places,
+          filteredPlaces: this._specificCityPlaces,
           isClearAvailable: false,
           isEmitChange: true,
         })
@@ -82,9 +84,9 @@ export class PlaceFieldService {
       new PlaceFieldState({
         fieldValue,
         selectedPlace: null,
-        allPlaces: this._places,
+        specificCityPlaces: this._specificCityPlaces,
         otherCityPlaces: this._otherCityPlaces,
-        filteredPlaces: filterPlaces(this._places, fieldValue),
+        filteredPlaces: filterPlaces(this._specificCityPlaces, fieldValue),
         isClearAvailable: true,
         isEmitChange: true,
       })
@@ -96,7 +98,7 @@ export class PlaceFieldService {
       new PlaceFieldState({
         fieldValue: this.buildPlaceFieldValue(place),
         selectedPlace: place,
-        allPlaces: this._places,
+        specificCityPlaces: this._specificCityPlaces,
         otherCityPlaces: this._otherCityPlaces,
         filteredPlaces: [place],
         isClearAvailable: true,
@@ -110,9 +112,9 @@ export class PlaceFieldService {
       new PlaceFieldState({
         fieldValue: '',
         selectedPlace: null,
-        allPlaces: this._places,
+        specificCityPlaces: this._specificCityPlaces,
         otherCityPlaces: this._otherCityPlaces,
-        filteredPlaces: this._places,
+        filteredPlaces: this._specificCityPlaces,
         isClearAvailable: false,
         isEmitChange: false,
       })
@@ -124,9 +126,9 @@ export class PlaceFieldService {
       new PlaceFieldState({
         fieldValue: '',
         selectedPlace: null,
-        allPlaces: this._places,
+        specificCityPlaces: this._specificCityPlaces,
         otherCityPlaces: this._otherCityPlaces,
-        filteredPlaces: this._places,
+        filteredPlaces: this._specificCityPlaces,
         isClearAvailable: false,
         isEmitChange: true,
       })
@@ -138,7 +140,7 @@ export class PlaceFieldService {
       new PlaceFieldState({
         fieldValue: this.buildPlaceFieldValue(place),
         selectedPlace: place,
-        allPlaces: this._places,
+        specificCityPlaces: this._specificCityPlaces,
         otherCityPlaces: this._otherCityPlaces,
         filteredPlaces: [place],
         isClearAvailable: true,

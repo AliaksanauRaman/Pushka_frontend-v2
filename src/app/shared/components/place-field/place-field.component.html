@@ -19,7 +19,7 @@
       [placeholder]="_placeholderDirective.placeholder()"
       [value]="state.fieldValue"
       puDisabled
-      [disabled]="_isDisabled() || state.allPlaces.length === 0"
+      [disabled]="_isDisabled() || state.specificCityPlaces.length === 0"
       type="text"
       (focus)="openPanel()"
       (input)="_service.handleFieldInput(fieldRef.value)"

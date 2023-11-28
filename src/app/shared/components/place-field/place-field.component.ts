@@ -68,7 +68,7 @@ export class PlaceFieldComponent extends BaseDropdownFieldDirective<TranslatedPl
       return;
     }
 
-    this._service.handlePlacesSet(value);
+    this._service.handleAllPlacesSet(value);
   }
 
   protected readonly _state$ = this._service.state$.pipe(
