@@ -7,6 +7,7 @@
     "build": "ng build --configuration=production",
     "build:stats": "ng build --configuration=production --stats-json",
     "analyze:bundle": "webpack-bundle-analyzer dist/pushka-v2/stats.json",
+    "start:local:server": "http-server -p 4200 -c-1 dist/pushka-v2",
     "watch": "ng build --watch --configuration=development",
     "test": "ng test",
     "test:watch": "ng test --watch"
@@ -38,6 +39,7 @@
     "@angular/cli": "~17.0.3",
     "@angular/compiler-cli": "^17.0.4",
     "@types/jasmine": "~4.3.0",
+    "http-server": "^14.1.1",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
