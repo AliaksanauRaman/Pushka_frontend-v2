@@ -1,4 +1,4 @@
-@import '../../../styles/screen-size-mixins';
+@import "../../../styles/screen-size-mixins";
 
 :host {
   display: flex;
@@ -21,7 +21,7 @@
 
 @include for-laptop {
   :host {
-    &:hover {
+    &:not(.pu-panel-item--placeholder):hover {
       background-color: var(--background-gray-color);
     }
   }
