@@ -1,0 +1,52 @@
+@import "../../../styles/screen-size-mixins";
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  padding: 0 24px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-contrast-color);
+  background-color: var(--primary-color);
+  border-radius: 30px;
+
+  &:focus {
+    background-color: var(--primary-focused-color);
+  }
+
+  &:active {
+    background-color: var(--primary-active-color);
+  }
+
+  &:disabled {
+    color: var(--disabled-button-text-color);
+    background-color: var(--disabled-button-color);
+  }
+}
+
+.spinner {
+  flex-shrink: 0;
+}
+
+@include for-laptop {
+  :host {
+    height: 56px;
+    font-size: 2rem;
+
+    &:not(:disabled) {
+      &:focus {
+        background-color: var(--primary-color);
+      }
+
+      &:hover {
+        background-color: var(--primary-focused-color);
+      }
+
+      &:active {
+        background-color: var(--primary-active-color);
+      }
+    }
+  }
+}
