@@ -4,24 +4,22 @@ import {
   Input,
   signal,
 } from '@angular/core';
-import { NgIf } from '@angular/common';
 
 import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
-import { DisabledDirective } from '@shared/directives/disabled.directive';
 
 @Component({
   selector: 'button[puAccentButton]',
-  templateUrl: './accent-button.component.html',
-  styleUrls: ['./accent-button.component.scss'],
+  template: `
+    @if (_isLoading()) {
+      <pu-spinner class="spinner" size="medium"></pu-spinner>
+    } @else {
+      <ng-content></ng-content>
+    }
+  `,
+  styleUrl: './accent-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [NgIf, SpinnerComponent],
-  hostDirectives: [
-    {
-      directive: DisabledDirective,
-      inputs: ['disabled'],
-    },
-  ],
+  imports: [SpinnerComponent],
 })
 export class AccentButtonComponent {
   @Input()
