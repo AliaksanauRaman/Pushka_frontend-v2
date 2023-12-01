@@ -1,7 +1,7 @@
 {
   "name": "Pushka",
   "short_name": "Pushka",
-  "theme_color": "#0181A8",
+  "theme_color": "#1f3c47",
   "background_color": "#0181A8",
   "display": "standalone",
   "start_url": "/index.html",

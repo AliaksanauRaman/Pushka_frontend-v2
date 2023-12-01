@@ -3,8 +3,6 @@
 }
 
 .cdk-overlay-backdrop {
-  transition: none;
-
   &:not(.mat-overlay-transparent-backdrop) {
     background-color: var(--backdrop-color);
   }
