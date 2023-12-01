@@ -5,7 +5,7 @@
 <div class="actions">
   <pu-localization-selection-container class="actions__item" />
 
-  @if (_user$ | async; as user) {
+  @if (_user(); as user) {
     <button
       class="actions__item open-account-menu-button"
       [cdkMenuTriggerFor]="accountMenu"

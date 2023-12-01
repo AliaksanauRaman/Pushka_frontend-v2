@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { CdkMenuTrigger } from '@angular/cdk/menu';
 import { Select, Store } from '@ngxs/store';
 import { TranslateModule } from '@ngx-translate/core';
@@ -23,7 +23,6 @@ import { User } from '@shared/types/user';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    AsyncPipe,
     CdkMenuTrigger,
     TranslateModule,
     LocalizationSelectionContainerComponent,
@@ -39,7 +38,8 @@ export class ToolbarComponent {
   );
 
   @Select(UserState.stream)
-  protected readonly _user$!: Observable<User | null>;
+  private readonly _user$!: Observable<User | null>;
+  protected readonly _user = toSignal(this._user$);
 
   protected openEntryDialog(): void {
     this._userEntryDialogHelper.openDialog();
