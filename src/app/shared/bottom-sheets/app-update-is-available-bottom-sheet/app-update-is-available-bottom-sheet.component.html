@@ -1,0 +1,27 @@
+<h2 class="title">
+  {{ "appUpdateIsAvailablePopup.title" | translate }}
+</h2>
+
+<p class="message">
+  {{ "appUpdateIsAvailablePopup.message" | translate }}
+</p>
+
+<div class="actions">
+  <button
+    class="actions__item"
+    puPrimaryButton
+    type="button"
+    (click)="closeBottomSheet(true)"
+  >
+    {{ "actionLabel.install" | translate }}
+  </button>
+
+  <button
+    class="actions__item"
+    puSecondaryButton
+    type="button"
+    (click)="closeBottomSheet()"
+  >
+    {{ "actionLabel.later" | translate }}
+  </button>
+</div>
