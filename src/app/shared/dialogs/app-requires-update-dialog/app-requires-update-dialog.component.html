@@ -1,0 +1,14 @@
+<h1 class="title">{{ "appRequiresUpdatePopup.title" | translate }}</h1>
+
+<p class="message">{{ "appRequiresUpdatePopup.message" | translate }}</p>
+
+<div class="actions">
+  <button
+    class="actions__item"
+    puAccentButton
+    type="button"
+    (click)="closeDialog()"
+  >
+    <span>{{ "actionLabel.update" | translate }}</span>
+  </button>
+</div>
