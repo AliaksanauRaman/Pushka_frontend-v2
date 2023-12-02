@@ -9,8 +9,8 @@ export class UserEntryDialogHelperService extends BaseDialogHelperService {
   public openDialog(): void {
     this._dialog.open(UserEntryDialogComponent, {
       width: '664px',
+      panelClass: [this._config.baseClass, this._config.scrollableClass],
       autoFocus: false,
-      panelClass: 'pu-dialog--scrollable',
     });
   }
 }
