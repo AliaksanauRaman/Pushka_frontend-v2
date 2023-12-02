@@ -1,0 +1,30 @@
+<button
+  class="close-dialog-button"
+  type="button"
+  aria-label="Close dialog"
+  (click)="closeDialog()"
+></button>
+
+<h1 class="title">{{ "appUpdateIsAvailablePopup.title" | translate }}</h1>
+
+<p class="message">{{ "appUpdateIsAvailablePopup.message" | translate }}</p>
+
+<div class="actions">
+  <button
+    class="actions__item"
+    puSecondaryButton
+    type="button"
+    (click)="closeDialog()"
+  >
+    <span>{{ "actionLabel.later" | translate }}</span>
+  </button>
+
+  <button
+    class="actions__item"
+    puAccentButton
+    type="button"
+    (click)="closeDialog(true)"
+  >
+    <span>{{ "actionLabel.install" | translate }}</span>
+  </button>
+</div>
