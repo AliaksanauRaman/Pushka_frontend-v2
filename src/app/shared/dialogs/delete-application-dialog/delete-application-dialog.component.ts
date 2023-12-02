@@ -6,6 +6,7 @@ import { AccentButtonComponent } from '@shared/components/accent-button/accent-b
 import { SecondaryButtonComponent } from '@shared/components/secondary-button/secondary-button.component';
 
 import { BaseDialogComponent } from '@shared/base/base-dialog.component';
+import { ConfirmPopupResult } from '@shared/types/confirm-popup-result';
 
 @Component({
   selector: 'pu-delete-application-dialog',
@@ -20,6 +21,4 @@ import { BaseDialogComponent } from '@shared/base/base-dialog.component';
     SecondaryButtonComponent,
   ],
 })
-export class DeleteApplicationDialogComponent extends BaseDialogComponent<
-  true | undefined
-> {}
+export class DeleteApplicationDialogComponent extends BaseDialogComponent<ConfirmPopupResult> {}

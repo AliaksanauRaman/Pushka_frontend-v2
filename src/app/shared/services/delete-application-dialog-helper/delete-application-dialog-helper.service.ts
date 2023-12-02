@@ -4,18 +4,19 @@ import { Observable } from 'rxjs';
 import { DeleteApplicationDialogComponent } from '@shared/dialogs/delete-application-dialog/delete-application-dialog.component';
 
 import { BaseDialogHelperService } from '@shared/base/base-dialog-helper.service';
+import { ConfirmPopupResult } from '@shared/types/confirm-popup-result';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DeleteApplicationDialogHelperService extends BaseDialogHelperService {
-  public openDialog(): Observable<true | undefined> {
+  public openDialog(): Observable<ConfirmPopupResult> {
     return this._dialog.open<
-      true | undefined,
+      ConfirmPopupResult,
       unknown,
       DeleteApplicationDialogComponent
     >(DeleteApplicationDialogComponent, {
-      width: '640px',
+      panelClass: [this._config.baseClass, this._config.smallClass],
     }).closed;
   }
 }

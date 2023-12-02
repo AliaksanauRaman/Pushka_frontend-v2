@@ -52,14 +52,11 @@
 @include for-laptop {
   :host {
     margin: 0;
-    padding: 60px;
-    background-color: var(--primary-color);
-    border-radius: 76px;
   }
 
   .close-dialog-button {
-    top: 24px;
-    right: 24px;
+    top: -36px;
+    right: -36px;
     width: 40px;
     height: 40px;
     background-image: url("/assets/icons/white-cross.svg");
@@ -107,6 +104,7 @@
     width: auto;
     height: 40px;
     min-width: 160px;
+    font-size: 1.6rem;
 
     &:not(:first-child) {
       margin-top: 0;
