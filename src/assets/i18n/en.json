@@ -23,7 +23,10 @@
     "cancel": "Cancel",
     "tryAgain": "Try again",
     "more": "More",
-    "less": "Less"
+    "less": "Less",
+    "install": "Install",
+    "later": "Later",
+    "update": "Update"
   },
   "navigationLabel": {
     "sendParcel": "Send parcel",
@@ -250,6 +253,14 @@
   "deleteApplicationDialog": {
     "title": "Delete application",
     "message": "Do you really wish to have your application deleted?"
+  },
+  "appUpdateIsAvailablePopup": {
+    "title": "New app version is available!",
+    "message": "You can install it now or later in the user menu."
+  },
+  "appRequiresUpdatePopup": {
+    "title": "The app requires immediate update!",
+    "message": "Your app version is outdated and cannot properly work without an update."
   },
   "noMatchesFound": "No matches found.",
   "errorView": {
