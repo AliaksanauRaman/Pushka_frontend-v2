@@ -15,8 +15,6 @@ export class AppUpdateIsAvailableDialogHelperService
   implements IAppUpdateIsAvailablePopupHelperService
 {
   public openPopup(): Observable<ConfirmPopupResult> {
-    this._dialog.closeAll();
-
     return this._dialog.open<
       ConfirmPopupResult,
       unknown,

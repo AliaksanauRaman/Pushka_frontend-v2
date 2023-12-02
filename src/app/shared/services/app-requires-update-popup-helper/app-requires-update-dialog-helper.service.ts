@@ -14,8 +14,6 @@ export class AppRequiresUpdateDialogHelperService
   implements IAppRequiresUpdatePopupHelperService
 {
   public openPopup(): Observable<unknown> {
-    this._dialog.closeAll();
-
     return this._dialog.open<
       unknown,
       unknown,
