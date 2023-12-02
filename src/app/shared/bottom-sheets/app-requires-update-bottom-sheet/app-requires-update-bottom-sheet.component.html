@@ -1,0 +1,18 @@
+<h2 class="title">
+  {{ "appRequiresUpdatePopup.title" | translate }}
+</h2>
+
+<p class="message">
+  {{ "appRequiresUpdatePopup.message" | translate }}
+</p>
+
+<div class="actions">
+  <button
+    class="actions__item"
+    puPrimaryButton
+    type="button"
+    (click)="closeBottomSheet()"
+  >
+    {{ "actionLabel.update" | translate }}
+  </button>
+</div>
