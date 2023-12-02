@@ -20,7 +20,7 @@ export class ForceLoginDialogHelperService extends BaseDialogHelperService {
       ForceLoginDialogComponent
     >(ForceLoginDialogComponent, {
       width: '664px',
-      panelClass: 'pu-dialog--scrollable',
+      panelClass: [this._config.baseClass, this._config.scrollableClass],
       data,
     }).closed;
   }
