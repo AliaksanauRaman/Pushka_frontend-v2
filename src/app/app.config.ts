@@ -1,8 +1,4 @@
-import {
-  ApplicationConfig,
-  importProvidersFrom,
-  isDevMode,
-} from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
   PreloadAllModules,
@@ -14,6 +10,7 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { DialogModule } from '@angular/cdk/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { NgxsModule } from '@ngxs/store';
 import { CoreTranslateModule } from '@core/translate/core-translate.module';
 
@@ -31,14 +28,15 @@ export const APP_CONFIG: ApplicationConfig = {
     importProvidersFrom(
       DialogModule,
       MatSnackBarModule,
+      MatBottomSheetModule,
       NgxsModule.forRoot(STORE, { developmentMode: !environment.isProduction }),
       CoreTranslateModule
     ),
     provideRouter(appRoutes, withPreloading(PreloadAllModules)),
     { provide: TitleStrategy, useClass: PushkaTitleStrategy },
     provideServiceWorker('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      registrationStrategy: 'registerWhenStable:30000',
+      enabled: environment.isProduction,
+      registrationStrategy: 'registerWhenStable:20000',
     }),
   ],
 };
