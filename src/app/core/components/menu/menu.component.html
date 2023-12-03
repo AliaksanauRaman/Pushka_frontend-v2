@@ -1,0 +1,108 @@
+@if (_user(); as user) {
+  <div class="account-info">
+    <pu-account-avatar class="avatar" />
+    <span class="email">{{ user.email }}</span>
+  </div>
+
+  @if (_isAppUpdateAvailable()) {
+    <button
+      class="action"
+      cdkMenuItem
+      type="button"
+      (cdkMenuItemTriggered)="update.emit()"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          actionContent;
+          context: {
+            iconSrc: '/assets/icons/update.svg',
+            iconAlt: 'Update',
+            label: 'actionLabel.update' | translate,
+            labelHasBadge: true
+          }
+        "
+      ></ng-container>
+    </button>
+  }
+
+  <button
+    class="action"
+    cdkMenuItem
+    type="button"
+    (cdkMenuItemTriggered)="logout.emit()"
+  >
+    <ng-container
+      *ngTemplateOutlet="
+        actionContent;
+        context: {
+          iconSrc: '/assets/icons/logout.svg',
+          iconAlt: 'Logout',
+          label: 'actionLabel.logout' | translate,
+          labelHasBadge: false
+        }
+      "
+    ></ng-container>
+  </button>
+} @else {
+  @if (_isAppUpdateAvailable()) {
+    <button
+      class="action"
+      cdkMenuItem
+      type="button"
+      (cdkMenuItemTriggered)="update.emit()"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          actionContent;
+          context: {
+            iconSrc: '/assets/icons/update.svg',
+            iconAlt: 'Update',
+            label: 'actionLabel.update' | translate,
+            labelHasBadge: true
+          }
+        "
+      ></ng-container>
+    </button>
+  }
+
+  <button
+    class="action"
+    cdkMenuItem
+    type="button"
+    (cdkMenuItemTriggered)="login.emit()"
+  >
+    <ng-container
+      *ngTemplateOutlet="
+        actionContent;
+        context: {
+          iconSrc: '/assets/icons/login.svg',
+          iconAlt: 'Login',
+          label: 'actionLabel.login' | translate,
+          labelHasBadge: false
+        }
+      "
+    ></ng-container>
+  </button>
+}
+
+<ng-template
+  #actionContent
+  let-iconSrc="iconSrc"
+  let-iconAlt="iconAlt"
+  let-label="label"
+  let-labelHasBadge="labelHasBadge"
+>
+  <img
+    class="action__icon"
+    [ngSrc]="iconSrc"
+    [alt]="iconAlt"
+    width="24"
+    height="24"
+  />
+
+  <span
+    class="action__label"
+    [class.action__label--with-badge]="labelHasBadge"
+    >{{ label }}</span
+  >
+</ng-template>
