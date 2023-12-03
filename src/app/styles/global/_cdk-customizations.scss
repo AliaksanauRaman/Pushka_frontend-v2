@@ -3,7 +3,7 @@
 }
 
 .cdk-overlay-backdrop {
-  &:not(.mat-overlay-transparent-backdrop) {
+  &:not(.mat-overlay-transparent-backdrop):not(.cdk-overlay-transparent-backdrop) {
     background-color: var(--backdrop-color);
   }
 }
