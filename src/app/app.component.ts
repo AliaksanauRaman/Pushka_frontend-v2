@@ -1,27 +1,35 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  OnDestroy,
   OnInit,
   inject,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { UnderTestingDialogHelperService } from '@core/services/under-testing-dialog-helper/under-testing-dialog-helper.service';
+import { PwaService } from '@shared/services/pwa/pwa.service';
 
 @Component({
   selector: 'pu-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  template: '<router-outlet></router-outlet>',
+  styles: `
+    :host {
+      display: block;
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [RouterOutlet],
 })
-export class AppComponent implements OnInit {
-  private readonly _underTestingDialogHelper = inject(
-    UnderTestingDialogHelperService
-  );
+export class AppComponent implements OnInit, OnDestroy {
+  private readonly _pwaService = inject(PwaService);
 
   public ngOnInit(): void {
-    this._underTestingDialogHelper.openDialogIfNotViewed();
+    this._pwaService.subToVersionUpdates();
+    this._pwaService.subToUnrecoverable();
+  }
+
+  public ngOnDestroy(): void {
+    this._pwaService.destroySubscriptions();
   }
 }

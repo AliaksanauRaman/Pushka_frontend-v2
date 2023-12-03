@@ -4,6 +4,7 @@ import { AccentButtonComponent } from '@shared/components/accent-button/accent-b
 
 import { BaseDialogComponent } from '@shared/base/base-dialog.component';
 
+// TODO: Not used
 @Component({
   selector: 'pu-under-testing-dialog',
   templateUrl: './under-testing-dialog.component.html',
