@@ -44,45 +44,5 @@
       }
     }
   ],
-  "dataGroups": [
-    {
-      "version": 2,
-      "name": "places",
-      "urls": ["https://pushka-backend.herokuapp.com/api/places"],
-      "cacheConfig": {
-        "maxSize": 10,
-        "maxAge": "12h",
-        "timeout": "10s",
-        "strategy": "performance"
-      }
-    },
-    {
-      "version": 1,
-      "name": "help-requests",
-      "urls": ["https://pushka-backend.herokuapp.com/api/help-requests"],
-      "cacheConfig": {
-        "maxSize": 5,
-        "maxAge": "10m",
-        "timeout": "10s",
-        "strategy": "freshness"
-      },
-      "cacheQueryOptions": {
-        "ignoreSearch": false
-      }
-    },
-    {
-      "version": 1,
-      "name": "delivery-offers",
-      "urls": ["https://pushka-backend.herokuapp.com/api/help-offers"],
-      "cacheConfig": {
-        "maxSize": 5,
-        "maxAge": "10m",
-        "timeout": "10s",
-        "strategy": "freshness"
-      },
-      "cacheQueryOptions": {
-        "ignoreSearch": false
-      }
-    }
-  ]
+  "dataGroups": []
 }
