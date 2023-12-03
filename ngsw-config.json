@@ -34,7 +34,7 @@
   ],
   "dataGroups": [
     {
-      "version": 1,
+      "version": 2,
       "name": "translations",
       "urls": [
         "/assets/i18n/ru.json",
@@ -43,18 +43,18 @@
       ],
       "cacheConfig": {
         "maxSize": 10,
-        "maxAge": "7d",
+        "maxAge": "12h",
         "timeout": "3s",
         "strategy": "performance"
       }
     },
     {
-      "version": 1,
+      "version": 2,
       "name": "places",
       "urls": ["https://pushka-backend.herokuapp.com/api/places"],
       "cacheConfig": {
         "maxSize": 10,
-        "maxAge": "7d",
+        "maxAge": "12h",
         "timeout": "10s",
         "strategy": "performance"
       }
