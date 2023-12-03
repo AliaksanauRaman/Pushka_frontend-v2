@@ -7,30 +7,31 @@
 
   @if (_user(); as user) {
     <button
-      class="actions__item open-account-menu-button"
-      [cdkMenuTriggerFor]="accountMenu"
+      class="actions__item actions__item--menu actions__item--account-menu"
+      [class.actions__item--with-badge]="_isAppUpdateAvailable()"
+      [cdkMenuTriggerFor]="menu"
       [cdkMenuTriggerData]="{ user }"
       type="button"
       aria-label="Open account menu"
-    >
-      <pu-account-avatar class="avatar" />
-    </button>
+    ></button>
   } @else {
     <button
-      class="actions__item"
-      puSecondaryButton
+      class="actions__item actions__item--menu"
+      [class.actions__item--with-badge]="_isAppUpdateAvailable()"
+      [cdkMenuTriggerFor]="menu"
+      [cdkMenuTriggerData]="{ user: null }"
       type="button"
-      (click)="openEntryDialog()"
-    >
-      <span>{{ "actionLabel.login" | translate }}</span>
-    </button>
+      aria-label="Open menu"
+    ></button>
   }
 </div>
 
-<ng-template #accountMenu let-user="user">
-  <pu-account-menu
-    class="account-menu"
-    [userEmail]="user.email"
+<ng-template #menu let-user="user">
+  <pu-menu
+    class="menu"
+    [user]="user"
     (logout)="logoutUser()"
+    (login)="openEntryDialog()"
+    (update)="updateApp()"
   />
 </ng-template>

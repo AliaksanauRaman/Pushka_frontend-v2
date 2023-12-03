@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { AccountAvatarComponent } from '@shared/components/account-avatar/account-avatar.component';
 
+// TODO: Not used
 @Component({
   selector: 'pu-account-menu',
   templateUrl: './account-menu.component.html',

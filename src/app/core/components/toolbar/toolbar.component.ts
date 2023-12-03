@@ -6,19 +6,18 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
 import { LocalizationSelectionContainerComponent } from '@core/components/localization-selection-container/localization-selection-container.component';
-import { SecondaryButtonComponent } from '@shared/components/secondary-button/secondary-button.component';
-import { AccountAvatarComponent } from '@shared/components/account-avatar/account-avatar.component';
-import { AccountMenuComponent } from '@core/components/account-menu/account-menu.component';
+import { MenuComponent } from '@core/components/menu/menu.component';
 
 import { UserEntryDialogHelperService } from '@core/services/user-entry-dialog-helper/user-entry-dialog-helper.service';
 
 import { LogoutUser, UserState } from '@store/user';
 import { User } from '@shared/types/user';
+import { PwaGetLatestVersion, PwaState } from '@store/pwa';
 
 @Component({
   selector: 'pu-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss'],
+  styleUrl: './toolbar.component.scss',
   providers: [UserEntryDialogHelperService],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
@@ -26,9 +25,7 @@ import { User } from '@shared/types/user';
     CdkMenuTrigger,
     TranslateModule,
     LocalizationSelectionContainerComponent,
-    SecondaryButtonComponent,
-    AccountAvatarComponent,
-    AccountMenuComponent,
+    MenuComponent,
   ],
 })
 export class ToolbarComponent {
@@ -41,11 +38,21 @@ export class ToolbarComponent {
   private readonly _user$!: Observable<User | null>;
   protected readonly _user = toSignal(this._user$);
 
+  @Select(PwaState.isAppUpdateAvailable)
+  private readonly _isAppUpdateAvailable$!: Observable<boolean>;
+  protected readonly _isAppUpdateAvailable = toSignal(
+    this._isAppUpdateAvailable$
+  );
+
   protected openEntryDialog(): void {
     this._userEntryDialogHelper.openDialog();
   }
 
   protected logoutUser(): void {
     this._store.dispatch(new LogoutUser());
+  }
+
+  protected updateApp(): void {
+    this._store.dispatch(new PwaGetLatestVersion());
   }
 }

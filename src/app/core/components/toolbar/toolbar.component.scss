@@ -27,17 +27,44 @@
 .actions__item {
   flex-shrink: 0;
 
+  &.actions__item--menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--background-gray-color);
+    background-image: url("/assets/icons/gray-burger-menu.svg");
+    background-size: 28px 28px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+
+    &.actions__item--account-menu {
+      background-image: url("/assets/icons/user.svg");
+      background-size: 24px 24px;
+    }
+
+    &.actions__item--with-badge::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      width: 12px;
+      height: 12px;
+      background-color: var(--error-color);
+      border-radius: 50%;
+    }
+  }
+
   &:not(:last-child) {
     margin-right: 16px;
   }
 }
 
-.open-account-menu-button {
-  width: 40px;
-  height: 40px;
-}
-
-.account-menu {
+.menu {
   margin-top: 8px;
 }
 
@@ -46,11 +73,9 @@
     font-size: 2.6rem;
   }
 
-  .open-account-menu-button {
+  .actions__item.actions__item--menu {
     &:hover {
-      .avatar {
-        background-color: #ededed;
-      }
+      background-color: #ededed;
     }
   }
 }
