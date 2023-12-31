@@ -12,6 +12,7 @@ import { DialogModule } from '@angular/cdk/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { CoreTranslateModule } from '@core/translate/core-translate.module';
 
 import { authorizationInterceptor } from '@core/interceptors/authorization.interceptor';
@@ -30,6 +31,9 @@ export const APP_CONFIG: ApplicationConfig = {
       MatSnackBarModule,
       MatBottomSheetModule,
       NgxsModule.forRoot(STORE, { developmentMode: !environment.isProduction }),
+      NgxsReduxDevtoolsPluginModule.forRoot({
+        disabled: environment.isProduction,
+      }),
       CoreTranslateModule
     ),
     provideRouter(appRoutes, withPreloading(PreloadAllModules)),
