@@ -9,20 +9,6 @@ import { AuthorizedCreateDeliveryOfferDto } from '@shared/dtos/authorized-create
 import { UnauthorizedCreateDeliveryOfferDto } from '@shared/dtos/unauthorized-create-delivery-offer.dto';
 import { PageableData } from '@shared/types/pageable-data';
 
-const MOCK_DELIVERY_OFFER = new DeliveryOffer(
-  1,
-  28244,
-  { cityLabel: 'city.belarus.minsk', countryLabel: 'country.belarus' },
-  { cityLabel: 'city.poland.warsaw', countryLabel: 'country.poland' },
-  new Date(),
-  new Date(),
-  'Some description',
-  'Raman Aliaksanau',
-  'raman.aliaksanau@gmail.com',
-  null,
-  ApplicationStatus.PUBLISHED
-);
-
 @Injectable()
 export class DeliveryOffersHttpServiceMock
   implements IDeliveryOffersHttpService
@@ -33,10 +19,7 @@ export class DeliveryOffersHttpServiceMock
     const data: Array<DeliveryOffer> = [];
 
     for (let index = 0; index < 20; index++) {
-      data.push({
-        ...MOCK_DELIVERY_OFFER,
-        id: index + 1,
-      });
+      data.push(this.generateMockDeliveryOffer(index + 1));
     }
 
     return of(
@@ -68,5 +51,21 @@ export class DeliveryOffersHttpServiceMock
 
   public deleteOne(_deliveryOfferId: number): Observable<unknown> {
     return of(null).pipe(delay(3000));
+  }
+
+  private generateMockDeliveryOffer(id: number): DeliveryOffer {
+    return new DeliveryOffer(
+      id,
+      28244,
+      { cityLabel: 'city.belarus.minsk', countryLabel: 'country.belarus' },
+      { cityLabel: 'city.poland.warsaw', countryLabel: 'country.poland' },
+      new Date(),
+      new Date(),
+      'Some description',
+      'Raman Aliaksanau',
+      'raman.aliaksanau@gmail.com',
+      null,
+      ApplicationStatus.PUBLISHED
+    );
   }
 }
