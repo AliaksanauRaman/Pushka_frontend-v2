@@ -6,6 +6,10 @@
   height: 40px;
   background-color: var(--background-gray-color);
   border-radius: 50%;
+
+  &.account-avatar--transparent {
+    background-color: transparent;
+  }
 }
 
 .avatar-icon {
