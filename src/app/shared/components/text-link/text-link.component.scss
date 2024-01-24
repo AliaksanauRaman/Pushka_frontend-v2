@@ -2,12 +2,16 @@
   display: inline;
   color: var(--accent-color);
   text-decoration: underline;
+  
+  &.text-link--dim {
+    color: var(--dim-accent-color);
+  }
 
-  &:focus {
+  &:not(.text-link--dim):focus {
     color: var(--accent-focused-color);
   }
 
-  &:active {
+  &:not(.text-link--dim):active {
     color: var(--accent-active-color);
   }
 }
