@@ -9,7 +9,11 @@
     (change)="_isExpanded.set(checkbox.checked)"
   />
 
-  <label class="expand-text-label" [for]="_expandTextButtonId">
+  <label
+    class="expand-text-label"
+    [class.expand-text-label--dim]="_isApplicationExpired()"
+    [for]="_expandTextButtonId"
+  >
     {{ _expandTextLabel() | translate }}
   </label>
 }

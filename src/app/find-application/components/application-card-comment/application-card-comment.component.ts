@@ -41,4 +41,7 @@ export class ApplicationCardCommentComponent {
   protected readonly _expandTextLabel = computed(() =>
     this._isExpanded() ? 'actionLabel.less' : 'actionLabel.more'
   );
+  protected readonly _isApplicationExpired = computed(
+    () => this._application.value()?.isExpired || false
+  );
 }

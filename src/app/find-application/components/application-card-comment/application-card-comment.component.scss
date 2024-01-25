@@ -1,4 +1,4 @@
-@import '../../../styles/screen-size-mixins';
+@import "../../../styles/screen-size-mixins";
 
 :host {
   display: block;
@@ -21,6 +21,10 @@
   font-weight: 600;
   color: var(--accent-color);
   line-height: 2rem;
+
+  &.expand-text-label--dim {
+    color: var(--dim-accent-color);
+  }
 }
 
 .expand-text-button {
