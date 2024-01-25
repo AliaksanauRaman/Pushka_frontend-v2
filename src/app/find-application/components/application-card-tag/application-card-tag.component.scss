@@ -10,10 +10,20 @@
 
   &.my-delivery-offer {
     background-color: var(--light-accent-color);
+
+    &.my-application--dim {
+      color: var(--white-color);
+      background-color: var(--dim-accent-color);
+    }
   }
 
   &.my-help-request {
     background-color: var(--light-primary-color);
+
+    &.my-application--dim {
+      color: var(--white-color);
+      background-color: var(--dim-primary-color);
+    }
   }
 }
 
