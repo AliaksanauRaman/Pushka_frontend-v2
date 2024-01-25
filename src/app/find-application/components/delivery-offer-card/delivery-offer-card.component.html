@@ -3,6 +3,7 @@
     <pu-application-card-header
       class="header"
       [applicationType]="_type"
+      [isApplicationExpired]="application.isExpired"
       (deletionConfirm)="deleteDeliveryOffer(application.id)"
     />
   }
