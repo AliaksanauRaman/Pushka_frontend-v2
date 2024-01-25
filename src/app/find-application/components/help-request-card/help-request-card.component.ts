@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  inject,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { tap } from 'rxjs';
 
 import { ApplicationCardHeaderComponent } from '../application-card-header/application-card-header.component';
@@ -18,7 +10,7 @@ import { ApplicationDirective } from '../../directives/application/application.d
 
 import { DeleteHelpRequestService } from '../../services/delete-help-request/delete-help-request.service';
 
-import { Application } from '@shared/types/application';
+import { BaseApplicationCardComponent } from '../../base/base-application-card/base-application-card.component';
 import { MyApplicationType } from '@shared/enums/my-application-type.enum';
 
 @Component({
@@ -42,20 +34,9 @@ import { MyApplicationType } from '@shared/enums/my-application-type.enum';
     },
   ],
 })
-export class HelpRequestCardComponent {
+export class HelpRequestCardComponent extends BaseApplicationCardComponent {
   protected readonly _deleteHelpRequest = inject(DeleteHelpRequestService);
-  protected readonly _application =
-    inject<ApplicationDirective<Application>>(ApplicationDirective);
 
-  @Input()
-  public set isMine(value: boolean) {
-    this._isMine.set(value);
-  }
-
-  @Output()
-  public readonly deleted = new EventEmitter<void>();
-
-  protected readonly _isMine = signal(false);
   protected readonly _type = MyApplicationType.REQUEST;
 
   protected deleteHelpRequest(id: number): void {
