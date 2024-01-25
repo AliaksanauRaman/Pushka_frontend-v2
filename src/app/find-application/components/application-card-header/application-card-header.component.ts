@@ -37,10 +37,16 @@ export class ApplicationCardHeaderComponent {
     this._applicationType.set(value);
   }
 
+  @Input()
+  public set isApplicationExpired(value: boolean) {
+    this._isApplicationExpired.set(value);
+  }
+
   @Output()
   public readonly deletionConfirm = new EventEmitter<void>();
 
   protected readonly _applicationType = signal(MyApplicationType.OFFER);
+  protected readonly _isApplicationExpired = signal(false);
 
   protected openDeleteApplicationDialog(): void {
     this._deleteApplicationDialogHelperService
