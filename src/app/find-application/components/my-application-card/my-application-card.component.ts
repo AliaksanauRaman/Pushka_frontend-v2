@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   Output,
+  HostBinding,
   computed,
   inject,
 } from '@angular/core';
@@ -58,6 +59,11 @@ export class MyApplicationCardComponent {
       this._deleteDeliveryOffer.isDeleting() ||
       this._deleteHelpRequest.isDeleting()
   );
+
+  @HostBinding('class.application-card--expired')
+  public get hasApplicationCardExpiredClass(): boolean {
+    return this._application.value()?.isExpired || false;
+  }
 
   protected handleDeletionConfirm({ type, id }: MyApplication): void {
     if (type === MyApplicationType.OFFER) {

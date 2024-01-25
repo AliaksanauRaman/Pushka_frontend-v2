@@ -2,6 +2,7 @@
   <pu-application-card-header
     class="header"
     [applicationType]="application.type"
+    [isApplicationExpired]="application.isExpired"
     (deletionConfirm)="handleDeletionConfirm(application)"
   />
 
