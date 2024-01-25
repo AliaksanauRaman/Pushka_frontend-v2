@@ -11,7 +11,10 @@
     </div>
   </div>
 
-  <div class="validity-period-end">
+  <div
+    class="validity-period-end-date"
+    [class.validity-period-end-date--expired]="application.isExpired"
+  >
     <span>{{ "applicationIsValidUntil" | translate }} </span>
     <span>{{ application.validityPeriodEnd | date : _dateViewFormat }}</span>
   </div>
