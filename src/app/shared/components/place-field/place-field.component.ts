@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ConnectedPosition, OverlayModule } from '@angular/cdk/overlay';
+import { OverlayModule, ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { map, tap } from 'rxjs';
 
 import { PanelComponent } from '@shared/components/panel/panel.component';
@@ -58,6 +58,7 @@ import { TranslatedPlaceViewPipe } from '@shared/pipes/translated-place-view.pip
   ],
 })
 export class PlaceFieldComponent extends BaseDropdownFieldDirective<TranslatedPlace | null> {
+  private readonly _scrollStrategyOptions = inject(ScrollStrategyOptions);
   protected readonly _service = inject(PlaceFieldService);
   protected readonly _idDirective = inject(IdDirective);
   protected readonly _labelDirective = inject(LabelDirective);
@@ -80,20 +81,7 @@ export class PlaceFieldComponent extends BaseDropdownFieldDirective<TranslatedPl
     map(({ current }) => current)
   );
   protected readonly _state = toSignal(this._state$);
-  protected readonly _panelPositions: Array<ConnectedPosition> = [
-    {
-      originX: 'start',
-      originY: 'bottom',
-      overlayX: 'start',
-      overlayY: 'top',
-    },
-    {
-      originX: 'start',
-      originY: 'top',
-      overlayX: 'start',
-      overlayY: 'bottom',
-    },
-  ];
+  protected readonly _panelScrollStrategy = this._scrollStrategyOptions.block();
 
   public override writeValue(value: unknown): void {
     if (value !== null && !TranslatedPlace.is(value)) {
