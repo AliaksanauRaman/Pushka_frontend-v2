@@ -1,21 +1,18 @@
-import { DestroyRef, Injectable, inject, signal } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Observable, catchError, finalize, throwError } from 'rxjs';
 
 import { DeliveryOffersHttpService } from '@shared/http/delivery-offers/delivery-offers-http.service';
-import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
+
+import { BaseDeleteApplicationService } from '../../base/base-delete-application/base-delete-application.service';
 
 @Injectable()
-export class DeleteDeliveryOfferService {
-  private readonly _destroyRef = inject(DestroyRef);
+export class DeleteDeliveryOfferService extends BaseDeleteApplicationService {
   private readonly _deliveryOffersHttpService = inject(
     DeliveryOffersHttpService
   );
-  private readonly _snackBarService = inject(SnackBarService);
 
-  public readonly isDeleting = signal(false);
-
-  public deleteById(id: number): Observable<unknown> {
+  public override deleteById(id: number): Observable<unknown> {
     this.isDeleting.set(true);
 
     return this._deliveryOffersHttpService.deleteOne(id).pipe(
