@@ -1,8 +1,11 @@
+import { checkIsDateEarlierThan } from '@shared/utils/check-is-date-earlier-than';
 import { ApplicationPlace } from './application-place';
 import { Phone } from './phone';
 import { ApplicationStatus } from '@shared/enums/application-status.enum';
 
-export class Application {
+export abstract class Application {
+  public readonly isExpired: boolean;
+
   constructor(
     public readonly id: number,
     public readonly userId: number,
@@ -15,7 +18,9 @@ export class Application {
     public readonly email: string,
     public readonly phone: Phone | null,
     public readonly status: ApplicationStatus
-  ) {}
+  ) {
+    this.isExpired = checkIsDateEarlierThan(this.validityPeriodEnd, new Date());
+  }
 }
 
 export class ApplicationsList<T extends Application> {

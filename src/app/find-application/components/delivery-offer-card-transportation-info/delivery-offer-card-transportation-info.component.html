@@ -4,7 +4,7 @@
       {{ application.departurePlace | cardPlaceLabel | translate }}
     </div>
 
-    <div class="date">
+    <div class="date" [class.date--expired]="application.isExpired">
       {{ application.validityPeriodStart | date : _dateViewFormat }}
     </div>
   </div>
@@ -16,7 +16,7 @@
       {{ application.destination | cardPlaceLabel | translate }}
     </div>
 
-    <div class="date">
+    <div class="date" [class.date--expired]="application.isExpired">
       {{ application.validityPeriodEnd | date : _dateViewFormat }}
     </div>
   </div>

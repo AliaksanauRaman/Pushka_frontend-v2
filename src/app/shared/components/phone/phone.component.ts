@@ -12,8 +12,16 @@ import { Phone } from '@shared/types/phone';
 
 @Component({
   selector: 'pu-phone',
-  templateUrl: './phone.component.html',
-  styleUrls: ['./phone.component.scss'],
+  template: `
+    <a puTextLink [isDim]="_isDim()" [href]="_phoneHref()">
+      {{ _phoneView() }}
+    </a>
+  `,
+  styles: `
+    :host {
+      display: inline;
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [TextLinkComponent],
@@ -24,7 +32,13 @@ export class PhoneComponent {
     this._phone.set(value);
   }
 
+  @Input()
+  public set isDim(value: boolean) {
+    this._isDim.set(value);
+  }
+
   private readonly _phone = signal<Phone | null>(null);
+  protected readonly _isDim = signal(false);
 
   protected readonly _phoneHref = computed(() => {
     const phone = this._phone();

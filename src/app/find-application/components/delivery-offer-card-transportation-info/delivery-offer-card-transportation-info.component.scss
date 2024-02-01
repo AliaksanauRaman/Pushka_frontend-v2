@@ -29,6 +29,10 @@
 
 .date {
   color: var(--gray-color);
+
+  &.date--expired {
+    text-decoration: line-through;
+  }
 }
 
 @include for-laptop {

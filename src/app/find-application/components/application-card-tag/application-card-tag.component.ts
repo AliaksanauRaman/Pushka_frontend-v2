@@ -24,6 +24,11 @@ export class ApplicationCardTagComponent {
     this._type.set(value);
   }
 
+  @Input()
+  public set isDim(value: boolean) {
+    this._isDim.set(value);
+  }
+
   @HostBinding('class.my-delivery-offer')
   public get hasMyDeliveryOfferClass(): boolean {
     return this._type() === MyApplicationType.OFFER;
@@ -34,7 +39,14 @@ export class ApplicationCardTagComponent {
     return this._type() === MyApplicationType.REQUEST;
   }
 
+  @HostBinding('class.my-application--dim')
+  public get hasMyApplicationDimClass(): boolean {
+    return this._isDim();
+  }
+
   protected readonly _type = signal<MyApplicationType>(MyApplicationType.OFFER);
+  private readonly _isDim = signal(false);
+
   protected readonly _text = computed(() =>
     this._type() === MyApplicationType.OFFER ? 'myOffer' : 'myRequest'
   );

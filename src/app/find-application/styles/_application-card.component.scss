@@ -1,4 +1,4 @@
-@import '../../styles/screen-size-mixins';
+@import "../../styles/screen-size-mixins";
 
 :host {
   position: relative;
@@ -8,6 +8,10 @@
   border-radius: 16px;
   box-shadow: 2px 4px 14px 0px rgba(0, 0, 0, 0.08);
   overflow: hidden;
+
+  &.application-card--expired {
+    background-color: var(--light-gray-color);
+  }
 }
 
 .header {

@@ -26,8 +26,12 @@
   color: var(--black-color);
 }
 
-.validity-period-end {
+.validity-period-end-date {
   color: var(--gray-color);
+
+  &.validity-period-end-date--expired {
+    text-decoration: line-through;
+  }
 }
 
 @include for-laptop {
@@ -52,7 +56,7 @@
     font-size: 2.4rem;
   }
 
-  .validity-period-end {
+  .validity-period-end-date {
     flex-shrink: 0;
     line-height: 2.4rem;
     font-size: 1.7rem;

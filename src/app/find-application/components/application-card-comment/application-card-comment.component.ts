@@ -35,10 +35,19 @@ export class ApplicationCardCommentComponent {
 
   protected readonly _text = computed(() => {
     const application = this._application.value();
-    return application === null ? '' : application.description;
+    return application === null
+      ? ''
+      : this.capitalizeFirstLetter(application.description.trim());
   });
   protected readonly _isExpanded = signal(false);
   protected readonly _expandTextLabel = computed(() =>
     this._isExpanded() ? 'actionLabel.less' : 'actionLabel.more'
   );
+  protected readonly _isApplicationExpired = computed(
+    () => this._application.value()?.isExpired || false
+  );
+
+  private capitalizeFirstLetter(text: string): string {
+    return `${text.slice(0, 1).toUpperCase()}${text.slice(1)}`;
+  }
 }

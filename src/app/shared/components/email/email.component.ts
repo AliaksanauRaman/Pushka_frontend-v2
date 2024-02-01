@@ -10,8 +10,16 @@ import { TextLinkComponent } from '@shared/components/text-link/text-link.compon
 
 @Component({
   selector: 'pu-email',
-  templateUrl: './email.component.html',
-  styleUrls: ['./email.component.scss'],
+  template: `
+    <a puTextLink [isDim]="_isDim()" [href]="_emailHref()">
+      {{ _emailView() }}
+    </a>
+  `,
+  styles: `
+    :host {
+      display: inline;
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [TextLinkComponent],
@@ -22,7 +30,13 @@ export class EmailComponent {
     this._email.set(value);
   }
 
+  @Input()
+  public set isDim(value: boolean) {
+    this._isDim.set(value);
+  }
+
   private readonly _email = signal('');
+  protected readonly _isDim = signal(false);
 
   protected readonly _emailHref = computed(() => {
     const email = this._email();

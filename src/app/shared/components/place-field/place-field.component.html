@@ -64,7 +64,7 @@
     [cdkConnectedOverlayWidth]="
       overlayOrigin.elementRef.nativeElement.offsetWidth
     "
-    [cdkConnectedOverlayPositions]="_panelPositions"
+    [cdkConnectedOverlayScrollStrategy]="_panelScrollStrategy"
     (detach)="closePanel(); fieldRef.blur()"
     (backdropClick)="closePanel()"
   >

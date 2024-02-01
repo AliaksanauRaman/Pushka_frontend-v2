@@ -1,6 +1,9 @@
 @if (_application.value(); as application) {
   <div class="user">
-    <pu-account-avatar class="avatar" />
+    <pu-account-avatar
+      class="avatar"
+      [isTransparent]="application.isExpired"
+    />
 
     <div class="full-name-and-show-contacts">
       <div class="full-name">
@@ -34,10 +37,18 @@
   @if (_areContactsShown()) {
     <div class="contacts">
       @if (application.phone) {
-        <pu-phone class="contacts__item" [phone]="application.phone" />
+        <pu-phone
+          class="contacts__item"
+          [phone]="application.phone"
+          [isDim]="application.isExpired"
+        />
       }
 
-      <pu-email class="contacts__item" [email]="application.email" />
+      <pu-email
+        class="contacts__item"
+        [email]="application.email"
+        [isDim]="application.isExpired"
+      />
     </div>
   }
 }
