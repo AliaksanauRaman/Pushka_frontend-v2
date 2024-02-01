@@ -12,7 +12,6 @@ import { DeliveryOffersListComponent } from '../../components/delivery-offers-li
 import { SpinnerComponent } from '@shared/components/spinner/spinner.component';
 import { FilterByPlaceFieldQueryContainerComponent } from '@shared/components/filter-by-place-field-query-container/filter-by-place-field-query-container.component';
 import { TextLinkComponent } from '@shared/components/text-link/text-link.component';
-import { PlaceholderComponent } from '@shared/components/placeholder/placeholder.component';
 
 import { OffersPageService } from './offers-page.service';
 
@@ -31,7 +30,6 @@ import { OffersPageService } from './offers-page.service';
     SpinnerComponent,
     FilterByPlaceFieldQueryContainerComponent,
     TextLinkComponent,
-    PlaceholderComponent,
   ],
 })
 export class OffersPageComponent implements OnInit {

@@ -25,21 +25,17 @@
               class="empty-view__navigation-link"
               puTextLink
               routerLink="/send-parcel"
-            >
-              {{ "callToAction.sendParcel" | translate }}
-            </a>
+            >{{ "callToAction.sendParcel" | translate }}</a>
             {{ 'or' | translate }}
             <a
             class="empty-view__navigation-link"
             puTextLink
             routerLink="/deliver-parcel"
-          >
-            {{ "callToAction.deliverParcel" | translate }}
-          </a>
+          >{{ "callToAction.deliverParcel" | translate }}</a>
           </span>         
         </p>
 
-        <pu-placeholder class="empty-view__illustration" />
+        <div class="empty-view__illustration"></div>
       </section>
     } @else {
       <section class="content-view">
