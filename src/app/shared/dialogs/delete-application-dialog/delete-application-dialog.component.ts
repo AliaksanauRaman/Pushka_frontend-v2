@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { PlaceholderComponent } from '@shared/components/placeholder/placeholder.component';
 import { AccentButtonComponent } from '@shared/components/accent-button/accent-button.component';
 import { SecondaryButtonComponent } from '@shared/components/secondary-button/secondary-button.component';
 
@@ -14,11 +13,6 @@ import { ConfirmPopupResult } from '@shared/types/confirm-popup-result';
   styleUrl: './delete-application-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [
-    TranslateModule,
-    PlaceholderComponent,
-    AccentButtonComponent,
-    SecondaryButtonComponent,
-  ],
+  imports: [TranslateModule, AccentButtonComponent, SecondaryButtonComponent],
 })
 export class DeleteApplicationDialogComponent extends BaseDialogComponent<ConfirmPopupResult> {}
