@@ -31,13 +31,18 @@
 
 .message {
   padding: 0 10px;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
   text-align: center;
 }
 
 .illustration {
-  height: 100px;
-  margin-bottom: 40px;
+  width: 280px;
+  height: 112px;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-left: auto;
+  background-image: url("/assets/images/delete-application.svg");
+  background-size: 100% 100%;
 }
 
 .actions__item {
@@ -88,9 +93,9 @@
 
   .illustration {
     order: 1;
-    width: 131px;
-    height: 53px;
-    margin: 0 auto 12px auto;
+    width: 185px;
+    height: 74px;
+    margin-bottom: 10px;
   }
 
   .actions {

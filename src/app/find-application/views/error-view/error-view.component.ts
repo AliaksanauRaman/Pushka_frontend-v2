@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { PlaceholderComponent } from '@shared/components/placeholder/placeholder.component';
 import { AccentButtonComponent } from '@shared/components/accent-button/accent-button.component';
 
 @Component({
@@ -17,7 +16,7 @@ import { AccentButtonComponent } from '@shared/components/accent-button/accent-b
   styleUrl: './error-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [TranslateModule, PlaceholderComponent, AccentButtonComponent],
+  imports: [TranslateModule, AccentButtonComponent],
 })
 export class ErrorViewComponent {
   @Input()

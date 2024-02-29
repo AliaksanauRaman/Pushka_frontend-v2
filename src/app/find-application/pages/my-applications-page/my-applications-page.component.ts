@@ -18,7 +18,6 @@ import { MyApplicationTypeRadioFieldComponent } from '@shared/components/my-appl
 import { MyApplicationsListComponent } from '../../components/my-applications-list/my-applications-list.component';
 import { ErrorViewComponent } from '../../views/error-view/error-view.component';
 import { TextLinkComponent } from '@shared/components/text-link/text-link.component';
-import { PlaceholderComponent } from '@shared/components/placeholder/placeholder.component';
 
 import { MyApplicationsPageService } from './my-applications-page.service';
 
@@ -46,7 +45,6 @@ import { MyApplicationTypeOption } from '@shared/types/my-application-type-optio
     MyApplicationsListComponent,
     ErrorViewComponent,
     TextLinkComponent,
-    PlaceholderComponent,
   ],
 })
 export class MyApplicationsPageComponent implements OnInit {

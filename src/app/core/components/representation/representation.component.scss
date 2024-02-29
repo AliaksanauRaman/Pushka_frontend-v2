@@ -20,7 +20,7 @@
   bottom: 11px;
   width: 240px;
   height: 96px;
-  background-image: url("/assets/images/representation.png");
+  background-image: url("/assets/images/representation.svg");
   background-size: 100% 100%;
 }
 
@@ -43,7 +43,6 @@
     bottom: 49px;
     width: 505px;
     height: 202px;
-    background-image: url("/assets/images/representation.png");
 
     &:active {
       cursor: grabbing;

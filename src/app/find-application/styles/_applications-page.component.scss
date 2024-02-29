@@ -30,8 +30,13 @@
 }
 
 .empty-view__illustration {
-  height: 220px;
+  width: 300px;
+  height: 120px;
   margin-top: 28px;
+  margin-right: auto;
+  margin-left: auto;
+  background-image: url("/assets/images/empty-list-of-applications.svg");
+  background-size: 100% 100%;
 }
 
 .content-view {
@@ -101,9 +106,9 @@
   }
 
   .empty-view__illustration {
-    height: 360px;
-    max-width: 1060px;
-    margin: 40px auto 0 auto;
+    width: 400px;
+    height: 160px;
+    margin-top: 22px;
   }
 
   .content-view {
